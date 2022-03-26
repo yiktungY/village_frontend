@@ -1,0 +1,19 @@
+@use "./fonts" as *;
+@use "./variables" as *;
+@use "./mixins" as *;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+//font, font size, color
+
+    @include tablet {
+      @include DTBodyMedium;
+    }
+  }
+
+  

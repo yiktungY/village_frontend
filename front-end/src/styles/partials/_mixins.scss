@@ -1,0 +1,18 @@
+@use "./variables" as *;
+@use "./fonts" as *;
+
+//tablet format
+@mixin tablet {
+	@media (min-width: $tabletmin-width) {
+		@content;
+	}
+}
+
+//desktop format
+@mixin desktop {
+	@media (min-width: $desktop-width) {
+		@content;
+	}
+}
+
+//font sytle

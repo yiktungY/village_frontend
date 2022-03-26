@@ -15,12 +15,11 @@ router.get(
   "/google/callback",
   passport.authenticate("google", {
     failureRedirect: `${process.env.CLIENT_URL}/auth-fail`,
-    successRedirect: process.env.CLIENT_URL,
-  })
-  // (_req, res) => {
-  //   // Successful authentication, redirect to client-side application
-  //   res.redirect(process.env.CLIENT_URL);
-  // }
+  }),
+  (_req, res) => {
+    // Successful authentication, redirect to client-side application
+    res.redirect(process.env.CLIENT_URL);
+  }
 );
 
 // User profile endpoint that requires authentication

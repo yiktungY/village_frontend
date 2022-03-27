@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react';
 import {
 	BrowserRouter as Router,
 	Switch,
@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
-
+import Profile from "./components/Profile/Profile"
 import './App.scss'
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
 
     <Router>
 			<Header />
-	
+			<Profile />
 			<Switch></Switch>
       <Footer />
    </Router>

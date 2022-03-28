@@ -27,7 +27,7 @@ function CreatePost(props){
 
 
     const handleFormSubmit = (data) => {
-
+console.log(data.title)
         axios.post(`${SERVER_URL}/posts`,{
             title: data.title,
             content: data.content
@@ -35,9 +35,9 @@ function CreatePost(props){
          {
             withCredentials: true
         })
-        .then(()=> {
-      
-            data.reset()
+        .then((data)=> {
+      console.log(data)
+           
         })
         .catch(err => {
             console.log("Error creating a new post:", err);

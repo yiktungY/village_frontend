@@ -9,8 +9,8 @@ function UpdateProfile(){
     const [userInfo, setUserInfo] = useState([])
     const [updateInfo, setupdateInfo] = useState([])
 
-   const handelUpdate = e => {
-        e.preventDefault();
+   const handelUpdate = data => {
+       
         console.log("hi")
         const newUpdateInfo = {
             givenName, familyName
@@ -35,9 +35,11 @@ function UpdateProfile(){
     return (
 <div>
     <h1>Update</h1>
+    <form action="">
     <input type="text" placeholder={userInfo.familyName}/>
     <input type="text" placeholder={userInfo.givenName}/>
     <button onClick={handelUpdate}>update</button>
+    </form>
     
 </div>
     )

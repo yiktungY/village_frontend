@@ -27,6 +27,7 @@
     "start": "node index.js",
     "watch": "nodemon index.js",
     "migrate": "knex migrate:latest",
-    "rollback": "knex migrate:rollback"
+    "rollback": "knex migrate:rollback",
+    "seed": "knex seed:run"
   }
 }

@@ -4,24 +4,17 @@ import axios from "axios";
 const SERVER_URL = "http://localhost:8080"
 
 function Profile(props){
-    const userId = 3 //add props.id
+    const userId = 1 //add props.id
     const [userInfo, setUserInfo] = useState([])
 
+useEffect(()=> {
+    axios
+    .get(`${SERVER_URL}/users/${userId}`)
+    .then(({data}) => {
+        setUserInfo(data);
+    });
+}, []);
 
-useEffect( () => {
-   
-function getfetchUrl() { 
-    return `${SERVER_URL}/users/${userId}`
-}
-
-async function fetchData(){
-const result = await axios(getfetchUrl());
-setUserInfo(result.data)
-}
-
-fetchData();
-  
-}, [userInfo])
 
     return(
         <div>

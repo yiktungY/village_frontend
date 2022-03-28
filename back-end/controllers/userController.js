@@ -37,7 +37,23 @@ const getUserById = (req, res) => {
     });
 };
 
+const updateUserProfile = async (req, res) => {
+  const { id } = req.params;
+  const changes = req.body;
+  try {
+    const count = await knex("users").where({ id }).update(changes);
+    if (count) {
+      res.status(200).json({ updated: count });
+    } else {
+      res.status(404).json({ message: "ID not fond" });
+    }
+  } catch (err) {
+    res.status(500).json({message: "Error updating new post"}, {error: err})
+  }
+};
+
 module.exports = {
   getUserById,
   getAllUser,
+  updateUserProfile,
 };

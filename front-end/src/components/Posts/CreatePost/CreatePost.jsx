@@ -27,7 +27,7 @@ function CreatePost(props){
 
 
     const handleFormSubmit = (data) => {
-console.log(data.title)
+
         axios.post(`${SERVER_URL}/posts`,{
             title: data.title,
             content: data.content

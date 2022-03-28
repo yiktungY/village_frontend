@@ -1,6 +1,7 @@
 import "./Profile.scss"
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
+import UpdateProfile from "../UpdateProfile/UpdateProfile";
 const SERVER_URL = "http://localhost:8080"
 
 function Profile(props){

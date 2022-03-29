@@ -12,7 +12,6 @@ function PostsPage(){
     const [posts, setPosts] = useState([])
 
     useEffect( () => {
-      
         fetchPosts()
     }, [])
 
@@ -28,10 +27,10 @@ function PostsPage(){
 
     return (
         <section>
-                    <h1>Posts</h1>
-                    {posts.map(post => <Post key={post.id} post={post} />)}
-        <CreatePost />
-       
+            <h1>Posts</h1>
+            <div className="postsection">
+                {posts.map(post => <Post key={post.id} post={post} />)}
+            </div>
         </section>
     )   
 }

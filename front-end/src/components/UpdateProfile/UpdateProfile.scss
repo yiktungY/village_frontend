@@ -1,0 +1,15 @@
+.updatedEffect {
+  .delayEffect30 {
+    animation: 3s fadeOut;
+    animation-fill-mode: forwards;
+    visibility: visible;
+  }
+  @keyframes fadeOut {
+    99% {
+      visibility: visible;
+    }
+    100% {
+      visibility: hidden;
+    }
+  }
+}

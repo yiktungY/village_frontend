@@ -1,4 +1,8 @@
 .header {
   height: 10rem;
   background-color: rgba(0, 255, 255, 0.211);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-left: 10rem;
 }

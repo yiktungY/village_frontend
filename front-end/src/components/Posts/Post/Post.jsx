@@ -7,10 +7,10 @@ function Post(props) {
 
     
     return (
-<>
-<div>title: {props.post.title}</div>
-<div>content: {props.post.content}</div>
-</>
+      <div className="post">
+      <div>title: {props.post.title}</div>
+      <div>content: {props.post.content}</div>
+      </div>
 
 
 

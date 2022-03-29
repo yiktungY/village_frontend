@@ -8,6 +8,7 @@ const SERVER_URL = "http://localhost:8080"
 function CreatePost(props){
 
     const [isLoggedIn, setisLoggedIn] = useState(false)
+    
     const {register, handleSubmit, formState: {errors} } = useForm({
       defaultValues: {
         title: "",
@@ -22,13 +23,14 @@ function CreatePost(props){
             if(res.data){
                 setisLoggedIn(true)
             }
-        })
+        }).catch(err => console.log(err));
     }, [])
 
 
     const handleFormSubmit = (data) => {
 
         axios.post(`${SERVER_URL}/posts`,{
+            // givenName: data.givenName,
             title: data.title,
             content: data.content
         },
@@ -36,7 +38,7 @@ function CreatePost(props){
             withCredentials: true
         })
         .then((data)=> {
-      console.log(data)
+          props.history.push("/");
            
         })
         .catch(err => {

@@ -21,9 +21,28 @@ exports.up = function (knex) {
         .inTable("users")
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
+    })
+    .createTable("applyList", (table) => {
+      table.increments("id").primary();
+      table.integer("postId").notNullable();
+      table.integer("userId").notNullable();
+      table.string("content").notNullable();
+      table.string("username").notNullable();
+      table.timestamp("updated_at").defaultTo(knex.fn.now());
+      // table
+      //   .foreign("post_id")
+      //   .references("id")
+      //   .inTable("posts")
+      //   .onUpdate("CASCADE")
+      //   .onDelete("CASCADE");
+      // table
+      //   .foreign("user_id")
+      //   .references("id")
+      //   .inTable("users")
+      //   .onUpdate("CASCADE")
+      //   .onDelete("CASCADE");
     });
 };
-
 exports.down = function (knex) {
   return knex.schema.dropTable("posts").dropTable("users");
 };

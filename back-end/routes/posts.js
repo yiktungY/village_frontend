@@ -5,13 +5,13 @@ const postsController = require("../controllers/postsController");
 router
   .route("/")
   .post(postsController.createNewPost)
-  .get(postsController.getAllPost)
-  
+  .get(postsController.getAllPost);
 
 router
-.route("/:postID")
-.get(postsController.getPostById)
-.put(postsController.editPost)
-.delete(postsController.deletePost)
+  .route("/:postID")
+  .get(postsController.getPostById)
+  .put(postsController.editPost)
+  .delete(postsController.deletePost);
+
 
 module.exports = router;

@@ -104,10 +104,29 @@ const deletePost = async (req, res) => {
     res.status(500).json({ message: { err } });
   }
 };
+
+// const applyJob = (req, res) => {
+//   const typeId = req.params.postID;
+//   knex("posts")
+//     .join("users", "posts.user_id", "=", "users.id")
+//     .select("posts.id", "users.id",)
+//     .where("posts.id", typeId)
+//     .then((data) => {
+//       res.json(data);
+//     })
+//     .catch(() => {
+//       res.status(500).json({ message: "Error fetching posts" });
+//     });
+// };
+
+
+
+
 module.exports = {
   getAllPost,
   createNewPost,
   editPost,
   getPostById,
-  deletePost
+  deletePost,
+
 };

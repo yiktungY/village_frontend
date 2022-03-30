@@ -55,46 +55,59 @@ const createNewPost = (req, res) => {
     });
 };
 
-const getPostById = (res, req) => {
-  const typeId = res.params.postID;
+const getPostById = (req, res) => {
+  const typeId = req.params.postID;
   knex("posts")
     .where({ id: typeId })
     .then((post) => {
       if (post.length > 0) {
-        req.status(200).json(post.shift());
+        res.status(200).json(post.shift());
       } else {
-        req
-          .status(400)
-          .json({ message: `Error getting post ${req.params.postID}` });
+        res.status(400).json({ message: "Error getting post" });
       }
     })
     .catch((err) => {
-      req
-        .status(400)
-        .json({ message: `Error getting post ${req.params.postID}` });
+      console.log(err);
+      res.status(400).json({ message: "Error getting post" });
     });
 };
 
-const editPost = async (res, req) => {
-  const { postID } = req.params;
+const editPost = async (req, res) => {
+  const typeId = req.params.postID;
   const changes = req.body;
+  console.log(typeId);
   try {
-    const count = await knex("posts").where({ postID }).update(changes);
+    const count = await knex("posts").where({ id: typeId }).update(changes);
     if (count) {
       res.status(200).json({ updated: count });
     } else {
-      res.status(404).json({ message: "ID not fond" });
+      res.status(404).json({ message: "ID not found" });
     }
   } catch (err) {
-    res
-      .status(500)
-      .json({ message: "Error updating new post" }, { error: err });
+    console.log(err);
+    res.status(500).json({ message: { err } });
+    // .json({ message: "Error updating new post" }, { error: err });
   }
 };
 
+const deletePost = async (req, res) => {
+  const typeId = req.params.postID;
+  try {
+    const count = await knex("posts").where({ id: typeId }).del();
+    if (count) {
+      res.status(200).json({ updated: count });
+    } else {
+      res.status(404).json({ message: "ID not found" });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: { err } });
+  }
+};
 module.exports = {
   getAllPost,
   createNewPost,
   editPost,
   getPostById,
+  deletePost
 };

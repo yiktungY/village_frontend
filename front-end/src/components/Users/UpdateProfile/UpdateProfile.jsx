@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import {useForm} from "react-hook-form";
 import axios from "axios";
 import LoginButton from "../../Button/LoginButton/LoginButton"
+
 const SERVER_URL = "http://localhost:8080"
 
 function UpdateProfile(props){
@@ -10,8 +11,7 @@ function UpdateProfile(props){
  
     const [isLoggedIn, setisLoggedIn] = useState(false)
     const [userId, setUserId] = useState("")
-    // const [userInfo, setUserInfo] = useState(false)
-    
+  
     const { register, handleSubmit, formState: {errors} } = useForm({
         defaultValues:{
             familyName: "",
@@ -31,11 +31,9 @@ function UpdateProfile(props){
     }, [])
 
    const handelUpdate = data => {
-
         const newUpdateInfo = {
             givenName: data.givenName,
             familyName: data.familyName
-
         }
         axios.put(
             `${SERVER_URL}/users/${userId}`, newUpdateInfo, 
@@ -78,6 +76,7 @@ function UpdateProfile(props){
         </>
         )
         }
+       
     </div>
     )
 }

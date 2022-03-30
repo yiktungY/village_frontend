@@ -13,26 +13,29 @@ import UpdateProfile from "./components/Users/UpdateProfile/UpdateProfile"
 import './App.scss'
 import PostsPage from './pages/PostsPage/PostsPage';
 import CreatePost from "./components/Posts/CreatePost/CreatePost"
-import Post from "./components/Posts/Post/Post"
+import PostDetails from "./components/Posts/PostDetails/PostDetails"
+import EditPost from "./components/Posts/EditPost/EditPost"
 
 function App() {
 
-	
 
-  return (
-    <Router>
+
+	return (
+		<Router>
 			<Header />
 			<Switch>
 				<Route path="/" exact component={PostsPage} />
-				<Route path="/createpost" component={CreatePost}/>
+				
 				<Route path="/profile/:id" component={Profile} />
 				<Route path="/updateProfile/:id" component={UpdateProfile} />
-				<Route path="/post/:postID" component={Post} />
+				<Route path="/createpost" component={CreatePost} />
+				<Route path="/post/:postID" component={PostDetails} />
+				<Route path="/postEdit/:postID" component={EditPost} />
 			</Switch>
-      		<Footer />
-   </Router>
-   
-  )
+			<Footer />
+		</Router>
+
+	)
 }
 
 export default App

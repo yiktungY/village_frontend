@@ -25,13 +25,12 @@ function Profile(props){
    
     //get one user's information
     useEffect(()=> {
-
         axios
         .get(`${SERVER_URL}/users/${userId}`)
         .then(({data}) => { 
             setUserInfo(data);
         }).catch(err => console.log(err));;
-    }, [userInfo]);
+    }, [userId]);
 
 
 

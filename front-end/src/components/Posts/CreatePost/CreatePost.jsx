@@ -28,16 +28,16 @@ function CreatePost(props){
 
 
     const handleFormSubmit = (data) => {
-
+console.log(data.displayName, "ssfewffss")
         axios.post(`${SERVER_URL}/posts`,{
-            // givenName: data.givenName,
-            title: data.title,
-            content: data.content
+          title: data.title,
+          content: data.content
         },
          {
             withCredentials: true
         })
         .then((data)=> {
+          console.log(data, "data")
           props.history.push("/");
            
         })

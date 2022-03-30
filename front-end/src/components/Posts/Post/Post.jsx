@@ -8,6 +8,9 @@ function Post(props) {
     
     return (
       <div className="post">
+         <div>User: {props.post.user_id}</div>
+         <div>Name: {props.post.displayName}</div>
+        <div>Post: {props.post.id}</div>
       <div>title: {props.post.title}</div>
       <div>content: {props.post.content}</div>
       </div>

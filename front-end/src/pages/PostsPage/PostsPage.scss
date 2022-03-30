@@ -1,5 +1,14 @@
-.postsection {
+// .postsection {
+//   display: flex;
+//   flex-direction: row;
+//   flex-wrap: wrap;
+// }
+
+.post {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
+  border: 1px solid black;
+  margin: 2rem;
+  padding: 1.5rem;
 }

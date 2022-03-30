@@ -2,12 +2,12 @@ import "./UpdateProfile.scss"
 import React, { useState, useEffect } from 'react';
 import {useForm} from "react-hook-form";
 import axios from "axios";
-import LoginButton from "../Button/LoginButton/LoginButton"
+import LoginButton from "../../Button/LoginButton/LoginButton"
 const SERVER_URL = "http://localhost:8080"
 
 function UpdateProfile(props){
 
-
+ 
     const [isLoggedIn, setisLoggedIn] = useState(false)
     const [userId, setUserId] = useState("")
     // const [userInfo, setUserInfo] = useState(false)
@@ -28,7 +28,7 @@ function UpdateProfile(props){
             }
         })
         .catch(err => console.log(err));
-    }, [userId])
+    }, [])
 
    const handelUpdate = data => {
 

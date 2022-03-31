@@ -9,12 +9,9 @@ const SERVER_URL = "http://localhost:8080"
 function PostDetails(props) {
 
   const [getPost, setgetPost] = useState({})
-
   const [userId, setUserId] = useState("")
   const [showApplicants, setShowApplicants] = useState([])
   
-
-
 
   const postID = props.match.params.postID
   useEffect(() => {
@@ -27,7 +24,6 @@ function PostDetails(props) {
   }, [])
 
   const fetchPostById = () => {
-
     axios.get(`${SERVER_URL}/posts/${postID}`)
       .then(posts => {
         setgetPost(posts.data)
@@ -42,11 +38,12 @@ function PostDetails(props) {
   }, [])
 
 useEffect(() => {
+  console.log(postID)
   axios.get(`${SERVER_URL}/apply/${postID}`)
   .then(applicants => {
     setShowApplicants(applicants.data)
   })
-})
+}, [])
  
 
   const handlePostDelete = data => {

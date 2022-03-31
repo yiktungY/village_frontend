@@ -44,8 +44,10 @@ const createNewPost = (req, res) => {
   knex("posts")
     .insert({
       user_id: req.user.id,
+      // picture_Details: req.user.icon,
       title: req.body.title,
       content: req.body.content,
+      status: req.body.status
     })
     .then((postId) => {
       res.status(201).json({ newPostId: postId[0] });

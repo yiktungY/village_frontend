@@ -18,8 +18,6 @@ const getAllUser = (req, res) => {
 
 const getUserById = (req, res) => {
   const typeId = req.params.id;
-  // const foundUser = knex("users").find((user) => user.id === typeId);
-  // console.log(foundUser);
   console.log(typeId);
   knex("users")
     .where({ id: typeId })

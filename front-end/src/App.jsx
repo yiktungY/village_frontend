@@ -15,7 +15,7 @@ import PostsPage from './pages/PostsPage/PostsPage';
 import CreatePost from "./components/Posts/CreatePost/CreatePost"
 import PostDetails from "./components/Posts/PostDetails/PostDetails"
 import EditPost from "./components/Posts/EditPost/EditPost"
-
+import ApplyJob from "./components/ApplyJob/ApplyJob";
 function App() {
 
 
@@ -23,14 +23,15 @@ function App() {
 	return (
 		<Router>
 			<Header />
+			
 			<Switch>
 				<Route path="/" exact component={PostsPage} />
-				
 				<Route path="/profile/:id" component={Profile} />
 				<Route path="/updateProfile/:id" component={UpdateProfile} />
 				<Route path="/createpost" component={CreatePost} />
 				<Route path="/post/:postID" component={PostDetails} />
 				<Route path="/postEdit/:postID" component={EditPost} />
+				<Route path="/postApply/:postID" component={ApplyJob} />
 			</Switch>
 			<Footer />
 		</Router>

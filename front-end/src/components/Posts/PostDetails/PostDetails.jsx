@@ -11,6 +11,11 @@ function PostDetails(props) {
   const [getPost, setgetPost] = useState({})
 
   const [userId, setUserId] = useState("")
+  const [showApplicants, setShowApplicants] = useState([])
+  
+
+
+
   const postID = props.match.params.postID
   useEffect(() => {
     axios.get(`${SERVER_URL}/auth/profile`, { withCredentials: true })
@@ -22,7 +27,6 @@ function PostDetails(props) {
   }, [])
 
   const fetchPostById = () => {
-
 
     axios.get(`${SERVER_URL}/posts/${postID}`)
       .then(posts => {
@@ -36,6 +40,14 @@ function PostDetails(props) {
   useEffect(() => {
     fetchPostById()
   }, [])
+
+useEffect(() => {
+  axios.get(`${SERVER_URL}/apply/${postID}`)
+  .then(applicants => {
+    setShowApplicants(applicants.data)
+  })
+})
+ 
 
   const handlePostDelete = data => {
     axios.delete(
@@ -56,11 +68,23 @@ function PostDetails(props) {
         <div>
         <NavLink to={`/postEdit/${getPost.id}`}>Edit Post</NavLink>
         <button onClick={handlePostDelete}>Delete Post</button>
+        {showApplicants
+                .map(info =>
+                    <NavLink
+                        className="post"
+                        key={info.postId}         
+                        to={`/profile/${info.userId}`}
+                    >
+                        <div>content: {info.content}</div>
+                    </NavLink>
+                )
+            }
         </div>
+        
       )
       
       :
-      <div>This is applied button</div>
+      <NavLink to={`/postApply/${getPost.id}`}>Apply</NavLink>
       }
     </section>
 

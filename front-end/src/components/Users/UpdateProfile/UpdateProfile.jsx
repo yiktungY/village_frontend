@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import {useForm} from "react-hook-form";
 import axios from "axios";
 import LoginButton from "../../Button/LoginButton/LoginButton"
-
+import {Login} from "../../utils/utils"
 const SERVER_URL = "http://localhost:8080"
 
 function UpdateProfile(props){
@@ -18,6 +18,9 @@ function UpdateProfile(props){
             givenName: ""
         }
     })
+
+
+    // console.log(Login(isLoggedIn, userId), "login")
 
     useEffect(()=>{
         axios.get(`${SERVER_URL}/auth/profile`, { withCredentials: true })
@@ -56,6 +59,7 @@ function UpdateProfile(props){
         {isLoggedIn ? (
         <form onSubmit={handleSubmit(handelUpdate)}>
             {/* <div>{userInfo.familyName}</div> */}
+        {/* <input ref={register} type="file" name="picure"/>  */}
         <div>familyName: </div>
         <input {...register("familyName", 
         {required: "This is required"})}

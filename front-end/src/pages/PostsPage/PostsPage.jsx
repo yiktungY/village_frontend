@@ -17,12 +17,7 @@ function PostsPage() {
         console.log("Error fetching posts:", err);
       });
   };
-  useEffect(() => {
-    console.log("hello");
-    return () => {
-      console.log("bye");
-    };
-  }, []);
+
 
   useEffect(() => {
     fetchPosts();

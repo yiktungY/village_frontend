@@ -28,7 +28,7 @@ const applyToPost = (req, res) => {
 
 const getApplicantsById = (req, res) => {
   const typeId = req.params.postID;
-  console.log(typeId);
+  // console.log(typeId);
   knex("applyList")
     // .join("users", "applyList.user_id", "=", "users.id")
     // .select(

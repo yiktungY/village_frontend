@@ -7,16 +7,17 @@ require("dotenv").config();
 router.get(
   "/google",
   passport.authenticate("google", {
-    scope: ["profile"],
+    scope: ["email", "profile"],
   })
 );
 
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureRedirect: `${process.env.CLIENT_URL}/auth-fail`,
+    failureRedirect: process.env.CLIENT_URL,
   }),
   (_req, res) => {
+    console.log("success");
     // Successful authentication, redirect to client-side application
     res.redirect(process.env.CLIENT_URL);
   }

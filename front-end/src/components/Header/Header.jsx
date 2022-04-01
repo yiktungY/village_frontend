@@ -24,6 +24,7 @@ function Header() {
   };
 
   useEffect(() => {
+    console.log("component did mount");
     loginFunction();
   }, []);
 

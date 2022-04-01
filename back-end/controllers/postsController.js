@@ -83,7 +83,7 @@ const getPostById = (req, res) => {
 const editPost = async (req, res) => {
   const typeId = req.params.postID;
   const changes = req.body;
-  console.log(typeId);
+  // console.log(typeId);
   try {
     const count = await knex("posts").where({ id: typeId }).update(changes);
     if (count) {

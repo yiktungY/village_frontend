@@ -15,6 +15,8 @@ import CreatePost from "./components/Posts/CreatePost/CreatePost";
 import PostDetails from "./components/Posts/PostDetails/PostDetails";
 import EditPost from "./components/Posts/EditPost/EditPost";
 import ApplyJob from "./components/ApplyJob/ApplyJob";
+import LoginWithGoolge from "./components/Users/LoginWithGoolge/LoginWithGoolge";
+import CreateAccount from "./components/Users/CreateAccount/CreateAccount";
 function App() {
   return (
     <Router>
@@ -22,6 +24,8 @@ function App() {
 
       <Switch>
         <Route path="/" exact component={PostsPage} />
+        <Route path="/loginWithGoogle" component={LoginWithGoolge} />
+        <Route path="/auth-fail" component={CreateAccount} />
         <Route path="/profile/:id" component={Profile} />
         <Route path="/updateProfile/:id" component={UpdateProfile} />
         <Route path="/createpost" component={CreatePost} />

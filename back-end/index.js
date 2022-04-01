@@ -11,7 +11,7 @@ const helmet = require("helmet");
 
 // Passport library and Github Strategy
 const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth2").Strategy;
+var GoogleStrategy = require("passport-google-oauth2").Strategy;
 
 // Knex instance
 const knex = require("knex")(require("./knexfile.js").development);
@@ -56,28 +56,32 @@ passport.use(
       callbackURL: process.env.GOOGLE_CALLBACK_URL,
       passReqToCallback: true,
     },
-    (_request, _accessToken, _refreshToken, profile, done) => {
-      console.log("GOOGLE profile:", profile);
+    function (_request, _accessToken, _refreshToken, profile, done) {
+      // console.log("GOOGLE profile:", profile);
       knex("users")
         .select("id")
         .where({ google_id: profile.id })
         .then((user) => {
           if (user.length) {
+            console.log(user, "found the users and successfully login");
             // If user is found, pass the user object to serialize function
             done(null, user[0]);
           } else {
             // If user isn't found, we create a record
+            console.log("cannot find id, insert to knex table");
             knex("users")
               .insert({
                 google_id: profile.id,
+                email: profile.email,
                 avatar_url: profile.picture,
                 displayName: profile.displayName,
                 givenName: profile.given_name,
                 familyName: profile.family_name,
               })
-              .then((userId) => {
+              .then((user) => {
+                console.log(user, "user");
                 // Pass the user object to serialize function
-                done(null, { id: userId[0] });
+                done(null, user[0]);
               })
               .catch((err) => {
                 console.log("Error creating a user", err);
@@ -108,7 +112,7 @@ passport.deserializeUser((userId, done) => {
     .where({ id: userId })
     .then((user) => {
       // Remember that knex will return an array of records, so we need to get a single record from it
-      console.log("req.user:", user[0]);
+      // console.log("req.user:", user[0]);
 
       // The full user object will be attached to request object as `req.user`
       done(null, user[0]);
@@ -120,8 +124,8 @@ passport.deserializeUser((userId, done) => {
 
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
-const postsRoutes = require("./routes/posts")
-const applyRoutes = require("./routes/apply")
+const postsRoutes = require("./routes/posts");
+const applyRoutes = require("./routes/apply");
 
 app.get("/", (req, res) => {
   res.send("WELCOME");
@@ -134,7 +138,7 @@ app.use("/users", userRoutes);
 
 app.use("/posts", postsRoutes);
 
-app.use("/apply", applyRoutes)
+app.use("/apply", applyRoutes);
 
 app.listen(PORT, () => {
   console.log(`🚀 Server listening on port ${PORT}.`);

@@ -58,7 +58,6 @@ function UpdateProfile(props) {
     }
   }, [userInfo]);
 
-
   useEffect(() => {
     loginFunction();
   }, []);
@@ -68,21 +67,23 @@ function UpdateProfile(props) {
       <h1>Update</h1>
       {isLoggedIn ? (
         <form onSubmit={handleSubmit(handelUpdate)}>
-          {/* <div>{userInfo.familyName}</div> */}
           {/* <input ref={register} type="file" name="picure"/>  */}
+          <div>Email: {userInfo.email}</div>
           <div>Display Name: </div>
           <input
             {...register("displayName", { required: "This is required" })}
           />
           <p>{errors.displayName?.message}</p>
-          <div>familyName: </div>
+          <div>First Name: </div>
+          <input {...register("givenName", { required: "This is required" })} />
+          <p>{errors.givenName?.message}</p>
+          <div>Last Name: </div>
           <input
             {...register("familyName", { required: "This is required" })}
           />
           <p>{errors.familyName?.message}</p>
-          <div>givenName: </div>
-          <input {...register("givenName", { required: "This is required" })} />
-          <p>{errors.givenName?.message}</p>
+          <div>Rating: {userInfo.rating}</div>
+          <div>Done Case: {userInfo.doneCase}</div>
           <div>Age: </div>
           <input {...register("age", { required: "This is required" })} />
           <p>{errors.age?.message}</p>
@@ -90,11 +91,11 @@ function UpdateProfile(props) {
           <input
             {...register("address", {
               required: "This is required",
-              // value: {lastName}
             })}
           />
           <p>{errors.address?.message}</p>
           <input type="submit" />
+          <div>Account creates at {userInfo.updated_at}</div>
         </form>
       ) : (
         <>

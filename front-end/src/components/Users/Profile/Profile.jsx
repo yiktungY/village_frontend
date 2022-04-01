@@ -29,14 +29,15 @@ function Profile() {
       {userInfo && <div className="updatedEffect">Profile Updated</div>}
       <h1>Profile</h1>
       <img src={userInfo.avatar_url} alt="UserIcon" />
+      <div>Email: {userInfo.email}</div>
       <div>Display Name: {userInfo.displayName}</div>
-      <div>First Name: {userInfo.familyName}</div>
-      <div>Last Name: {userInfo.givenName}</div>
+      <div>First Name: {userInfo.givenName}</div>
+      <div>Last Name: {userInfo.familyName}</div>
       <div>Rating: {userInfo.rating}</div>
       <div>Done Case: {userInfo.doneCase}</div>
       <div>Age: {userInfo.age}</div>
       <div>Address: {userInfo.address}</div>
-      <div>Account create at {userInfo.updated_at}</div>
+      <div>Accounts create at {userInfo.updated_at}</div>
 
       {isLoggedIn && (
         <NavLink to={`/updateProfile/${userInfo.id}`}>Edit Profile</NavLink>

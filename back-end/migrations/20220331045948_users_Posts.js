@@ -5,6 +5,7 @@ exports.up = function (knex) {
       table.string("google_id").notNullable();
       table.string("avatar_url").notNullable();
       table.string("displayName").notNullable();
+      table.string("email").notNullable();
       table.string("givenName");
       table.string("familyName");
       table.string("address");

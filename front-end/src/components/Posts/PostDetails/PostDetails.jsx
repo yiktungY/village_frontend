@@ -9,7 +9,7 @@ function PostDetails(props) {
   const [getPost, setgetPost] = useState({});
   const [userInfo, setUserInfo] = useState("");
   const [showApplicants, setShowApplicants] = useState([]);
-  const [applyState, setApplyState] = useState(false);
+  const [applyState, setApplyState] = useState("");
   const postID = props.match.params.postID;
 
   const loginFunction = async () => {
@@ -37,7 +37,6 @@ function PostDetails(props) {
   };
 
   const getApplicantsByApi = () => {
-    console.log("userInfo", userInfo, 123);
     axios
       .get(`${SERVER_URL}/apply/${postID}`)
       .then((applicants) => {
@@ -45,11 +44,9 @@ function PostDetails(props) {
         const appliedID = applicants.data.find(
           (info) => info.user_id === userInfo.id
         );
-
-        console.log("appliedID.user_id", appliedID.user_id);
-        console.log("userInfo.id", userInfo);
+        console.log(appliedID);
         if (appliedID.user_id === userInfo.id) {
-          setApplyState(true);
+          setApplyState(appliedID);
         }
       })
       .catch((err) => console.log(err));
@@ -110,8 +107,13 @@ function PostDetails(props) {
         </div>
       ) : (
         <>
-          {applyState ? (
-            <div>applied</div>
+          {applyState.user_id === userInfo.id ? (
+            <>
+              <div>applied</div>
+              <h2>Your application</h2>
+              <div>content: {applyState.content}</div>
+              <div>time: {applyState.updated_at}</div>
+            </>
           ) : (
             <NavLink to={`/postApply/${getPost.post_id}`}>Apply Now</NavLink>
           )}

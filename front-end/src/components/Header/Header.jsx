@@ -1,43 +1,49 @@
-import "./Header.scss"
-import LoginButton from "../Button/LoginButton/LoginButton"
+import "./Header.scss";
+import LoginButton from "../Button/LoginButton/LoginButton";
 import LogoutButton from "../Button/LogoutButton/LogoutButton";
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 
-const SERVER_URL = "http://localhost:8080"
+const SERVER_URL = "http://localhost:8080";
 
+function Header() {
+  const [isLoggedIn, setisLoggedIn] = useState(false);
+  const [userInfo, setUserInfo] = useState("");
 
-function Header(){
+  const loginFunction = () => {
+    axios
+      .get(`${SERVER_URL}/auth/profile`, { withCredentials: true })
+      .then((res) => {
+        if (res.data) {
+          setisLoggedIn(true);
+          setUserInfo(res.data);
+        }
+      })
+      .catch((err) => console.log(err));
+  };
 
-    const [isLoggedIn, setisLoggedIn] = useState(false)
-    const [userId, setUserId] = useState("")
+  useEffect(() => {
+    loginFunction();
+  }, []);
 
-    useEffect(()=>{
-        axios.get(`${SERVER_URL}/auth/profile`, { withCredentials: true })
-        .then(res => {
-            if(res.data){
-                setisLoggedIn(true)
-                setUserId(res.data.id)
-            }
-        }).catch(err => console.log(err));
-    }, [])
-
-    return(
-        <header className="header">
-           
-            <NavLink to="/">HOME</NavLink>    
-            {isLoggedIn ? <LogoutButton /> : <LoginButton /> } 
-            {isLoggedIn && 
-            <NavLink to="/createpost">Create a Post</NavLink>
-            }
-            {isLoggedIn && 
-            <NavLink to={`/profile/${userId}`}>My Page</NavLink>
-            }
-            
-            
-        </header>
-    )
+  return (
+    <header className="header">
+      <NavLink to="/">HOME</NavLink>
+      {isLoggedIn ? <LogoutButton /> : <LoginButton />}
+      {isLoggedIn && (
+        <div className="personalInfo">
+          <NavLink to="/createpost">Create a Post</NavLink>
+          <NavLink to={`/profile/${userInfo.id}`}>
+            <img className="icon" src={userInfo.avatar_url} alt="UserIcon" />
+            <div>Display Name: {userInfo.displayName}</div>
+            <div>Rating: {userInfo.rating}</div>
+            <div>Done Case: {userInfo.doneCase}</div>
+          </NavLink>
+        </div>
+      )}
+    </header>
+  );
 }
 
 export default Header;

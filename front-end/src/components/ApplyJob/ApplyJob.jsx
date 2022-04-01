@@ -1,62 +1,87 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios"
-const SERVER_URL = "http://localhost:8080"
+import axios from "axios";
+import LoginButton from "../Button/LoginButton/LoginButton";
+const SERVER_URL = "http://localhost:8080";
 
-function ApplyJob (props){
+function ApplyJob(props) {
+  const [isLoggedIn, setisLoggedIn] = useState(false);
+  const [getPost, setgetPost] = useState({});
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({});
+  const postID = props.match.params.postID;
 
-    const postID = props.match.params.postID
-    const [isLoggedIn, setisLoggedIn] = useState(false)
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        defaultValues: {
-        
-          content: ""
+  const loginFunction = () => {
+    axios
+      .get(`${SERVER_URL}/auth/profile`, { withCredentials: true })
+      .then((res) => {
+        if (res.data) {
+          setisLoggedIn(true);
         }
       })
-    
-      useEffect(() => {
-        axios.get(`${SERVER_URL}/auth/profile`, { withCredentials: true })
-          .then(res => {
-            if (res.data) {
-              setisLoggedIn(true)
-            }
-          }).catch(err => console.log(err));
-      }, [])
+      .catch((err) => console.log(err));
+  };
 
-   const handleApply = (data) => {
-
-    axios.post(`${SERVER_URL}/apply/${postID}`, 
-    {
-      post_id: postID,
-      content: data.content
-
-    }, {
-        withCredentials: true
+  const getPostDataByAPI = () => {
+    axios
+      .get(`${SERVER_URL}/posts/${postID}`)
+      .then((post) => {
+        setgetPost(post.data);
       })
-    .then((data) => {
-        console.log(data, "data")
-        props.history.push(`${SERVER_URL}/posts/${postID}`)
-    })
-    .catch(err => {
+      .catch((err) => {
+        console.log("Error fetching posts:", err);
+      });
+  };
+
+  const handleApply = (data) => {
+    axios
+      .post(
+        `${SERVER_URL}/apply/${getPost.post_id}`,
+        {
+          post_id: getPost.post_id,
+          post_title: getPost.title,
+          content: data.content,
+        },
+        {
+          withCredentials: true,
+        }
+      )
+      .then(() => {
+        props.history.push(`/post/${getPost.post_id}`);
+      })
+      .catch((err) => {
         console.log("Error creating a new post:", err);
-      })
-   }
-   return (
-     <>
-    { isLoggedIn &&
-      <form onSubmit={handleSubmit(handleApply)}>
-        <div>leave a message to hoster: </div>
-        <input
-              {...register("content", { required: "This is required." })}
-              placeholder="something like:"
-            />
-             <p>{errors.content?.message}</p>
-             <input type="submit" />
+      });
+  };
+
+  useEffect(() => {
+    loginFunction();
+    getPostDataByAPI();
+  }, []);
+
+  return (
+    <>
+      {isLoggedIn ? (
+        <form onSubmit={handleSubmit(handleApply)}>
+          <div>leave a message to hoster: </div>
+          <input
+            {...register("content", { required: "This is required." })}
+            placeholder="something like:"
+          />
+          <p>{errors.content?.message}</p>
+          <input type="submit" />
         </form>
-}
+      ) : (
+        <>
+          <div>It seems that you haven't logged in your account</div>
+          <LoginButton />
+        </>
+      )}
     </>
-   )
-      
+  );
 }
 
-export default ApplyJob
+export default ApplyJob;

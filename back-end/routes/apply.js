@@ -4,7 +4,7 @@ const applyController = require("../controllers/applyController");
 
 router
   .route("/:postID")
-  .get(applyController.getAllApplicants)
+  .get(applyController.getApplicantsById)
   .post(applyController.applyToPost);
 
 module.exports = router;

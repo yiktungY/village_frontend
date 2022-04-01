@@ -8,6 +8,7 @@ const getAllPost = (req, res) => {
       "posts.title",
       "posts.content",
       "posts.updated_at",
+      "posts.status",
       "users.id as user_id",
       "users.avatar_url",
       "users.displayName"
@@ -47,7 +48,7 @@ const createNewPost = (req, res) => {
       // picture_Details: req.user.icon,
       title: req.body.title,
       content: req.body.content,
-      status: req.body.status
+      status: req.body.status,
     })
     .then((postId) => {
       res.status(201).json({ newPostId: postId[0] });
@@ -60,17 +61,22 @@ const createNewPost = (req, res) => {
 const getPostById = (req, res) => {
   const typeId = req.params.postID;
   knex("posts")
-    .where({ id: typeId })
-    .then((post) => {
-      if (post.length > 0) {
-        res.status(200).json(post.shift());
-      } else {
-        res.status(400).json({ message: "Error getting post" });
-      }
+    .join("users", "posts.user_id", "=", "users.id")
+    .select(
+      "posts.id as post_id",
+      "users.id as user_id",
+      "users.displayname",
+      "posts.title",
+      "posts.content",
+      "posts.status",
+      "posts.updated_at"
+    )
+    .where("posts.id", typeId)
+    .then((data) => {
+      res.json(data.shift());
     })
-    .catch((err) => {
-      console.log(err);
-      res.status(400).json({ message: "Error getting post" });
+    .catch(() => {
+      res.status(500).json({ message: "Error fetching posts" });
     });
 };
 
@@ -121,14 +127,10 @@ const deletePost = async (req, res) => {
 //     });
 // };
 
-
-
-
 module.exports = {
   getAllPost,
   createNewPost,
   editPost,
   getPostById,
   deletePost,
-
 };

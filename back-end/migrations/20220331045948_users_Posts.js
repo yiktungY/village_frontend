@@ -1,7 +1,7 @@
 exports.up = function (knex) {
   return knex.schema
     .createTable("users", (table) => {
-      table.uuid("id").primary();
+      table.uuid("id").primary().defaultTo(knex.raw("(UUID())"));
       table.string("google_id").notNullable();
       table.string("avatar_url").notNullable();
       table.string("displayName").notNullable();
@@ -16,22 +16,47 @@ exports.up = function (knex) {
       table.timestamp("updated_at").defaultTo(knex.fn.now());
     })
     .createTable("posts", (table) => {
-      table.uuid("id").primary();
+      table.uuid("id").primary().defaultTo(knex.raw("(UUID())"));
       table.string("picture_Details");
       table.string("title", 75).notNullable();
       table.text("content").notNullable();
       table.string("status").notNullable();
       table.timestamp("updated_at").defaultTo(knex.fn.now());
-      table.integer("user_id").unsigned().notNullable();
+      table.uuid("user_id").notNullable();
       table
         .foreign("user_id")
-        //   .inTable("users")
-        .references("users.id")
+        .references("id")
+        .inTable("users")
+        .onUpdate("CASCADE")
+        .onDelete("CASCADE");
+    })
+    .createTable("applyList", (table) => {
+      table.uuid("id").primary().defaultTo(knex.raw("(UUID())"));
+      table.string("avatar_url");
+      table.string("content").notNullable();
+      table.string("username").notNullable();
+      table.string("post_title").notNullable();
+      table.timestamp("updated_at").defaultTo(knex.fn.now());
+      table.uuid("user_id").notNullable();
+      table
+        .foreign("user_id")
+        .references("id")
+        .inTable("users")
+        .onUpdate("CASCADE")
+        .onDelete("CASCADE");
+      table.uuid("post_id").notNullable();
+      table
+        .foreign("post_id")
+        .references("id")
+        .inTable("posts")
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
     });
 };
 
 exports.down = function (knex) {
-  return knex.schema.dropTable("posts").dropTable("users");
+  return knex.schema
+    .dropTable("applyList")
+    .dropTable("posts")
+    .dropTable("users");
 };

@@ -1,13 +1,13 @@
-import { Link } from 'react-router-dom';
-import './Button.scss';
+import { Link } from "react-router-dom";
+import "./Button.scss";
 
 const Button = (props) => {
   const { isLink, to, icon, iconAlt, className, children, onClick } = props;
-  const CustomTag = isLink ? Link : 'button';
+  const CustomTag = isLink ? Link : "button";
 
   return (
     <CustomTag
-      className={`btn ${className ? className : 'null'}`}
+      className={`btn ${className ? className : "null"}`}
       to={to ? to : null}
       onClick={onClick}
     >

@@ -6,3 +6,13 @@
   justify-content: space-around;
   padding-left: 10rem;
 }
+
+.personalInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.icon {
+  width: 3rem;
+}

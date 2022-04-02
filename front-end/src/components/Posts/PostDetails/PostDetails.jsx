@@ -8,9 +8,8 @@ function PostDetails(props) {
   const [isLoggedIn, setisLoggedIn] = useState(false);
   const [getPost, setgetPost] = useState({});
   const [userInfo, setUserInfo] = useState("");
-  const [showApplicants, setShowApplicants] = useState([]);
+  const [showApplicantsList, setShowApplicantsList] = useState([]);
   const [applyState, setApplyState] = useState("");
-  const postID = props.match.params.postID;
 
   const loginFunction = async () => {
     await axios
@@ -19,13 +18,13 @@ function PostDetails(props) {
         if (res.data) {
           setisLoggedIn(true);
           setUserInfo(res.data);
-          console.log("jkasdhaskjdhkjasdh", res);
         }
       })
       .catch((err) => console.log(err));
   };
 
   const fetchPostById = () => {
+    const postID = props.match.params.postID;
     axios
       .get(`${SERVER_URL}/posts/${postID}`)
       .then((post) => {
@@ -37,10 +36,11 @@ function PostDetails(props) {
   };
 
   const getApplicantsByApi = () => {
+    const postID = props.match.params.postID;
     axios
       .get(`${SERVER_URL}/apply/${postID}`)
       .then((applicants) => {
-        setShowApplicants(applicants.data);
+        setShowApplicantsList(applicants.data);
         const appliedID = applicants.data.find(
           (info) => info.user_id === userInfo.id
         );
@@ -60,6 +60,13 @@ function PostDetails(props) {
       .catch((err) => console.log(err));
   };
 
+  //no idea
+  // const acceptApplicant = () => {
+  //   axios.get().then(data => {
+
+  //   })
+  // }
+
   useEffect(() => {
     loginFunction();
     fetchPostById();
@@ -69,6 +76,8 @@ function PostDetails(props) {
     getApplicantsByApi();
   }, [userInfo]);
 
+  console.log(1, showApplicantsList);
+
   return (
     <section>
       <div>Name: {getPost.displayname}</div>
@@ -76,12 +85,12 @@ function PostDetails(props) {
       <div>content: {getPost.content}</div>
       <div>status: {getPost.status}</div>
       <div>Post at {getPost.updated_at}</div>
-      <div>{showApplicants.length} People applied</div>
+      <div>{showApplicantsList.length} People applied</div>
       {isLoggedIn && userInfo.id === getPost.user_id ? (
         <div>
           <NavLink to={`/postEdit/${getPost.post_id}`}>Edit Post</NavLink>
           <button onClick={handlePostDelete}>Delete Post</button>
-          {showApplicants.map((info) => (
+          {showApplicantsList.map((info) => (
             <NavLink
               className="post"
               key={info.id}
@@ -90,12 +99,14 @@ function PostDetails(props) {
               <div>appliants: {info.username}</div>
               <div>content: {info.content}</div>
               <div>time: {info.updated_at}</div>
+
+              {/* <button onClick={}>Accept</button> */}
             </NavLink>
           ))}
         </div>
       ) : (
         <>
-          {getPost.user_id === userInfo.id ? (
+          {applyState.user_id === userInfo.id ? (
             <>
               <div>applied</div>
               <h2>Your application</h2>
@@ -112,4 +123,3 @@ function PostDetails(props) {
 }
 
 export default PostDetails;
-

@@ -52,7 +52,9 @@ exports.up = function (knex) {
         .inTable("posts")
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
-    });
+    })
+    .createTable("genre", (table) => {
+      
 };
 
 exports.down = function (knex) {

@@ -10,7 +10,6 @@ const SERVER_URL = "http://localhost:8080";
 function Header() {
   const [isLoggedIn, setisLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState("");
-
   const loginFunction = () => {
     axios
       .get(`${SERVER_URL}/auth/profile`, { withCredentials: true })
@@ -24,7 +23,6 @@ function Header() {
   };
 
   useEffect(() => {
-    console.log("component did mount");
     loginFunction();
   }, []);
 

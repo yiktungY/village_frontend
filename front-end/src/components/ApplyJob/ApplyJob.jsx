@@ -12,7 +12,6 @@ function ApplyJob(props) {
     handleSubmit,
     formState: { errors },
   } = useForm({});
-  const postID = props.match.params.postID;
 
   const loginFunction = () => {
     axios
@@ -26,6 +25,7 @@ function ApplyJob(props) {
   };
 
   const getPostDataByAPI = () => {
+    const postID = props.match.params.postID;
     axios
       .get(`${SERVER_URL}/posts/${postID}`)
       .then((post) => {

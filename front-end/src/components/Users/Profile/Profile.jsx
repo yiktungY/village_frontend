@@ -22,10 +22,16 @@ function Profile(props) {
       .then((res) => {
         if (res.data) {
           setisLoggedIn(true);
-          setUserInfo(res.data);
         }
       })
       .catch((err) => console.log(err));
+  };
+
+  const getUserInfobyId = () => {
+    const userId = props.match.params.id;
+    axios.get(`${SERVER_URL}/users/${userId}`).then((res) => {
+      setUserInfo(res.data);
+    });
   };
 
   const handelUpdate = (data) => {
@@ -43,6 +49,7 @@ function Profile(props) {
   };
   useEffect(() => {
     loginFunction();
+    getUserInfobyId();
   }, []);
 
   return (

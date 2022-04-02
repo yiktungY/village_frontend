@@ -41,7 +41,7 @@ function UpdateProfile(props) {
       })
       .then((data) => {
         // setUserInfo(true);
-        props.history.push("/profile/:id");
+        props.history.push(`/profile/${userInfo.id}`);
       })
       .catch((err) => console.log(err));
   };

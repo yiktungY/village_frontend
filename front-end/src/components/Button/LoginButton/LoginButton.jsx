@@ -1,6 +1,6 @@
 import "./LoginButton.scss";
 import { NavLink } from "react-router-dom";
-// const SERVER_URL = "http://localhost:8080";
+
 
 function LoginButton() {
   return (

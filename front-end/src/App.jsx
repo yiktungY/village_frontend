@@ -25,7 +25,7 @@ function App() {
       <Switch>
         <Route path="/" exact component={PostsPage} />
         <Route path="/loginWithGoogle" component={LoginWithGoolge} />
-        <Route path="/auth-fail" component={CreateAccount} />
+        <Route path="/registerSuccee" component={CreateAccount} />
         <Route path="/profile/:id" component={Profile} />
         <Route path="/updateProfile/:id" component={UpdateProfile} />
         <Route path="/createpost" component={CreatePost} />

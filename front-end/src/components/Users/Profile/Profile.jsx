@@ -1,12 +1,19 @@
 import "./Profile.scss";
 import React, { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 const SERVER_URL = "http://localhost:8080";
 
-function Profile() {
+function Profile(props) {
   const [isLoggedIn, setisLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState("");
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm("");
 
   //login function
   const loginFunction = () => {
@@ -17,6 +24,21 @@ function Profile() {
           setisLoggedIn(true);
           setUserInfo(res.data);
         }
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handelUpdate = (data) => {
+    const newUpdateInfo = {
+      age: data.age,
+    };
+    axios
+      .put(`${SERVER_URL}/users/${userInfo.id}`, newUpdateInfo, {
+        withCredentials: true,
+      })
+      .then((data) => {
+        // setUserInfo(true);
+        props.history.push("/");
       })
       .catch((err) => console.log(err));
   };
@@ -40,7 +62,18 @@ function Profile() {
       <div>Accounts create at {userInfo.updated_at}</div>
 
       {isLoggedIn && (
-        <NavLink to={`/updateProfile/${userInfo.id}`}>Edit Profile</NavLink>
+        <>
+          {userInfo.age > 0 ? (
+            <NavLink to={`/updateProfile/${userInfo.id}`}>Edit Profile</NavLink>
+          ) : (
+            <form onSubmit={handleSubmit(handelUpdate)}>
+              <div>Age: </div>
+              <input {...register("age", { required: "This is required" })} />
+              <p>{errors.age?.message}</p>
+              <button type="submit">Starting Your Journey</button>
+            </form>
+          )}
+        </>
       )}
     </div>
   );

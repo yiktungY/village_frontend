@@ -1,3 +1,4 @@
+const { constants } = require("buffer");
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
@@ -6,6 +7,7 @@ require("dotenv").config();
 
 router.get(
   "/google",
+
   passport.authenticate("google", {
     scope: ["email", "profile"],
   })
@@ -14,12 +16,12 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureRedirect: process.env.CLIENT_URL,
+    failureRedirect: `${process.env.CLIENT_URL}/registerSuccee`,
   }),
-  (_req, res) => {
-    console.log("success");
+  (req, res) => {
+    console.log("req.user", req.user.id);
     // Successful authentication, redirect to client-side application
-    res.redirect(process.env.CLIENT_URL);
+    res.redirect(`${process.env.CLIENT_URL}/${req.user.id}`);
   }
 );
 

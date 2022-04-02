@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./PostsPage.scss";
 import { NavLink } from "react-router-dom";
+import P5Function from "../../components/P5Function/P5Function";
+
 const SERVER_URL = "http://localhost:8080";
 
 function PostsPage() {
@@ -17,7 +19,6 @@ function PostsPage() {
         console.log("Error fetching posts:", err);
       });
   };
-
 
   useEffect(() => {
     fetchPosts();

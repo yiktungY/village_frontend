@@ -37,7 +37,6 @@ function Profile(props) {
         withCredentials: true,
       })
       .then((data) => {
-        // setUserInfo(true);
         props.history.push("/");
       })
       .catch((err) => console.log(err));

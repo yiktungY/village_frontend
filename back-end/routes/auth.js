@@ -21,7 +21,7 @@ router.get(
   (req, res) => {
     console.log("req.user", req.user.id);
     // Successful authentication, redirect to client-side application
-    res.redirect(`${process.env.CLIENT_URL}/${req.user.id}`);
+    res.redirect(`${process.env.CLIENT_URL}/profile/${req.user.id}`);
   }
 );
 

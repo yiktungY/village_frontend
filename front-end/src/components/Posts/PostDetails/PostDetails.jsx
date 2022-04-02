@@ -44,7 +44,6 @@ function PostDetails(props) {
         const appliedID = applicants.data.find(
           (info) => info.user_id === userInfo.id
         );
-        console.log(appliedID);
         if (appliedID.user_id === userInfo.id) {
           setApplyState(appliedID);
         }
@@ -56,25 +55,14 @@ function PostDetails(props) {
     axios
       .delete(`${SERVER_URL}/posts/${getPost.post_id}`)
       .then((data) => {
-        console.log(data);
         props.history.push(`/`);
       })
       .catch((err) => console.log(err));
   };
-  // const handleApplyState = () => {
-  //   const appliedID = showApplicants.find((info) => info.user_id === id);
-  //   if (appliedID.user_id === userInfo.id) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // };
 
-  useEffect(async () => {
-    await loginFunction();
-    await fetchPostById();
-    // await getApplicantsByApi();
-    console.log("???");
+  useEffect(() => {
+    loginFunction();
+    fetchPostById();
   }, []);
 
   useEffect(() => {
@@ -107,7 +95,7 @@ function PostDetails(props) {
         </div>
       ) : (
         <>
-          {applyState.user_id === userInfo.id ? (
+          {getPost.user_id === userInfo.id ? (
             <>
               <div>applied</div>
               <h2>Your application</h2>
@@ -125,23 +113,3 @@ function PostDetails(props) {
 
 export default PostDetails;
 
-//       //   <article className="post">
-//       //   <h2 className="post__title">{post.title}</h2>
-//       //   <div className="post__details">
-//       //     <div className="post__author">
-//       //       <img
-//       //         className="post__avatar"
-//       //         src={post.avatar_url}
-//       //         alt={`${post.username} avatar`}
-//       //       />
-//       //       <h3 className="post__username">{post.username}</h3>
-//       //       {
-//       //         // Show a "Your Post" label for posts that have been created by currently logged in user
-//       //         post.isCurrentUser &&
-//       //         <div className="post__owned">🔥&nbsp;&nbsp;Your Post</div>
-//       //       }
-//       //     </div>
-//       //     <p className="post__published">{formatTimestamp(post.updated_at)}</p>
-//       //   </div>
-//       //   <p className="post__content">{post.content}</p>
-//       // </article>

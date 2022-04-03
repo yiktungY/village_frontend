@@ -77,6 +77,7 @@ function PostDetails(props) {
   }, [userInfo]);
 
   console.log(1, showApplicantsList);
+  console.log(2, applyState);
 
   return (
     <section>
@@ -85,6 +86,12 @@ function PostDetails(props) {
       <div>content: {getPost.content}</div>
       <div>status: {getPost.status}</div>
       <div>Post at {getPost.updated_at}</div>
+      <div>Type: {getPost.type}</div>
+      <div>salary: {getPost.salary}</div>
+      <div>Non-Monetary Payment: {getPost.salary_replacement}</div>
+      <div>Date: {getPost.requireDate}</div>
+      <div>Estimate Time: {getPost.estimate_time}</div>
+
       <div>{showApplicantsList.length} People applied</div>
       {isLoggedIn && userInfo.id === getPost.user_id ? (
         <div>
@@ -106,7 +113,7 @@ function PostDetails(props) {
         </div>
       ) : (
         <>
-          {applyState.user_id === userInfo.id ? (
+          {isLoggedIn && applyState.user_id === userInfo.id ? (
             <>
               <div>applied</div>
               <h2>Your application</h2>

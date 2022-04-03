@@ -21,6 +21,11 @@ exports.up = function (knex) {
       table.string("picture_Details");
       table.string("title", 75).notNullable();
       table.text("content").notNullable();
+      table.string("type").notNullable();
+      table.string("requireDate");
+      table.string("salary");
+      table.string("salary_replacement");
+      table.string("estimate_time");
       table.string("status").notNullable();
       table.timestamp("updated_at").defaultTo(knex.fn.now());
       table.uuid("user_id").notNullable();
@@ -35,6 +40,7 @@ exports.up = function (knex) {
       table.uuid("id").primary().defaultTo(knex.raw("(UUID())"));
       table.string("avatar_url");
       table.string("content").notNullable();
+      table.string("requirment");
       table.string("username").notNullable();
       table.string("post_title").notNullable();
       table.timestamp("updated_at").defaultTo(knex.fn.now());
@@ -52,14 +58,26 @@ exports.up = function (knex) {
         .inTable("posts")
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
-    })
-    .createTable("genre", (table) => {
-      
+    });
+  // .createTable("genre", (table) => {
+  //   table.increments("id").primary();
+  //   table.string("type");
+  //   table.uuid("post_id").notNullable();
+  //   table
+  //     .foreign("post_id")
+  //     .references("id")
+  //     .inTable("posts")
+  //     .onUpdate("CASCADE")
+  //     .onDelete("CASCADE");
+  // });
 };
 
 exports.down = function (knex) {
-  return knex.schema
-    .dropTable("applyList")
-    .dropTable("posts")
-    .dropTable("users");
+  return (
+    knex.schema
+      // .dropTable("genre")
+      .dropTable("applyList")
+      .dropTable("posts")
+      .dropTable("users")
+  );
 };

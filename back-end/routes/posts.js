@@ -13,5 +13,5 @@ router
   .put(postsController.editPost)
   .delete(postsController.deletePost);
 
-
+router.route("/genre");
 module.exports = router;

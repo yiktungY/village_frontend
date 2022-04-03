@@ -6,9 +6,10 @@ const getAllPost = (req, res) => {
     .select(
       "posts.id as post_id",
       "posts.title",
-      "posts.content",
       "posts.updated_at",
       "posts.status",
+      "posts.salary",
+      "salary_replacement",
       "users.id as user_id",
       "users.avatar_url",
       "users.displayName"
@@ -49,6 +50,11 @@ const createNewPost = (req, res) => {
       title: req.body.title,
       content: req.body.content,
       status: req.body.status,
+      type: req.body.type,
+      requireDate: req.body.requireDate,
+      salary: req.body.salary,
+      salary_replacement: req.body.salary_replacement,
+      estimate_time: req.body.estimate_time,
     })
     .then((postId) => {
       res.status(201).json({ newPostId: postId[0] });
@@ -69,6 +75,10 @@ const getPostById = (req, res) => {
       "posts.title",
       "posts.content",
       "posts.status",
+      "posts.type",
+      "posts.salary",
+      "posts.salary_replacement",
+      "posts.estimate_time",
       "posts.updated_at"
     )
     .where("posts.id", typeId)

@@ -1,18 +1,17 @@
-import "./CategoryPage.scss"
+import "./CategoryPage.scss";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 const SERVER_URL = "http://localhost:8080";
-import { NavLink } from "react-router-dom";
-import GetPostbyCategory from "../../components/Posts/GetPostbyCategory/GetPostbyCategory"
+import GetPostComponent from "../../components/Posts/GetPostComponent/GetPostComponent";
 
-function CategoryPage(){
-      const [posts, setPosts] = useState([]);
+function CategoryPage() {
+  const [posts, setPosts] = useState("");
 
-      const [getCategoryName, setgetCategoryName] = useState("")
+  const [getCategoryName, setgetCategoryName] = useState("");
 
-    const fetchPostsbyCategory = () => {
+  const fetchPostsbyCategory = () => {
     axios
-      .get(`${SERVER_URL}/posts/category/${b}`)
+      .get(`${SERVER_URL}/posts/category/${getCategoryName}`)
       .then((posts) => {
         setPosts(posts.data);
       })
@@ -20,17 +19,25 @@ function CategoryPage(){
         console.log("Error fetching posts:", err);
       });
   };
+  const handleChange = (e) => {
+    setgetCategoryName(e.target.innerHTML);
+  };
+  useEffect(() => {
+    fetchPostsbyCategory();
+  }, [getCategoryName]);
 
-  const fetchCategoryName = e => {
-      setgetCategoryName(e.target.value)
-  }
-
-return (
+  return (
     <>
-    <div onClick={fetchCategoryName()}> b</div>
-    <GetPostbyCategory />
+      <div type="text" onClick={handleChange}>
+        b
+      </div>
+      <div type="text" onClick={handleChange}>
+        c
+      </div>
+
+      {posts && <GetPostComponent posts={posts} />}
     </>
-)
+  );
 }
 
 export default CategoryPage;

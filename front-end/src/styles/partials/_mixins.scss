@@ -3,16 +3,77 @@
 
 //tablet format
 @mixin tablet {
-	@media (min-width: $tabletmin-width) {
-		@content;
-	}
+  @media (min-width: $tabletmin-width) {
+    @content;
+  }
 }
 
 //desktop format
 @mixin desktop {
-	@media (min-width: $desktop-width) {
-		@content;
-	}
+  @media (min-width: $desktop-width) {
+    @content;
+  }
 }
 
-//font sytle
+//padding
+@mixin windowPaddingOuter {
+  padding-left: $mobile-margin-width;
+  padding-right: $mobile-margin-width;
+  @include tablet {
+    padding-left: $tablet-margin-width;
+    padding-right: $tablet-margin-width;
+  }
+  @include desktop {
+    padding-left: calc(
+      (100% - 12 * #{$desktop-column-width} - 11 * #{$desktop-gutter-width}) / 2
+    );
+    padding-right: calc(
+      (100% - 12 * #{$desktop-column-width} - 11 * #{$desktop-gutter-width}) / 2
+    );
+  }
+}
+
+@mixin windowPaddingInner {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  @include tablet {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  @include desktop {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+//mobile font sytle
+@mixin heading-primary {
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+  font-weight: 600;
+  @include tablet {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+}
+
+@mixin body-text-medium {
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+  @include tablet {
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+  }
+}
+@mixin body-text-small {
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  @include tablet {
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+  }
+}
+
+@mixin border {
+  border: 1px solid $outline-borders;
+}

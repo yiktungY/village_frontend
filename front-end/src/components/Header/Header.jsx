@@ -28,18 +28,32 @@ function Header() {
 
   return (
     <header className="header">
-      <NavLink to="/">HOME</NavLink>
-      {isLoggedIn ? <LogoutButton /> : <LoginButton />}
-      {isLoggedIn && (
-        <div className="personalInfo">
-          <NavLink to="/createpost">Create a Post</NavLink>
-          <NavLink to={`/profile/${userInfo.id}`}>
+      <NavLink className="navLink LinkButton" to="/">
+        HOME
+      </NavLink>
+
+      {isLoggedIn ? (
+        <div className="header__info">
+          <NavLink
+            className="navLink header_user "
+            to={`/profile/${userInfo.id}`}
+          >
             <img className="icon" src={userInfo.avatar_url} alt="UserIcon" />
-            <div>Display Name: {userInfo.displayName}</div>
+            {/* <div>Display Name: {userInfo.displayName}</div>
             <div>Rating: {userInfo.rating}</div>
-            <div>Done Case: {userInfo.doneCase}</div>
+            <div>Done Case: {userInfo.doneCase}</div> */}
           </NavLink>
+          <NavLink
+            className="navLink LinkButton header__createPost"
+            to="/createpost"
+          >
+            Create a Post
+          </NavLink>
+
+          <LogoutButton />
         </div>
+      ) : (
+        <LoginButton />
       )}
     </header>
   );

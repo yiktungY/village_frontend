@@ -7,11 +7,11 @@ import {
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Profile from "./components/Users/Profile/Profile";
-import CategoryPage from "./pages/CategoryPage/CategoryPage"
+import CategoryPage from "./pages/CategoryPage/CategoryPage";
 import UpdateProfile from "./components/Users/UpdateProfile/UpdateProfile";
 import "./App.scss";
 import PostsPage from "./pages/PostsPage/PostsPage";
-import UserPostList from "./components/Users/UserPostList/UserPostList"
+import UserPostList from "./components/Users/UserPostList/UserPostList";
 import CreatePost from "./components/Posts/CreatePost/CreatePost";
 import PostDetails from "./components/Posts/PostDetails/PostDetails";
 import EditPost from "./components/Posts/EditPost/EditPost";
@@ -29,7 +29,7 @@ function App() {
         <Route path="/registerSuccee" component={CreateAccount} />
         <Route path="/profile/:id" component={Profile} />
         <Route path="/users/posts/:id" component={UserPostList} />
-        <Route paht="/posts/category" component={CategoryPage} />
+        <Route path="/category" component={CategoryPage} />
         <Route path="/updateProfile/:id" component={UpdateProfile} />
         <Route path="/createpost" component={CreatePost} />
         <Route path="/post/:postID" component={PostDetails} />

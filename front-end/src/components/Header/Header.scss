@@ -1,18 +1,35 @@
-.header {
-  height: 10rem;
-  background-color: rgba(0, 255, 255, 0.211);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding-left: 10rem;
-}
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
 
-.personalInfo {
+.header {
+  background-color: rgba(248, 249, 250, 0.5);
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  height: 5rem;
+  position: sticky;
+  top: 1px;
+
+  &__info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 30%;
+  }
+
+  &__createPost {
+  }
+
+  &__user {
+    display: flex;
+    margin-bottom: 1rem;
+    justify-self: center;
+    align-self: center;
+  }
 }
 
 .icon {
-  width: 3rem;
+  width: 2.5rem;
 }

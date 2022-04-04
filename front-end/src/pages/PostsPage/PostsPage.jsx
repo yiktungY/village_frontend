@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import GetPostComponent from "../../components/Posts/GetPostComponent/GetPostComponent";
 import "./PostsPage.scss";
 
 import { NavLink } from "react-router-dom";
@@ -20,27 +21,15 @@ function PostsPage() {
       });
   };
 
-
   useEffect(() => {
     fetchPosts();
   }, []);
 
   return (
     <section>
-    <NavLink to="/posts/category">Category Page</NavLink>
+      <NavLink to="/category">Category Page</NavLink>
       <h1>Posts</h1>
-      {posts.map((post) => (
-        <NavLink
-          className="post"
-          key={post.post_id}
-          to={`post/${post.post_id}`}
-        >
-          <div>Name: {post.displayName}</div>
-          <div>title: {post.title}</div>
-          <div>content: {post.content}</div>
-          <div>Status: {post.status}</div>
-        </NavLink>
-      ))}
+      {posts && <GetPostComponent posts={posts} />}
     </section>
   );
 }

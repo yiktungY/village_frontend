@@ -9,6 +9,7 @@ const getAllPost = (req, res) => {
       "posts.updated_at",
       "posts.status",
       "posts.salary",
+      "posts.type",
       "posts.requireDate",
       "salary_replacement",
       "users.id as user_id",
@@ -126,14 +127,15 @@ const deletePost = async (req, res) => {
 };
 
 const getPostbyGenre = (req, res) => {
-  const category = req.params.categoryName
- knex
+  const category = req.params.categoryName;
+  knex
     .select(
       "posts.id as post_id",
       "posts.title",
       "posts.updated_at",
       "posts.status",
       "posts.salary",
+      "posts.type",
       "posts.requireDate",
       "salary_replacement",
       "users.id as user_id",
@@ -181,5 +183,5 @@ module.exports = {
   editPost,
   getPostById,
   deletePost,
-  getPostbyGenre
+  getPostbyGenre,
 };

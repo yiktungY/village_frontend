@@ -1,48 +1,46 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./PostsPage.scss";
-
-import { NavLink } from "react-router-dom";
-
+import {NavLink} from "react-router-dom";
+import "./UserPostList.scss"
 const SERVER_URL = "http://localhost:8080";
 
-function PostsPage() {
-  const [posts, setPosts] = useState([]);
 
-  const fetchPosts = () => {
+function UserPostList(props){
+ const [userPostList, setuserPostList] = useState([])
+    const fetchPostsbyUserId = () => {
+
+      const userId = props.match.params.id;
     axios
-      .get(`${SERVER_URL}/posts`)
+      .get(`${SERVER_URL}/users/posts/${userId}`)
       .then((posts) => {
-        setPosts(posts.data);
+        setuserPostList(posts.data);
       })
       .catch((err) => {
         console.log("Error fetching posts:", err);
       });
   };
-
-
   useEffect(() => {
-    fetchPosts();
-  }, []);
+     fetchPostsbyUserId() 
+  }, [])
+  
+return(
+    <>
 
-  return (
-    <section>
-    <NavLink to="/posts/category">Category Page</NavLink>
-      <h1>Posts</h1>
-      {posts.map((post) => (
-        <NavLink
+{userPostList && userPostList.map(post => 
+(
+     <NavLink
           className="post"
           key={post.post_id}
           to={`post/${post.post_id}`}
         >
-          <div>Name: {post.displayName}</div>
           <div>title: {post.title}</div>
           <div>content: {post.content}</div>
           <div>Status: {post.status}</div>
         </NavLink>
-      ))}
-    </section>
-  );
+))
+}
+     </>
+)
 }
 
-export default PostsPage;
+export default UserPostList;

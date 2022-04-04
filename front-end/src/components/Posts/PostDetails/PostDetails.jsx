@@ -76,12 +76,11 @@ function PostDetails(props) {
     getApplicantsByApi();
   }, [userInfo]);
 
-  console.log(1, showApplicantsList);
-  console.log(2, applyState);
+ console.log(getPost.requireDate)
 
   return (
     <section>
-      <div>Name: {getPost.displayname}</div>
+      <NavLink to={`/profile/${getPost.user_id}`}>Name: {getPost.displayname}</NavLink>
       <div>title: {getPost.title}</div>
       <div>content: {getPost.content}</div>
       <div>status: {getPost.status}</div>

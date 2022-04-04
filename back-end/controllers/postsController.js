@@ -9,6 +9,7 @@ const getAllPost = (req, res) => {
       "posts.updated_at",
       "posts.status",
       "posts.salary",
+      "posts.requireDate",
       "salary_replacement",
       "users.id as user_id",
       "users.avatar_url",
@@ -16,7 +17,7 @@ const getAllPost = (req, res) => {
     )
     .from("posts")
     .leftJoin("users", "posts.user_id", "users.id")
-    .orderBy("posts.id", "desc")
+    .orderBy("posts.updated_at", "desc")
     .then((posts) => {
       let updatedPosts = posts;
       if (req.user) {
@@ -77,6 +78,7 @@ const getPostById = (req, res) => {
       "posts.status",
       "posts.type",
       "posts.salary",
+      "posts.requireDate",
       "posts.salary_replacement",
       "posts.estimate_time",
       "posts.updated_at"
@@ -123,6 +125,42 @@ const deletePost = async (req, res) => {
   }
 };
 
+const getPostbyGenre = (req, res) => {
+  const category = req.params.categoryName
+ knex
+    .select(
+      "posts.id as post_id",
+      "posts.title",
+      "posts.updated_at",
+      "posts.status",
+      "posts.salary",
+      "posts.requireDate",
+      "salary_replacement",
+      "users.id as user_id",
+      "users.avatar_url",
+      "users.displayName"
+    )
+    .from("posts")
+    .where("posts.type", category)
+    .leftJoin("users", "posts.user_id", "users.id")
+    .orderBy("posts.updated_at", "desc")
+    .then((posts) => {
+      let updatedPosts = posts;
+      if (req.user) {
+        updatedPosts = updatedPosts.map((post) => {
+          return {
+            ...post,
+            isCurrentUser: post.user_id === req.user.id,
+          };
+        });
+      }
+      res.status(200).json(posts);
+    })
+    .catch(() => {
+      res.status(500).json({ message: "Error fetching posts" });
+    });
+};
+
 // const applyJob = (req, res) => {
 //   const typeId = req.params.postID;
 //   knex("posts")
@@ -143,4 +181,5 @@ module.exports = {
   editPost,
   getPostById,
   deletePost,
+  getPostbyGenre
 };

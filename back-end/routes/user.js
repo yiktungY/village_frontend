@@ -9,4 +9,7 @@ router
   .get(userController.getUserById)
   .put(userController.updateUserProfile);
 
+router
+.route("/posts/:id").get(userController.getAllPostbyUserId)
+
 module.exports = router;

@@ -25,7 +25,7 @@ function CreatePost(props) {
       status: "open to apply",
       type: "",
       salary: "",
-      RequireDate: new Date(),
+      requireDate: "",
       estimate_time: "",
       salary_replacement: "",
     },
@@ -69,14 +69,13 @@ function CreatePost(props) {
           requireDate: data.requireDate,
           salary: data.salary,
           salary_replacement: data.salary_replacement,
-          estimate_time: data.estimateTime,
+          estimate_time: data.estimate_time.value,
         },
         {
           withCredentials: true,
         }
       )
       .then((data) => {
-        console.log(data);
         props.history.push("/");
       })
       .catch((err) => {

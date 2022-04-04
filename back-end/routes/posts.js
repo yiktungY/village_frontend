@@ -13,5 +13,7 @@ router
   .put(postsController.editPost)
   .delete(postsController.deletePost);
 
-router.route("/genre");
+
+router.route("/category/:categoryName")
+.get(postsController.getPostbyGenre)
 module.exports = router;

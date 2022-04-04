@@ -51,8 +51,45 @@ const updateUserProfile = async (req, res) => {
   }
 };
 
+const getAllPostbyUserId = (req, res) => {
+    const userId = req.params.id;
+  // console.log("req", req);
+
+  knex("posts")
+     knex
+    .select(
+      "posts.id as post_id",
+      "posts.title",
+      "posts.content",
+      "posts.updated_at",
+      "posts.status",
+      "users.id as user_id",
+      "users.avatar_url",
+    )
+    .from("posts")
+    .leftJoin("users", "posts.user_id", "users.id")
+    .orderBy("posts.updated_at", "desc")
+    .where("users.id", userId)
+    .then((posts) => {
+      let updatedPosts = posts;
+      if (req.user) {
+        updatedPosts = updatedPosts.map((post) => {
+          return {
+            ...post,
+            isCurrentUser: post.user_id === req.user.id,
+          };
+        });
+      }
+      res.status(200).json(posts);
+    })
+    .catch(() => {
+      res.status(500).json({ message: "Error fetching posts" });
+    });
+};
+
 module.exports = {
   getUserById,
   getAllUser,
   updateUserProfile,
+  getAllPostbyUserId
 };

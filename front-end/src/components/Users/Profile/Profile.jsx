@@ -3,11 +3,13 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+import UserPostList from "../UserPostList/UserPostList"
 const SERVER_URL = "http://localhost:8080";
 
 function Profile(props) {
   const [isLoggedIn, setisLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState("");
+  const [userPostList, setuserPostList] = useState("")
   const {
     register,
     handleSubmit,
@@ -33,7 +35,17 @@ function Profile(props) {
       setUserInfo(res.data);
     });
   };
-
+   const fetchPostsbyUserId = () => {
+      const userId = props.match.params.id;
+    axios
+      .get(`${SERVER_URL}/users/posts/${userId}`)
+      .then((posts) => {
+        setuserPostList(posts.data);
+      })
+      .catch((err) => {
+        console.log("Error fetching posts:", err);
+      });
+  };
   const handelUpdate = (data) => {
     const newUpdateInfo = {
       age: data.age,
@@ -50,10 +62,20 @@ function Profile(props) {
   useEffect(() => {
     loginFunction();
     getUserInfobyId();
+    fetchPostsbyUserId()
   }, []);
 
   return (
     <div>
+    {userPostList &&   (
+    <div className="userPost">
+    <h2>Post</h2>
+    <div>{userPostList[userPostList.length - 1].title}</div>
+     <div>{userPostList[userPostList.length - 1].content}</div>
+     <NavLink to={`/users/posts/${userInfo.id}`}>More post</NavLink>
+    </div>
+    )
+    }
       {userInfo && <div className="updatedEffect">Profile Updated</div>}
       <h1>Profile</h1>
       <img src={userInfo.avatar_url} alt="UserIcon" />

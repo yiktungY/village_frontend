@@ -1,0 +1,47 @@
+@use "../../../styles/partials/variables" as *;
+@use "../../../styles/partials/mixins" as *;
+
+.register {
+  position: absolute;
+  top: 15vh;
+  left: 35vw;
+  background-color: white;
+  width: 20rem;
+  height: 20rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  @include shadowBox;
+  border-radius: 5px;
+
+  &__background {
+    position: absolute;
+    top: 0px;
+    background-color: rgba(14, 15, 15, 0.327);
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  height: 50rem;
+  @include shadowBox;
+  @include windowPaddingInner;
+
+  &__info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 50rem;
+
+    &--user {
+      @include shadowBox;
+      display: flex;
+      flex-direction: column;
+      height: fit-content;
+    }
+  }
+}

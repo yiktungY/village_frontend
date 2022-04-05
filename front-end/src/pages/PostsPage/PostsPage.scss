@@ -1,14 +1,20 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
 // .postsection {
 //   display: flex;
 //   flex-direction: row;
 //   flex-wrap: wrap;
 // }
 
-.post {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  border: 1px solid black;
-  margin: 2rem;
-  padding: 1.5rem;
+.postPage {
+  @include windowPaddingInner;
+  background-color: $backgroundColor;
+  &__box {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    @include shadowBox;
+    background-color: white;
+  }
 }

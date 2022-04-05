@@ -1,7 +1,9 @@
 import "./PostDetails.scss";
 import { useState, useEffect } from "react";
+import ApplyJob from "../../ApplyJob/ApplyJob";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+
 const SERVER_URL = "http://localhost:8080";
 
 function PostDetails(props) {
@@ -9,7 +11,13 @@ function PostDetails(props) {
   const [getPost, setgetPost] = useState({});
   const [userInfo, setUserInfo] = useState("");
   const [showApplicantsList, setShowApplicantsList] = useState([]);
+  const [showApply, setShowApply] = useState(false);
   const [applyState, setApplyState] = useState("");
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm({});
 
   const loginFunction = async () => {
     await axios
@@ -32,6 +40,27 @@ function PostDetails(props) {
       })
       .catch((err) => {
         console.log("Error fetching posts:", err);
+      });
+  };
+
+  const handleApply = (data) => {
+    axios
+      .post(
+        `${SERVER_URL}/apply/${getPost.post_id}`,
+        {
+          post_id: getPost.post_id,
+          post_title: getPost.title,
+          content: data.content,
+        },
+        {
+          withCredentials: true,
+        }
+      )
+      .then(() => {
+        window.location.reload(false);
+      })
+      .catch((err) => {
+        console.log("Error creating a new post:", err);
       });
   };
 
@@ -59,6 +88,17 @@ function PostDetails(props) {
       })
       .catch((err) => console.log(err));
   };
+  const showApplyModal = () => {
+    if (!showApply) {
+      setShowApply(true);
+    }
+  };
+
+  const hideApplyModal = () => {
+    if (showApply) {
+      setShowApply(false);
+    }
+  };
 
   //no idea
   // const acceptApplicant = () => {
@@ -76,29 +116,46 @@ function PostDetails(props) {
     getApplicantsByApi();
   }, [userInfo]);
 
- console.log(getPost.requireDate)
-
   return (
-    <section>
-      <NavLink to={`/profile/${getPost.user_id}`}>Name: {getPost.displayname}</NavLink>
-      <div>title: {getPost.title}</div>
-      <div>content: {getPost.content}</div>
-      <div>status: {getPost.status}</div>
-      <div>Post at {getPost.updated_at}</div>
-      <div>Type: {getPost.type}</div>
-      <div>salary: {getPost.salary}</div>
-      <div>Non-Monetary Payment: {getPost.salary_replacement}</div>
-      <div>Date: {getPost.requireDate}</div>
-      <div>Estimate Time: {getPost.estimate_time}</div>
+    <section className="postDetails">
+      <div className="postDetails__box">
+        <div className="postDetails__box1">
+          <div className="postDetails__box1--image">
+            <div>image</div>
+          </div>
+          <div className="postDetails__box1--info">
+            <h1>{getPost.title}</h1>
+            <NavLink className="navLink" to={`/profile/${getPost.user_id}`}>
+              By {getPost.displayname}
+            </NavLink>
 
-      <div>{showApplicantsList.length} People applied</div>
+            <div>{getPost.status}</div>
+            <div>Post at {getPost.updated_at}</div>
+            <div>Type: {getPost.type}</div>
+            {getPost.salary && <div>salary: {getPost.salary}</div>}
+            {getPost.salary_replacement && (
+              <div>Non-Monetary Payment: {getPost.salary_replacement}</div>
+            )}
+            <div>Date: {getPost.requireDate}</div>
+            <div>Estimate Time: {getPost.estimate_time}</div>
+
+            <div>{showApplicantsList.length} People applied</div>
+          </div>
+        </div>
+        <div className="postDetails__box2">
+          <div>content</div>
+          <div>{getPost.content}</div>
+        </div>
+      </div>
       {isLoggedIn && userInfo.id === getPost.user_id ? (
         <div>
-          <NavLink to={`/postEdit/${getPost.post_id}`}>Edit Post</NavLink>
+          <NavLink className="navLink" to={`/postEdit/${getPost.post_id}`}>
+            Edit Post
+          </NavLink>
           <button onClick={handlePostDelete}>Delete Post</button>
           {showApplicantsList.map((info) => (
             <NavLink
-              className="post"
+              className="post navLink"
               key={info.id}
               to={`/profile/${info.user_id}`}
             >
@@ -111,18 +168,30 @@ function PostDetails(props) {
           ))}
         </div>
       ) : (
-        <>
+        <div className="appliants">
           {isLoggedIn && applyState.user_id === userInfo.id ? (
-            <>
-              <div>applied</div>
+            <div className="">
               <h2>Your application</h2>
               <div>content: {applyState.content}</div>
               <div>time: {applyState.updated_at}</div>
-            </>
+              <div>applied</div>
+            </div>
           ) : (
-            <NavLink to={`/postApply/${getPost.post_id}`}>Apply Now</NavLink>
+            <>
+              <div onClick={showApplyModal} className="">
+                Apply Now
+              </div>
+              {showApply && (
+                <ApplyJob
+                  handleApply={handleApply}
+                  hideApplyModal={hideApplyModal}
+                  postUserId={getPost.displayname}
+                  isLoggedIn={isLoggedIn}
+                />
+              )}
+            </>
           )}
-        </>
+        </div>
       )}
     </section>
   );

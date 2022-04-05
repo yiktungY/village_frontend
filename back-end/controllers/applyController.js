@@ -28,18 +28,11 @@ const applyToPost = (req, res) => {
 
 const getApplicantsById = (req, res) => {
   const postId = req.params.postID;
-  // console.log(typeId);
+  console.log(postId);
+  console.log(knex("applyList.post_id"));
   knex("applyList")
-    // .join("users", "applyList.user_id", "=", "users.id")
-    // .select(
-    //   "posts.id as post_id",
-
-    //   "applyList.username",
-    //   "applyList.content",
-    //   "applyList.updated_at"
-    // )
-    .where("applyList.post_id", postId)
-    .orderBy("posts.updated_at", "desc")
+    .where("post_id", postId)
+    .orderBy("updated_at", "desc")
     .then((data) => {
       res.json(data);
     })

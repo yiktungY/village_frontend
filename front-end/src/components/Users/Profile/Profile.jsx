@@ -66,7 +66,49 @@ function Profile(props) {
   }, []);
 
   return (
-    <div>
+    <section className="profile">
+      <h1 className="profile__header">Profile</h1>
+      <div className="profile__info">
+        <div className="profile__info--user">
+          {/* {userInfo && <div className="updatedEffect">Profile Updated</div>} */}
+
+          <img src={userInfo.avatar_url} alt="UserIcon" />
+          <div>Email: {userInfo.email}</div>
+          <div>Display Name: {userInfo.displayName}</div>
+          <div>First Name: {userInfo.givenName}</div>
+          <div>Last Name: {userInfo.familyName}</div>
+          <div>Rating: {userInfo.rating}</div>
+          <div>Done Case: {userInfo.doneCase}</div>
+          <div>Age: {userInfo.age}</div>
+          <div>Address: {userInfo.address}</div>
+          <div>Accounts create at {userInfo.updated_at}</div>
+
+          {isLoggedIn && (
+            <>
+              {userInfo.age > 0 ? (
+                <NavLink to={`/updateProfile/${userInfo.id}`}>
+                  Edit Profile
+                </NavLink>
+              ) : (
+                <div>
+                  <div className="register__background"></div>
+                  <form
+                    className="register"
+                    onSubmit={handleSubmit(handelUpdate)}
+                  >
+                    <div>Age: </div>
+                    <input
+                      {...register("age", { required: "This is required" })}
+                    />
+                    <p>{errors.age?.message}</p>
+                    <button type="submit">Starting Your Journey</button>
+                  </form>
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      </div>
       {userPostList.length > 1 && (
         <div className="userPost">
           <h2>Post</h2>
@@ -75,34 +117,7 @@ function Profile(props) {
           <NavLink to={`/users/posts/${userInfo.id}`}>More post</NavLink>
         </div>
       )}
-      {userInfo && <div className="updatedEffect">Profile Updated</div>}
-      <h1>Profile</h1>
-      <img src={userInfo.avatar_url} alt="UserIcon" />
-      <div>Email: {userInfo.email}</div>
-      <div>Display Name: {userInfo.displayName}</div>
-      <div>First Name: {userInfo.givenName}</div>
-      <div>Last Name: {userInfo.familyName}</div>
-      <div>Rating: {userInfo.rating}</div>
-      <div>Done Case: {userInfo.doneCase}</div>
-      <div>Age: {userInfo.age}</div>
-      <div>Address: {userInfo.address}</div>
-      <div>Accounts create at {userInfo.updated_at}</div>
-
-      {isLoggedIn && (
-        <>
-          {userInfo.age > 0 ? (
-            <NavLink to={`/updateProfile/${userInfo.id}`}>Edit Profile</NavLink>
-          ) : (
-            <form onSubmit={handleSubmit(handelUpdate)}>
-              <div>Age: </div>
-              <input {...register("age", { required: "This is required" })} />
-              <p>{errors.age?.message}</p>
-              <button type="submit">Starting Your Journey</button>
-            </form>
-          )}
-        </>
-      )}
-    </div>
+    </section>
   );
 }
 

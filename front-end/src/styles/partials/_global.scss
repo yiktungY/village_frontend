@@ -84,7 +84,7 @@ body {
 .navLink {
   color: $global-text-color;
   text-decoration: none;
-  height: 36px;
+
   width: fit-content;
   padding: 0.5rem;
   align-self: center;
@@ -93,5 +93,5 @@ body {
 .LinkButton {
   display: flex;
   align-items: center;
-  @include border;
+  @include shadowBox;
 }

@@ -27,16 +27,66 @@ function CategoryPage() {
   }, [getCategoryName]);
 
   return (
-    <>
-      <div type="text" onClick={handleChange}>
-        b
+    <div className="category">
+      <h1>Category</h1>
+      <div className="category__area">
+        <div className="category__area--box">
+          <div
+            className="category__area--title"
+            type="text"
+            onClick={handleChange}
+          >
+            a
+          </div>
+        </div>
+        <div className="category__area--box">
+          <div
+            className="category__area--title"
+            type="text"
+            onClick={handleChange}
+          >
+            a
+          </div>
+        </div>
+        <div className="category__area--box">
+          <div
+            className="category__area--title"
+            type="text"
+            onClick={handleChange}
+          >
+            a
+          </div>
+        </div>
+        <div className="category__area--box">
+          <div
+            className="category__area--title"
+            type="text"
+            onClick={handleChange}
+          >
+            a
+          </div>
+        </div>
+        <div className="category__area--box">
+          <div
+            className="category__area--title"
+            type="text"
+            onClick={handleChange}
+          >
+            a
+          </div>
+        </div>
+        <div className="category__area--box">
+          <div
+            className="category__area--title"
+            type="text"
+            onClick={handleChange}
+          >
+            a
+          </div>
+        </div>
       </div>
-      <div type="text" onClick={handleChange}>
-        c
-      </div>
-
       {posts && <GetPostComponent posts={posts} />}
-    </>
+    </div>
   );
 }
 

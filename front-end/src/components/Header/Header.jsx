@@ -53,7 +53,11 @@ function Header() {
           <LogoutButton />
         </div>
       ) : (
-        <LoginButton />
+        <>
+          <NavLink className="navLink LinkButton" to="/loginWithGoogle">
+            Log in / Create a new Account
+          </NavLink>
+        </>
       )}
     </header>
   );

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import LoginButton from "../../Button/LoginButton/LoginButton";
+import UploadPicture from "../../Posts/UploadPicture/UploadPicture";
 const SERVER_URL = "http://localhost:8080";
 
 function UpdateProfile(props) {
@@ -29,6 +30,7 @@ function UpdateProfile(props) {
 
   const handelUpdate = (data) => {
     const newUpdateInfo = {
+      // avatar_url: data.avatar_url,
       givenName: data.givenName,
       familyName: data.familyName,
       displayName: data.displayName,
@@ -66,37 +68,41 @@ function UpdateProfile(props) {
     <div>
       <h1>Update</h1>
       {isLoggedIn ? (
-        <form onSubmit={handleSubmit(handelUpdate)}>
-          {/* <input ref={register} type="file" name="picure"/>  */}
-          <div>Email: {userInfo.email}</div>
-          <div>Display Name: </div>
-          <input
-            {...register("displayName", { required: "This is required" })}
-          />
-          <p>{errors.displayName?.message}</p>
-          <div>First Name: </div>
-          <input {...register("givenName", { required: "This is required" })} />
-          <p>{errors.givenName?.message}</p>
-          <div>Last Name: </div>
-          <input
-            {...register("familyName", { required: "This is required" })}
-          />
-          <p>{errors.familyName?.message}</p>
-          <div>Rating: {userInfo.rating}</div>
-          <div>Done Case: {userInfo.doneCase}</div>
-          <div>Age: </div>
-          <input {...register("age", { required: "This is required" })} />
-          <p>{errors.age?.message}</p>
-          <div>Address: </div>
-          <input
-            {...register("address", {
-              required: "This is required",
-            })}
-          />
-          <p>{errors.address?.message}</p>
-          <input type="submit" />
-          <div>Account creates at {userInfo.updated_at}</div>
-        </form>
+        <div>
+          <UploadPicture userInfo={userInfo} />
+          <form onSubmit={handleSubmit(handelUpdate)}>
+            <div>Email: {userInfo.email}</div>
+            <div>Display Name: </div>
+            <input
+              {...register("displayName", { required: "This is required" })}
+            />
+            <p>{errors.displayName?.message}</p>
+            <div>First Name: </div>
+            <input
+              {...register("givenName", { required: "This is required" })}
+            />
+            <p>{errors.givenName?.message}</p>
+            <div>Last Name: </div>
+            <input
+              {...register("familyName", { required: "This is required" })}
+            />
+            <p>{errors.familyName?.message}</p>
+            <div>Rating: {userInfo.rating}</div>
+            <div>Done Case: {userInfo.doneCase}</div>
+            <div>Age: </div>
+            <input {...register("age", { required: "This is required" })} />
+            <p>{errors.age?.message}</p>
+            <div>Address: </div>
+            <input
+              {...register("address", {
+                required: "This is required",
+              })}
+            />
+            <p>{errors.address?.message}</p>
+            <input type="submit" />
+            <div>Account creates at {userInfo.updated_at}</div>
+          </form>
+        </div>
       ) : (
         <>
           <p>Login to update your profile.</p>

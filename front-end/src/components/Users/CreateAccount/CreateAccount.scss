@@ -1,0 +1,48 @@
+@use "../../../styles/partials/variables" as *;
+@use "../../../styles/partials/mixins" as *;
+
+.loginSuccessed {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  @include shadowBox;
+  @include windowPaddingInner;
+
+  &__login {
+    margin-top: 5rem;
+  }
+}
+
+.create-post {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 50vh;
+  align-items: center;
+  &__textInfo {
+    @include shadowBox;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 2rem;
+  }
+  &__otherInfo {
+    &--payment {
+      @include shadowBox;
+    }
+    &--other {
+      @include shadowBox;
+    }
+  }
+}
+
+.createPage {
+  @include windowPaddingInner;
+}
+
+.details {
+  height: 10rem;
+}

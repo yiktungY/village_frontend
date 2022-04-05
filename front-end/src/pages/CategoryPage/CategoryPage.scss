@@ -1,0 +1,38 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.category {
+  background-color: $backgroundColor;
+  &__area {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    &--box {
+      margin: 1rem;
+      height: 3rem;
+      width: 6rem;
+      @include shadowBox;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-size: 100%;
+      object-fit: cover;
+      background-repeat: no-repeat;
+
+      background-image: url(../../assets/images/cooking.webp);
+      &:hover {
+        background-size: 125%;
+        opacity: 0.6;
+      }
+    }
+    &--title {
+      background-color: rgb(210, 180, 140);
+      opacity: 0.7;
+      padding: 0.1rem 1.2rem;
+      &:hover {
+        background-size: 125%;
+        opacity: 1;
+      }
+    }
+  }
+}

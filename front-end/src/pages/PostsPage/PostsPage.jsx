@@ -26,9 +26,19 @@ function PostsPage() {
   }, []);
 
   return (
-    <section>
-      <NavLink to="/category">Category Page</NavLink>
-      <h1>Posts</h1>
+    <section className="postPage">
+      <h1>A new way to Contribute your Community</h1>
+      <div className="postPage__box">
+        <NavLink className="navLink" to="/">
+          All posts
+        </NavLink>
+        <NavLink className="navLink" to="/category">
+          Category Page
+        </NavLink>
+        <NavLink className="navLink" to="/category">
+          Category Page
+        </NavLink>
+      </div>
       {posts && <GetPostComponent posts={posts} />}
     </section>
   );

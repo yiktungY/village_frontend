@@ -1,0 +1,44 @@
+@use "../../../styles/partials/variables" as *;
+@use "../../../styles/partials/mixins" as *;
+
+.postSection {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  &__post {
+    background-color: white;
+    color: $global-text-color;
+    text-decoration: none;
+    width: 40%;
+    padding: 0.5rem;
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+
+    flex-wrap: wrap;
+    justify-content: space-between;
+    @include shadowBox;
+    margin: 2rem;
+    padding: 1.5rem;
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+
+    &--title {
+      @include subHeader;
+    }
+
+    &--user {
+      @include body-text-small;
+      color: $outline-borders;
+    }
+
+    &--time {
+      @include body-text-small;
+      color: $outline-borders;
+    }
+  }
+}

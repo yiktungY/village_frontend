@@ -1,3 +1,5 @@
+@use "../../../styles/partials/variables" as *;
+@use "../../../styles/partials/mixins" as *;
 .post {
   display: flex;
   flex-direction: column;
@@ -5,4 +7,43 @@
   border: 1px solid black;
   margin: 2rem;
   padding: 1.5rem;
+}
+
+.postDetails {
+  @include windowPaddingInner;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  &__box {
+    display: flex;
+    flex-direction: column;
+  }
+  &__box1 {
+    width: 50vw;
+    display: flex;
+    flex-direction: row;
+    &--info {
+      width: 50%;
+      @include shadowBox;
+    }
+    &--image {
+      margin-right: 2rem;
+      width: 50%;
+      @include shadowBox;
+    }
+  }
+  &__box2 {
+    margin: 2rem 0;
+    @include shadowBox;
+    width: 50vw;
+    height: 20rem;
+  }
+}
+
+.appliants {
+  height: 30rem;
+  display: flex;
+  flex-direction: column;
+  @include shadowBox;
 }

@@ -16,22 +16,6 @@
 }
 
 //padding
-@mixin windowPaddingOuter {
-  padding-left: $mobile-margin-width;
-  padding-right: $mobile-margin-width;
-  @include tablet {
-    padding-left: $tablet-margin-width;
-    padding-right: $tablet-margin-width;
-  }
-  @include desktop {
-    padding-left: calc(
-      (100% - 12 * #{$desktop-column-width} - 11 * #{$desktop-gutter-width}) / 2
-    );
-    padding-right: calc(
-      (100% - 12 * #{$desktop-column-width} - 11 * #{$desktop-gutter-width}) / 2
-    );
-  }
-}
 
 @mixin windowPaddingInner {
   padding-left: 1.5rem;
@@ -41,18 +25,25 @@
     padding-right: 2rem;
   }
   @include desktop {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    padding: 0 5rem;
   }
 }
 
 //mobile font sytle
 @mixin heading-primary {
-  font-size: 1.75rem;
+  font-size: 28px;
   line-height: 2.25rem;
   font-weight: 600;
   @include tablet {
     font-size: 2rem;
+    line-height: 2.5rem;
+  }
+}
+@mixin subHeader {
+  font-size: 25px;
+  line-height: 2.25rem;
+  @include tablet {
+    font-size: 1.5rem;
     line-height: 2.5rem;
   }
 }
@@ -74,6 +65,8 @@
   }
 }
 
-@mixin border {
+@mixin shadowBox {
   border: 1px solid $outline-borders;
+  box-shadow: 5px 2.5px 2.5px $shadow;
+  border-radius: 5px;
 }

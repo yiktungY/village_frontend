@@ -1,22 +1,28 @@
-import "./GetPostbyCategory.scss";
+import "./GetPostComponent.scss";
 import { NavLink } from "react-router-dom";
 function GetPostComponent(props) {
   return (
-    <div>
+    <section className="postSection">
       {props.posts.map((post) => (
         <NavLink
-          className="post"
+          className="postSection__post"
           key={post.post_id}
           to={`/post/${post.post_id}`}
         >
-          <div>Name: {post.displayName}</div>
-          <div>title: {post.title}</div>
-          <div>content: {post.content}</div>
-          <div>Category: {post.type}</div>
-          <div>Status: {post.status}</div>
+          <div>image</div>
+          <div className="postSection__details">
+            <div className="postSection__details--title">{post.title}</div>
+            <div>content: {post.content}</div>
+            <div> {post.type}</div>
+            <div> {post.status}</div>
+            <div className="postSection__details--user">
+              By {post.displayName}
+            </div>
+          </div>
+          <div className="postSection__details--time">Time</div>
         </NavLink>
       ))}
-    </div>
+    </section>
   );
 }
 

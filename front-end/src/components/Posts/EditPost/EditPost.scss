@@ -1,0 +1,27 @@
+@use "../../../styles/partials/variables" as *;
+@use "../../../styles/partials/mixins" as *;
+
+.EditPost {
+  @include windowPaddingInner;
+  height: 40rem;
+
+  &__box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    &--one,
+    &--two {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      @include windowPaddingInner;
+      @include shadowBox;
+      margin: 2rem;
+    }
+  }
+}
+.details {
+  height: 20rem;
+}

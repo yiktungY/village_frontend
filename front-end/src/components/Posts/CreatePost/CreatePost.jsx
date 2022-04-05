@@ -7,12 +7,17 @@ import ReactSelect from "react-select";
 import "react-datepicker/dist/react-datepicker.css";
 import ControlledRadioButtonsGroup from "../../Mui/Mui";
 import LoginButton from "../../Button/LoginButton/LoginButton";
+import { ref, getDownloadURL, uploadBytesResumable } from "@firebase/storage";
+import { storage } from "../../../firebase/firebase";
+
 const SERVER_URL = "http://localhost:8080";
 
 function CreatePost(props) {
   const [isLoggedIn, setisLoggedIn] = useState(false);
   const [payMethodvalue, setpayMethodValue] = useState("Non-Monetary Payment");
   const [monPayMethod, setMonPayMethod] = useState(true);
+  const [pictureUrl, setpictureUrl] = useState("");
+
   const {
     register,
     control,
@@ -62,6 +67,7 @@ function CreatePost(props) {
       .post(
         `${SERVER_URL}/posts`,
         {
+          picture_Details: pictureUrl,
           title: data.title,
           content: data.content,
           status: data.status,
@@ -76,17 +82,53 @@ function CreatePost(props) {
         }
       )
       .then((data) => {
-        props.history.push("/");
+        console.log(data);
+        // setGetPost(data.id);
       })
       .catch((err) => {
         console.log("Error creating a new post:", err);
       });
   };
+
+  //upload picture
+  const formHandler = (e) => {
+    e.preventDefault();
+    const file = e.target[0].files[0];
+    uploadFiles(file);
+  };
+
+  const uploadFiles = (file) => {
+    if (!file) return;
+    const storageRef = ref(storage, `/files/${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const prog =
+          Math.round(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setProgress(prog);
+      },
+      (err) => console.log(err),
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((url) =>
+          setpictureUrl(url)
+        );
+      }
+    );
+  };
+
   return (
     <section className="createPage">
       {isLoggedIn ? (
         <>
           <h1>Create New Post</h1>
+          <div>
+            <form onSubmit={formHandler}>
+              <input type="file" className="input" />
+              <button type="submit">Upload</button>
+            </form>
+            {/* <h3>Uploaded {progress} %</h3> */}
+          </div>
           <form
             className="create-post"
             onSubmit={handleSubmit(handleFormSubmit)}

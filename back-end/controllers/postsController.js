@@ -48,7 +48,7 @@ const createNewPost = (req, res) => {
   knex("posts")
     .insert({
       user_id: req.user.id,
-      // picture_Details: req.user.icon,
+      picture_Details: req.body.picture_Details,
       title: req.body.title,
       content: req.body.content,
       status: req.body.status,
@@ -59,6 +59,7 @@ const createNewPost = (req, res) => {
       estimate_time: req.body.estimate_time,
     })
     .then((postId) => {
+      console.log(postId, "postId");
       res.status(201).json({ newPostId: postId[0] });
     })
     .catch(() => {

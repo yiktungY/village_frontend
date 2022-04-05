@@ -122,6 +122,8 @@ passport.deserializeUser((userId, done) => {
     });
 });
 
+//chatbox
+
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const postsRoutes = require("./routes/posts");

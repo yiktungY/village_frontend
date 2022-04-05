@@ -18,6 +18,7 @@ import EditPost from "./components/Posts/EditPost/EditPost";
 import ApplyJob from "./components/ApplyJob/ApplyJob";
 import LoginWithGoolge from "./components/Users/LoginWithGoolge/LoginWithGoolge";
 import CreateAccount from "./components/Users/CreateAccount/CreateAccount";
+import Chatbox from "./components/Chatbox/Chatbox";
 function App() {
   return (
     <Router>
@@ -34,6 +35,7 @@ function App() {
         <Route path="/createpost" component={CreatePost} />
         <Route path="/post/:postID" component={PostDetails} />
         <Route path="/postEdit/:postID" component={EditPost} />
+        <Route path="/chatbox" component={Chatbox} />
         <Route path="/postApply/:postID" component={ApplyJob} />
       </Switch>
       <Footer />

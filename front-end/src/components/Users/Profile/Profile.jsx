@@ -3,7 +3,9 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
-
+import Button from "@mui/material/Button";
+import UploadPicture from "../../Posts/UploadPicture/UploadPicture";
+// import Chatbox from "../../Chatbox/Chatbox";
 const SERVER_URL = "http://localhost:8080";
 
 function Profile(props) {
@@ -86,37 +88,50 @@ function Profile(props) {
           {isLoggedIn && (
             <>
               {userInfo.age > 0 ? (
-                <NavLink to={`/updateProfile/${userInfo.id}`}>
-                  Edit Profile
-                </NavLink>
+                <>
+                  <NavLink to={`/updateProfile/${userInfo.id}`}>
+                    Edit Profile
+                  </NavLink>
+                </>
               ) : (
                 <div>
                   <div className="register__background"></div>
-                  <form
-                    className="register"
-                    onSubmit={handleSubmit(handelUpdate)}
-                  >
-                    <div>Age: </div>
-                    <input
-                      {...register("age", { required: "This is required" })}
-                    />
-                    <p>{errors.age?.message}</p>
-                    <button type="submit">Starting Your Journey</button>
-                  </form>
+                  <div className="register">
+                    <UploadPicture userInfo={userInfo} />
+                    <form onSubmit={handleSubmit(handelUpdate)}>
+                      <div>DisplayName: </div>
+                      <input
+                        {...register("displayName", {
+                          required: "This is required",
+                        })}
+                      />
+                      <p>{errors.age?.message}</p>
+                      <div>Age: </div>
+                      <input
+                        {...register("age", { required: "This is required" })}
+                      />
+                      <p>{errors.age?.message}</p>
+                      <div type="submit">
+                        <Button variant="contained">
+                          Starting Your Journey
+                        </Button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               )}
             </>
           )}
         </div>
+        {userPostList.length > 1 && (
+          <div className="userPost">
+            <h2>Post</h2>
+            <div>{userPostList[userPostList.length - 1].title}</div>
+            <div>{userPostList[userPostList.length - 1].content}</div>
+            <NavLink to={`/users/posts/${userInfo.id}`}>More post</NavLink>
+          </div>
+        )}
       </div>
-      {userPostList.length > 1 && (
-        <div className="userPost">
-          <h2>Post</h2>
-          <div>{userPostList[userPostList.length - 1].title}</div>
-          <div>{userPostList[userPostList.length - 1].content}</div>
-          <NavLink to={`/users/posts/${userInfo.id}`}>More post</NavLink>
-        </div>
-      )}
     </section>
   );
 }

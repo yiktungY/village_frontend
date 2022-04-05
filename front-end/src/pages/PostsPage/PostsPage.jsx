@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import GetPostComponent from "../../components/Posts/GetPostComponent/GetPostComponent";
 import "./PostsPage.scss";
+// import ChatBox from "../../components/Chatbox/Chatbox";
 
 import { NavLink } from "react-router-dom";
 
@@ -27,6 +28,7 @@ function PostsPage() {
 
   return (
     <section className="postPage">
+      {/* <ChatBox /> */}
       <h1>A new way to Contribute your Community</h1>
       <div className="postPage__box">
         <NavLink className="navLink" to="/">

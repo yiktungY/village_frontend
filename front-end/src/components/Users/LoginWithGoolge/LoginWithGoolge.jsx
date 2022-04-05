@@ -1,5 +1,6 @@
 import "./LoginWithGoolge.scss";
 import "animate.css";
+import Button from "@mui/material/Button";
 const SERVER_URL = "http://localhost:8080";
 
 function LoginWithGoolge() {
@@ -10,15 +11,19 @@ function LoginWithGoolge() {
       </h1>
       <div className="login__box">
         <div className="login__box--text border">
-          <a className="navLink " href={`${SERVER_URL}/auth/google`}>
+          <Button
+            variant="contained"
+            className="navLink"
+            href={`${SERVER_URL}/auth/google`}
+          >
             Login
-          </a>
+          </Button>
         </div>
         <div className="login__box--text">
           <h2>First time? </h2>
-          <a className="navLink" href={`${SERVER_URL}/auth/google`}>
-            Try create a new account with google
-          </a>
+          <Button variant="text" href={`${SERVER_URL}/auth/google`}>
+            Try to create a new account with google
+          </Button>
         </div>
       </div>
     </div>

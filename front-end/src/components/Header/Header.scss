@@ -2,7 +2,7 @@
 @use "../../styles/partials/mixins" as *;
 
 .header {
-  background-color: rgba(248, 249, 250, 0.5);
+  background-color: rgba(248, 249, 250, 0.683);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -15,11 +15,9 @@
   &__info {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
     width: 30%;
-  }
-
-  &__createPost {
   }
 
   &__user {
@@ -28,8 +26,4 @@
     justify-self: center;
     align-self: center;
   }
-}
-
-.icon {
-  width: 2.5rem;
 }

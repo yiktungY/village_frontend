@@ -1,6 +1,10 @@
 import { ref, getDownloadURL, uploadBytesResumable } from "@firebase/storage";
 import { storage } from "../../../firebase/firebase";
 import React, { useState } from "react";
+import "./UploadPicture.scss"
+import PhotoCamera from "@mui/icons-material/PhotoCamera";
+
+import Button from "@mui/material/Button";
 const SERVER_URL = "http://localhost:8080";
 import axios from "axios";
 
@@ -45,11 +49,14 @@ function UploadPicture(props) {
   };
   return (
     <div>
-      <form onSubmit={formHandler}>
-        <input type="file" className="input" />
-        <button type="submit">Upload</button>
+      <form className="photoUpload" onSubmit={formHandler}>
+        <input type="file" />
+
+        <div type="submit">
+          <Button variant="contained">Upload</Button>
+        </div>
       </form>
-      <h3>Uploaded {progress} %</h3>
+      {progress > 1 && <h3>Uploaded {progress} %</h3>}
     </div>
   );
 }

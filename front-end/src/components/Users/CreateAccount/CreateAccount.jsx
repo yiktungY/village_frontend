@@ -1,19 +1,23 @@
 import "./CreateAccount.scss";
 const SERVER_URL = "http://localhost:8080";
 import "animate.css";
+import Button from "@mui/material/Button";
 
 function CreateAccount() {
   return (
     <div className="loginSuccessed">
-      <h2 className="animate__animated animate__fadeInDown">
+      <div className="loginSuccessed__background"> 
+      <h1 className="animate__animated animate__fadeInDown loginSuccessed__title">
         Congregate!!! Your account is successfully created...
-      </h2>
-      <a
-        className="navLink loginSuccessed__login"
+      </h1>
+      <Button
+        variant="contained"
+        color="success"
         href={`${SERVER_URL}/auth/google`}
       >
         Click here to login
-      </a>
+      </Button>
+      </div>
     </div>
   );
 }

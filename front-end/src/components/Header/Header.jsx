@@ -3,6 +3,8 @@ import LoginButton from "../Button/LoginButton/LoginButton";
 import LogoutButton from "../Button/LogoutButton/LogoutButton";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Button from "@mui/material/Button";
+
 import { NavLink } from "react-router-dom";
 
 const SERVER_URL = "http://localhost:8080";
@@ -28,8 +30,8 @@ function Header() {
 
   return (
     <header className="header">
-      <NavLink className="navLink LinkButton" to="/">
-        HOME
+      <NavLink className="Nodisplay" to="/">
+        <Button variant="outlined">HOME</Button>
       </NavLink>
 
       {isLoggedIn ? (
@@ -39,23 +41,25 @@ function Header() {
             to={`/profile/${userInfo.id}`}
           >
             <img className="icon" src={userInfo.avatar_url} alt="UserIcon" />
-            {/* <div>Display Name: {userInfo.displayName}</div>
-            <div>Rating: {userInfo.rating}</div>
-            <div>Done Case: {userInfo.doneCase}</div> */}
           </NavLink>
-          <NavLink
+          <NavLink className="Nodisplay" to="/createpost">
+            <Button variant="contained"> Create a Post</Button>
+          </NavLink>
+          {/* <NavLink
             className="navLink LinkButton header__createPost"
-            to="/createpost"
+            to="/chatbox"
           >
-            Create a Post
-          </NavLink>
+            Chatbox
+          </NavLink> */}
 
           <LogoutButton />
         </div>
       ) : (
         <>
-          <NavLink className="navLink LinkButton" to="/loginWithGoogle">
-            Log in / Create a new Account
+          <NavLink className="Nodisplay" to="/loginWithGoogle">
+            <Button variant="contained" disableElevation>
+              Log in / Create a new Account
+            </Button>
           </NavLink>
         </>
       )}

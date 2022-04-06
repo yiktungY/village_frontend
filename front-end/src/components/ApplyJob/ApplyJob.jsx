@@ -93,6 +93,7 @@ function ApplyJob(props) {
             />
             <p>{errors.offer?.message}</p>
             <input type="submit" />
+            <div>Please apply carefully. Once you applied the job, you are not able the edit / detele it.</div>
           </form>
         </div>
       ) : (

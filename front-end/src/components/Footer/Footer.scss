@@ -1,4 +1,14 @@
 .footer {
   height: 10rem;
-  background-color: rgba(60, 255, 0, 0.211);
+  background-color: #3a85ffbe;
+  padding: 3rem;
+
+  &__box {
+    display: flex;
+    flex-direction: row;
+  }
+}
+.text {
+  margin: 1rem;
+  font-size: 1.2rem;
 }

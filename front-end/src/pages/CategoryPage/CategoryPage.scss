@@ -4,21 +4,27 @@
 .category {
   background-color: $backgroundColor;
   @include windowPaddingInner;
-
-  &____wrapp {
+  padding: 4rem 0;
+  margin: 4rem;
+  &___wrapper {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+  }
+  &__title {
+    font-size: 3rem;
+
+    margin: 3rem 0;
   }
   &__area {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
-    width: 30%;
 
     &--box {
       margin: 1rem;
-      height: 3rem;
-      width: 6rem;
+      height: 5rem;
+      width: 10rem;
+      border-radius: 5px;
       @include shadowBox;
       display: flex;
       justify-content: center;
@@ -27,14 +33,14 @@
       object-fit: cover;
       background-repeat: no-repeat;
 
-      background-image: url(../../assets/images/cooking.webp);
       &:hover {
         background-size: 125%;
         opacity: 0.6;
       }
     }
     &--title {
-      background-color: rgb(210, 180, 140);
+      border-radius: 5px;
+      background-color: rgb(40, 114, 217);
       opacity: 0.7;
       padding: 0.1rem 1.2rem;
       &:hover {
@@ -43,4 +49,35 @@
       }
     }
   }
+}
+.account {
+  background-image: url(../../assets/images/debits-credits-1.jpeg);
+}
+.babysitting {
+  background-image: url(../../assets/images/babysitting-350x250.jpeg);
+}
+.cook {
+  background-image: url(../../assets/images/cooking.webp);
+}
+.cook {
+  background-image: url(../../assets/images/cooking.webp);
+}
+.housekeeping {
+  background-image: url(../../assets/images/bigstock-Curly-Caregiver-Cleaning-The-G-296802931.jpeg);
+}
+.design {
+  background-image: url(../../assets/images/editing-from-home-on-a-laptop.jpeg);
+}
+.gardening {
+  background-image: url(../../assets/images/download.jpeg);
+}
+.dog {
+  background-image: url(../../assets/images/dog.jpeg);
+}
+.technician {
+  background-image: url(../../assets/images/te.webp);
+}
+
+.house {
+  background-image: url(../../assets/images/packing.jpeg);
 }

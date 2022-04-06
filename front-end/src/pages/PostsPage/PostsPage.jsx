@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import GetPostComponent from "../../components/Posts/GetPostComponent/GetPostComponent";
 import "./PostsPage.scss";
+import "animate.css";
 // import ChatBox from "../../components/Chatbox/Chatbox";
 
 import { NavLink } from "react-router-dom";
@@ -31,7 +32,9 @@ function PostsPage() {
       <div className="postPage__text">
         <h1 className="headerFix">Welcome! This is VILLAGE</h1>
         <p className="postPage__subheader"> A new way to Contribute </p>
-        <p className="postPage__subheader">your Community.</p>
+        <p className=" animate__animated animate__flipInX postPage__subheader2 ">
+          our Community.
+        </p>
       </div>
       <div className="postPage__box">
         <NavLink

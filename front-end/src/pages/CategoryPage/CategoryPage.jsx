@@ -29,7 +29,7 @@ function CategoryPage() {
 
   return (
     <div className="category">
-      <h1>Category</h1>
+      <h1 className="category__title">Category</h1>
       <div className="postPage__box">
         <NavLink
           className="navLink postPage__section"
@@ -46,9 +46,9 @@ function CategoryPage() {
           Category
         </NavLink>
       </div>
-      <div className="category__wrapp">
+      <div className="category__wrapper">
         <div className="category__area">
-          <div className="category__area--box">
+          <div className="category__area--box account">
             <div
               className="category__area--title"
               type="text"
@@ -57,7 +57,7 @@ function CategoryPage() {
               Accounting
             </div>
           </div>
-          <div className="category__area--box">
+          <div className="category__area--box babysitting">
             <div
               className="category__area--title"
               type="text"
@@ -66,7 +66,7 @@ function CategoryPage() {
               Babysitting
             </div>
           </div>
-          <div className="category__area--box">
+          <div className="category__area--box cook">
             <div
               className="category__area--title"
               type="text"
@@ -75,7 +75,7 @@ function CategoryPage() {
               Cook
             </div>
           </div>
-          <div className="category__area--box">
+          <div className="category__area--box housekeeping">
             <div
               className="category__area--title"
               type="text"
@@ -84,7 +84,7 @@ function CategoryPage() {
               Housekeeping
             </div>
           </div>
-          <div className="category__area--box">
+          <div className="category__area--box design">
             <div
               className="category__area--title"
               type="text"
@@ -93,16 +93,16 @@ function CategoryPage() {
               Design/ video editing
             </div>
           </div>
-          <div className="category__area--box">
+          <div className="category__area--box gardening">
             <div
-              className="category__area--title"
+              className="category__area--title "
               type="text"
               onClick={handleChange}
             >
               Gardening
             </div>
           </div>
-          <div className="category__area--box">
+          <div className="category__area--box dog">
             <div
               className="category__area--title"
               type="text"
@@ -111,7 +111,7 @@ function CategoryPage() {
               dog walking
             </div>
           </div>
-          <div className="category__area--box">
+          <div className="category__area--box technician">
             <div
               className="category__area--title"
               type="text"
@@ -120,7 +120,7 @@ function CategoryPage() {
               technician jobs
             </div>
           </div>
-          <div className="category__area--box">
+          <div className="category__area--box house">
             <div
               className="category__area--title"
               type="text"

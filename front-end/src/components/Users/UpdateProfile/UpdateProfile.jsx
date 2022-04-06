@@ -2,6 +2,7 @@ import "./UpdateProfile.scss";
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import Button from "@mui/material/Button";
 import LoginButton from "../../Button/LoginButton/LoginButton";
 import UploadPicture from "../../Posts/UploadPicture/UploadPicture";
 const SERVER_URL = "http://localhost:8080";
@@ -66,12 +67,12 @@ function UpdateProfile(props) {
   }, []);
 
   return (
-    <div>
-      <h1>Update</h1>
+    <div className="updatePage">
+      <h1 className="updatePage__title">Update</h1>
       {isLoggedIn ? (
         <div>
           <UploadPicture userInfo={userInfo} />
-          <form onSubmit={handleSubmit(handelUpdate)}>
+          <form className="updatePage__form" onSubmit={handleSubmit(handelUpdate)}>
             <div>Email: {userInfo.email}</div>
             <div>Display Name: </div>
             <input
@@ -100,7 +101,9 @@ function UpdateProfile(props) {
               })}
             />
             <p>{errors.address?.message}</p>
-            <input type="submit" />
+            <button className="noStyle" type="submit">
+              <Button variant="contained"> Create a Post</Button>
+            </button>
             <div>Account creates at {userInfo.updated_at}</div>
           </form>
         </div>

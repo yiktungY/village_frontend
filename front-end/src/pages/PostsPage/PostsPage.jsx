@@ -28,17 +28,25 @@ function PostsPage() {
 
   return (
     <section className="postPage">
-      {/* <ChatBox /> */}
-      <h1>A new way to Contribute your Community</h1>
+      <div className="postPage__text">
+        <h1 className="headerFix">Welcome! This is VILLAGE</h1>
+        <p className="postPage__subheader"> A new way to Contribute </p>
+        <p className="postPage__subheader">your Community.</p>
+      </div>
       <div className="postPage__box">
-        <NavLink className="navLink" to="/">
+        <NavLink
+          className="navLink postPage__section"
+          activeclassname="active"
+          to="/"
+        >
           All posts
         </NavLink>
-        <NavLink className="navLink" to="/category">
-          Category Page
-        </NavLink>
-        <NavLink className="navLink" to="/category">
-          Category Page
+        <NavLink
+          className="navLink postPage__section"
+          activeclassname="active"
+          to="/category"
+        >
+          Category
         </NavLink>
       </div>
       {posts && <GetPostComponent posts={posts} />}

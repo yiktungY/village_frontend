@@ -43,6 +43,7 @@ function UpdateProfile(props) {
       })
       .then((data) => {
         // setUserInfo(true);
+        location.reload();
         props.history.push(`/profile/${userInfo.id}`);
       })
       .catch((err) => console.log(err));

@@ -17,6 +17,7 @@ const applyToPost = (req, res) => {
       post_id: req.body.post_id,
       post_title: req.body.post_title,
       content: req.body.content,
+      offer: req.body.offer,
     })
     .then((data) => {
       res.status(201).json({ newUser: data[0] });

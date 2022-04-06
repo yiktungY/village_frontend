@@ -22,7 +22,15 @@
     margin: 2rem;
     padding: 1.5rem;
   }
+  &__replace {
+    width: fit-content;
 
+    background-color: $outline-borders;
+  }
+  &__picture {
+    width: 12rem;
+    height: auto;
+  }
   &__details {
     display: flex;
     flex-direction: column;

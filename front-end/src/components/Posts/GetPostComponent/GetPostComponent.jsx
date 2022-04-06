@@ -9,7 +9,13 @@ function GetPostComponent(props) {
           key={post.post_id}
           to={`/post/${post.post_id}`}
         >
-          <div>image</div>
+          <div className="postSection__replace">
+            <img
+              className="postSection__picture"
+              src={post.picture_Details}
+              alt={`${post.title} picture`}
+            />
+          </div>
           <div className="postSection__details">
             <div className="postSection__details--title">{post.title}</div>
             <div>content: {post.content}</div>

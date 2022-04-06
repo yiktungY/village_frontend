@@ -52,19 +52,21 @@ const updateUserProfile = async (req, res) => {
 };
 
 const getAllPostbyUserId = (req, res) => {
-    const userId = req.params.id;
+  const userId = req.params.id;
   // console.log("req", req);
 
-  knex("posts")
-     knex
+  knex("posts");
+  knex
     .select(
       "posts.id as post_id",
       "posts.title",
       "posts.content",
+      "posts.picture_Details",
       "posts.updated_at",
       "posts.status",
       "users.id as user_id",
-      "users.avatar_url",
+      "users.displayName",
+      "users.avatar_url"
     )
     .from("posts")
     .leftJoin("users", "posts.user_id", "users.id")
@@ -91,5 +93,5 @@ module.exports = {
   getUserById,
   getAllUser,
   updateUserProfile,
-  getAllPostbyUserId
+  getAllPostbyUserId,
 };

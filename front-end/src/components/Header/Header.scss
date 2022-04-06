@@ -26,4 +26,26 @@
     justify-self: center;
     align-self: center;
   }
+
+  &__logo {
+    font-size: 4rem;
+    font-weight: 600;
+    color: #d4a373;
+
+    &--special {
+      color: #606c38;
+
+      &:hover {
+        color: #f8edeb;
+      }
+    }
+
+    &:hover {
+      color: #ece4db;
+    }
+  }
+}
+
+.activeheader {
+  border: none;
 }

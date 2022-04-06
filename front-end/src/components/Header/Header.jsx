@@ -26,18 +26,21 @@ function Header() {
 
   useEffect(() => {
     loginFunction();
-  }, []);
+  }, [isLoggedIn]);
 
   return (
     <header className="header">
-      <NavLink className="Nodisplay" to="/">
-        <Button variant="outlined">HOME</Button>
+      <NavLink className="navLink" activeClassName="activeheader" to="/">
+        <div className="header__logo">
+          Vi<span className="header__logo--special">ll</span>ge
+        </div>
       </NavLink>
 
       {isLoggedIn ? (
         <div className="header__info">
           <NavLink
-            className="navLink header_user "
+            className="navLink header_user"
+            activeClassName="activeheader"
             to={`/profile/${userInfo.id}`}
           >
             <img className="icon" src={userInfo.avatar_url} alt="UserIcon" />

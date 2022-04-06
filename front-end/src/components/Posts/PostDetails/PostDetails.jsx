@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import ApplyJob from "../../ApplyJob/ApplyJob";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 const SERVER_URL = "http://localhost:8080";
 
@@ -51,6 +52,7 @@ function PostDetails(props) {
           post_id: getPost.post_id,
           post_title: getPost.title,
           content: data.content,
+          offer: data.offer,
         },
         {
           withCredentials: true,
@@ -121,7 +123,13 @@ function PostDetails(props) {
       <div className="postDetails__box">
         <div className="postDetails__box1">
           <div className="postDetails__box1--image">
-            <div>image</div>
+            <div className="postSection__replace">
+              <img
+                className="postSection__picture"
+                src={getPost.picture_Details}
+                alt={`${getPost.title} picture`}
+              />
+            </div>
           </div>
           <div className="postDetails__box1--info">
             <h1>{getPost.title}</h1>
@@ -149,10 +157,15 @@ function PostDetails(props) {
       </div>
       {isLoggedIn && userInfo.id === getPost.user_id ? (
         <div>
-          <NavLink className="navLink" to={`/postEdit/${getPost.post_id}`}>
-            Edit Post
-          </NavLink>
-          <button onClick={handlePostDelete}>Delete Post</button>
+          <div className="post__button">
+            <NavLink className="navLink" to={`/postEdit/${getPost.post_id}`}>
+              <Button variant="contained">Edit Post</Button>
+            </NavLink>
+            <Button onClick={handlePostDelete} color="error">
+              Delete Post
+            </Button>
+            {/* <button onClick={handlePostDelete}>Delete Post</button> */}
+          </div>
           {showApplicantsList.map((info) => (
             <NavLink
               className="post navLink"
@@ -172,15 +185,18 @@ function PostDetails(props) {
           {isLoggedIn && applyState.user_id === userInfo.id ? (
             <div className="">
               <h2>Your application</h2>
-              <div>content: {applyState.content}</div>
-              <div>time: {applyState.updated_at}</div>
+              <div> {applyState.content}</div>
+              <div>Requires: {applyState.offer}</div>
+              <div>{applyState.updated_at}</div>
+
               <div>applied</div>
             </div>
           ) : (
             <>
-              <div onClick={showApplyModal} className="">
+              <Button onClick={showApplyModal}>Apple Now</Button>
+              {/* <div onClick={showApplyModal} className="">
                 Apply Now
-              </div>
+              </div> */}
               {showApply && (
                 <ApplyJob
                   handleApply={handleApply}

@@ -12,6 +12,7 @@ function Profile(props) {
   const [isLoggedIn, setisLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState("");
   const [userPostList, setuserPostList] = useState(false);
+  const [regArea, setRegArea] = useState(true);
   const {
     register,
     handleSubmit,
@@ -19,6 +20,17 @@ function Profile(props) {
     formState: { errors },
   } = useForm("");
 
+  const handleNextRegArea = () => {
+    if (regArea) {
+      setRegArea(false);
+    }
+  };
+
+  const handleRegAreaBack = () => {
+    if (!regArea) {
+      setRegArea(true);
+    }
+  };
   //login function
   const loginFunction = () => {
     axios
@@ -58,6 +70,7 @@ function Profile(props) {
       })
       .then((data) => {
         props.history.push("/");
+        location.reload();
       })
       .catch((err) => console.log(err));
   };
@@ -66,15 +79,27 @@ function Profile(props) {
     getUserInfobyId();
     fetchPostsbyUserId();
   }, []);
+  useEffect(() => {
+    if (userInfo) {
+      reset({
+        avatar_url: userInfo.avatar_url,
+        displayName: userInfo.displayName,
+      });
+    }
+  }, [userInfo]);
 
   return (
     <section className="profile">
       <h1 className="profile__header">Profile</h1>
       <div className="profile__info">
-        <div className="profile__info--user">
-          {/* {userInfo && <div className="updatedEffect">Profile Updated</div>} */}
-
-          <img src={userInfo.avatar_url} alt="UserIcon" />
+        <div className="profile__info--areaone">
+          <img
+            className="profile__info--image"
+            src={userInfo.avatar_url}
+            alt="UserIcon"
+          />
+        </div>
+        <div className="profile__info--areatwo">
           <div>Email: {userInfo.email}</div>
           <div>Display Name: {userInfo.displayName}</div>
           <div>First Name: {userInfo.givenName}</div>
@@ -84,52 +109,90 @@ function Profile(props) {
           <div>Age: {userInfo.age}</div>
           <div>Address: {userInfo.address}</div>
           <div>Accounts create at {userInfo.updated_at}</div>
-
-          {isLoggedIn && (
-            <>
-              {userInfo.age > 0 ? (
-                <>
-                  <NavLink to={`/updateProfile/${userInfo.id}`}>
-                    Edit Profile
-                  </NavLink>
-                </>
-              ) : (
-                <div>
-                  <div className="register__background"></div>
-                  <div className="register">
-                    <UploadPicture userInfo={userInfo} />
-                    <form onSubmit={handleSubmit(handelUpdate)}>
-                      <div>DisplayName: </div>
-                      <input
-                        {...register("displayName", {
-                          required: "This is required",
-                        })}
-                      />
-                      <p>{errors.age?.message}</p>
-                      <div>Age: </div>
-                      <input
-                        {...register("age", { required: "This is required" })}
-                      />
-                      <p>{errors.age?.message}</p>
-                      <div type="submit">
-                        <Button variant="contained">
-                          Starting Your Journey
+        </div>
+      </div>
+      <div className="profile__info--functionArea">
+        {userPostList.length > 0 && (
+          <div className="profile__info--areathree">
+            <h1>Post</h1>
+            <h2>{userPostList[userPostList.length - 1].title}</h2>
+            <div>{userPostList[userPostList.length - 1].content}</div>
+            <NavLink className="navLink" to={`/users/posts/${userInfo.id}`}>
+              <Button variant="contained">More post</Button>
+            </NavLink>
+          </div>
+        )}
+        {isLoggedIn && (
+          <>
+            {userInfo.age > 0 ? (
+              <>
+                <NavLink
+                  className="navLink"
+                  to={`/updateProfile/${userInfo.id}`}
+                >
+                  <Button variant="contained">Edit Profile</Button>
+                </NavLink>
+              </>
+            ) : (
+              <div>
+                <div className="register__background"></div>
+                <div className="register">
+                  {regArea ? (
+                    <>
+                      <h1 className="register__heading">
+                        Two more steps for your Journey...
+                      </h1>
+                      <UploadPicture userInfo={userInfo} />
+                      <div className="register__button">
+                        <Button variant="outlined" onClick={handleNextRegArea}>
+                          Next
                         </Button>
                       </div>
-                    </form>
-                  </div>
+                    </>
+                  ) : (
+                    <div className="regform2">
+                      <h1 className="register__heading">
+                        One more step for your Journey...
+                      </h1>
+                      <form
+                        className="regform2__form"
+                        onSubmit={handleSubmit(handelUpdate)}
+                      >
+                        <div className="regform2__box">
+                          <div>DisplayName: </div>
+                          <input
+                            {...register("displayName", {
+                              required: "This is required",
+                            })}
+                          />
+                        </div>
+                        <p>{errors.age?.message}</p>
+                        <div className="regform2__box">
+                          <div>Age: </div>
+                          <input
+                            {...register("age", {
+                              required: "This is required",
+                            })}
+                          />
+                        </div>
+                        <p>{errors.age?.message}</p>
+                        <div className="regform2__button">
+                          <div onClick={handleRegAreaBack}>
+                            <Button variant="outlined">Back</Button>
+                          </div>
+                          <button className="noStyle" type="submit">
+                            <Button variant="contained">
+                              Starting Your Journey
+                            </Button>
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  )}
                 </div>
-              )}
-            </>
-          )}
-        </div>
-        {userPostList.length > 1 && (
-          <div className="userPost">
-            <h2>Post</h2>
-            <div>{userPostList[userPostList.length - 1].title}</div>
-            <div>{userPostList[userPostList.length - 1].content}</div>
-            <NavLink to={`/users/posts/${userInfo.id}`}>More post</NavLink>
-          </div>
+              </div>
+            )}
+          </>
         )}
       </div>
     </section>

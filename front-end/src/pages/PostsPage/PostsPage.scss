@@ -9,12 +9,38 @@
 
 .postPage {
   @include windowPaddingInner;
-  background-color: $backgroundColor;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  &__text {
+    height: fit-content;
+    margin-bottom: 2rem;
+  }
+  &__subheader {
+    font-size: 3rem;
+    margin: 1rem 0;
+    width: 70%;
+    font-weight: 800;
+  }
   &__box {
     display: flex;
     flex-direction: row;
-    width: fit-content;
-    @include shadowBox;
-    background-color: white;
+
+    justify-content: space-between;
+    width: 20vw;
   }
+  &__section {
+    padding: 0.5rem 1rem;
+    &:hover {
+      background-color: $backgroundColor;
+      @include shadowBox;
+      text-decoration: underline;
+    }
+  }
+}
+
+.active {
+  background-color: $backgroundColor;
+
+  @include shadowBox;
 }

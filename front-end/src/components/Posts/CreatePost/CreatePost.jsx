@@ -9,7 +9,7 @@ import ControlledRadioButtonsGroup from "../../Mui/Mui";
 import LoginButton from "../../Button/LoginButton/LoginButton";
 import { ref, getDownloadURL, uploadBytesResumable } from "@firebase/storage";
 import { storage } from "../../../firebase/firebase";
-
+import Button from "@mui/material/Button";
 const SERVER_URL = "http://localhost:8080";
 
 function CreatePost(props) {
@@ -17,6 +17,7 @@ function CreatePost(props) {
   const [payMethodvalue, setpayMethodValue] = useState("Non-Monetary Payment");
   const [monPayMethod, setMonPayMethod] = useState(true);
   const [pictureUrl, setpictureUrl] = useState("");
+  const [progress, setProgress] = useState(0);
 
   const {
     register,
@@ -82,7 +83,7 @@ function CreatePost(props) {
         }
       )
       .then((data) => {
-        console.log(data);
+        props.history.push(`/`);
         // setGetPost(data.id);
       })
       .catch((err) => {
@@ -124,10 +125,19 @@ function CreatePost(props) {
           <h1>Create New Post</h1>
           <div>
             <form onSubmit={formHandler}>
-              <input type="file" className="input" />
-              <button type="submit">Upload</button>
+              <input type="file" className="" />
+              <button type="submit">
+                <Button variant="contained">Upload</Button>
+              </button>
             </form>
-            {/* <h3>Uploaded {progress} %</h3> */}
+            {progress ? (
+              <div className="regform__photo">
+                <img className="profilePicture" src={pictureUrl} alt="icon" />
+                <h3>Uploaded {progress} %</h3>
+              </div>
+            ) : (
+              <div className="picture-replace"></div>
+            )}
           </div>
           <form
             className="create-post"
@@ -160,12 +170,18 @@ function CreatePost(props) {
                       isClearable
                       {...field}
                       options={[
-                        { value: "a", label: "a" },
-                        { value: "b", label: "b" },
-                        { value: "c", label: "c" },
-                        { value: "d", label: "d" },
-                        { value: "e", label: "e" },
-                        { value: "f", label: "f" },
+                        { value: "Accounting", label: "Accounting" },
+                        { value: "Babysitting", label: "Babysitting" },
+                        { value: "Cook", label: "Cook" },
+                        { value: "Housekeeping", label: "Housekeeping" },
+                        {
+                          value: "Design/ video editing",
+                          label: "Design/ video editing",
+                        },
+                        { value: "Gardening", label: "Gardening" },
+                        { value: "dog walking", label: "dog walking" },
+                        { value: "technician jobs", label: "technician jobs" },
+                        { value: "house moving", label: "house moving" },
                       ]}
                     />
                   )}

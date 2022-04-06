@@ -40,7 +40,9 @@ exports.up = function (knex) {
       table.uuid("id").primary().defaultTo(knex.raw("(UUID())"));
       table.string("avatar_url");
       table.string("content").notNullable();
+      table.string("offer");
       table.string("requirment");
+      table.string("accept");
       table.string("username").notNullable();
       table.string("post_title").notNullable();
       table.timestamp("updated_at").defaultTo(knex.fn.now());

@@ -1,4 +1,31 @@
-.photoUpload {
+.regform {
   display: flex;
   flex-direction: row;
+
+  &__upload {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-left: 2rem;
+    width: 50%;
+    height: 100%;
+  }
+  &__photo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 50%;
+    height: 100%;
+  }
+}
+
+.noStyle {
+  border: none;
+}
+.profilePicture {
+  width: auto;
+  height: 10rem;
+  border-radius: 5px;
 }

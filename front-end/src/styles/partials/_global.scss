@@ -82,12 +82,8 @@ body {
 // }
 
 .navLink {
-  color: $global-text-color;
   text-decoration: none;
-
-  width: fit-content;
-  padding: 0.5rem;
-  align-self: center;
+  color: $global-text-color;
 }
 
 .LinkButton {
@@ -103,4 +99,9 @@ body {
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
+}
+
+.headerFix {
+  margin: 4rem 0 2rem 0;
+  font-size: 4rem;
 }

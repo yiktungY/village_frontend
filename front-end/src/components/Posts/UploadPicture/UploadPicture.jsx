@@ -1,7 +1,7 @@
 import { ref, getDownloadURL, uploadBytesResumable } from "@firebase/storage";
 import { storage } from "../../../firebase/firebase";
 import React, { useState } from "react";
-import "./UploadPicture.scss"
+import "./UploadPicture.scss";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 
 import Button from "@mui/material/Button";
@@ -11,9 +11,11 @@ import axios from "axios";
 function UploadPicture(props) {
   //setting image upload
   const [progress, setProgress] = useState(0);
+  const [url, setUrl] = useState("");
 
   const formHandler = (e) => {
     e.preventDefault();
+    console.log("aaaa");
     const file = e.target[0].files[0];
     uploadFiles(file);
   };
@@ -40,6 +42,7 @@ function UploadPicture(props) {
               }
             )
             .then((data) => {
+              setUrl(url);
               console.log(data);
             })
             .catch((err) => console.log(err))
@@ -48,15 +51,26 @@ function UploadPicture(props) {
     );
   };
   return (
-    <div>
-      <form className="photoUpload" onSubmit={formHandler}>
-        <input type="file" />
-
-        <div type="submit">
+    <div className="regform">
+      <form className="regform__upload" onSubmit={formHandler}>
+        <p>Change your profile Picture from google default: </p>
+        <input className="navLink" type="file" />
+        <button type="submit" className="noStyle">
           <Button variant="contained">Upload</Button>
-        </div>
+        </button>
       </form>
-      {progress > 1 && <h3>Uploaded {progress} %</h3>}
+      {progress ? (
+        <div className="regform__photo">
+          <img className="profilePicture" src={url} alt="icon" />
+          <h3>Uploaded {progress} %</h3>
+        </div>
+      ) : (
+        <img
+          className="profilePicture"
+          src={props.userInfo.avatar_url}
+          alt="icon"
+        />
+      )}
     </div>
   );
 }

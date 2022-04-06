@@ -80,10 +80,18 @@ function ApplyJob(props) {
               {...register("content", {
                 required: "This is required.",
               })}
-              placeholder="something like:"
+              placeholder="Introduction and explain why"
             />
 
             <p>{errors.content?.message}</p>
+            <input
+              className="input"
+              {...register("offer", {
+                required: "This is required.",
+              })}
+              placeholder="something like: 10 bucks per hour"
+            />
+            <p>{errors.offer?.message}</p>
             <input type="submit" />
           </form>
         </div>

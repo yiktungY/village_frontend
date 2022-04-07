@@ -1,12 +1,17 @@
 import "./LoginWithGoolge.scss";
 import "animate.css";
 import Button from "@mui/material/Button";
+import { useEffect } from "react";
+
 const SERVER_URL = "http://localhost:8080";
 
 function LoginWithGoolge() {
+  useEffect(() => {
+    document.title = "Login";
+  });
   return (
     <div className="login">
-      <h1 className="animate__animated animate__bounce">
+      <h1 className="animate__animated animate__bounce headline">
         Login with Google in one step
       </h1>
       <div className="login__box">

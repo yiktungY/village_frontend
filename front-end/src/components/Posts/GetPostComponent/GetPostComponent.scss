@@ -7,7 +7,7 @@
   flex-wrap: wrap;
 
   &__post {
-    background-color: white;
+    background-color: $backgroundColor;
     color: $global-text-color;
     text-decoration: none;
     width: 40%;

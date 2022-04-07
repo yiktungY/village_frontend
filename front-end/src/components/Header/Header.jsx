@@ -30,7 +30,7 @@ function Header() {
 
   return (
     <header className="header">
-      <NavLink className="navLink" activeClassName="activeheader" to="/">
+      <NavLink className="navLink fontStyle" activeClassName="activeheader" to="/">
         <div className="header__logo">
           Vi<span className="header__logo--special">ll</span>ge
         </div>

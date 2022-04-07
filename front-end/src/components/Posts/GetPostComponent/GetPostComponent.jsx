@@ -18,14 +18,14 @@ function GetPostComponent(props) {
           </div>
           <div className="postSection__details">
             <div className="postSection__details--title">{post.title}</div>
-            <div>content: {post.content}</div>
-            <div> {post.type}</div>
-            <div> {post.status}</div>
+
+            <div className="postType"> {post.type}</div>
+            <div className="postStatus"> {post.status}</div>
             <div className="postSection__details--user">
               By {post.displayName}
             </div>
           </div>
-          <div className="postSection__details--time">Time</div>
+          <div className="postSection__details--time">{post.updated_at}</div>
         </NavLink>
       ))}
     </section>

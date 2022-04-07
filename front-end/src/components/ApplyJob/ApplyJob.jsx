@@ -2,67 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import "./ApplyJob.scss";
 import { NavLink } from "react-router-dom";
-// import axios from "axios";
-// import LoginButton from "../Button/LoginButton/LoginButton";
-// const SERVER_URL = "http://localhost:8080";
+import Button from "@mui/material/Button";
 
 function ApplyJob(props) {
-  // const [isLoggedIn, setisLoggedIn] = useState(false);
-  // const [getPost, setgetPost] = useState({});
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({});
-
-  // const loginFunction = () => {
-  //   axios
-  //     .get(`${SERVER_URL}/auth/profile`, { withCredentials: true })
-  //     .then((res) => {
-  //       if (res.data) {
-  //         setisLoggedIn(true);
-  //       }
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
-
-  // const getPostDataByAPI = () => {
-  //   const postID = props.match.params.postID;
-  //   axios
-  //     .get(`${SERVER_URL}/posts/${postID}`)
-  //     .then((post) => {
-  //       setgetPost(post.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log("Error fetching posts:", err);
-  //     });
-  // };
-
-  // const handleApply = (data) => {
-  //   axios
-  //     .post(
-  //       `${SERVER_URL}/apply/${getPost.post_id}`,
-  //       {
-  //         post_id: getPost.post_id,
-  //         post_title: getPost.title,
-  //         content: data.content,
-  //       },
-  //       {
-  //         withCredentials: true,
-  //       }
-  //     )
-  //     .then(() => {
-  //       props.history.push(`/post/${getPost.post_id}`);
-  //     })
-  //     .catch((err) => {
-  //       console.log("Error creating a new post:", err);
-  //     });
-  // };
-
-  // useEffect(() => {
-  //   loginFunction();
-  //   getPostDataByAPI();
-  // }, []);
 
   return (
     <>
@@ -73,27 +20,37 @@ function ApplyJob(props) {
             className="applyList__form"
             onSubmit={handleSubmit(props.handleApply)}
           >
-            <div onClick={props.hideApplyModal}>cancel</div>
-            <div>leave a message to {props.postUserId} </div>
+            <h2 className="applyList__title">
+              leave a message to {props.postUserId}{" "}
+            </h2>
             <input
-              className="input"
+              className="inputStyle"
               {...register("content", {
                 required: "This is required.",
               })}
               placeholder="Introduction and explain why"
             />
+            <h2 className="applyList__title">
+              What would you like to receive?{" "}
+            </h2>
 
             <p>{errors.content?.message}</p>
             <input
-              className="input"
+              className="inputStyle"
               {...register("offer", {
                 required: "This is required.",
               })}
               placeholder="something like: 10 bucks per hour"
             />
             <p>{errors.offer?.message}</p>
-            <input type="submit" />
-            <div>Please apply carefully. Once you applied the job, you are not able the edit / detele it.</div>
+            <Button onClick={props.hideApplyModal}>cancel</Button>
+            <button className="noStyle" type="submit">
+              <Button variant="contained">Sumbit</Button>
+            </button>
+            <div>
+              Please apply carefully. Once you applied the job, you are not able
+              the edit / detele it.
+            </div>
           </form>
         </div>
       ) : (

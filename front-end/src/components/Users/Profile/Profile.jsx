@@ -75,6 +75,8 @@ function Profile(props) {
       .catch((err) => console.log(err));
   };
   useEffect(() => {
+    document.title = "Profile";
+
     loginFunction();
     getUserInfobyId();
     fetchPostsbyUserId();
@@ -90,7 +92,15 @@ function Profile(props) {
 
   return (
     <section className="profile">
-      <h1 className="profile__header">Profile</h1>
+      <h1 className="profile__header headline">Profile</h1>
+      {isLoggedIn && (
+        <NavLink
+          className="navLink editprofile"
+          to={`/updateProfile/${userInfo.id}`}
+        >
+          <Button variant="contained">Edit Profile</Button>
+        </NavLink>
+      )}
       <div className="profile__info">
         <div className="profile__info--areaone">
           <img
@@ -114,9 +124,22 @@ function Profile(props) {
       <div className="profile__info--functionArea">
         {userPostList.length > 0 && (
           <div className="profile__info--areathree">
-            <h1>Post</h1>
+            <h1>Last Post</h1>
+            <img
+              className="profile__info--picture"
+              src={userPostList[userPostList.length - 1].picture_Details}
+              alt="{userPostList[userPostList.length - 1].title}"
+            />
+
             <h2>{userPostList[userPostList.length - 1].title}</h2>
             <div>{userPostList[userPostList.length - 1].content}</div>
+            <div className="postType">
+              {userPostList[userPostList.length - 1].type}
+            </div>
+            <div className="postStatus">
+              {userPostList[userPostList.length - 1].status}
+            </div>
+
             <NavLink className="navLink" to={`/users/posts/${userInfo.id}`}>
               <Button variant="contained">More post</Button>
             </NavLink>
@@ -125,14 +148,7 @@ function Profile(props) {
         {isLoggedIn && (
           <>
             {userInfo.age > 0 ? (
-              <>
-                <NavLink
-                  className="navLink"
-                  to={`/updateProfile/${userInfo.id}`}
-                >
-                  <Button variant="contained">Edit Profile</Button>
-                </NavLink>
-              </>
+              <></>
             ) : (
               <div>
                 <div className="register__background"></div>
@@ -142,7 +158,9 @@ function Profile(props) {
                       <h1 className="register__heading">
                         Two more steps for your Journey...
                       </h1>
+
                       <UploadPicture userInfo={userInfo} />
+
                       <div className="register__button">
                         <Button variant="outlined" onClick={handleNextRegArea}>
                           Next
@@ -159,8 +177,9 @@ function Profile(props) {
                         onSubmit={handleSubmit(handelUpdate)}
                       >
                         <div className="regform2__box">
-                          <div>DisplayName: </div>
+                          <div className="regform2__box--topic">DisplayName: </div>
                           <input
+                            className="inputStyle"
                             {...register("displayName", {
                               required: "This is required",
                             })}
@@ -168,8 +187,9 @@ function Profile(props) {
                         </div>
                         <p>{errors.age?.message}</p>
                         <div className="regform2__box">
-                          <div>Age: </div>
+                          <div className="regform2__box--topic">Your Age: </div>
                           <input
+                            className="inputStyle"
                             {...register("age", {
                               required: "This is required",
                             })}

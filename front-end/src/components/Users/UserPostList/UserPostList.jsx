@@ -22,7 +22,8 @@ function UserPostList(props) {
   }, []);
 
   return (
-    <>
+    <div className="postList">
+      <h1 className="headline">Post List</h1>
       {userPostList &&
         userPostList.map((post) => (
           <NavLink
@@ -40,8 +41,8 @@ function UserPostList(props) {
             <div className="postSection__details">
               <div className="postSection__details--title">{post.title}</div>
               <div>content: {post.content}</div>
-              <div> {post.type}</div>
-              <div> {post.status}</div>
+              <div className="postType"> {post.type}</div>
+              <div className="postStatus"> {post.status}</div>
               <div className="postSection__details--user">
                 By {post.displayName}
               </div>
@@ -49,7 +50,7 @@ function UserPostList(props) {
             <div className="postSection__details--time">Time</div>
           </NavLink>
         ))}
-    </>
+    </div>
   );
 }
 

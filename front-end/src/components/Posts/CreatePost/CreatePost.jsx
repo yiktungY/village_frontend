@@ -10,6 +10,8 @@ import LoginButton from "../../Button/LoginButton/LoginButton";
 import { ref, getDownloadURL, uploadBytesResumable } from "@firebase/storage";
 import { storage } from "../../../firebase/firebase";
 import Button from "@mui/material/Button";
+import SendIcon from "@mui/icons-material/Send";
+
 const SERVER_URL = "http://localhost:8080";
 
 function CreatePost(props) {
@@ -122,11 +124,18 @@ function CreatePost(props) {
     <section className="createPage">
       {isLoggedIn ? (
         <>
-          <h1>Create New Post</h1>
-          <div>
-            <form onSubmit={formHandler}>
-              <input type="file" className="" />
-              <button type="submit">
+          <h1 className="headline">Create New Post</h1>
+          <div className="createPageForm">
+            <form className="createPageForm__Upload" onSubmit={formHandler}>
+              <h2>Upload Photo</h2>
+              <input
+                className="noStyle createPageForm__Upload--button"
+                type="file"
+              />
+              <button
+                type="submit"
+                className="noStyle createPageForm__Upload--button"
+              >
                 <Button variant="contained">Upload</Button>
               </button>
             </form>
@@ -140,24 +149,24 @@ function CreatePost(props) {
             )}
           </div>
           <form
-            className="create-post"
+            className="createPostTwo"
             onSubmit={handleSubmit(handleFormSubmit)}
           >
-            <div className="create-post__textInfo">
+            <div className="createPostTwo__textInfo">
               <div className="subTitle">TITLE: </div>
               <input
-                className="input"
+                className="inputStyle"
                 {...register("title", { required: "This is required." })}
                 placeholder="something like: Looking for a dog walker"
               />
-              <p>{errors.title?.message}</p>
+              <p className="errorMessage">{errors.title?.message}</p>
               <div className="subTitle">DETAIlS: </div>
               <input
-                className="input details"
+                className="inputStyleBig"
                 {...register("content", { required: "This is required." })}
                 placeholder="I need a dog walker"
               />
-              <p>{errors.content?.message}</p>
+              <p className="errorMessage">{errors.content?.message}</p>
               <section className="dropdown">
                 <div className="subTitle">Type</div>
 
@@ -188,8 +197,8 @@ function CreatePost(props) {
                 />
               </section>
             </div>
-            <div className="create-post__otherInfo">
-              <div className="create-post__otherInfo--payment">
+            <div className="createPostTwo__otherInfo">
+              <div className="createPostTwo__otherInfo--payment">
                 <ControlledRadioButtonsGroup
                   handleChange={handleChange}
                   value={payMethodvalue}
@@ -201,13 +210,15 @@ function CreatePost(props) {
                       What would you like to offer except money?
                     </div>
                     <input
-                      className="input"
+                      className="inputStyle"
                       {...register("salary_replacement", {
                         required: "This is required.",
                       })}
                       placeholder="a dozen of beer"
                     />
-                    <p>{errors.salary_replacement?.message}</p>
+                    <p className="errorMessage">
+                      {errors.salary_replacement?.message}
+                    </p>
                   </div>
                 ) : (
                   <div>
@@ -215,15 +226,15 @@ function CreatePost(props) {
                       Show a range you would like to offer:{" "}
                     </div>
                     <input
-                      className="input"
+                      className="inputStyle"
                       {...register("salary", { required: "This is required." })}
                       placeholder="CA$20 - CA$25  per hour"
                     />
-                    <p>{errors.salary?.message}</p>
+                    <p className="errorMessage">{errors.salary?.message}</p>
                   </div>
                 )}
               </div>
-              <div className="create-post__otherInfo--other">
+              <div className="createPostTwo__otherInfo--other">
                 <section>
                   <div className="subTitle">Require Date</div>
                   <Controller
@@ -231,7 +242,7 @@ function CreatePost(props) {
                     name="requireDate"
                     render={({ field }) => (
                       <ReactDatePicker
-                        className="input"
+                        className="inputStyle"
                         placeholderText="Select date"
                         onChange={(e) => field.onChange(e)}
                         selected={field.value}
@@ -272,7 +283,11 @@ function CreatePost(props) {
                   />
                 </section>
               </div>
-              <input className="button" type="submit" />
+              <button className="noStyle createPostButton" type="submit">
+                <Button variant="contained" endIcon={<SendIcon />}>
+                  Send
+                </Button>
+              </button>
             </div>
           </form>
         </>

@@ -4,6 +4,7 @@ import ApplyJob from "../../ApplyJob/ApplyJob";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const SERVER_URL = "http://localhost:8080";
 
@@ -133,26 +134,29 @@ function PostDetails(props) {
           </div>
           <div className="postDetails__box1--info">
             <h1>{getPost.title}</h1>
-            <NavLink className="navLink" to={`/profile/${getPost.user_id}`}>
-              By {getPost.displayname}
+            <NavLink
+              className="navLink name"
+              to={`/profile/${getPost.user_id}`}
+            >
+              <Button variant="contained"> By {getPost.displayname}</Button>
             </NavLink>
 
-            <div>{getPost.status}</div>
-            <div>Post at {getPost.updated_at}</div>
-            <div>Type: {getPost.type}</div>
-            {getPost.salary && <div>salary: {getPost.salary}</div>}
-            {getPost.salary_replacement && (
-              <div>Non-Monetary Payment: {getPost.salary_replacement}</div>
-            )}
-            <div>Date: {getPost.requireDate}</div>
-            <div>Estimate Time: {getPost.estimate_time}</div>
+            <div className="postStatus">{getPost.status}</div>
 
             <div>{showApplicantsList.length} People applied</div>
           </div>
         </div>
         <div className="postDetails__box2">
-          <div>content</div>
-          <div>{getPost.content}</div>
+          <h2>Content</h2>
+          <div className="time">Post at {getPost.updated_at}</div>
+          <div className="postType">{getPost.type}</div>
+          {getPost.salary && <div>salary: {getPost.salary}</div>}
+          {getPost.salary_replacement && (
+            <div>Non-Monetary Payment: {getPost.salary_replacement}</div>
+          )}
+          <div>Date: {getPost.requireDate}</div>
+          <div>Estimate Time: {getPost.estimate_time}</div>
+          <div>Detail: {getPost.content}</div>
         </div>
       </div>
       {isLoggedIn && userInfo.id === getPost.user_id ? (
@@ -161,9 +165,16 @@ function PostDetails(props) {
             <NavLink className="navLink" to={`/postEdit/${getPost.post_id}`}>
               <Button variant="contained">Edit Post</Button>
             </NavLink>
-            <Button onClick={handlePostDelete} color="error">
-              Delete Post
-            </Button>
+            <div className="delete">
+              <Button
+                onClick={handlePostDelete}
+                startIcon={<DeleteIcon />}
+                variant="outlined"
+                color="error"
+              >
+                Delete Post
+              </Button>
+            </div>
             {/* <button onClick={handlePostDelete}>Delete Post</button> */}
           </div>
           {showApplicantsList.map((info) => (
@@ -174,7 +185,8 @@ function PostDetails(props) {
             >
               <div>appliants: {info.username}</div>
               <div>content: {info.content}</div>
-              <div>time: {info.updated_at}</div>
+              <div className="applicantsSpe">I Need {info.offer}</div>
+              <div className="time">time: {info.updated_at}</div>
 
               {/* <button onClick={}>Accept</button> */}
             </NavLink>
@@ -185,11 +197,11 @@ function PostDetails(props) {
           {isLoggedIn && applyState.user_id === userInfo.id ? (
             <div className="">
               <h2>Your application</h2>
-              <div> {applyState.content}</div>
+              <h3> {applyState.content}</h3>
               <div>Requires: {applyState.offer}</div>
-              <div>{applyState.updated_at}</div>
+              <div className="time">{applyState.updated_at}</div>
 
-              <div>applied</div>
+              <div>Applied</div>
             </div>
           ) : (
             <>

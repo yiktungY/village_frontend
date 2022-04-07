@@ -6,18 +6,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 50vh;
-  @include shadowBox;
+  height: 70vh;
+
+  margin: 4rem;
 
   &__background {
     @include windowPaddingInner;
+    @include shadowBox;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     background-color: $backgroundColor;
-    
   }
 
   &__title {

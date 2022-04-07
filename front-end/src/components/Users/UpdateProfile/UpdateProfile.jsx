@@ -68,43 +68,58 @@ function UpdateProfile(props) {
 
   return (
     <div className="updatePage">
-      <h1 className="updatePage__title">Update</h1>
+      <h1 className="headline">Update</h1>
       {isLoggedIn ? (
         <div>
           <UploadPicture userInfo={userInfo} />
-          <form className="updatePage__form" onSubmit={handleSubmit(handelUpdate)}>
-            <div>Email: {userInfo.email}</div>
-            <div>Display Name: </div>
-            <input
-              {...register("displayName", { required: "This is required" })}
-            />
-            <p>{errors.displayName?.message}</p>
-            <div>First Name: </div>
-            <input
-              {...register("givenName", { required: "This is required" })}
-            />
-            <p>{errors.givenName?.message}</p>
-            <div>Last Name: </div>
-            <input
-              {...register("familyName", { required: "This is required" })}
-            />
-            <p>{errors.familyName?.message}</p>
-            <div>Rating: {userInfo.rating}</div>
-            <div>Done Case: {userInfo.doneCase}</div>
-            <div>Age: </div>
-            <input {...register("age", { required: "This is required" })} />
-            <p>{errors.age?.message}</p>
-            <div>Address: </div>
-            <input
-              {...register("address", {
-                required: "This is required",
-              })}
-            />
-            <p>{errors.address?.message}</p>
-            <button className="noStyle" type="submit">
-              <Button variant="contained"> Create a Post</Button>
-            </button>
-            <div>Account creates at {userInfo.updated_at}</div>
+          <form
+            className="updatePage__form"
+            onSubmit={handleSubmit(handelUpdate)}
+          >
+            <div className="updatePage__box">
+              <div>Email: {userInfo.email}</div>
+              <div>Display Name: </div>
+              <input
+                className="inputStyle"
+                {...register("displayName", { required: "This is required" })}
+              />
+              <p>{errors.displayName?.message}</p>
+              <div>First Name: </div>
+              <input
+                className="inputStyle"
+                {...register("givenName", { required: "This is required" })}
+              />
+              <p>{errors.givenName?.message}</p>
+              <div>Last Name: </div>
+              <input
+                className="inputStyle"
+                {...register("familyName", { required: "This is required" })}
+              />
+              <p>{errors.familyName?.message}</p>
+            </div>
+            <div className="updatePage__box">
+              <div>Rating: {userInfo.rating}</div>
+              <div>Done Case: {userInfo.doneCase}</div>
+              <div>Age: </div>
+              <input
+                className="inputStyle"
+                {...register("age", { required: "This is required" })}
+              />
+              <p>{errors.age?.message}</p>
+              <div>Address: </div>
+              <input
+                className="inputStyle"
+                {...register("address", {
+                  required: "This is required",
+                })}
+              />
+              <p>{errors.address?.message}</p>
+              <div>Account creates at {userInfo.updated_at}</div>
+
+              <button className="noStyle updateButton" type="submit">
+                <Button variant="contained"> Update</Button>
+              </button>
+            </div>
           </form>
         </div>
       ) : (

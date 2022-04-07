@@ -29,7 +29,7 @@ function CategoryPage() {
 
   return (
     <div className="category">
-      <h1 className="category__title">Category</h1>
+      <h1 className="headline">Category</h1>
       <div className="postPage__box">
         <NavLink
           className="navLink postPage__section"
@@ -90,7 +90,7 @@ function CategoryPage() {
               type="text"
               onClick={handleChange}
             >
-              Design/ video editing
+              Design
             </div>
           </div>
           <div className="category__area--box gardening">

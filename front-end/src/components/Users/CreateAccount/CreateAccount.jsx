@@ -1,9 +1,13 @@
 import "./CreateAccount.scss";
 const SERVER_URL = "http://localhost:8080";
 import "animate.css";
+import { useEffect } from "react";
 import Button from "@mui/material/Button";
 
 function CreateAccount() {
+  useEffect(() => {
+    document.title = "Successfully Create An Account";
+  });
   return (
     <div className="loginSuccessed">
       <div className="loginSuccessed__background"> 

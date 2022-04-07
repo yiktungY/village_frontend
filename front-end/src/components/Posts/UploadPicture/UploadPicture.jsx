@@ -59,6 +59,7 @@ function UploadPicture(props) {
           <Button variant="contained">Upload</Button>
         </button>
       </form>
+      <div className="regform__border">
       {progress ? (
         <div className="regform__photo">
           <img className="profilePicture" src={url} alt="icon" />
@@ -71,6 +72,7 @@ function UploadPicture(props) {
           alt="icon"
         />
       )}
+      </div>
     </div>
   );
 }

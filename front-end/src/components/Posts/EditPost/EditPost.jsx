@@ -7,6 +7,7 @@ import ControlledRadioButtonsGroup from "../../Mui/Mui";
 import "react-datepicker/dist/react-datepicker.css";
 import ReactSelect from "react-select";
 import ReactDatePicker from "react-datepicker";
+import { Button } from "@mui/material";
 const SERVER_URL = "http://localhost:8080";
 
 function EditPost(props) {
@@ -115,7 +116,7 @@ function EditPost(props) {
   };
   return (
     <section className="EditPost">
-      <h1>Edit Post</h1>
+      <h1 className="headline">Edit Post</h1>
       {isLoggedIn && userInfo.id === getPost.user_id ? (
         <form
           className="EditPost__box"
@@ -124,14 +125,14 @@ function EditPost(props) {
           <div className="EditPost__box--one">
             <div className="subTitle">TITLE: </div>
             <input
-              className="input"
+              className="inputStyle"
               {...register("title", { required: "This is required." })}
               placeholder="something like: Looking for a dog walker"
             />
             <p>{errors.title?.message}</p>
             <div className="subTitle">DETAIlS: </div>
             <input
-              className="input details"
+              className="inputStyleBig "
               {...register("content", { required: "This is required." })}
               placeholder="I need a dog walker"
             />
@@ -149,7 +150,7 @@ function EditPost(props) {
                   What would you like to offer except money?
                 </div>
                 <input
-                  className="input"
+                  className="inputStyle"
                   {...register("salary_replacement", {
                     required: "This is required.",
                   })}
@@ -163,7 +164,7 @@ function EditPost(props) {
                   Show a range you would like to offer:{" "}
                 </div>
                 <input
-                  className="input"
+                  className="inputStyle"
                   {...register("salary", { required: "This is required." })}
                   placeholder="CA$20 - CA$25  per hour"
                 />
@@ -228,66 +229,12 @@ function EditPost(props) {
                 )}
               />
             </section>
-            <input className="button" type="submit" />
+            <button className="noStyle special" type="submit">
+              <Button variant="contained">Submit</Button>
+            </button>
           </div>
         </form>
       ) : (
-        //  <form onSubmit={handleSubmit(handlePostlTypeUpdate)}>
-        //      <section className="dropdown">
-        //      <div>{getPost.type}</div>
-        //     <div className="subTitle">Type</div>
-        //     <Controller
-        //        {...register("type", { required: "This is required." })}
-        //       className="dropdowninside"
-        //       control={control}
-        //       render={({ field }) => (
-        //         <ReactSelect
-        //           isClearable
-        //           {...field}
-        //           options={[
-        //             { value: "a", label: "a" },
-        //             { value: "b", label: "b" },
-        //             { value: "c", label: "c" },
-        //             { value: "d", label: "d" },
-        //             { value: "e", label: "e" },
-        //             { value: "f", label: "f" },
-        //           ]}
-        //         />
-        //       )}
-        //     />
-        //   {changeTypeState ? (
-        //     <>
-        //     <div onClick = {(e) => setChangeTypeState(false)}>{getPost.type}</div>
-        //     <div>Click me to edit the post type</div>
-        //     </>
-        //     )
-        //   :
-        //   (
-        //     <Controller
-        //        {...register("type", { required: "This is required." })}
-        //       className="dropdowninside"
-        //       control={control}
-        //       render={({ field }) => (
-        //         <ReactSelect
-        //           isClearable
-        //           {...field}
-        //           options={[
-        //             { value: "a", label: "a" },
-        //             { value: "b", label: "b" },
-        //             { value: "c", label: "c" },
-        //             { value: "d", label: "d" },
-        //             { value: "e", label: "e" },
-        //             { value: "f", label: "f" },
-        //           ]}
-        //         />
-        //       )}
-        //     />
-
-        //   )}
-        //      <p>{errors.type?.message}</p>
-        //       <input className="button" type="submit" />
-        //   </section>
-        //   </form>
         // If user is not logged in, render login button
         <>
           <p>Login to create your own posts.</p>

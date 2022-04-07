@@ -2,13 +2,13 @@
 @use "../../styles/partials/mixins" as *;
 
 .header {
-  background-color: rgba(248, 249, 250, 0.683);
+  background-color: rgba(230, 234, 238, 0.875);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  height: 5rem;
+  height: 6rem;
   position: sticky;
   top: 1px;
 

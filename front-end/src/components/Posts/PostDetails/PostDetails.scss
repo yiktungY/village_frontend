@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  border: 1px solid black;
+  @include shadowBox;
   margin: 2rem;
   padding: 1.5rem;
 }
@@ -23,32 +23,69 @@
     width: 50vw;
     display: flex;
     flex-direction: row;
+    background-color: $backgroundColor;
     &--info {
+      background-color: $backgroundColor;
       width: 50%;
+      height: 20rem;
       @include shadowBox;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      padding: 2rem;
     }
     &--image {
       margin-right: 2rem;
       width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       @include shadowBox;
     }
   }
   &__box2 {
+    background-color: $backgroundColor;
     margin: 2rem 0;
     @include shadowBox;
     width: 50vw;
     height: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 2rem;
   }
 }
 
 .appliants {
-  height: 30rem;
   display: flex;
   flex-direction: column;
+  padding: 2rem;
   @include shadowBox;
 }
 
 .post__button {
   display: flex;
   flex-direction: column;
+}
+
+.postSection__picture {
+  width: 100%;
+  height: 100%;
+}
+
+.time {
+  color: $outline-borders;
+}
+
+.delete {
+  margin-top: 3rem;
+  width: 10rem;
+}
+
+.applicantsSpe {
+  background-color: rgb(21, 215, 167);
+  border-radius: 25px;
+  width: fit-content;
+  padding: 0.3rem 1rem;
+  color: white;
 }

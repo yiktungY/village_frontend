@@ -3,6 +3,7 @@ import axios from "axios";
 import GetPostComponent from "../../components/Posts/GetPostComponent/GetPostComponent";
 import "./PostsPage.scss";
 import "animate.css";
+import logo from "../../assets/logos/move.png";
 // import ChatBox from "../../components/Chatbox/Chatbox";
 
 import { NavLink } from "react-router-dom";
@@ -24,17 +25,19 @@ function PostsPage() {
   };
 
   useEffect(() => {
+    document.title = "HOME";
     fetchPosts();
   }, []);
 
   return (
     <section className="postPage">
-      <div className="postPage__text">
-        <h1 className="headerFix">Welcome! This is VILLAGE</h1>
-        <p className="postPage__subheader"> A new way to Contribute </p>
-        <p className=" animate__animated animate__flipInX postPage__subheader2 ">
-          our Community.
-        </p>
+      <div className="postPage__text fontStyletwo">
+        <h1 className="headerFix">Welcome!</h1>
+        <h1 className="headerFix">This is VILLAGE</h1>
+        <div className="animate__animated animate__flipInX subheadertwo ">
+          A new way to Contribute our Community.
+        </div>
+        <p className=" "></p>
       </div>
       <div className="postPage__box">
         <NavLink

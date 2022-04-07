@@ -10,12 +10,14 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+
     &--one,
     &--two {
       display: flex;
       flex-direction: column;
       justify-content: center;
-
+      padding: 2rem 0;
+      background-color: $backgroundColor;
       @include windowPaddingInner;
       @include shadowBox;
       margin: 2rem;

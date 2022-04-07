@@ -3,8 +3,7 @@ import axios from "axios";
 import GetPostComponent from "../../components/Posts/GetPostComponent/GetPostComponent";
 import "./PostsPage.scss";
 import "animate.css";
-import logo from "../../assets/logos/move.png";
-// import ChatBox from "../../components/Chatbox/Chatbox";
+import { TextField } from "@mui/material";
 
 import { NavLink } from "react-router-dom";
 
@@ -12,6 +11,12 @@ const SERVER_URL = "http://localhost:8080";
 
 function PostsPage() {
   const [posts, setPosts] = useState([]);
+  const [inputText, setInputText] = useState("");
+  const inputHandler = (e) => {
+    //convert input text to lower case
+    var lowerCase = e.target.value.toLowerCase();
+    setInputText(lowerCase);
+  };
 
   const fetchPosts = () => {
     axios
@@ -55,7 +60,17 @@ function PostsPage() {
           Category
         </NavLink>
       </div>
-      {posts && <GetPostComponent posts={posts} />}
+      <div className="searchbar">
+        <TextField
+          id="outlined-basic"
+          onChange={inputHandler}
+          variant="outlined"
+          fullWidth
+          label="Search"
+        />
+      </div>
+
+      {posts && <GetPostComponent posts={posts} input={inputText} />}
     </section>
   );
 }

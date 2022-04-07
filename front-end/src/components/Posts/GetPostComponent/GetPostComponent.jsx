@@ -1,9 +1,22 @@
 import "./GetPostComponent.scss";
+import { React, useState } from "react";
 import { NavLink } from "react-router-dom";
 function GetPostComponent(props) {
+  const filteredData = props.posts.filter((el) => {
+    if (props.input === "") {
+      return el;
+    } else {
+      return (
+        el.title.toLowerCase().includes(props.input) ||
+        el.type.toLowerCase().includes(props.input) ||
+        el.status.toLowerCase().includes(props.input) ||
+        el.displayName.toLowerCase().includes(props.input)
+      );
+    }
+  });
   return (
     <section className="postSection">
-      {props.posts.map((post) => (
+      {filteredData.map((post) => (
         <NavLink
           className="postSection__post"
           key={post.post_id}

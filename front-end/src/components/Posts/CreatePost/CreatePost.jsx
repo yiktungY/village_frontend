@@ -59,6 +59,7 @@ function CreatePost(props) {
   useEffect(() => {
     loginFunction();
     MonPayMethodFunction();
+    document.title = "Upload Post";
   }, [payMethodvalue]);
 
   const handleChange = (event) => {

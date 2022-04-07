@@ -4,9 +4,16 @@ import { NavLink } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 const SERVER_URL = "http://localhost:8080";
 import GetPostComponent from "../../components/Posts/GetPostComponent/GetPostComponent";
+import { TextField } from "@mui/material";
 
 function CategoryPage() {
   const [posts, setPosts] = useState("");
+  const [inputText, setInputText] = useState("");
+  const inputHandler = (e) => {
+    //convert input text to lower case
+    var lowerCase = e.target.value.toLowerCase();
+    setInputText(lowerCase);
+  };
 
   const [getCategoryName, setgetCategoryName] = useState("Cook");
 
@@ -25,6 +32,7 @@ function CategoryPage() {
   };
   useEffect(() => {
     fetchPostsbyCategory();
+    document.title = "Category";
   }, [getCategoryName]);
 
   return (
@@ -45,6 +53,15 @@ function CategoryPage() {
         >
           Category
         </NavLink>
+      </div>
+      <div className="searchbar">
+        <TextField
+          id="outlined-basic"
+          onChange={inputHandler}
+          variant="outlined"
+          fullWidth
+          label="Search"
+        />
       </div>
       <div className="category__wrapper">
         <div className="category__area">
@@ -130,7 +147,7 @@ function CategoryPage() {
             </div>
           </div>
         </div>
-        {posts && <GetPostComponent posts={posts} />}
+        {posts && <GetPostComponent posts={posts} input={inputText} />}
       </div>
     </div>
   );

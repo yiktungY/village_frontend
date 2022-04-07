@@ -15,11 +15,6 @@ function PostDetails(props) {
   const [showApplicantsList, setShowApplicantsList] = useState([]);
   const [showApply, setShowApply] = useState(false);
   const [applyState, setApplyState] = useState("");
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm({});
 
   const loginFunction = async () => {
     await axios
@@ -103,17 +98,11 @@ function PostDetails(props) {
     }
   };
 
-  //no idea
-  // const acceptApplicant = () => {
-  //   axios.get().then(data => {
-
-  //   })
-  // }
-
   useEffect(() => {
     loginFunction();
     fetchPostById();
-  }, []);
+    document.title = getPost.title;
+  }, [getPost.title]);
 
   useEffect(() => {
     getApplicantsByApi();

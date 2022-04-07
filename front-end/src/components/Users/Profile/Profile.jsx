@@ -75,12 +75,11 @@ function Profile(props) {
       .catch((err) => console.log(err));
   };
   useEffect(() => {
-    document.title = "Profile";
-
+    document.title = `${userInfo.displayName} Profile`;
     loginFunction();
     getUserInfobyId();
     fetchPostsbyUserId();
-  }, []);
+  }, [userInfo.displayName]);
   useEffect(() => {
     if (userInfo) {
       reset({
@@ -177,7 +176,9 @@ function Profile(props) {
                         onSubmit={handleSubmit(handelUpdate)}
                       >
                         <div className="regform2__box">
-                          <div className="regform2__box--topic">DisplayName: </div>
+                          <div className="regform2__box--topic">
+                            DisplayName:{" "}
+                          </div>
                           <input
                             className="inputStyle"
                             {...register("displayName", {

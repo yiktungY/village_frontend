@@ -5,29 +5,18 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import LoginButton from "../../Button/LoginButton/LoginButton";
 import UploadPicture from "../../Posts/UploadPicture/UploadPicture";
+import useLogin from "../../../hooks/useLogin";
 const SERVER_URL = "http://localhost:8080";
 
 function UpdateProfile(props) {
-  const [isLoggedIn, setisLoggedIn] = useState(false);
-  const [userInfo, setUserInfo] = useState("");
+  const { userInfo, isLoggedIn } = useLogin();
+
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm("");
-
-  const loginFunction = () => {
-    axios
-      .get(`${SERVER_URL}/auth/profile`, { withCredentials: true })
-      .then((res) => {
-        if (res.data) {
-          setisLoggedIn(true);
-          setUserInfo(res.data);
-        }
-      })
-      .catch((err) => console.log(err));
-  };
 
   const handelUpdate = (data) => {
     const newUpdateInfo = {

@@ -2,6 +2,7 @@ import "./PostDetails.scss";
 import { useState, useEffect } from "react";
 import ApplyJob from "../../ApplyJob/ApplyJob";
 import axios from "axios";
+import useLogin from "../../../hooks/useLogin";
 import { NavLink } from "react-router-dom";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -9,24 +10,12 @@ import DeleteIcon from "@mui/icons-material/Delete";
 const SERVER_URL = "http://localhost:8080";
 
 function PostDetails(props) {
-  const [isLoggedIn, setisLoggedIn] = useState(false);
+  const { userInfo, isLoggedIn } = useLogin();
   const [getPost, setgetPost] = useState({});
-  const [userInfo, setUserInfo] = useState("");
+
   const [showApplicantsList, setShowApplicantsList] = useState([]);
   const [showApply, setShowApply] = useState(false);
   const [applyState, setApplyState] = useState("");
-
-  const loginFunction = async () => {
-    await axios
-      .get(`${SERVER_URL}/auth/profile`, { withCredentials: true })
-      .then((res) => {
-        if (res.data) {
-          setisLoggedIn(true);
-          setUserInfo(res.data);
-        }
-      })
-      .catch((err) => console.log(err));
-  };
 
   const fetchPostById = () => {
     const postID = props.match.params.postID;
@@ -99,7 +88,6 @@ function PostDetails(props) {
   };
 
   useEffect(() => {
-    loginFunction();
     fetchPostById();
     document.title = getPost.title;
   }, [getPost.title]);

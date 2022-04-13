@@ -1,5 +1,5 @@
 import "./GetPostComponent.scss";
-import { React, useState } from "react";
+
 import { NavLink } from "react-router-dom";
 function GetPostComponent(props) {
   const filteredData = props.posts.filter((el) => {

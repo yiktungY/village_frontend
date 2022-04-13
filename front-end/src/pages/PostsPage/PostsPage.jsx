@@ -4,7 +4,6 @@ import GetPostComponent from "../../components/Posts/GetPostComponent/GetPostCom
 import "./PostsPage.scss";
 import "animate.css";
 import { TextField } from "@mui/material";
-
 import { NavLink } from "react-router-dom";
 
 const SERVER_URL = "http://localhost:8080";
@@ -36,14 +35,6 @@ function PostsPage() {
 
   return (
     <section className="postPage">
-      <div className="postPage__text fontStyletwo">
-        <h1 className="headerFix">Welcome!</h1>
-        <h1 className="headerFix">This is VILLAGE</h1>
-        <div className="animate__animated animate__flipInX subheadertwo ">
-          A new way to Contribute our Community.
-        </div>
-        <p className=" "></p>
-      </div>
       <div className="postPage__box">
         <NavLink
           className="navLink postPage__section"
@@ -69,6 +60,14 @@ function PostsPage() {
           label="Search"
         />
       </div>
+      {/* <div className="postPage__text fontStyletwo">
+        <h1 className="headerFix">Welcome!</h1>
+        <h1 className="headerFix">This is VILLAGE</h1>
+        <div className="animate__animated animate__flipInX subheadertwo ">
+          A new way to Contribute our Community.
+        </div>
+        <p className=" "></p>
+      </div> */}
 
       {posts && <GetPostComponent posts={posts} input={inputText} />}
     </section>

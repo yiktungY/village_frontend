@@ -8,11 +8,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import ReactSelect from "react-select";
 import ReactDatePicker from "react-datepicker";
 import { Button } from "@mui/material";
+import useLogin from "../../../hooks/useLogin";
 const SERVER_URL = "http://localhost:8080";
 
 function EditPost(props) {
-  const [isLoggedIn, setisLoggedIn] = useState(false);
-  const [userInfo, setUserInfo] = useState("");
+ 
+  const { userInfo, isLoggedIn } = useLogin();
   const [payMethodvalue, setpayMethodValue] = useState("Non-Monetary Payment");
   const [monPayMethod, setMonPayMethod] = useState(true);
   // const [changeTypeState, setChangeTypeState] = useState(true)
@@ -28,19 +29,7 @@ function EditPost(props) {
     formState: { errors },
   } = useForm("");
 
-  //login
-  const loginFunction = () => {
-    axios
-      .get(`${SERVER_URL}/auth/profile`, { withCredentials: true })
-      .then((res) => {
-        if (res.data) {
-          setisLoggedIn(true);
-          setUserInfo(res.data);
-        }
-      })
-      .catch((err) => console.log(err));
-  };
-
+ 
   //get post from API
   const fetchPostById = () => {
     const postID = props.match.params.postID;

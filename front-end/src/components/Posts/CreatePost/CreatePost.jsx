@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
+import useLogin from "../../../hooks/useLogin";
 import axios from "axios";
 import "./CreatePost.scss";
 import ReactDatePicker from "react-datepicker";
@@ -15,7 +16,7 @@ import SendIcon from "@mui/icons-material/Send";
 const SERVER_URL = "http://localhost:8080";
 
 function CreatePost(props) {
-  const [isLoggedIn, setisLoggedIn] = useState(false);
+  const { userInfo, isLoggedIn } = useLogin();
   const [payMethodvalue, setpayMethodValue] = useState("Non-Monetary Payment");
   const [monPayMethod, setMonPayMethod] = useState(true);
   const [pictureUrl, setpictureUrl] = useState("");
@@ -39,16 +40,6 @@ function CreatePost(props) {
     },
   });
 
-  const loginFunction = () => {
-    axios
-      .get(`${SERVER_URL}/auth/profile`, { withCredentials: true })
-      .then((res) => {
-        if (res.data) {
-          setisLoggedIn(true);
-        }
-      })
-      .catch((err) => console.log(err));
-  };
 
   const MonPayMethodFunction = () => {
     if (payMethodvalue === "Money") {
@@ -57,7 +48,7 @@ function CreatePost(props) {
   };
 
   useEffect(() => {
-    loginFunction();
+
     MonPayMethodFunction();
     document.title = "Upload Post";
   }, [payMethodvalue]);

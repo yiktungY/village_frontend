@@ -1,0 +1,135 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.register {
+  position: absolute;
+  top: 15vh;
+  left: 15vw;
+  background-color: white;
+  width: 75vw;
+  padding-top: 4rem;
+  padding-left: 4rem;
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  @include shadowBox;
+  border-radius: 5px;
+
+  &__background {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(14, 15, 15, 0.327);
+    width: 100vw;
+    height: 100vh;
+  }
+
+  &__heading {
+    margin-bottom: 3rem;
+    margin-left: 2rem;
+  }
+
+  &__button {
+    display: flex;
+    align-self: flex-end;
+    margin-right: 10rem;
+    margin-top: 4rem;
+  }
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+
+  height: 70rem;
+
+  @include windowPaddingInner;
+
+  &__info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: space-between;
+    height: 70rem;
+
+    &--areaone {
+      @include shadowBox;
+      width: 30%;
+      height: 80%;
+      padding: 2rem;
+      margin: 2rem;
+      background-color: $backgroundColor;
+    }
+    &--areatwo {
+      background-color: $backgroundColor;
+      @include shadowBox;
+      width: 70%;
+      height: 80%;
+      padding: 2rem;
+      margin: 2rem 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+    &--image {
+      width: 16rem;
+      height: auto;
+      border-radius: 5px;
+    }
+
+    &--areathree {
+      background-color: $backgroundColor;
+      width: 80%;
+
+      padding: 2rem;
+      margin: 0 2rem 2rem 0;
+      @include shadowBox;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: white;
+    }
+
+    &--functionArea {
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+    }
+    &--picture {
+      height: auto;
+      width: 20rem;
+    }
+  }
+}
+
+.regform2 {
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__box {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+    margin: 3rem 0;
+
+    &--topic {
+      margin-right: 2rem;
+    }
+  }
+  &__button {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    padding: 3rem 0 2rem 0;
+  }
+}
+
+.editprofile {
+  display: flex;
+  align-self: end;
+}

@@ -60,18 +60,18 @@ function UploadPicture(props) {
         </button>
       </form>
       <div className="regform__border">
-      {progress ? (
-        <div className="regform__photo">
-          <img className="profilePicture" src={url} alt="icon" />
-          <h3>Uploaded {progress} %</h3>
-        </div>
-      ) : (
-        <img
-          className="profilePicture"
-          src={props.userInfo.avatar_url}
-          alt="icon"
-        />
-      )}
+        {progress ? (
+          <div className="regform__photo">
+            <img className="profilePicture" src={url} alt="icon" />
+            <h3>Uploaded {progress} %</h3>
+          </div>
+        ) : (
+          <img
+            className="profilePicture"
+            src={props.userInfo.avatar_url}
+            alt="icon"
+          />
+        )}
       </div>
     </div>
   );

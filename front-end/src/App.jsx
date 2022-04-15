@@ -25,7 +25,8 @@ function App() {
       <Header />
 
       <Switch>
-        <Route path="/" exact component={PostsPage} />
+        <Redirect exact from="/" to="/home" />
+        <Route path="/home" exact component={PostsPage} />
         <Route path="/loginWithGoogle" component={LoginWithGoolge} />
         <Route path="/registerSuccee" component={CreateAccount} />
         <Route path="/profile/:id" component={UserPage} />

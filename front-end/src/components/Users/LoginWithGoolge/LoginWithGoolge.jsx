@@ -11,7 +11,7 @@ function LoginWithGoolge() {
   });
   return (
     <div className="login">
-      <h1 className="animate__animated animate__bounce headline">
+      <h1 className="animate__animated animate__bounce login__header">
         Login with Google in one step
       </h1>
       <div className="login__box">

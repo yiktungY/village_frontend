@@ -44,7 +44,7 @@ body {
   align-items: center;
   @include shadowBox;
 }
-.Nodisplay {
+.noDisplay {
   text-decoration: none;
 }
 
@@ -58,7 +58,7 @@ body {
 
 .headerFix {
   margin: 4rem 0 2rem 0;
-  font-size: 5rem;
+  font-size: 1rem;
 }
 
 .headline {

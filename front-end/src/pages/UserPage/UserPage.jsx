@@ -10,7 +10,8 @@ import Button from "@mui/material/Button";
 const SERVER_URL = "http://localhost:8080";
 
 function UserPage(props) {
-  const { userInfo, isLoggedIn } = useLogin();
+  const { isLoggedIn } = useLogin();
+  const [userInfo, setUserInfo] = useState("");
   const [userPostList, setuserPostList] = useState(false);
   const [regArea, setRegArea] = useState(true);
   const {
@@ -65,7 +66,7 @@ function UserPage(props) {
   };
   useEffect(() => {
     document.title = `${userInfo.displayName} Profile`;
-    // loginFunction();
+
     getUserInfobyId();
     fetchPostsbyUserId();
   }, [userInfo.displayName]);

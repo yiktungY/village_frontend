@@ -96,6 +96,7 @@ function PostDetails(props) {
     getApplicantsByApi();
   }, [userInfo]);
 
+  console.log(getPost);
   return (
     <section className="postDetails">
       <div className="postDetails__box">

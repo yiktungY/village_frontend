@@ -12,7 +12,6 @@ import useLogin from "../../../hooks/useLogin";
 const SERVER_URL = "http://localhost:8080";
 
 function EditPost(props) {
- 
   const { userInfo, isLoggedIn } = useLogin();
   const [payMethodvalue, setpayMethodValue] = useState("Non-Monetary Payment");
   const [monPayMethod, setMonPayMethod] = useState(true);
@@ -29,7 +28,6 @@ function EditPost(props) {
     formState: { errors },
   } = useForm("");
 
- 
   //get post from API
   const fetchPostById = () => {
     const postID = props.match.params.postID;
@@ -56,7 +54,6 @@ function EditPost(props) {
   }, [getPost]);
 
   useEffect(() => {
-    loginFunction();
     fetchPostById();
   }, []);
 

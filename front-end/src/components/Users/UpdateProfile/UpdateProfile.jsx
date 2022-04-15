@@ -51,10 +51,6 @@ function UpdateProfile(props) {
     }
   }, [userInfo]);
 
-  useEffect(() => {
-    loginFunction();
-  }, []);
-
   return (
     <div className="updatePage">
       <h1 className="headline">Update</h1>

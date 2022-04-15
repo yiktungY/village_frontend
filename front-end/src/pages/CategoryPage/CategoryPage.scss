@@ -2,49 +2,61 @@
 @use "../../styles/partials/mixins" as *;
 
 .category {
-  color: white;
-  font-weight: 600;
   background-color: $backgroundColor;
-  @include windowPaddingInner;
-  padding: 4rem 0;
-  margin: 4rem;
+
   &___wrapper {
     display: flex;
     flex-direction: column;
   }
-  &__title {
-    font-size: 3rem;
 
-    margin: 3rem 0;
-  }
   &__area {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: flex-start;
 
     &--box {
+      height: 2rem;
       margin: 1rem;
-      height: 5rem;
-      width: 10rem;
-      border-radius: 5px;
-      @include shadowBox;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-size: 100%;
-      object-fit: cover;
-      background-repeat: no-repeat;
 
+      width: fit-content;
+      color: white;
+      @include tablet {
+        height: 5rem;
+        width: 10rem;
+        border-radius: 5px;
+        @include shadowBox;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-size: 100%;
+        object-fit: cover;
+        background-repeat: no-repeat;
+      }
       &:hover {
         background-size: 125%;
         opacity: 0.6;
       }
     }
+    &--showMore {
+      justify-self: center;
+      @include windowPaddingInner;
+      font-weight: 600;
+
+      color: $small-placeholder-text;
+      &:hover {
+        background-color: #1976d2;
+        @include shadowBox;
+      }
+      @include tablet {
+        margin-top: 3rem;
+      }
+    }
     &--title {
       border-radius: 5px;
-      background-color: rgb(40, 114, 217);
-     
-      padding: 0.1rem 1.2rem;
+      background-color: #1976d2;
+
+      padding: 0.2rem 1.2rem;
       &:hover {
         background-size: 125%;
         opacity: 1;
@@ -53,33 +65,52 @@
   }
 }
 .account {
-  background-image: url(../../assets/images/debits-credits-1.jpeg);
+  @include tablet {
+    background-image: url(../../assets/images/debits-credits-1.jpeg);
+  }
 }
 .babysitting {
-  background-image: url(../../assets/images/babysitting-350x250.jpeg);
+  @include tablet {
+    background-image: url(../../assets/images/babysitting-350x250.jpeg);
+  }
 }
 .cook {
-  background-image: url(../../assets/images/cooking.webp);
+  @include tablet {
+    background-image: url(../../assets/images/cooking.webp);
+  }
 }
 .cook {
-  background-image: url(../../assets/images/cooking.webp);
+  @include tablet {
+    background-image: url(../../assets/images/cooking.webp);
+  }
 }
 .housekeeping {
-  background-image: url(../../assets/images/bigstock-Curly-Caregiver-Cleaning-The-G-296802931.jpeg);
+  @include tablet {
+    background-image: url(../../assets/images/bigstock-Curly-Caregiver-Cleaning-The-G-296802931.jpeg);
+  }
 }
 .design {
-  background-image: url(../../assets/images/editing-from-home-on-a-laptop.jpeg);
+  @include tablet {
+    background-image: url(../../assets/images/editing-from-home-on-a-laptop.jpeg);
+  }
 }
 .gardening {
-  background-image: url(../../assets/images/download.jpeg);
+  @include tablet {
+    background-image: url(../../assets/images/download.jpeg);
+  }
 }
 .dog {
-  background-image: url(../../assets/images/dog.jpeg);
+  @include tablet {
+    background-image: url(../../assets/images/dog.jpeg);
+  }
 }
 .technician {
-  background-image: url(../../assets/images/te.webp);
+  @include tablet {
+    background-image: url(../../assets/images/te.webp);
+  }
 }
-
 .house {
-  background-image: url(../../assets/images/packing.jpeg);
+  @include tablet {
+    background-image: url(../../assets/images/packing.jpeg);
+  }
 }

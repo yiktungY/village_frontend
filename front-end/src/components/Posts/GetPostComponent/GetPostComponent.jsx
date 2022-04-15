@@ -22,23 +22,28 @@ function GetPostComponent(props) {
           key={post.post_id}
           to={`/post/${post.post_id}`}
         >
-          <div className="postSection__replace">
-            <img
-              className="postSection__picture"
-              src={post.picture_Details}
-              alt={`${post.title} picture`}
-            />
-          </div>
-          <div className="postSection__details">
-            <div className="postSection__details--title">{post.title}</div>
-
-            <div className="postType"> {post.type}</div>
-            <div className="postStatus"> {post.status}</div>
+          {post.picture_Details ? (
+            <div className="postSection__replace">
+              <img
+                className="postSection__picture"
+                src={post.picture_Details}
+                alt={`${post.title} picture`}
+              />
+            </div>
+          ) : (
+            <div className="postSection__noPicture">No picture</div>
+          )}
+          <div className="postSection__detailBox">
             <div className="postSection__details--user">
               By {post.displayName}
             </div>
+            <div className="postSection__details--time">{post.updated_at}</div>
           </div>
-          <div className="postSection__details--time">{post.updated_at}</div>
+          <div className="postSection__title">{post.title}</div>
+          <div className="postSection__details">
+            <div className="postType"> {post.type}</div>
+            <div className="postStatus"> {post.status}</div>
+          </div>
         </NavLink>
       ))}
     </section>

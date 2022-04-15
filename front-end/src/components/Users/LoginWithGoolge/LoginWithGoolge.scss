@@ -8,7 +8,9 @@
   height: 70vh;
   @include shadowBox;
   @include windowPaddingInner;
-
+  &__header {
+    margin: 2rem 0;
+  }
   &__box {
     height: 50rem;
     display: flex;

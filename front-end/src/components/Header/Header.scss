@@ -2,35 +2,54 @@
 @use "../../styles/partials/mixins" as *;
 
 .header {
+  @include windowPaddingInner;
   display: flex;
   flex-direction: column;
-  height: 10rem;
+  background-color: $backgroundColor;
   justify-content: center;
   align-items: center;
-
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
   @include tablet {
-    padding: 10rem 2rem;
-    height: 6rem;
+    flex-direction: row;
     position: sticky;
     top: 1px;
+    z-index: 10;
+    justify-content: space-between;
   }
   &__info {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    position: absolute;
+    right: 25vw;
+    @include shadowBox;
+    background-color: white;
+    flex-direction: column;
+    width: 60vw;
+    padding: 2rem;
+    justify-content: flex-end;
     align-items: center;
+    z-index: 2;
+    @include tablet {
+      width: 50%;
+      flex-direction: row;
+      justify-content: space-between;
+    }
   }
 
   &__user {
-    display: flex;
-    margin-bottom: 1rem;
-    justify-self: center;
-    align-self: center;
+    @include tablet {
+      display: flex;
+      margin-bottom: 1rem;
+      justify-self: center;
+      align-self: center;
+    }
   }
 
   &__logo {
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 600;
+    margin: 2rem 0;
+
     color: #3a86ff;
 
     &--special {
@@ -40,9 +59,43 @@
         color: #f8edeb;
       }
     }
+  }
+  &__nav {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 1rem;
+    @include tablet {
+      width: 28vw;
+      margin: 1.5rem 0;
+    }
+    &--pageDefault,
+    &--pageState {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #1976d2;
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      width: 100%;
+      height: 2.25rem;
+      width: 100%;
+      border-radius: 1.25rem;
+      @include tablet {
+        width: fit-content;
+        height: 2.375rem;
+        width: 50%;
+        padding: 0 1rem;
+      }
+      &:hover {
+        text-decoration: underline;
+      }
+    }
 
-    &:hover {
-      color: #ece4db;
+    &--pageState {
+      color: white;
+      background-color: #1976d2;
     }
   }
 }

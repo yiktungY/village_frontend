@@ -3,40 +3,88 @@
 
 .postSection {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
+
+  @include windowPaddingInner;
+  @include tablet {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 
   &__post {
-    background-color: $backgroundColor;
+    &:nth-child(odd) {
+      background-color: $backgroundColor;
+    }
     color: $global-text-color;
     text-decoration: none;
-    width: 40%;
-    padding: 0.5rem;
-    align-self: center;
-    display: flex;
-    flex-direction: row;
+    width: 100%;
+    margin: 1rem 0;
+    padding: 1rem 0;
+    border-bottom: 1px solid $outline-borders;
+    @include tablet {
+      width: 25vw;
+      padding: 0.5rem;
 
-    flex-wrap: wrap;
-    justify-content: space-between;
-    @include shadowBox;
-    margin: 2rem;
-    padding: 1.5rem;
+      align-self: center;
+      display: flex;
+      flex-direction: column;
+      height: 25rem;
+      flex-wrap: wrap;
+
+      justify-content: space-between;
+      @include shadowBox;
+      margin: 2rem 4rem;
+      padding: 1.5rem;
+    }
   }
   &__replace {
-    width: fit-content;
-
-    background-color: $outline-borders;
+    min-width: 100%;
+    height: auto;
+    @include tablet {
+      min-height: 20vh;
+      max-height: 20vh;
+    }
   }
   &__picture {
-    width: 12rem;
-    height: auto;
+    min-width: 100%;
+    min-height: 20vh;
+    max-height: 40vh;
+    border-radius: 5px;
+    @include shadowBox;
+
+    @include tablet {
+      min-height: 20vh;
+      max-height: 20vh;
+    }
+  }
+  &__noPicture {
+    min-width: 100%;
+    min-height: 20vh;
+    max-height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include subHeader;
+    color: rgb(28, 144, 221);
+    @include shadowBox;
+  }
+  &__detailBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    @include tablet {
+      flex-direction: column;
+    }
+  }
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 600;
   }
   &__details {
     display: flex;
-    flex-direction: column;
-
-    &--title {
-      @include subHeader;
+    flex-direction: row;
+    @include tablet {
+      flex-direction: column;
     }
 
     &--user {

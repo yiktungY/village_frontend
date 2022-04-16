@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import Button from "@mui/material/Button";
+import { Avatar } from "@mui/material";
 // import UploadPicture from "../../components/UploadPicturetoPost/UploadPicturetoPost";
 
 const SERVER_URL = "http://localhost:8080";
@@ -66,7 +67,6 @@ function UserPage(props) {
   };
   useEffect(() => {
     document.title = `${userInfo.displayName} Profile`;
-
     getUserInfobyId();
     fetchPostsbyUserId();
   }, [userInfo.displayName]);
@@ -81,10 +81,10 @@ function UserPage(props) {
 
   return (
     <section className="profile">
-      <h1 className="profile__header headline">Profile</h1>
+      <h1 className="pageHeader">{userInfo.displayName}'s Profile</h1>
       {isLoggedIn && (
         <NavLink
-          className="navLink editprofile"
+          className="navLink profile__edit"
           to={`/updateProfile/${userInfo.id}`}
         >
           <Button variant="contained">Edit Profile</Button>
@@ -92,45 +92,63 @@ function UserPage(props) {
       )}
       <div className="profile__info">
         <div className="profile__info--areaone">
-          <img
-            className="profile__info--image"
+          <Avatar
+            sx={{ width: 250, height: 250 }}
             src={userInfo.avatar_url}
             alt="UserIcon"
           />
         </div>
         <div className="profile__info--areatwo">
-          <div>Email: {userInfo.email}</div>
-          <div>Display Name: {userInfo.displayName}</div>
-          <div>First Name: {userInfo.givenName}</div>
-          <div>Last Name: {userInfo.familyName}</div>
-          <div>Rating: {userInfo.rating}</div>
-          <div>Done Case: {userInfo.doneCase}</div>
-          <div>Age: {userInfo.age}</div>
-          <div>Address: {userInfo.address}</div>
-          <div>Accounts create at {userInfo.updated_at}</div>
+          <div className="profile__info--text">
+            <section className="profile__info--nameAndPerform">
+              <h3>Info</h3>
+              <div>First Name: {userInfo.givenName}</div>
+              <div>Last Name: {userInfo.familyName}</div>
+              <div>Age: {userInfo.age}</div>
+            </section>
+            <section className="profile__info--nameAndPerform">
+              <h3>Performance</h3>
+              <div>Rating: {userInfo.rating}</div>
+              <div>Done Case: {userInfo.doneCase}</div>
+            </section>
+          </div>
+          <section className="profile__info--contact">
+            <h3>Contact Me</h3>
+            <div className="profile__info--email">{userInfo.email}</div>
+            <div>Address: {userInfo.address}</div>
+            <div>Accounts create at {userInfo.updated_at}</div>
+          </section>
         </div>
       </div>
       <div className="profile__info--functionArea">
         {userPostList.length > 0 && (
           <div className="profile__info--areathree">
-            <h1>Last Post</h1>
-            <img
-              className="profile__info--picture"
-              src={userPostList[userPostList.length - 1].picture_Details}
-              alt="{userPostList[userPostList.length - 1].title}"
-            />
+            <h2 className="profile__info--subheader">The Latest Post</h2>
+            <NavLink className="navLink " to={`/post/${userPostList.post_id}`}>
+              <h2>{userPostList[userPostList.length - 1].title}</h2>
+              <div className="profile__info--postTextInfo">
+                <img
+                  className="profile__info--picture"
+                  src={userPostList[userPostList.length - 1].picture_Details}
+                  alt="{userPostList[userPostList.length - 1].title}"
+                />
+                <div className="profile__info--postText">
+                  <div>{userPostList[userPostList.length - 1].content}</div>
+                  <div className="postType">
+                    {userPostList[userPostList.length - 1].type}
+                  </div>
+                  <div className="postStatus">
+                    {userPostList[userPostList.length - 1].status}
+                  </div>
+                </div>
+              </div>
+            </NavLink>
 
-            <h2>{userPostList[userPostList.length - 1].title}</h2>
-            <div>{userPostList[userPostList.length - 1].content}</div>
-            <div className="postType">
-              {userPostList[userPostList.length - 1].type}
-            </div>
-            <div className="postStatus">
-              {userPostList[userPostList.length - 1].status}
-            </div>
-
-            <NavLink className="navLink" to={`/users/posts/${userInfo.id}`}>
-              <Button variant="contained">More post</Button>
+            <NavLink
+              className="navLink morePost"
+              to={`/users/posts/${userInfo.id}`}
+            >
+              <Button variant="contained">More posts</Button>
             </NavLink>
           </div>
         )}

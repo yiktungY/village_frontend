@@ -7,70 +7,93 @@
   @include shadowBox;
   margin: 2rem;
   padding: 1.5rem;
+
+  &__apply {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+    background-color: #1976d2;
+    border-radius: 50px;
+    margin: 2rem 0;
+  }
 }
 
 .postDetails {
   @include windowPaddingInner;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  &__box {
+  @include tablet {
     display: flex;
     flex-direction: column;
   }
-  &__box1 {
-    width: 50vw;
-    display: flex;
-    flex-direction: row;
-    background-color: $backgroundColor;
-    &--info {
-      background-color: $backgroundColor;
-      width: 50%;
-      height: 20rem;
-      @include shadowBox;
+  &__box {
+    @include tablet {
       display: flex;
       flex-direction: column;
-      justify-content: space-around;
-      padding: 2rem;
     }
-    &--image {
-      margin-right: 2rem;
-      width: 50%;
+  }
+  &__box1 {
+    display: flex;
+    flex-direction: column;
+
+    &--headline,
+    &--StatAndCat {
+      margin: 1rem 0;
+
       display: flex;
-      justify-content: center;
+      flex-direction: row;
+      justify-content: space-between;
       align-items: center;
+    }
+    &--headline {
+      padding: 1rem 0;
+      justify-content: start;
       @include shadowBox;
+    }
+
+    &--name {
+      margin: 0 1rem;
     }
   }
   &__box2 {
-    background-color: $backgroundColor;
-    margin: 2rem 0;
     @include shadowBox;
-    width: 50vw;
-    height: 20rem;
+    margin: 2rem 0;
+    background-color: $backgroundColor;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 2rem;
+    @include tablet {
+    }
   }
 }
 
 .appliants {
-  display: flex;
-  flex-direction: column;
-  padding: 2rem;
-  @include shadowBox;
+  @include tablet {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    @include shadowBox;
+  }
 }
 
 .post__button {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 1rem 0;
+  @include tablet {
+    justify-content: end;
+  }
 }
 
-.postSection__picture {
+.postSection__postPicture {
   width: 100%;
   height: 100%;
+  @include tablet {
+    width: 80%;
+  }
 }
 
 .time {

@@ -20,20 +20,17 @@
     width: 100%;
     margin: 1rem 0;
     padding: 1rem 0;
+    @include shadowBox;
     border-bottom: 1px solid $outline-borders;
     @include tablet {
-      width: 25vw;
-      padding: 0.5rem;
-
-      align-self: center;
       display: flex;
+      width: 20rem;
+      padding: 1rem;
       flex-direction: column;
-      height: 25rem;
-      flex-wrap: wrap;
-
+      height: 24rem;
+      margin: 1rem;
       justify-content: space-between;
-      @include shadowBox;
-      margin: 2rem 4rem;
+
       padding: 1.5rem;
     }
   }
@@ -61,6 +58,8 @@
     min-width: 100%;
     min-height: 20vh;
     max-height: 20vh;
+    font-weight: 800;
+    font-size: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,20 +71,17 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    @include tablet {
-      flex-direction: column;
-    }
+    margin: 1rem 0;
   }
   &__title {
     font-size: 1.5rem;
     font-weight: 600;
+    margin: 1rem 0;
   }
   &__details {
     display: flex;
     flex-direction: row;
-    @include tablet {
-      flex-direction: column;
-    }
+    justify-content: space-between;
 
     &--user {
       @include body-text-small;

@@ -1,6 +1,7 @@
 import "./Header.scss";
-import LogoutButton from "../Button/LogoutButton/LogoutButton";
+import LogoutButton from "../../components/Button/LogoutButton/LogoutButton";
 import Button from "@mui/material/Button";
+import Avatar from "@mui/material/Avatar";
 import useLogin from "../../hooks/useLogin";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
@@ -29,16 +30,17 @@ function Header() {
         </div>
       </NavLink>
       {isLoggedIn ? (
-        <div className="">
-          <img
+        <div>
+          <Avatar
             onClick={handleIconInfo}
-            className="icon"
+            sx={{ width: 56, height: 56 }}
+            className="header__userIcon"
             src={userInfo.avatar_url}
             alt="UserIcon"
           />
 
           {iconInfo && (
-            <div className="header__info">
+            <div onClick={handleIconInfo} className="header__info">
               <NavLink className="navLink" to="/createpost">
                 <Button variant="contained"> Create a Post</Button>
               </NavLink>

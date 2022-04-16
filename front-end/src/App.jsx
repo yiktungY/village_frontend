@@ -4,8 +4,8 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
+import Header from "./layout/Header/Header";
+import Footer from "./layout/Footer/Footer";
 import UserPage from "./pages/UserPage/UserPage";
 import CategoryPage from "./pages/CategoryPage/CategoryPage";
 import UpdateProfile from "./components/Users/UpdateProfile/UpdateProfile";

@@ -3,27 +3,39 @@
 
 .EditPost {
   @include windowPaddingInner;
-  height: 45rem;
 
   &__box {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    @include tablet {
+      flex-direction: row;
+    }
     &--one,
     &--two {
       display: flex;
       flex-direction: column;
       justify-content: center;
+      width: 100%;
       padding: 2rem 0;
       background-color: $backgroundColor;
       @include windowPaddingInner;
       @include shadowBox;
-      margin: 2rem;
+      margin: 1rem 0;
+
+      @include tablet {
+        height: 40rem;
+        margin: 2rem;
+        justify-content: space-evenly;
+      }
     }
   }
 }
 .details {
   height: 20rem;
+}
+
+.changeDate {
+  color: $outline-borders;
 }

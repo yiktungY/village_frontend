@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
 import "./EditPost.scss";
+import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone";
 import LoginButton from "../../Button/LoginButton/LoginButton";
 import ControlledRadioButtonsGroup from "../../Mui/Mui";
 import "react-datepicker/dist/react-datepicker.css";
@@ -164,7 +165,10 @@ function EditPost(props) {
                   <div onClick={(e) => setChangeDateState(false)}>
                     {getPost.requireDate}.
                   </div>
-                  <div>Click me to edit the post type</div>
+                  <div className="changeDate">
+                    <AddCircleTwoToneIcon />
+                    Click me to edit the require date
+                  </div>
                 </>
               ) : (
                 <>
@@ -175,7 +179,7 @@ function EditPost(props) {
                     })}
                     render={({ field }) => (
                       <ReactDatePicker
-                        className="input"
+                        className="inputStyle"
                         placeholderText="Select date"
                         onChange={(e) => field.onChange(e)}
                         selected={field.value}
@@ -215,9 +219,11 @@ function EditPost(props) {
                 )}
               />
             </section>
-            <button className="noStyle special" type="submit">
-              <Button variant="contained">Submit</Button>
-            </button>
+            <div className="createPostButton">
+              <button className="noStyle" type="submit">
+                <Button variant="contained">Submit</Button>
+              </button>
+            </div>
           </div>
         </form>
       ) : (

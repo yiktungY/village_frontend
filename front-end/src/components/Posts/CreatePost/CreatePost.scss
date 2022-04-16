@@ -1,50 +1,36 @@
 @use "../../../styles/partials/variables" as *;
 @use "../../../styles/partials/mixins" as *;
 
-.dropdown {
-  width: 20rem;
-}
-
-.dropdowninside {
-  border: 1px solid red;
-}
-
-.input {
-  box-sizing: border-box;
-  width: 20rem;
-  border-radius: 4px;
-  border: 1px solid gray;
-  color: black;
-  padding: 10px 15px;
-  margin-bottom: 10px;
-  font-size: 14px;
-  // margin: 1rem 0;
-}
-
 .subTitle {
   margin: 1rem 0;
 }
 
 .createPostTwo {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 0 1rem;
+  flex-direction: column;
+  @include tablet {
+    flex-direction: row;
 
+    justify-content: center;
+    margin: 0 1rem;
+  }
   &__textInfo {
-    padding: 2rem;
-    margin-right: 4rem;
     @include shadowBox;
     background-color: #d3d3d322;
+    margin: 2rem 0;
+    padding: 1rem;
+    @include tablet {
+      margin: 0 2rem;
+    }
   }
   &__otherInfo--payment {
-    padding: 2rem;
+    padding: 1rem;
     @include shadowBox;
     margin-bottom: 2rem;
     background-color: #d3d3d322;
   }
   &__otherInfo--other {
-    padding: 2rem;
+    padding: 1rem;
     @include shadowBox;
     background-color: #d3d3d322;
   }
@@ -59,13 +45,17 @@
 }
 
 .createPageForm {
+  margin-top: 2rem;
   background-color: #d3d3d322;
-
-  margin: 3rem;
+  padding: 1rem;
   @include shadowBox;
-  padding: 3rem;
-  display: flex;
-  flex-direction: row;
+  @include tablet {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 3rem;
+    margin: 3rem;
+  }
   &__Upload {
     display: flex;
     flex-direction: column;
@@ -74,11 +64,16 @@
     &--button {
       margin-top: 2rem;
     }
+    &--photo {
+      margin: 2rem 0;
+    }
   }
 }
 
 .createPostButton {
   display: flex;
-  margin-top: 2rem;
-  margin-left: 20rem;
+  margin: 2rem 0;
+  width: 100%;
+  justify-content: center;
+  background-color: none;
 }

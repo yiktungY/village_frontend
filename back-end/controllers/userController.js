@@ -61,6 +61,7 @@ const getAllPostbyUserId = (req, res) => {
       "posts.id as post_id",
       "posts.title",
       "posts.content",
+      "posts.type",
       "posts.picture_Details",
       "posts.updated_at",
       "posts.status",

@@ -1,5 +1,5 @@
 import "./GetPostComponent.scss";
-
+import HighlightOffTwoToneIcon from "@mui/icons-material/HighlightOffTwoTone";
 import { NavLink } from "react-router-dom";
 function GetPostComponent(props) {
   const filteredData = props.posts.filter((el) => {
@@ -31,7 +31,9 @@ function GetPostComponent(props) {
               />
             </div>
           ) : (
-            <div className="postSection__noPicture">No picture</div>
+            <div className="postSection__noPicture">
+              <HighlightOffTwoToneIcon sx={{ width: 100, height: 100 }} />
+            </div>
           )}
           <div className="postSection__detailBox">
             <div className="postSection__details--user">

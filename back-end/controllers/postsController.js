@@ -76,6 +76,7 @@ const getPostById = (req, res) => {
       "posts.id as post_id",
       "users.id as user_id",
       "users.displayname",
+      "users.avatar_url",
       "posts.title",
       "posts.content",
       "posts.picture_Details",

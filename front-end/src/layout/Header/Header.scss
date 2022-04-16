@@ -5,12 +5,13 @@
   @include windowPaddingInner;
   display: flex;
   flex-direction: column;
-  background-color: $backgroundColor;
+  background-color: #d3d3d36a;
   justify-content: center;
   align-items: center;
   padding-bottom: 1rem;
   margin-bottom: 1rem;
   @include tablet {
+    background-color: #d3d3d30e;
     flex-direction: row;
     position: sticky;
     top: 1px;
@@ -20,17 +21,19 @@
   &__info {
     display: flex;
     position: absolute;
-    right: 25vw;
+    right: 15vw;
     @include shadowBox;
     background-color: white;
     flex-direction: column;
-    width: 60vw;
+    width: 70vw;
     padding: 2rem;
     justify-content: flex-end;
     align-items: center;
     z-index: 2;
     @include tablet {
-      width: 50%;
+      right: 8vw;
+      width: 70%;
+      height: 20vh;
       flex-direction: row;
       justify-content: space-between;
     }
@@ -44,7 +47,11 @@
       align-self: center;
     }
   }
-
+  &__userIcon {
+    @include tablet {
+      margin-left: 30vw;
+    }
+  }
   &__logo {
     font-size: 3rem;
     font-weight: 600;

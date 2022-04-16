@@ -6,6 +6,7 @@ import useLogin from "../../../hooks/useLogin";
 import { NavLink } from "react-router-dom";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { Avatar } from "@mui/material";
 
 const SERVER_URL = "http://localhost:8080";
 
@@ -96,64 +97,67 @@ function PostDetails(props) {
     getApplicantsByApi();
   }, [userInfo]);
 
-  console.log(getPost);
   return (
     <section className="postDetails">
       <div className="postDetails__box">
-        <div className="postDetails__box1">
-          <div className="postDetails__box1--image">
-            <div className="postSection__replace">
-              <img
-                className="postSection__picture"
-                src={getPost.picture_Details}
-                alt={`${getPost.title} picture`}
-              />
-            </div>
-          </div>
-          <div className="postDetails__box1--info">
-            <h1>{getPost.title}</h1>
+        <div className="postDetails__box1--image"></div>
+        <div className="postDetails__box1--info">
+          <div className="postDetails__box1--headline">
             <NavLink
-              className="navLink name"
+              className="navLink postDetails__box1--name"
               to={`/profile/${getPost.user_id}`}
             >
-              <Button variant="contained"> By {getPost.displayname}</Button>
+              <Avatar alt={getPost.displayname} src={getPost.avatar_url} />
             </NavLink>
-
-            <div className="postStatus">{getPost.status}</div>
-
-            <div>{showApplicantsList.length} People applied</div>
+            <h2> {getPost.title}</h2>
           </div>
-        </div>
-        <div className="postDetails__box2">
-          <h2>Content</h2>
-          <div className="time">Post at {getPost.updated_at}</div>
-          <div className="postType">{getPost.type}</div>
-          {getPost.salary && <div>salary: {getPost.salary}</div>}
-          {getPost.salary_replacement && (
-            <div>Non-Monetary Payment: {getPost.salary_replacement}</div>
-          )}
-          <div>Date: {getPost.requireDate}</div>
-          <div>Estimate Time: {getPost.estimate_time}</div>
-          <div>Detail: {getPost.content}</div>
+          <div className="postDetails__box1--StatAndCat">
+            <div className="postStatus">{getPost.status}</div>
+            <div className="postType">{getPost.type}</div>
+          </div>
+
+          <img
+            className="postSection__postPicture"
+            src={getPost.picture_Details}
+            alt={`${getPost.title} picture`}
+          />
         </div>
       </div>
+      <div className="postDetails__box2">
+        <h2>Content</h2>
+        <NavLink
+          className="navLink postDetails__box1"
+          to={`/profile/${getPost.user_id}`}
+        >
+          By {getPost.displayname}
+        </NavLink>
+        <div className="time">Post at {getPost.updated_at}</div>
+
+        {getPost.salary && <div>salary: {getPost.salary}</div>}
+        {getPost.salary_replacement && (
+          <div>Non-Monetary Payment: {getPost.salary_replacement}</div>
+        )}
+        <div>Required Date: {getPost.requireDate}</div>
+        <div>Estimate Time: {getPost.estimate_time}</div>
+        <div>Detail: {getPost.content}</div>
+        <div>{showApplicantsList.length} People applied</div>
+      </div>
+
       {isLoggedIn && userInfo.id === getPost.user_id ? (
         <div>
           <div className="post__button">
             <NavLink className="navLink" to={`/postEdit/${getPost.post_id}`}>
-              <Button variant="contained">Edit Post</Button>
+              <Button variant="contained">Edit</Button>
             </NavLink>
-            <div className="delete">
-              <Button
-                onClick={handlePostDelete}
-                startIcon={<DeleteIcon />}
-                variant="outlined"
-                color="error"
-              >
-                Delete Post
-              </Button>
-            </div>
-            {/* <button onClick={handlePostDelete}>Delete Post</button> */}
+
+            <Button
+              onClick={handlePostDelete}
+              startIcon={<DeleteIcon />}
+              variant="outlined"
+              color="error"
+            >
+              Delete
+            </Button>
           </div>
           {showApplicantsList.map((info) => (
             <NavLink
@@ -165,8 +169,6 @@ function PostDetails(props) {
               <div>content: {info.content}</div>
               <div className="applicantsSpe">I Need {info.offer}</div>
               <div className="time">time: {info.updated_at}</div>
-
-              {/* <button onClick={}>Accept</button> */}
             </NavLink>
           ))}
         </div>
@@ -183,10 +185,9 @@ function PostDetails(props) {
             </div>
           ) : (
             <>
-              <Button onClick={showApplyModal}>Apple Now</Button>
-              {/* <div onClick={showApplyModal} className="">
+              <div onClick={showApplyModal} className="post__apply">
                 Apply Now
-              </div> */}
+              </div>
               {showApply && (
                 <ApplyJob
                   handleApply={handleApply}

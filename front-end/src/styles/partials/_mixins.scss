@@ -66,7 +66,7 @@
 }
 
 @mixin shadowBox {
-  border: 1px solid $outline-borders;
-  box-shadow: 5px 2.5px 2.5px $shadow;
+  border: 1px solid $backgroundColor;
+  box-shadow: 2px 2px 2px $shadow;
   border-radius: 5px;
 }

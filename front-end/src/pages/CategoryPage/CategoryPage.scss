@@ -3,7 +3,7 @@
 
 .category {
   background-color: $backgroundColor;
-
+  padding: 2rem 0;
   &___wrapper {
     display: flex;
     flex-direction: column;
@@ -14,7 +14,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
-
+    padding: 0 4rem;
     &--box {
       height: 2rem;
       margin: 1rem;

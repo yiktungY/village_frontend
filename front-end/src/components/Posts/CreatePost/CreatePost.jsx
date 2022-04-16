@@ -40,7 +40,6 @@ function CreatePost(props) {
     },
   });
 
-
   const MonPayMethodFunction = () => {
     if (payMethodvalue === "Money") {
       setMonPayMethod(false);
@@ -48,7 +47,6 @@ function CreatePost(props) {
   };
 
   useEffect(() => {
-
     MonPayMethodFunction();
     document.title = "Upload Post";
   }, [payMethodvalue]);
@@ -116,10 +114,10 @@ function CreatePost(props) {
     <section className="createPage">
       {isLoggedIn ? (
         <>
-          <h1 className="headline">Create New Post</h1>
+          <h1 className="pageheader">Create New Post</h1>
           <div className="createPageForm">
             <form className="createPageForm__Upload" onSubmit={formHandler}>
-              <h2>Upload Photo</h2>
+              <h3>Upload Photo First</h3>
               <input
                 className="noStyle createPageForm__Upload--button"
                 type="file"
@@ -132,7 +130,7 @@ function CreatePost(props) {
               </button>
             </form>
             {progress ? (
-              <div className="regform__photo">
+              <div className="createPageForm__Upload--photo">
                 <img className="profilePicture" src={pictureUrl} alt="icon" />
                 <h3>Uploaded {progress} %</h3>
               </div>
@@ -161,10 +159,8 @@ function CreatePost(props) {
               <p className="errorMessage">{errors.content?.message}</p>
               <section className="dropdown">
                 <div className="subTitle">Type</div>
-
                 <Controller
                   name="type"
-                  className="dropdowninside"
                   control={control}
                   render={({ field }) => (
                     <ReactSelect
@@ -275,11 +271,13 @@ function CreatePost(props) {
                   />
                 </section>
               </div>
-              <button className="noStyle createPostButton" type="submit">
-                <Button variant="contained" endIcon={<SendIcon />}>
-                  Send
-                </Button>
-              </button>
+              <div className="createPostButton">
+                <button className="noStyle" type="submit">
+                  <Button variant="contained" endIcon={<SendIcon />}>
+                    Send
+                  </Button>
+                </button>
+              </div>
             </div>
           </form>
         </>

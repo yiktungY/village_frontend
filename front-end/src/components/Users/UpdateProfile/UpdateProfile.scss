@@ -1,37 +1,4 @@
-.updatedEffect {
-  .delayEffect30 {
-    animation: 3s fadeOut;
-    animation-fill-mode: forwards;
-    visibility: visible;
-  }
-  @keyframes fadeOut {
-    99% {
-      visibility: visible;
-    }
-    100% {
-      visibility: hidden;
-    }
-  }
-}
-
 .updatePage {
-  padding: 3rem;
-  &__box {
-    padding: 2rem;
-    margin-right: 1rem;
-  
-
-  }
-  &__title {
-    margin: 2rem;
-    font-size: 3rem;
-  }
-  &__form {
-    display: flex;
-    flex-direction: row;
-  }
-}
-
-.updateButton{
-
+  display: flex;
+  flex-direction: column;
 }

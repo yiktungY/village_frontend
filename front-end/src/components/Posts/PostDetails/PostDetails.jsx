@@ -115,34 +115,34 @@ function PostDetails(props) {
             <div className="postStatus">{getPost.status}</div>
             <div className="postType">{getPost.type}</div>
           </div>
-
-          <img
-            className="postSection__postPicture"
-            src={getPost.picture_Details}
-            alt={`${getPost.title} picture`}
-          />
         </div>
       </div>
-      <div className="postDetails__box2">
-        <h2>Content</h2>
-        <NavLink
-          className="navLink postDetails__box1"
-          to={`/profile/${getPost.user_id}`}
-        >
-          By {getPost.displayname}
-        </NavLink>
-        <div className="time">Post at {getPost.updated_at}</div>
+      <div className="postSection__postWrapper">
+        <img
+          className="postSection__postPicture"
+          src={getPost.picture_Details}
+          alt={`${getPost.title} picture`}
+        />
+        <div className="postDetails__box2">
+          <h2>Content</h2>
+          <NavLink
+            className="navLink postDetails__box1"
+            to={`/profile/${getPost.user_id}`}
+          >
+            By {getPost.displayname}
+          </NavLink>
+          <div className="time">Post at {getPost.updated_at}</div>
 
-        {getPost.salary && <div>salary: {getPost.salary}</div>}
-        {getPost.salary_replacement && (
-          <div>Non-Monetary Payment: {getPost.salary_replacement}</div>
-        )}
-        <div>Required Date: {getPost.requireDate}</div>
-        <div>Estimate Time: {getPost.estimate_time}</div>
-        <div>Detail: {getPost.content}</div>
-        <div>{showApplicantsList.length} People applied</div>
+          {getPost.salary && <div>salary: {getPost.salary}</div>}
+          {getPost.salary_replacement && (
+            <div>Non-Monetary Payment: {getPost.salary_replacement}</div>
+          )}
+          <div>Required Date: {getPost.requireDate}</div>
+          <div>Estimate Time: {getPost.estimate_time}</div>
+          <div>Detail: {getPost.content}</div>
+          <div>{showApplicantsList.length} People applied</div>
+        </div>
       </div>
-
       {isLoggedIn && userInfo.id === getPost.user_id ? (
         <div>
           <div className="post__button">

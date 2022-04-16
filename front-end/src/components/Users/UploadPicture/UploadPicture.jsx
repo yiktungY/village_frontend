@@ -2,7 +2,6 @@ import { ref, getDownloadURL, uploadBytesResumable } from "@firebase/storage";
 import { storage } from "../../../firebase/firebase";
 import React, { useState } from "react";
 import "./UploadPicture.scss";
-import PhotoCamera from "@mui/icons-material/PhotoCamera";
 
 import Button from "@mui/material/Button";
 const SERVER_URL = "http://localhost:8080";
@@ -52,27 +51,26 @@ function UploadPicture(props) {
   };
   return (
     <div className="regform">
+      {progress ? (
+        <div className="regform__photo">
+          <img className="profilePicture" src={url} alt="icon" />
+          <h3>Uploaded {progress} %</h3>
+        </div>
+      ) : (
+        <img
+          className="profilePicture"
+          src={props.userInfo.avatar_url}
+          alt="icon"
+        />
+      )}
       <form className="regform__upload" onSubmit={formHandler}>
-        <p>Change your profile Picture from google default: </p>
         <input className="navLink" type="file" />
-        <button type="submit" className="noStyle">
-          <Button variant="contained">Upload</Button>
-        </button>
+        <div className="createPostButton">
+          <button className="noStyle" type="submit">
+            <Button variant="contained">Submit</Button>
+          </button>
+        </div>
       </form>
-      <div className="regform__border">
-        {progress ? (
-          <div className="regform__photo">
-            <img className="profilePicture" src={url} alt="icon" />
-            <h3>Uploaded {progress} %</h3>
-          </div>
-        ) : (
-          <img
-            className="profilePicture"
-            src={props.userInfo.avatar_url}
-            alt="icon"
-          />
-        )}
-      </div>
     </div>
   );
 }

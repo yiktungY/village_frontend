@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import LoginButton from "../../Button/LoginButton/LoginButton";
-import UploadPicture from "../../Posts/UploadPicture/UploadPicture";
+import UploadPicture from "../../Users/UploadPicture/UploadPicture";
 import useLogin from "../../../hooks/useLogin";
 const SERVER_URL = "http://localhost:8080";
 
@@ -53,7 +53,7 @@ function UpdateProfile(props) {
 
   return (
     <div className="updatePage">
-      <h1 className="headline">Update</h1>
+      <h1 className="pageHeader">Update</h1>
       {isLoggedIn ? (
         <div>
           <UploadPicture userInfo={userInfo} />
@@ -61,8 +61,7 @@ function UpdateProfile(props) {
             className="updatePage__form"
             onSubmit={handleSubmit(handelUpdate)}
           >
-            <div className="updatePage__box">
-              <div>Email: {userInfo.email}</div>
+            <div className="updatePage__box boxOne">
               <div>Display Name: </div>
               <input
                 className="inputStyle"
@@ -81,10 +80,6 @@ function UpdateProfile(props) {
                 {...register("familyName", { required: "This is required" })}
               />
               <p>{errors.familyName?.message}</p>
-            </div>
-            <div className="updatePage__box">
-              <div>Rating: {userInfo.rating}</div>
-              <div>Done Case: {userInfo.doneCase}</div>
               <div>Age: </div>
               <input
                 className="inputStyle"
@@ -99,11 +94,19 @@ function UpdateProfile(props) {
                 })}
               />
               <p>{errors.address?.message}</p>
-              <div>Account creates at {userInfo.updated_at}</div>
+              <div className="createPostButton">
+                <button className="noStyle" type="submit">
+                  <Button variant="contained">Submit</Button>
+                </button>
+              </div>
+            </div>
+            <div className="updatePage__box boxTwo">
+              <h2>Info you cannot change</h2>
+              <div>Email: {userInfo.email}</div>
+              <div>Rating: {userInfo.rating}</div>
+              <div>Done Case: {userInfo.doneCase}</div>
 
-              <button className="noStyle updateButton" type="submit">
-                <Button variant="contained"> Update</Button>
-              </button>
+              <div>Account creates at {userInfo.updated_at}</div>
             </div>
           </form>
         </div>

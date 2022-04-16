@@ -45,7 +45,7 @@ function CategoryPage() {
           onChange={inputHandler}
           variant="outlined"
           fullWidth
-          label="Search"
+          label="Search Key Words"
         />
       </div>
 

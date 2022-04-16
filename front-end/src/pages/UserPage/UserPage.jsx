@@ -6,7 +6,7 @@ import axios from "axios";
 import { NavLink } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { Avatar } from "@mui/material";
-// import UploadPicture from "../../components/UploadPicturetoPost/UploadPicturetoPost";
+import UploadPicture from "../../components/Users/UploadPicture/UploadPicture";
 
 const SERVER_URL = "http://localhost:8080";
 
@@ -124,7 +124,10 @@ function UserPage(props) {
         {userPostList.length > 0 && (
           <div className="profile__info--areathree">
             <h2 className="profile__info--subheader">The Latest Post</h2>
-            <NavLink className="navLink " to={`/post/${userPostList.post_id}`}>
+            <NavLink
+              className="navLink "
+              to={`/post/${userPostList[userPostList.length - 1].post_id}`}
+            >
               <h2>{userPostList[userPostList.length - 1].title}</h2>
               <div className="profile__info--postTextInfo">
                 <img
@@ -166,7 +169,7 @@ function UserPage(props) {
                         Two more steps for your Journey...
                       </h1>
 
-                      {/* <UploadPicture userInfo={userInfo} /> */}
+                      <UploadPicture userInfo={userInfo} />
 
                       <div className="register__button">
                         <Button variant="outlined" onClick={handleNextRegArea}>

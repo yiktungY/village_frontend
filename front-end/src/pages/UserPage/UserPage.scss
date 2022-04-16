@@ -148,25 +148,35 @@
 .register {
   position: absolute;
   top: 15vh;
-  left: 15vw;
+
   background-color: white;
-  width: 75vw;
-  padding-top: 4rem;
-  padding-left: 4rem;
-  height: 75vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  width: 90%;
+  padding: 2rem;
+
   @include shadowBox;
   border-radius: 5px;
-
+  @include tablet {
+    position: absolute;
+    top: 15vh;
+    left: 15vw;
+    background-color: white;
+    width: 75vw;
+    padding-top: 4rem;
+    padding-left: 4rem;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @include shadowBox;
+    border-radius: 5px;
+  }
   &__background {
     position: absolute;
     top: 0px;
     left: 0px;
     background-color: rgba(14, 15, 15, 0.327);
     width: 100vw;
-    height: 100vh;
+    height: 90rem;
   }
 
   &__heading {
@@ -189,20 +199,33 @@
   }
   &__box {
     display: flex;
-    flex-direction: row;
-
+    flex-direction: column;
     justify-content: space-between;
-    margin: 3rem 0;
+    margin: 1rem 0;
+    @include tablet {
+      flex-direction: row;
+
+      margin: 3rem 0;
+    }
 
     &--topic {
-      margin-right: 2rem;
+      @include tablet {
+        margin-right: 2rem;
+      }
     }
   }
   &__button {
     display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-around;
-    padding: 3rem 0 2rem 0;
+    flex-direction: column;
+    width: 10rem;
+    height: 8rem;
+    justify-content: space-between;
+    align-items: center;
+    @include tablet {
+      flex-direction: row;
+      width: 100%;
+      justify-content: space-around;
+      padding: 3rem 0 2rem 0;
+    }
   }
 }

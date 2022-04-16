@@ -15,11 +15,12 @@
     &:nth-child(odd) {
       background-color: $backgroundColor;
     }
+
     color: $global-text-color;
     text-decoration: none;
     width: 100%;
     margin: 1rem 0;
-    padding: 1rem 0;
+    padding: 1rem;
     @include shadowBox;
     border-bottom: 1px solid $outline-borders;
     @include tablet {

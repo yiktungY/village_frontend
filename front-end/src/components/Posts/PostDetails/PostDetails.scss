@@ -18,6 +18,9 @@
     background-color: #1976d2;
     border-radius: 50px;
     margin: 2rem 0;
+    @include tablet {
+      width: 10rem;
+    }
   }
 }
 
@@ -45,6 +48,10 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+
+      @include tablet {
+        justify-content: start;
+      }
     }
     &--headline {
       padding: 1rem 0;
@@ -58,23 +65,26 @@
   }
   &__box2 {
     @include shadowBox;
-    margin: 2rem 0;
+
     background-color: $backgroundColor;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 2rem;
     @include tablet {
+      width: 40%;
     }
   }
 }
 
 .appliants {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  @include shadowBox;
+  background-color: $backgroundColor;
+  margin-bottom: 2rem;
   @include tablet {
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    @include shadowBox;
   }
 }
 
@@ -90,9 +100,18 @@
 
 .postSection__postPicture {
   width: 100%;
-  height: 100%;
+  height: auto;
+  border-radius: 5px;
   @include tablet {
-    width: 80%;
+    width: 40%;
+  }
+}
+.postSection__postWrapper {
+  margin: 2rem 0;
+  @include tablet {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 }
 

@@ -10,7 +10,7 @@
 
 body {
   @include body-text-medium;
-  font-family: garamond;
+  font-family: Arial;
   color: $global-text-color;
 }
 
@@ -100,15 +100,23 @@ body {
   border-radius: 50px;
   width: 12rem;
   text-align: center;
+  color: white;
+  font-weight: 600;
 }
 
 .postType {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin: 1rem;
   padding: 0.5rem;
   background-color: rgba(27, 150, 199, 0.567);
 }
 
 .postStatus {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin: 1rem;
   padding: 0.5rem;
   background-color: rgba(55, 206, 21, 0.731);

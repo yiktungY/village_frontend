@@ -49,11 +49,11 @@
 }
 
 @mixin body-text-medium {
-  font-size: 0.8125rem;
-  line-height: 1.25rem;
+  font-size: 13px;
+  line-height: 20px;
   @include tablet {
-    font-size: 0.875rem;
-    line-height: 1.375rem;
+    font-size: 14px;
+    line-height: 22px;
   }
 }
 @mixin body-text-small {

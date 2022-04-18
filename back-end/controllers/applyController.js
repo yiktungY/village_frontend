@@ -13,6 +13,7 @@ const applyToPost = (req, res) => {
   knex("applyList")
     .insert({
       user_id: req.user.id,
+      avatar_url: req.user.avatar_url,
       username: req.user.displayName,
       post_id: req.body.post_id,
       post_title: req.body.post_title,

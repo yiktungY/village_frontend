@@ -161,27 +161,27 @@ function PostDetails(props) {
           </div>
           {showApplicantsList.map((info) => (
             <NavLink
-              className="post navLink"
+              className="post navLink applicantsList"
               key={info.id}
               to={`/profile/${info.user_id}`}
             >
-              <div>appliants: {info.username}</div>
-              <div>content: {info.content}</div>
+              <Avatar src={info.avatar_url} alt={info.username} />
+              <div>message: {info.content}</div>
               <div className="applicantsSpe">I Need {info.offer}</div>
               <div className="time">time: {info.updated_at}</div>
+              <div>By {info.username}</div>
             </NavLink>
           ))}
         </div>
       ) : (
         <div className="appliants">
           {isLoggedIn && applyState.user_id === userInfo.id ? (
-            <div className="">
-              <h2>Your application</h2>
-              <h3> {applyState.content}</h3>
+            <div className="applicantsList">
+              <h2>Your application: {applyState.content}</h2>
               <div>Requires: {applyState.offer}</div>
               <div className="time">{applyState.updated_at}</div>
 
-              <div>Applied</div>
+              <Button>Applied</Button>
             </div>
           ) : (
             <>

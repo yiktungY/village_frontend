@@ -78,6 +78,7 @@ function UserPage(props) {
       });
     }
   }, [userInfo]);
+  console.log(userPostList);
 
   return (
     <section className="profile">
@@ -126,23 +127,19 @@ function UserPage(props) {
             <h2 className="profile__info--subheader">The Latest Post</h2>
             <NavLink
               className="navLink "
-              to={`/post/${userPostList[userPostList.length - 1].post_id}`}
+              to={`/post/${userPostList[0].post_id}`}
             >
-              <h2>{userPostList[userPostList.length - 1].title}</h2>
+              <h2>{userPostList[0].title}</h2>
               <div className="profile__info--postTextInfo">
                 <img
                   className="profile__info--picture"
-                  src={userPostList[userPostList.length - 1].picture_Details}
-                  alt="{userPostList[userPostList.length - 1].title}"
+                  src={userPostList[0].picture_Details}
+                  alt={userPostList[0].title}
                 />
                 <div className="profile__info--postText">
-                  <div>{userPostList[userPostList.length - 1].content}</div>
-                  <div className="postType">
-                    {userPostList[userPostList.length - 1].type}
-                  </div>
-                  <div className="postStatus">
-                    {userPostList[userPostList.length - 1].status}
-                  </div>
+                  <div>{userPostList[0].content}</div>
+                  <div className="postType">{userPostList[0].type}</div>
+                  <div className="postStatus">{userPostList[0].status}</div>
                 </div>
               </div>
             </NavLink>

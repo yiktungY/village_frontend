@@ -48,15 +48,7 @@ function PostsPage() {
         </div>
         <h1 className="postPage__text--subheader">This is VILLAGE</h1>
       </div>
-      <div className="searchBar">
-        <TextField
-          id="outlined-basic"
-          onChange={inputHandler}
-          variant="outlined"
-          fullWidth
-          label="Search Topic, Category, User... "
-        />
-      </div>
+
       {posts && (
         <div className="newPostSection">
           <h2 className="newPostSection__topic">Lastest Posts</h2>
@@ -125,7 +117,15 @@ function PostsPage() {
           </Swiper>
         </div>
       )}
-
+      <div className="searchBar">
+        <TextField
+          id="outlined-basic"
+          onChange={inputHandler}
+          variant="outlined"
+          fullWidth
+          label="Search Topic, Category, User... "
+        />
+      </div>
       <h2 className="newPostSection__topic">All Posts</h2>
       {posts && <GetPostComponent posts={posts} input={inputText} />}
     </section>

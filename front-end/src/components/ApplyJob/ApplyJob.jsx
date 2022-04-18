@@ -57,10 +57,10 @@ function ApplyJob(props) {
         <div>
           <div className="applyList__background"></div>
           <div className="applyList__form">
-            <div onClick={props.hideApplyModal}>cancel</div>
-            <div className="">OPPS! You haven't logged in yet...</div>
+            <Button onClick={props.hideApplyModal}>cancel</Button>
+            <h2 className="">OPPS! You haven't logged in yet...</h2>
             <NavLink className="navLink LinkButton" to="/loginWithGoogle">
-              Click here
+              <Button variant="contained"> Click here</Button>
             </NavLink>
           </div>
         </div>

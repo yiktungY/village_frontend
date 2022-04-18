@@ -21,6 +21,7 @@ body {
   padding-left: 2rem;
   height: 3rem;
   @include tablet {
+    padding-left: 2rem;
     width: 20rem;
   }
 }

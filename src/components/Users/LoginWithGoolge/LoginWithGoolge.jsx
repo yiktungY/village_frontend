@@ -3,7 +3,7 @@ import "animate.css";
 import Button from "@mui/material/Button";
 import { useEffect } from "react";
 
-const SERVER_URL = "http://localhost:8080";
+const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
 
 function LoginWithGoolge() {
   useEffect(() => {

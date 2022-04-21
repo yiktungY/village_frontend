@@ -13,7 +13,7 @@ import { storage } from "../../../firebase/firebase";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 
-const SERVER_URL = "http://localhost:8080";
+const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
 
 function CreatePost(props) {
   const { userInfo, isLoggedIn } = useLogin();

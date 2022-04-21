@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import LoginButton from "../../Button/LoginButton/LoginButton";
 import UploadPicture from "../../Users/UploadPicture/UploadPicture";
 import useLogin from "../../../hooks/useLogin";
-const SERVER_URL = "http://localhost:8080";
+const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
 
 function UpdateProfile(props) {
   const { userInfo, isLoggedIn } = useLogin();

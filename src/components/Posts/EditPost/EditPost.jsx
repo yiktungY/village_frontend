@@ -10,7 +10,7 @@ import ReactSelect from "react-select";
 import ReactDatePicker from "react-datepicker";
 import { Button } from "@mui/material";
 import useLogin from "../../../hooks/useLogin";
-const SERVER_URL = "http://localhost:8080";
+const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
 
 function EditPost(props) {
   const { userInfo, isLoggedIn } = useLogin();

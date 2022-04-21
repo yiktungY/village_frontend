@@ -23,7 +23,6 @@ function App() {
   return (
     <Router>
       <Header />
-
       <Switch>
         <Redirect exact from="/" to="/home" />
         <Route path="/home" exact component={PostsPage} />

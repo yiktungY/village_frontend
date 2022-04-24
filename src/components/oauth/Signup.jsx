@@ -5,7 +5,7 @@ import {
   auth,
   registerWithEmailAndPassword,
   signInWithGoogle,
-} from "../firebase";
+} from "../../firebase/firebase";
 import axios from "axios";
 const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
 

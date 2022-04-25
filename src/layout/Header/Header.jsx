@@ -5,7 +5,7 @@ import Avatar from "@mui/material/Avatar";
 import useLogin from "../../hooks/useLogin";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import Signup from "../../components/oauth/Signup";
+// import Signup from "../../components/oauth/Signup";
 function Header() {
   const { userInfo, isLoggedIn } = useLogin();
   const [iconInfo, setIconInfo] = useState(false);
@@ -29,7 +29,7 @@ function Header() {
           Vi<span className="header__logo--special">ll</span>ge
         </div>
       </NavLink>
-      <Signup />
+      {/* <Signup /> */}
       {isLoggedIn ? (
         <div>
           <Avatar

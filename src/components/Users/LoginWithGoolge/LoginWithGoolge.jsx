@@ -2,7 +2,8 @@ import "./LoginWithGoolge.scss";
 import "animate.css";
 import Button from "@mui/material/Button";
 import { useEffect } from "react";
-
+import Login from "../Login/Login";
+import SignUp from "../Signup/SignUp";
 const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
 
 function LoginWithGoolge() {
@@ -31,6 +32,10 @@ function LoginWithGoolge() {
           </Button>
         </div>
       </div>
+
+      <SignUp />
+      <h2>login</h2>
+      <Login />
     </div>
   );
 }

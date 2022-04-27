@@ -31,7 +31,6 @@ export default function Login() {
 
   useEffect(() => {
     if (login) {
-    
       console.log("login!!!");
     }
   });

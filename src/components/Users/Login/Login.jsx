@@ -20,6 +20,7 @@ export default function Login() {
         console.log(response);
         sessionStorage.authToken = response.data.token;
         useLogin(true);
+
         // sessionStorage.setItem("token", response.data.token);
       })
       .catch((err) => {
@@ -30,6 +31,7 @@ export default function Login() {
 
   useEffect(() => {
     if (login) {
+    
       console.log("login!!!");
     }
   });

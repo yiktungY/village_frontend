@@ -7,15 +7,18 @@ export default function useLogin(userId) {
   const [userInfo, setUserInfo] = useState("");
 
   const loginFunction = () => {
-    axios
-      .get(`${SERVER_URL}/auth/profile`, { withCredentials: true })
-      .then((res) => {
-        if (res.data) {
-          setisLoggedIn(true);
-          setUserInfo(res.data);
-        }
-      })
-      .catch((err) => console.log(err));
+    if (sessionStorage.authToken) {
+      setisLoggedIn(true);
+    }
+    // axios
+    //   .get(`${SERVER_URL}/auth/profile`, { withCredentials: true })
+    //   .then((res) => {
+    //     if (res.data) {
+    //       setisLoggedIn(true);
+    //       setUserInfo(res.data);
+    //     }
+    //   })
+    //   .catch((err) => console.log(err));
   };
 
   useEffect(() => {

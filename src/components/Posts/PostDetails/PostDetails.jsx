@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Avatar } from "@mui/material";
 
-const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
+const SERVER_URL = "http://localhost:8080";
 
 function PostDetails(props) {
   const { userInfo, isLoggedIn } = useLogin();

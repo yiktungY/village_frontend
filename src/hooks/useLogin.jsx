@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
+const SERVER_URL = "http://localhost:8080";
 
 export default function useLogin(userId) {
   const [isLoggedIn, setisLoggedIn] = useState(false);
@@ -9,16 +9,15 @@ export default function useLogin(userId) {
   const loginFunction = () => {
     if (sessionStorage.authToken) {
       setisLoggedIn(true);
+      axios
+        .get(`${SERVER_URL}/users/${sessionStorage.userId}`)
+        .then((res) => {
+          if (res.data) {
+            setUserInfo(res.data);
+          }
+        })
+        .catch((err) => console.log(err));
     }
-    // axios
-    //   .get(`${SERVER_URL}/auth/profile`, { withCredentials: true })
-    //   .then((res) => {
-    //     if (res.data) {
-    //       setisLoggedIn(true);
-    //       setUserInfo(res.data);
-    //     }
-    //   })
-    //   .catch((err) => console.log(err));
   };
 
   useEffect(() => {

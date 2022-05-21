@@ -1,5 +1,5 @@
 import "./CreateAccount.scss";
-const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
+const SERVER_URL = "http://localhost:8080";
 import "animate.css";
 import { useEffect } from "react";
 import Button from "@mui/material/Button";

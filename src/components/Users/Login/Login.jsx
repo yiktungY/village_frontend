@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 const SERVER_URL = "http://localhost:8080";
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
-export default function Login() {
+export default function Login(props) {
   const [login, useLogin] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -17,11 +18,13 @@ export default function Login() {
         password: data.password,
       })
       .then((response) => {
-        console.log(response);
+        console.log(response, "res");
         sessionStorage.authToken = response.data.token;
         useLogin(true);
-
+        sessionStorage.setItem("userId", response.data.id);
         // sessionStorage.setItem("token", response.data.token);
+        console.log(response.data.id);
+        props.history.push(`/profile/${response.data.id}`);
       })
       .catch((err) => {
         console.log(err);
@@ -31,9 +34,10 @@ export default function Login() {
 
   useEffect(() => {
     if (login) {
+      console.log(data);
       console.log("login!!!");
     }
-  });
+  }, []);
 
   return (
     <>

@@ -7,7 +7,6 @@
   flex-direction: column;
 
   &__text {
-    background-image: url(../../assets/images/village-1649968546188-9826.jpg);
     height: 10rem;
     background-size: 150%;
     background-repeat: no-repeat;
@@ -22,28 +21,29 @@
 
     &--header,
     &--subheader {
-      background-color: white;
       padding: 0.2rem 1rem;
       opacity: 0.8;
       font-size: 1.5rem;
       line-height: 1.5rem;
-      color: #3a86ff;
+      color: black;
       @include tablet {
         padding: 1rem 2rem;
-        font-size: 2rem;
+        font-size: 5rem;
         line-height: 2rem;
       }
     }
 
     &--subheaderTwo {
-      color: #d3d3d3;
+      color: black;
+      background-color: #d3d3d3;
       font-weight: 800;
       font-size: 1rem;
       line-height: 1rem;
       padding: 0.2rem 1rem;
       @include tablet {
         padding: 1rem 2rem;
-        font-size: 1.5rem;
+        font-size: 2.5rem;
+        margin: 1rem 0;
         line-height: 1.5rem;
       }
     }

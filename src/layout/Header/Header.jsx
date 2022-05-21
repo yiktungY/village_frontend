@@ -10,6 +10,7 @@ function Header() {
   const { userInfo, isLoggedIn } = useLogin();
   const [iconInfo, setIconInfo] = useState(false);
 
+  console.log(userInfo, "user");
   const handleIconInfo = () => {
     if (!iconInfo) {
       setIconInfo(true);

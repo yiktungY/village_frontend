@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import "./UploadPicture.scss";
 
 import Button from "@mui/material/Button";
-const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
+const SERVER_URL = "http://localhost:8080";
 import axios from "axios";
 
 function UploadPicture(props) {

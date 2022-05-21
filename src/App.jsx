@@ -16,7 +16,8 @@ import CreatePost from "./components/Posts/CreatePost/CreatePost";
 import PostDetails from "./components/Posts/PostDetails/PostDetails";
 import EditPost from "./components/Posts/EditPost/EditPost";
 import ApplyJob from "./components/ApplyJob/ApplyJob";
-import LoginWithGoolge from "./components/Users/LoginWithGoolge/LoginWithGoolge";
+import Login from "./components/Users/Login/Login";
+import SignUp from "./components/Users/Signup/SignUp";
 import CreateAccount from "./components/Users/CreateAccount/CreateAccount";
 
 function App() {
@@ -26,7 +27,8 @@ function App() {
       <Switch>
         <Redirect exact from="/" to="/home" />
         <Route path="/home" exact component={PostsPage} />
-        <Route path="/loginWithGoogle" component={LoginWithGoolge} />
+        <Route path="/login" component={Login} />
+        <Route path="/signUp" component={SignUp} />
         <Route path="/registerSuccee" component={CreateAccount} />
         <Route path="/profile/:id" component={UserPage} />
         <Route path="/users/posts/:id" component={UserPostList} />

@@ -3,9 +3,9 @@ import { useState, useEffect } from "react";
 const SERVER_URL = "http://localhost:8080";
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
+import { NavLink } from "react-router-dom";
 export default function Login(props) {
   const [login, useLogin] = useState(false);
-
   const {
     register,
     handleSubmit,
@@ -18,12 +18,9 @@ export default function Login(props) {
         password: data.password,
       })
       .then((response) => {
-        console.log(response, "res");
         sessionStorage.authToken = response.data.token;
         useLogin(true);
         sessionStorage.setItem("userId", response.data.id);
-        // sessionStorage.setItem("token", response.data.token);
-        console.log(response.data.id);
         props.history.push(`/profile/${response.data.id}`);
       })
       .catch((err) => {
@@ -33,6 +30,7 @@ export default function Login(props) {
   };
 
   useEffect(() => {
+    document.title = "Login";
     if (login) {
       console.log(data);
       console.log("login!!!");
@@ -40,7 +38,7 @@ export default function Login(props) {
   }, []);
 
   return (
-    <>
+    <div className="login">
       <form className="createPostTwo" onSubmit={handleSubmit(handleLogin)}>
         <div className="subTitle">email: </div>
 
@@ -57,13 +55,14 @@ export default function Login(props) {
           placeholder="*******"
         />
         <p className="errorMessage">{errors.password?.message}</p>
-        <button
-          type="submit"
-          className="noStyle createPageForm__Upload--button"
-        >
-          <Button variant="contained">Login</Button>
-        </button>
+        <Button type="submit" variant="contained">
+          Login
+        </Button>
       </form>
-    </>
+      <div>
+        Don't have an account?
+        <NavLink to="/SignUp">Sign up for free</NavLink>
+      </div>
+    </div>
   );
 }

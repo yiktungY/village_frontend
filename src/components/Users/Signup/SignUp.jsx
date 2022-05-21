@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 const SERVER_URL = "http://localhost:8080";
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
-export default function SignUp() {
+import { NavLink } from "react-router-dom";
+export default function SignUp(props) {
   const [signUp, useSignUp] = useState(false);
   const {
     register,
@@ -20,6 +21,7 @@ export default function SignUp() {
       .then((res) => {
         console.log(res);
         useSignUp(true);
+        props.history.push(`/registerSuccee`);
       })
       .catch((err) => console.log(err));
   };
@@ -31,7 +33,7 @@ export default function SignUp() {
   });
 
   return (
-    <>
+    <div className="login">
       <form className="createPostTwo" onSubmit={handleSubmit(handleSignup)}>
         <div className="subTitle">email: </div>
 
@@ -54,13 +56,14 @@ export default function SignUp() {
           placeholder="*******"
         />
         <p className="errorMessage">{errors.email?.message}</p>
-        <button
-          type="submit"
-          className="noStyle createPageForm__Upload--button"
-        >
-          <Button variant="contained">Sign Up</Button>
-        </button>
+        <Button type="submit" variant="contained">
+          Sign Up
+        </Button>
       </form>
-    </>
+      <div>
+        Already have an account?
+        <NavLink to="/login">Sign in</NavLink>
+      </div>
+    </div>
   );
 }

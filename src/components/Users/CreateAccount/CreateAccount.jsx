@@ -17,7 +17,7 @@ function CreateAccount() {
         <Button
           variant="contained"
           color="success"
-          href={`${SERVER_URL}/auth/google`}
+          href={`${SERVER_URL}/login`}
         >
           Click here to login
         </Button>

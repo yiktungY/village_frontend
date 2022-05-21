@@ -59,7 +59,7 @@ function Header() {
         </div>
       ) : (
         <>
-          <NavLink className="navLink" to="/loginWithGoogle">
+          <NavLink className="navLink" to="/login">
             <Button variant="contained" disableElevation>
               Log in / Create a new Account
             </Button>

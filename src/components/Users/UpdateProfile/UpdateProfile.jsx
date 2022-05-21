@@ -20,7 +20,7 @@ function UpdateProfile(props) {
 
   const handelUpdate = (data) => {
     const newUpdateInfo = {
-      // avatar_url: data.avatar_url,
+      avatar_url: data.avatar_url,
       givenName: data.givenName,
       familyName: data.familyName,
       displayName: data.displayName,
@@ -32,8 +32,7 @@ function UpdateProfile(props) {
         withCredentials: true,
       })
       .then((data) => {
-        // setUserInfo(true);
-        location.reload();
+        console.log(props);
         props.history.push(`/profile/${userInfo.id}`);
       })
       .catch((err) => console.log(err));

@@ -11,12 +11,14 @@ import "swiper/css";
 import "swiper/css/effect-flip";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const SERVER_URL = "http://localhost:8080";
 
 function PostsPage() {
   const [posts, setPosts] = useState("");
   const [inputText, setInputText] = useState("");
+  const [loading, setLoading] = useState(true);
   const inputHandler = (e) => {
     //convert input text to lower case
     var lowerCase = e.target.value.toLowerCase();
@@ -28,6 +30,7 @@ function PostsPage() {
       .get(`${SERVER_URL}/posts`)
       .then((posts) => {
         setPosts(posts.data);
+        setLoading(false);
       })
       .catch((err) => {
         console.log("Error fetching posts:", err);
@@ -49,7 +52,11 @@ function PostsPage() {
         <h1 className="postPage__text--subheader">This is VILLAGE</h1>
       </div>
 
-      {posts && (
+      {loading ? (
+        <div className="loading">
+          <ClipLoader />
+        </div>
+      ) : (
         <div className="newPostSection">
           <h2 className="newPostSection__topic">Lastest Posts</h2>
           <Swiper
@@ -119,6 +126,7 @@ function PostsPage() {
       )}
       <div className="searchBar">
         <TextField
+          className="searchBarColor"
           id="outlined-basic"
           onChange={inputHandler}
           variant="outlined"
@@ -127,7 +135,13 @@ function PostsPage() {
         />
       </div>
       <h2 className="newPostSection__topic">All Posts</h2>
-      {posts && <GetPostComponent posts={posts} input={inputText} />}
+      {loading ? (
+        <div className="loading">
+          <ClipLoader />
+        </div>
+      ) : (
+        <GetPostComponent posts={posts} input={inputText} />
+      )}
     </section>
   );
 }

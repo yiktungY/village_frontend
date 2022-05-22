@@ -2,7 +2,7 @@ import "./LoginButton.scss";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 const ButtonLink = styled.button`
-  blackground-color: transparent;
+  background-color: transparent;
   border: 1px solid black;
   width: 3rem;
   height: 3rem;

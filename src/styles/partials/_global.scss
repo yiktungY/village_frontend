@@ -11,7 +11,6 @@
 body {
   @include body-text-medium;
   font-family: "Familjen Grotesk", sans-serif;
-  color: $global-text-color;
 }
 
 .inputStyle {
@@ -133,4 +132,10 @@ body {
   @include tablet {
     height: 30rem;
   }
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

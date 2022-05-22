@@ -22,6 +22,7 @@ export default function Login(props) {
         useLogin(true);
         sessionStorage.setItem("userId", response.data.id);
         props.history.push(`/profile/${response.data.id}`);
+        location.reload();
       })
       .catch((err) => {
         console.log(err);

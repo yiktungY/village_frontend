@@ -16,7 +16,6 @@
       background-color: $backgroundColor;
     }
 
-    color: $global-text-color;
     text-decoration: none;
     width: 100%;
     margin: 1rem 0;
@@ -49,10 +48,11 @@
     max-height: 40vh;
     border-radius: 5px;
     @include shadowBox;
-
+    object-fit: cover;
     @include tablet {
       min-height: 20vh;
       max-height: 20vh;
+      object-fit: cover;
     }
   }
   &__noPicture {
@@ -79,6 +79,7 @@
     line-height: 24px;
     font-weight: 600;
     margin: 1rem 0;
+    color: rgb(28, 144, 221);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

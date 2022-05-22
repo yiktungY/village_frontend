@@ -1,4 +1,5 @@
 import axios from "axios";
+import "./Login.scss";
 import { useState, useEffect } from "react";
 const SERVER_URL = "http://localhost:8080";
 import Button from "@mui/material/Button";
@@ -40,9 +41,14 @@ export default function Login(props) {
 
   return (
     <div className="login">
-      <form className="createPostTwo" onSubmit={handleSubmit(handleLogin)}>
-        <div className="subTitle">email: </div>
-
+      <form className="login__box" onSubmit={handleSubmit(handleLogin)}>
+        <div className="login__subTitle">Welcome to Village</div>
+        <div>
+          Don't have an account?
+          <NavLink className="navLink" to="/SignUp">
+            Sign up for free
+          </NavLink>
+        </div>
         <input
           className="inputStyle"
           {...register("email", { required: "This is required." })}
@@ -60,10 +66,6 @@ export default function Login(props) {
           Login
         </Button>
       </form>
-      <div>
-        Don't have an account?
-        <NavLink to="/SignUp">Sign up for free</NavLink>
-      </div>
     </div>
   );
 }

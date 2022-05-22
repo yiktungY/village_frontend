@@ -11,7 +11,7 @@ function CreateAccount() {
   return (
     <div className="loginSuccessed">
       <div className="loginSuccessed__background">
-        <h2 className="animate__animated animate__fadeInDown ">
+        <h2 className="animate__animated animate__fadeInDown loginSuccessed__title ">
           Congregate!!! Your account is successfully created...
         </h2>
         <Button

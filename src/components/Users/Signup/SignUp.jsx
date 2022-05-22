@@ -34,36 +34,35 @@ export default function SignUp(props) {
 
   return (
     <div className="login">
-      <form className="createPostTwo" onSubmit={handleSubmit(handleSignup)}>
-        <div className="subTitle">email: </div>
-
+      <form className="login__box" onSubmit={handleSubmit(handleSignup)}>
+        <div className="login__subTitle">Create Account </div>
+        <div>
+          Already have an account?
+          <NavLink to="/login">Sign in</NavLink>
+        </div>
         <input
           className="inputStyle"
           {...register("username", { required: "This is required." })}
-          placeholder="Yik"
+          placeholder="UserName"
         />
         <p className="errorMessage">{errors.email?.message}</p>
         <input
           className="inputStyle"
           {...register("email", { required: "This is required." })}
-          placeholder="xxx@gmail.com"
+          placeholder="Email"
         />
         <p className="errorMessage">{errors.email?.message}</p>
         <input
           type="password"
           className="inputStyle"
           {...register("password", { required: "This is required." })}
-          placeholder="*******"
+          placeholder="Password"
         />
         <p className="errorMessage">{errors.email?.message}</p>
         <Button type="submit" variant="contained">
           Sign Up
         </Button>
       </form>
-      <div>
-        Already have an account?
-        <NavLink to="/login">Sign in</NavLink>
-      </div>
     </div>
   );
 }

@@ -19,6 +19,7 @@ body {
   border-radius: 5px;
   padding-left: 2rem;
   height: 3rem;
+  margin: 1rem 0;
   @include tablet {
     padding-left: 2rem;
     width: 20rem;
@@ -61,7 +62,11 @@ body {
 }
 .navLink {
   text-decoration: none;
-  color: $global-text-color;
+  color: #3a86ff;
+  &:hover {
+    text-decoration: underline;
+    font-weight: 600;
+  }
 }
 
 .LinkButton {

@@ -32,7 +32,7 @@ function App() {
   };
   return (
     <Router>
-      <div className={setTheme ? "darkTheme" : "lightTheme"}>
+      <div className={setTheme ? "lightTheme" : "darkTheme"}>
         <Header />
         <ToggleTheme handleTheme={handleTheme} setTheme={setTheme} />
         <Switch>

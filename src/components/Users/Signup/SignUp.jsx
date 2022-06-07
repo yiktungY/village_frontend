@@ -1,36 +1,25 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
-const SERVER_URL = "http://localhost:8080";
+import { useEffect } from "react";
+
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
-export default function SignUp(props) {
-  const [signUp, useSignUp] = useState(false);
+export default function SignUp({ user, signup }) {
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm("");
-  const handleSignup = (data) => {
-    axios
-      .post(`${SERVER_URL}/signup`, {
-        username: data.username,
-        email: data.email,
-        password: data.password,
-      })
-      .then((res) => {
-        console.log(res);
-        useSignUp(true);
-        props.history.push(`/registerSuccee`);
-      })
-      .catch((err) => console.log(err));
+  const handleSignup = async (data) => {
+    const username = data.username;
+    const email = data.email;
+    const password = data.password;
+    await signup({ username, email, password });
   };
 
-  useEffect(() => {
-    if (signUp) {
-      console.log("reg!!!");
-    }
-  });
+  // useEffect(() => {
+  //   if (user && user.id) history.push("/home");
+  // }, [user, history]);
 
   return (
     <div className="login">
@@ -45,10 +34,16 @@ export default function SignUp(props) {
           {...register("username", { required: "This is required." })}
           placeholder="UserName"
         />
-        <p className="errorMessage">{errors.email?.message}</p>
+        <p className="errorMessage">{errors.username?.message}</p>
         <input
           className="inputStyle"
-          {...register("email", { required: "This is required." })}
+          {...register("email", {
+            required: "This is required.",
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: "Invalid Email Address",
+            },
+          })}
           placeholder="Email"
         />
         <p className="errorMessage">{errors.email?.message}</p>
@@ -58,7 +53,7 @@ export default function SignUp(props) {
           {...register("password", { required: "This is required." })}
           placeholder="Password"
         />
-        <p className="errorMessage">{errors.email?.message}</p>
+        <p className="errorMessage">{errors.password?.message}</p>
         <Button type="submit" variant="contained">
           Sign Up
         </Button>

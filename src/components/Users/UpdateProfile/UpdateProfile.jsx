@@ -28,9 +28,7 @@ function UpdateProfile(props) {
       address: data.address,
     };
     axios
-      .put(`${SERVER_URL}/users/${userInfo.id}`, newUpdateInfo, {
-        withCredentials: true,
-      })
+      .put(`${SERVER_URL}/users/${userInfo.id}`, newUpdateInfo)
       .then((data) => {
         console.log(props);
         props.history.push(`/profile/${userInfo.id}`);

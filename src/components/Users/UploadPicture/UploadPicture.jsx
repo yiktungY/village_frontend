@@ -33,13 +33,9 @@ function UploadPicture(props) {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((url) =>
           axios
-            .put(
-              `${SERVER_URL}/users/${props.userInfo.id}`,
-              { avatar_url: url },
-              {
-                withCredentials: true,
-              }
-            )
+            .put(`${SERVER_URL}/users/${props.userInfo.id}`, {
+              avatar_url: url,
+            })
             .then((data) => {
               setUrl(url);
               console.log(data);

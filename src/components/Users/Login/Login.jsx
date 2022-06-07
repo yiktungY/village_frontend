@@ -1,43 +1,26 @@
-import axios from "axios";
 import "./Login.scss";
-import { useState, useEffect } from "react";
-const SERVER_URL = "http://localhost:8080";
+import { useEffect } from "react";
+
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
-import { NavLink } from "react-router-dom";
-export default function Login(props) {
-  const [login, useLogin] = useState(false);
+import { NavLink, useHistory } from "react-router-dom";
+export default function Login({ user, login }) {
+  const history = useHistory();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm("");
-  const handleLogin = (data) => {
-    axios
-      .post(`${SERVER_URL}/login`, {
-        email: data.email,
-        password: data.password,
-      })
-      .then((response) => {
-        sessionStorage.authToken = response.data.token;
-        useLogin(true);
-        sessionStorage.setItem("userId", response.data.id);
-        props.history.push(`/profile/${response.data.id}`);
-        location.reload();
-      })
-      .catch((err) => {
-        console.log(err);
-        useLogin({ isLoginError: true, errorMessage: err });
-      });
+  const handleLogin = async (target) => {
+    const email = target.email;
+    const password = target.password;
+    await login({ email, password });
   };
 
   useEffect(() => {
     document.title = "Login";
-    if (login) {
-      console.log(data);
-      console.log("login!!!");
-    }
-  }, []);
+    if (user && user.id) history.push(`/profile/${user.id}`);
+  }, [user, history]);
 
   return (
     <div className="login">
@@ -52,14 +35,14 @@ export default function Login(props) {
         <input
           className="inputStyle"
           {...register("email", { required: "This is required." })}
-          placeholder="xxx@gmail.com"
+          placeholder="Your email"
         />
         <p className="errorMessage">{errors.email?.message}</p>
         <input
           type="password"
           className="inputStyle"
           {...register("password", { required: "This is required." })}
-          placeholder="*******"
+          placeholder="Password"
         />
         <p className="errorMessage">{errors.password?.message}</p>
         <Button type="submit" variant="contained">

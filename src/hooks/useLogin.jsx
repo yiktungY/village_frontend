@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 const SERVER_URL = "http://localhost:8080";
 
-export default function useLogin(userId) {
+export default function useLogin() {
   const [isLoggedIn, setisLoggedIn] = useState(false);
-  const [userInfo, setUserInfo] = useState("");
+  const [userInfo, setUserInfo] = useState("123");
 
   const loginFunction = () => {
     if (sessionStorage.authToken) {

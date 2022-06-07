@@ -33,18 +33,12 @@ function PostDetails(props) {
 
   const handleApply = (data) => {
     axios
-      .post(
-        `${SERVER_URL}/apply/${getPost.post_id}`,
-        {
-          post_id: getPost.post_id,
-          post_title: getPost.title,
-          content: data.content,
-          offer: data.offer,
-        },
-        {
-          withCredentials: true,
-        }
-      )
+      .post(`${SERVER_URL}/apply/${getPost.post_id}`, {
+        post_id: getPost.post_id,
+        post_title: getPost.title,
+        content: data.content,
+        offer: data.offer,
+      })
       .then(() => {
         window.location.reload(false);
       })

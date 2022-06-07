@@ -56,9 +56,7 @@ function UserPage(props) {
       age: data.age,
     };
     axios
-      .put(`${SERVER_URL}/users/${userInfo.id}`, newUpdateInfo, {
-        withCredentials: true,
-      })
+      .put(`${SERVER_URL}/users/${userInfo.id}`, newUpdateInfo)
       .then((data) => {
         props.history.push("/");
         location.reload();

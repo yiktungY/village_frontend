@@ -2,8 +2,7 @@ import "./CreateAccount.scss";
 const SERVER_URL = "http://localhost:8080";
 import "animate.css";
 import { useEffect } from "react";
-import Button from "@mui/material/Button";
-
+import { NavLink } from "react-router-dom";
 function CreateAccount() {
   useEffect(() => {
     document.title = "Successfully Create An Account";
@@ -12,15 +11,11 @@ function CreateAccount() {
     <div className="loginSuccessed">
       <div className="loginSuccessed__background">
         <h2 className="animate__animated animate__fadeInDown loginSuccessed__title ">
-          Congregate!!! Your account is successfully created...
+          Congratulations!!! Your account is successfully created...
         </h2>
-        <Button
-          variant="contained"
-          color="success"
-          href={`${SERVER_URL}/login`}
-        >
+        <NavLink className="navLink" to="/login">
           Click here to login
-        </Button>
+        </NavLink>
       </div>
     </div>
   );

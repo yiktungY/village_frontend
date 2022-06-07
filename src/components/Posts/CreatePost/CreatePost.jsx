@@ -70,9 +70,7 @@ function CreatePost(props) {
           salary_replacement: data.salary_replacement,
           estimate_time: data.estimate_time.value,
         },
-        {
-          withCredentials: true,
-        }
+       
       )
       .then((data) => {
         props.history.push(`/`);

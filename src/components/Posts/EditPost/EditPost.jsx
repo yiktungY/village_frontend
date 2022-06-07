@@ -71,9 +71,7 @@ function EditPost(props) {
       // estimate_time: data.estimate_time,
     };
     axios
-      .put(`${SERVER_URL}/posts/${postID}`, newPostInfo, {
-        withCredentials: true,
-      })
+      .put(`${SERVER_URL}/posts/${postID}`, newPostInfo)
       .then((data) => {
         console.log(data);
         props.history.push(`/post/${postID}`);
@@ -85,13 +83,7 @@ function EditPost(props) {
     const postID = props.match.params.postID;
     // estimate_time: data.estimate_time,
     axios
-      .put(
-        `${SERVER_URL}/posts/${postID}`,
-        { type: data.type.value },
-        {
-          withCredentials: true,
-        }
-      )
+      .put(`${SERVER_URL}/posts/${postID}`, { type: data.type.value })
       .then((data) => {
         setUserInfo(userInfo);
       })

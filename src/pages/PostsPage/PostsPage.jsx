@@ -39,7 +39,7 @@ function PostsPage() {
 
   useEffect(() => {
     document.title = "HOME";
-    fetchPosts();
+    // fetchPosts();
   }, [posts]);
 
   return (

@@ -152,8 +152,6 @@
   @include shadowBox;
   border-radius: 5px;
   @include tablet {
-    position: absolute;
-    top: 15vh;
     left: 15vw;
     background-color: white;
     width: 75vw;

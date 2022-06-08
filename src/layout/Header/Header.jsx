@@ -6,11 +6,9 @@ import useLogin from "../../hooks/useLogin";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 // import Signup from "../../components/oauth/Signup";
-function Header() {
-  const { userInfo, isLoggedIn } = useLogin();
+function Header({ user, logout }) {
   const [iconInfo, setIconInfo] = useState(false);
 
-  console.log(userInfo, "user");
   const handleIconInfo = () => {
     if (!iconInfo) {
       setIconInfo(true);
@@ -31,13 +29,13 @@ function Header() {
         </div>
       </NavLink>
       {/* <Signup /> */}
-      {isLoggedIn ? (
+      {user.avatar_url ? (
         <div>
           <Avatar
             onClick={handleIconInfo}
             sx={{ width: 56, height: 56 }}
             className="header__userIcon"
-            src={userInfo.avatar_url}
+            src={user.avatar_url}
             alt="UserIcon"
           />
 
@@ -49,22 +47,20 @@ function Header() {
               <NavLink
                 className="navLink header_user"
                 activeClassName="activeheader"
-                to={`/profile/${userInfo.id}`}
+                to={`/profile/${user.id}`}
               >
                 <Button>My profile</Button>
               </NavLink>
-              <LogoutButton />
+              <Button onClick={logout}>Logout</Button>
             </div>
           )}
         </div>
       ) : (
-        <>
-          <NavLink className="navLink" to="/login">
-            <Button variant="contained" disableElevation>
-              Log in / Create a new Account
-            </Button>
-          </NavLink>
-        </>
+        <NavLink className="navLink" to="/login">
+          <Button variant="contained" disableElevation>
+            Log in / Create a new Account
+          </Button>
+        </NavLink>
       )}
       <div className="header__nav">
         <div className="header__nav">

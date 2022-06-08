@@ -12,11 +12,12 @@ import { ref, getDownloadURL, uploadBytesResumable } from "@firebase/storage";
 import { storage } from "../../../firebase/firebase";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
+import { useHistory } from "react-router-dom";
 
 const SERVER_URL = "http://localhost:8080";
 
-function CreatePost(props) {
-  const { userInfo, isLoggedIn } = useLogin();
+function CreatePost({ user }) {
+  const history = useHistory();
   const [payMethodvalue, setpayMethodValue] = useState("Non-Monetary Payment");
   const [monPayMethod, setMonPayMethod] = useState(true);
   const [pictureUrl, setpictureUrl] = useState("");
@@ -57,24 +58,22 @@ function CreatePost(props) {
 
   const handleFormSubmit = (data) => {
     axios
-      .post(
-        `${SERVER_URL}/posts`,
-        {
-          picture_Details: pictureUrl,
-          title: data.title,
-          content: data.content,
-          status: data.status,
-          type: data.type.value,
-          requireDate: data.requireDate,
-          salary: data.salary,
-          salary_replacement: data.salary_replacement,
-          estimate_time: data.estimate_time.value,
-        },
-       
-      )
+      .post(`${SERVER_URL}/posts`, {
+        userId: user.id,
+        picture_Details: pictureUrl,
+        title: data.title,
+        content: data.content,
+        status: data.status,
+        type: data.type.value,
+        requireDate: data.requireDate,
+        salary: data.salary,
+        salary_replacement: data.salary_replacement,
+        estimate_time: data.estimate_time.value,
+      })
       .then((data) => {
-        props.history.push(`/`);
-        // setGetPost(data.id);
+        console.log(data);
+        history.push(`/`);
+    
       })
       .catch((err) => {
         console.log("Error creating a new post:", err);
@@ -110,7 +109,7 @@ function CreatePost(props) {
 
   return (
     <section className="createPage">
-      {isLoggedIn ? (
+      {user ? (
         <>
           <h1 className="pageheader">Create New Post</h1>
           <div className="createPageForm">

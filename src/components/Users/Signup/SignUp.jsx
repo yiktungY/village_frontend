@@ -1,10 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
 export default function SignUp({ user, signup }) {
-
+  const [formErrorMessage, setFormErrorMessage] = useState("");
   const {
     register,
     handleSubmit,
@@ -14,7 +14,12 @@ export default function SignUp({ user, signup }) {
     const username = data.username;
     const email = data.email;
     const password = data.password;
-    await signup({ username, email, password });
+    const confirmPassword = data.confirmPassword;
+    if (password !== confirmPassword) {
+      setFormErrorMessage("The password do not match");
+    } else {
+      await signup({ username, email, password });
+    }
   };
 
   // useEffect(() => {
@@ -54,6 +59,15 @@ export default function SignUp({ user, signup }) {
           placeholder="Password"
         />
         <p className="errorMessage">{errors.password?.message}</p>
+        <input
+          type="password"
+          className="inputStyle"
+          {...register("confirmPassword", { required: "This is required." })}
+          placeholder="Confirm Your Password"
+        />
+        <p className="errorMessage">{errors.confirmPassword?.message}</p>
+        <p className="errorMessage">{formErrorMessage}</p>
+
         <Button type="submit" variant="contained">
           Sign Up
         </Button>

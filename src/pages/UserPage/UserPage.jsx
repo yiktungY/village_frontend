@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "./UserPage.scss";
-import useLogin from "../../hooks/useLogin";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { Avatar } from "@mui/material";
-import UploadPicture from "../../components/Users/UploadPicture/UploadPicture";
+// import UploadPicture from "../../components/Users/UploadPicture/UploadPicture";
 
 const SERVER_URL = "http://localhost:8080";
 
-function UserPage(props) {
-  const { isLoggedIn } = useLogin();
+function UserPage({ user }) {
+  const { id } = useParams();
   const [userInfo, setUserInfo] = useState("");
   const [userPostList, setuserPostList] = useState(false);
-  const [regArea, setRegArea] = useState(true);
+  // const [regArea, setRegArea] = useState(true);
   const {
     register,
     handleSubmit,
@@ -22,28 +21,26 @@ function UserPage(props) {
     formState: { errors },
   } = useForm("");
 
-  const handleNextRegArea = () => {
-    if (regArea) {
-      setRegArea(false);
-    }
-  };
+  // const handleNextRegArea = () => {
+  //   if (regArea) {
+  //     setRegArea(false);
+  //   }
+  // };
 
-  const handleRegAreaBack = () => {
-    if (!regArea) {
-      setRegArea(true);
-    }
-  };
+  // const handleRegAreaBack = () => {
+  //   if (!regArea) {
+  //     setRegArea(true);
+  //   }
+  // };
 
   const getUserInfobyId = () => {
-    const userId = props.match.params.id;
-    axios.get(`${SERVER_URL}/users/${userId}`).then((res) => {
+    axios.get(`${SERVER_URL}/users/${id}`).then((res) => {
       setUserInfo(res.data);
     });
   };
   const fetchPostsbyUserId = () => {
-    const userId = props.match.params.id;
     axios
-      .get(`${SERVER_URL}/users/posts/${userId}`)
+      .get(`${SERVER_URL}/users/posts/${id}`)
       .then((posts) => {
         setuserPostList(posts.data);
       })
@@ -51,18 +48,18 @@ function UserPage(props) {
         console.log("Error fetching posts:", err);
       });
   };
-  const handelUpdate = (data) => {
-    const newUpdateInfo = {
-      age: data.age,
-    };
-    axios
-      .put(`${SERVER_URL}/users/${userInfo.id}`, newUpdateInfo)
-      .then((data) => {
-        props.history.push("/");
-        location.reload();
-      })
-      .catch((err) => console.log(err));
-  };
+  // const handelUpdate = (data) => {
+  //   const newUpdateInfo = {
+  //     age: data.age,
+  //   };
+  //   axios
+  //     .put(`${SERVER_URL}/users/${userInfo.id}`, newUpdateInfo)
+  //     .then((data) => {
+  //       props.history.push("/");
+  //       location.reload();
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
   useEffect(() => {
     document.title = `${userInfo.displayName} Profile`;
     getUserInfobyId();
@@ -76,12 +73,11 @@ function UserPage(props) {
       });
     }
   }, [userInfo]);
-  console.log(userPostList);
 
   return (
     <section className="profile">
       <h1 className="pageHeader">{userInfo.displayName}'s Profile</h1>
-      {isLoggedIn && (
+      {user?.id === id && (
         <NavLink
           className="navLink profile__edit"
           to={`/updateProfile/${userInfo.id}`}
@@ -150,7 +146,7 @@ function UserPage(props) {
             </NavLink>
           </div>
         )}
-        {isLoggedIn && (
+        {/* {isLoggedIn && (
           <>
             {userInfo.age > 0 ? (
               <></>
@@ -220,7 +216,7 @@ function UserPage(props) {
               </div>
             )}
           </>
-        )}
+        )} */}
       </div>
     </section>
   );

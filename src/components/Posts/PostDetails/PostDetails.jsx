@@ -2,26 +2,24 @@ import "./PostDetails.scss";
 import { useState, useEffect } from "react";
 import ApplyJob from "../../ApplyJob/ApplyJob";
 import axios from "axios";
-import useLogin from "../../../hooks/useLogin";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Avatar } from "@mui/material";
 import ClipLoader from "react-spinners/ClipLoader";
 const SERVER_URL = "http://localhost:8080";
 
-function PostDetails(props) {
-  const { userInfo, isLoggedIn } = useLogin();
+function PostDetails({ user }) {
+  const { postId } = useParams();
   const [getPost, setgetPost] = useState({});
   const [loading, setLoading] = useState(true);
   const [showApplicantsList, setShowApplicantsList] = useState([]);
   const [showApply, setShowApply] = useState(false);
   const [applyState, setApplyState] = useState("");
-
+  console.log("postId", postId);
   const fetchPostById = () => {
-    const postID = props.match.params.postID;
     axios
-      .get(`${SERVER_URL}/posts/${postID}`)
+      .get(`${SERVER_URL}/posts/${postId}`)
       .then((post) => {
         setgetPost(post.data);
         setLoading(false);
@@ -48,15 +46,14 @@ function PostDetails(props) {
   };
 
   const getApplicantsByApi = () => {
-    const postID = props.match.params.postID;
     axios
-      .get(`${SERVER_URL}/apply/${postID}`)
+      .get(`${SERVER_URL}/apply/${postId}`)
       .then((applicants) => {
         setShowApplicantsList(applicants.data);
         const appliedID = applicants.data.find(
-          (info) => info.user_id === userInfo.id
+          (info) => info.user_id === user.id
         );
-        if (appliedID.user_id === userInfo.id) {
+        if (appliedID.user_id === user.id) {
           setApplyState(appliedID);
         }
       })
@@ -90,7 +87,7 @@ function PostDetails(props) {
 
   useEffect(() => {
     getApplicantsByApi();
-  }, [userInfo]);
+  }, [user]);
 
   return (
     <section className="postDetails">
@@ -143,7 +140,7 @@ function PostDetails(props) {
               <div>{showApplicantsList.length} People applied</div>
             </div>
           </div>
-          {isLoggedIn && userInfo.id === getPost.user_id ? (
+          {user?.id === getPost.user_id ? (
             <div>
               <div className="post__button">
                 <NavLink
@@ -178,7 +175,7 @@ function PostDetails(props) {
             </div>
           ) : (
             <div className="appliants">
-              {isLoggedIn && applyState.user_id === userInfo.id ? (
+              {user && applyState.user_id === user?.id ? (
                 <div className="applicantsList">
                   <h2>Your application: {applyState.content}</h2>
                   <div>Requires: {applyState.offer}</div>
@@ -196,7 +193,7 @@ function PostDetails(props) {
                       handleApply={handleApply}
                       hideApplyModal={hideApplyModal}
                       postUserId={getPost.displayname}
-                      isLoggedIn={isLoggedIn}
+                      user={user}
                     />
                   )}
                 </>

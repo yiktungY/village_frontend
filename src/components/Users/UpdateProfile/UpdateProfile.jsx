@@ -6,11 +6,12 @@ import Button from "@mui/material/Button";
 import LoginButton from "../../Button/LoginButton/LoginButton";
 import UploadPicture from "../../Users/UploadPicture/UploadPicture";
 import useLogin from "../../../hooks/useLogin";
+import { useHistory } from "react-router-dom";
 const SERVER_URL = "http://localhost:8080";
 
-function UpdateProfile(props) {
+function UpdateProfile({ user }) {
   const { userInfo, isLoggedIn } = useLogin();
-
+  const history = useHistory();
   const {
     register,
     handleSubmit,
@@ -28,32 +29,31 @@ function UpdateProfile(props) {
       address: data.address,
     };
     axios
-      .put(`${SERVER_URL}/users/${userInfo.id}`, newUpdateInfo)
+      .put(`${SERVER_URL}/users/${user.id}`, newUpdateInfo)
       .then((data) => {
-        console.log(props);
-        props.history.push(`/profile/${userInfo.id}`);
+        history.push(`/profile/${user.id}`);
       })
       .catch((err) => console.log(err));
   };
 
   useEffect(() => {
-    if (userInfo) {
+    if (user) {
       reset({
-        displayName: userInfo.displayName,
-        familyName: userInfo.familyName,
-        givenName: userInfo.givenName,
-        age: userInfo.age,
-        address: userInfo.address,
+        displayName: user.displayName,
+        familyName: user.familyName,
+        givenName: user.givenName,
+        age: user.age,
+        address: user.address,
       });
     }
-  }, [userInfo]);
+  }, [user]);
 
   return (
     <div className="updatePage">
       <h1 className="pageHeader">Update</h1>
-      {isLoggedIn ? (
+      {user ? (
         <div>
-          <UploadPicture userInfo={userInfo} />
+          <UploadPicture userInfo={user} />
           <form
             className="updatePage__form"
             onSubmit={handleSubmit(handelUpdate)}
@@ -99,18 +99,22 @@ function UpdateProfile(props) {
             </div>
             <div className="updatePage__box boxTwo">
               <h2>Info you cannot change</h2>
-              <div>Email: {userInfo.email}</div>
-              <div>Rating: {userInfo.rating}</div>
-              <div>Done Case: {userInfo.doneCase}</div>
+              <div>Email: {user.email}</div>
+              <div>Rating: {user.rating}</div>
+              <div>Done Case: {user.doneCase}</div>
 
-              <div>Account creates at {userInfo.updated_at}</div>
+              <div>Account creates at {user.updated_at}</div>
             </div>
           </form>
         </div>
       ) : (
         <>
-          <p>Login to update your profile.</p>
-          <LoginButton />
+          <p>Please login to update your profile.</p>
+          <NavLink className="navLink" to="/login">
+            <Button variant="contained" disableElevation>
+              Log in / Create a new Account
+            </Button>
+          </NavLink>
         </>
       )}
     </div>

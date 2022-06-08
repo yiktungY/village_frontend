@@ -4,7 +4,7 @@ import "./ApplyJob.scss";
 import { NavLink } from "react-router-dom";
 import Button from "@mui/material/Button";
 
-function ApplyJob(props) {
+function ApplyJob({ user, handleApply, postUserId, hideApplyModal }) {
   const {
     register,
     handleSubmit,
@@ -13,15 +13,15 @@ function ApplyJob(props) {
 
   return (
     <>
-      {props.isLoggedIn ? (
+      {user ? (
         <div className="applyList">
           <div className="applyList__background"></div>
           <form
             className="applyList__form"
-            onSubmit={handleSubmit(props.handleApply)}
+            onSubmit={handleSubmit(handleApply)}
           >
             <h2 className="applyList__title">
-              leave a message to {props.postUserId}{" "}
+              leave a message to {postUserId}{" "}
             </h2>
             <input
               className="inputStyle"
@@ -57,7 +57,7 @@ function ApplyJob(props) {
         <div>
           <div className="applyList__background"></div>
           <div className="applyList__form">
-            <Button onClick={props.hideApplyModal}>cancel</Button>
+            <Button onClick={hideApplyModal}>cancel</Button>
             <h2 className="">OPPS! You haven't logged in yet...</h2>
             <NavLink className="navLink LinkButton" to="/login">
               <Button variant="contained"> Click here</Button>

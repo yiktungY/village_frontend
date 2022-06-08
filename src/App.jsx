@@ -16,7 +16,7 @@ function App() {
   return (
     <div className={setTheme ? "lightTheme" : "darkTheme"}>
       <BrowserRouter>
-        <Header />
+      
         <ToggleTheme handleTheme={handleTheme} setTheme={setTheme} />
         <Routes />
         <Footer />

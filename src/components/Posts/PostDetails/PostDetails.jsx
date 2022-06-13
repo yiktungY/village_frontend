@@ -7,19 +7,19 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Avatar } from "@mui/material";
 import ClipLoader from "react-spinners/ClipLoader";
-const SERVER_URL = "http://localhost:8080";
+const SERVER_URL = "https://village-backend-finalproject.herokuapp.com/";
 
 function PostDetails({ user }) {
-  const { postId } = useParams();
+  const { postID } = useParams();
   const [getPost, setgetPost] = useState({});
   const [loading, setLoading] = useState(true);
   const [showApplicantsList, setShowApplicantsList] = useState([]);
   const [showApply, setShowApply] = useState(false);
   const [applyState, setApplyState] = useState("");
-  console.log("postId", postId);
+
   const fetchPostById = () => {
     axios
-      .get(`${SERVER_URL}/posts/${postId}`)
+      .get(`${SERVER_URL}/posts/${postID}`)
       .then((post) => {
         setgetPost(post.data);
         setLoading(false);
@@ -32,13 +32,16 @@ function PostDetails({ user }) {
   const handleApply = (data) => {
     axios
       .post(`${SERVER_URL}/apply/${getPost.post_id}`, {
+        userId: user.id,
+        username: user.displayName,
         post_id: getPost.post_id,
         post_title: getPost.title,
         content: data.content,
         offer: data.offer,
       })
       .then(() => {
-        window.location.reload(false);
+        setShowApply(false);
+        getApplicantsByApi();
       })
       .catch((err) => {
         console.log("Error creating a new post:", err);
@@ -47,7 +50,7 @@ function PostDetails({ user }) {
 
   const getApplicantsByApi = () => {
     axios
-      .get(`${SERVER_URL}/apply/${postId}`)
+      .get(`${SERVER_URL}/apply/${postID}`)
       .then((applicants) => {
         setShowApplicantsList(applicants.data);
         const appliedID = applicants.data.find(
@@ -64,10 +67,11 @@ function PostDetails({ user }) {
     axios
       .delete(`${SERVER_URL}/posts/${getPost.post_id}`)
       .then((data) => {
-        props.history.push(`/`);
+        history.push(`/`);
       })
       .catch((err) => console.log(err));
   };
+
   const showApplyModal = () => {
     if (!showApply) {
       setShowApply(true);
@@ -81,8 +85,8 @@ function PostDetails({ user }) {
   };
 
   useEffect(() => {
-    fetchPostById();
     document.title = getPost.title;
+    fetchPostById();
   }, [getPost.title]);
 
   useEffect(() => {
@@ -175,7 +179,7 @@ function PostDetails({ user }) {
             </div>
           ) : (
             <div className="appliants">
-              {user && applyState.user_id === user?.id ? (
+              {user && applyState.user_id === user.id ? (
                 <div className="applicantsList">
                   <h2>Your application: {applyState.content}</h2>
                   <div>Requires: {applyState.offer}</div>

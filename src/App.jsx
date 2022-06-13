@@ -1,9 +1,16 @@
 import Routes from "./routes";
 import { useState } from "react";
-import Header from "./layout/Header/Header";
 import Footer from "./layout/Footer/Footer";
 import { ToggleTheme } from "./components/Icon/icon";
 import { BrowserRouter } from "react-router-dom";
+import axios from "axios";
+
+axios.interceptors.request.use(async function (config) {
+  const token = await localStorage.getItem("village-token");
+  config.headers["x-access-token"] = token;
+  return config;
+});
+
 function App() {
   const [setTheme, useSetTheme] = useState(true);
   const handleTheme = () => {
@@ -16,7 +23,6 @@ function App() {
   return (
     <div className={setTheme ? "lightTheme" : "darkTheme"}>
       <BrowserRouter>
-      
         <ToggleTheme handleTheme={handleTheme} setTheme={setTheme} />
         <Routes />
         <Footer />

@@ -14,7 +14,7 @@ import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import { useHistory } from "react-router-dom";
 
-const SERVER_URL = "http://localhost:8080";
+const SERVER_URL = "https://village-backend-finalproject.herokuapp.com/";
 
 function CreatePost({ user }) {
   const history = useHistory();
@@ -73,7 +73,6 @@ function CreatePost({ user }) {
       .then((data) => {
         console.log(data);
         history.push(`/`);
-    
       })
       .catch((err) => {
         console.log("Error creating a new post:", err);

@@ -3,7 +3,7 @@ import axios from "axios";
 import { NavLink } from "react-router-dom";
 import "./UserPostList.scss";
 import HighlightOffTwoToneIcon from "@mui/icons-material/HighlightOffTwoTone";
-const SERVER_URL = "http://localhost:8080";
+const SERVER_URL = "https://village-backend-finalproject.herokuapp.com/";
 
 function UserPostList(props) {
   const [userPostList, setuserPostList] = useState([]);

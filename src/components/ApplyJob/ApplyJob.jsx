@@ -43,10 +43,12 @@ function ApplyJob({ user, handleApply, postUserId, hideApplyModal }) {
               placeholder="something like: 10 bucks per hour"
             />
             <p>{errors.offer?.message}</p>
-            <Button onClick={props.hideApplyModal}>cancel</Button>
-            <button className="noStyle" type="submit">
-              <Button variant="contained">Sumbit</Button>
-            </button>
+            <Button onClick={hideApplyModal}>cancel</Button>
+
+            <Button type="submit" variant="contained">
+              Sumbit
+            </Button>
+
             <div>
               Please apply carefully. Once you applied the job, you are not able
               the edit / detele it.

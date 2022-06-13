@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import { Avatar } from "@mui/material";
 // import UploadPicture from "../../components/Users/UploadPicture/UploadPicture";
 
-const SERVER_URL = "http://localhost:8080";
+const SERVER_URL = "https://village-backend-finalproject.herokuapp.com/";
 
 function UserPage({ user }) {
   const { id } = useParams();
@@ -58,7 +58,7 @@ function UserPage({ user }) {
   //       props.history.push("/");
   //       location.reload();
   //     })
-  //     .catch((err) => console.log(err));
+  //     .catch((err) => .log(err));
   // };
   useEffect(() => {
     document.title = `${userInfo.displayName} Profile`;

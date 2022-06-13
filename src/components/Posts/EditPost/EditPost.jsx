@@ -9,11 +9,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import ReactSelect from "react-select";
 import ReactDatePicker from "react-datepicker";
 import { Button } from "@mui/material";
-import useLogin from "../../../hooks/useLogin";
-const SERVER_URL = "http://localhost:8080";
+import { useHistory, useParams } from "react-router-dom";
+const SERVER_URL = "https://village-backend-finalproject.herokuapp.com/";
 
-function EditPost(props) {
-  const { userInfo, isLoggedIn } = useLogin();
+function EditPost({ user }) {
+  const { postID } = useParams();
+  const history = useHistory();
   const [payMethodvalue, setpayMethodValue] = useState("Non-Monetary Payment");
   const [monPayMethod, setMonPayMethod] = useState(true);
   // const [changeTypeState, setChangeTypeState] = useState(true)
@@ -31,7 +32,6 @@ function EditPost(props) {
 
   //get post from API
   const fetchPostById = () => {
-    const postID = props.match.params.postID;
     axios
       .get(`${SERVER_URL}/posts/${postID}`)
       .then((posts) => {
@@ -59,12 +59,10 @@ function EditPost(props) {
   }, []);
 
   const handlePostlUpdate = (data) => {
-    const postID = props.match.params.postID;
     const newPostInfo = {
       title: data.title,
       content: data.content,
       status: data.status,
-
       requireDate: data.requireDate,
       salary: data.salary,
       salary_replacement: data.salary_replacement,
@@ -73,22 +71,20 @@ function EditPost(props) {
     axios
       .put(`${SERVER_URL}/posts/${postID}`, newPostInfo)
       .then((data) => {
-        console.log(data);
-        props.history.push(`/post/${postID}`);
+        history.push(`/post/${postID}`);
       })
       .catch((err) => console.log(err));
   };
 
-  const handlePostlTypeUpdate = (data) => {
-    const postID = props.match.params.postID;
-    // estimate_time: data.estimate_time,
-    axios
-      .put(`${SERVER_URL}/posts/${postID}`, { type: data.type.value })
-      .then((data) => {
-        setUserInfo(userInfo);
-      })
-      .catch((err) => console.log(err));
-  };
+  // const handlePostlTypeUpdate = (data) => {
+  //   // estimate_time: data.estimate_time,
+  //   axios
+  //     .put(`${SERVER_URL}/posts/${postID}`, { type: data.type.value })
+  //     .then((data) => {
+  //       setUserInfo(user);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
   const handleChange = (event) => {
     setpayMethodValue(event.target.value);
@@ -96,7 +92,7 @@ function EditPost(props) {
   return (
     <section className="EditPost">
       <h1 className="headline">Edit Post</h1>
-      {isLoggedIn && userInfo.id === getPost.user_id ? (
+      {user && user?.id === getPost.user_id ? (
         <form
           className="EditPost__box"
           onSubmit={handleSubmit(handlePostlUpdate)}

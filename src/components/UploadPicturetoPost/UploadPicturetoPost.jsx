@@ -1,7 +1,7 @@
 import { ref, getDownloadURL, uploadBytesResumable } from "@firebase/storage";
 import { storage } from "../../../firebase/firebase";
 import React, { useState } from "react";
-const SERVER_URL = "http://localhost:8080";
+const SERVER_URL = "https://village-backend-finalproject.herokuapp.com/";
 import axios from "axios";
 
 function UploadPicture(props) {

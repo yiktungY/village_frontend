@@ -7,7 +7,7 @@
 //   signInWithGoogle,
 // } from "../../firebase/firebase";
 // import axios from "axios";
-// const SERVER_URL = "http://localhost:8080";
+// const SERVER_URL = "https://village-backend-finalproject.herokuapp.com/";
 
 // function Signup(props) {
 //   const [email, setEmail] = useState("");

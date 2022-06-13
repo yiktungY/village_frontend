@@ -1,6 +1,5 @@
 import "./Login.scss";
 import { useEffect } from "react";
-
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
 import { NavLink, useHistory } from "react-router-dom";
@@ -16,7 +15,6 @@ export default function Login({ user, login }) {
     const password = target.password;
     await login({ email, password });
   };
-
   useEffect(() => {
     document.title = "Login";
     if (user && user.id) history.push(`/profile/${user.id}`);

@@ -5,9 +5,9 @@ var Q = Object.getOwnPropertySymbols;
 var Ne = Object.prototype.hasOwnProperty,
   ye = Object.prototype.propertyIsEnumerable;
 var X = (s, i, a) =>
-    i in s
-      ? _e(s, i, { enumerable: !0, configurable: !0, writable: !0, value: a })
-      : (s[i] = a),
+  i in s
+    ? _e(s, i, { enumerable: !0, configurable: !0, writable: !0, value: a })
+    : (s[i] = a),
   v = (s, i) => {
     for (var a in i || (i = {})) Ne.call(i, a) && X(s, a, i[a]);
     if (Q) for (var a of Q(i)) ye.call(i, a) && X(s, a, i[a]);
@@ -84,8 +84,8 @@ const Ke = function () {
       r.crossorigin === "use-credentials"
         ? (l.credentials = "include")
         : r.crossorigin === "anonymous"
-        ? (l.credentials = "omit")
-        : (l.credentials = "same-origin"),
+          ? (l.credentials = "omit")
+          : (l.credentials = "same-origin"),
       l
     );
   }
@@ -97,11 +97,11 @@ const Ke = function () {
   }
 };
 Ke();
-const Ye = "http://localhost:8080";
+const Ye = "https://village-backend-finalproject.herokuapp.com/";
 function ze() {
   return e(_, { href: `${Ye}/auth/logout`, children: "Log out" });
 }
-const Qe = "http://localhost:8080";
+const Qe = "https://village-backend-finalproject.herokuapp.com/";
 function q(s) {
   const [i, a] = n.exports.useState(!1),
     [o, r] = n.exports.useState(""),
@@ -120,14 +120,14 @@ function q(s) {
   );
 }
 const Xe = {
-    apiKey: "AIzaSyCNMJDGK0pc6sklvk0eHnutZyFO2E5eugo",
-    authDomain: "village-345022.firebaseapp.com",
-    projectId: "village-345022",
-    storageBucket: "village-345022.appspot.com",
-    messagingSenderId: "1059450499873",
-    appId: "1:1059450499873:web:d202c0b796f92795f5c460",
-    measurementId: "G-NDJ9KSQRWT",
-  },
+  apiKey: "AIzaSyCNMJDGK0pc6sklvk0eHnutZyFO2E5eugo",
+  authDomain: "village-345022.firebaseapp.com",
+  projectId: "village-345022",
+  storageBucket: "village-345022.appspot.com",
+  messagingSenderId: "1059450499873",
+  appId: "1:1059450499873:web:d202c0b796f92795f5c460",
+  measurementId: "G-NDJ9KSQRWT",
+},
   K = be(Xe),
   de = Se(K),
   Y = Pe(K),
@@ -161,7 +161,7 @@ const Xe = {
       console.error(o), alert(o.message);
     }
   },
-  at = "http://localhost:8080";
+  at = "https://village-backend-finalproject.herokuapp.com/";
 function st() {
   const [s, i] = n.exports.useState(""),
     [a, o] = n.exports.useState(""),
@@ -177,7 +177,7 @@ function st() {
           .catch((h) => console.log(h));
     };
   return (
-    n.exports.useEffect(() => {}, [d, p]),
+    n.exports.useEffect(() => { }, [d, p]),
     e("div", {
       className: "register",
       children: t("div", {
@@ -244,49 +244,49 @@ function it() {
       e(st, {}),
       i
         ? t("div", {
-            children: [
-              e(H, {
-                onClick: r,
-                sx: { width: 56, height: 56 },
-                className: "header__userIcon",
-                src: s.avatar_url,
-                alt: "UserIcon",
-              }),
-              a &&
-                t("div", {
-                  onClick: r,
-                  className: "header__info",
-                  children: [
-                    e(f, {
-                      className: "navLink",
-                      to: "/createpost",
-                      children: e(_, {
-                        variant: "contained",
-                        children: " Create a Post",
-                      }),
-                    }),
-                    e(f, {
-                      className: "navLink header_user",
-                      activeClassName: "activeheader",
-                      to: `/profile/${s.id}`,
-                      children: e(_, { children: "My profile" }),
-                    }),
-                    e(ze, {}),
-                  ],
+          children: [
+            e(H, {
+              onClick: r,
+              sx: { width: 56, height: 56 },
+              className: "header__userIcon",
+              src: s.avatar_url,
+              alt: "UserIcon",
+            }),
+            a &&
+            t("div", {
+              onClick: r,
+              className: "header__info",
+              children: [
+                e(f, {
+                  className: "navLink",
+                  to: "/createpost",
+                  children: e(_, {
+                    variant: "contained",
+                    children: " Create a Post",
+                  }),
                 }),
-            ],
-          })
+                e(f, {
+                  className: "navLink header_user",
+                  activeClassName: "activeheader",
+                  to: `/profile/${s.id}`,
+                  children: e(_, { children: "My profile" }),
+                }),
+                e(ze, {}),
+              ],
+            }),
+          ],
+        })
         : e($, {
-            children: e(f, {
-              className: "navLink",
-              to: "/loginWithGoogle",
-              children: e(_, {
-                variant: "contained",
-                disableElevation: !0,
-                children: "Log in / Create a new Account",
-              }),
+          children: e(f, {
+            className: "navLink",
+            to: "/loginWithGoogle",
+            children: e(_, {
+              variant: "contained",
+              disableElevation: !0,
+              children: "Log in / Create a new Account",
             }),
           }),
+        }),
       e("div", {
         className: "header__nav",
         children: t("div", {
@@ -313,7 +313,7 @@ function it() {
 function rt() {
   return e("footer", { className: "footer" });
 }
-const ot = "http://localhost:8080";
+const ot = "https://village-backend-finalproject.herokuapp.com/";
 function he(s) {
   const [i, a] = n.exports.useState(0),
     [o, r] = n.exports.useState(""),
@@ -353,17 +353,17 @@ function he(s) {
     children: [
       i
         ? t("div", {
-            className: "regform__photo",
-            children: [
-              e("img", { className: "profilePicture", src: o, alt: "icon" }),
-              t("h3", { children: ["Uploaded ", i, " %"] }),
-            ],
-          })
+          className: "regform__photo",
+          children: [
+            e("img", { className: "profilePicture", src: o, alt: "icon" }),
+            t("h3", { children: ["Uploaded ", i, " %"] }),
+          ],
+        })
         : e("img", {
-            className: "profilePicture",
-            src: s.userInfo.avatar_url,
-            alt: "icon",
-          }),
+          className: "profilePicture",
+          src: s.userInfo.avatar_url,
+          alt: "icon",
+        }),
       t("form", {
         className: "regform__upload",
         onSubmit: l,
@@ -382,7 +382,7 @@ function he(s) {
     ],
   });
 }
-const j = "http://localhost:8080";
+const j = "https://village-backend-finalproject.herokuapp.com/";
 function nt(s) {
   var g, b;
   const { isLoggedIn: i } = q(),
@@ -441,11 +441,11 @@ function nt(s) {
           children: [a.displayName, "'s Profile"],
         }),
         i &&
-          e(f, {
-            className: "navLink profile__edit",
-            to: `/updateProfile/${a.id}`,
-            children: e(_, { variant: "contained", children: "Edit Profile" }),
-          }),
+        e(f, {
+          className: "navLink profile__edit",
+          to: `/updateProfile/${a.id}`,
+          children: e(_, { variant: "contained", children: "Edit Profile" }),
+        }),
         t("div", {
           className: "profile__info",
           children: [
@@ -504,172 +504,172 @@ function nt(s) {
           className: "profile__info--functionArea",
           children: [
             r.length > 0 &&
-              t("div", {
-                className: "profile__info--areathree",
-                children: [
-                  e("h2", {
-                    className: "profile__info--subheader",
-                    children: "The Latest Post",
+            t("div", {
+              className: "profile__info--areathree",
+              children: [
+                e("h2", {
+                  className: "profile__info--subheader",
+                  children: "The Latest Post",
+                }),
+                t(f, {
+                  className: "navLink ",
+                  to: `/post/${r[0].post_id}`,
+                  children: [
+                    e("h2", { children: r[0].title }),
+                    t("div", {
+                      className: "profile__info--postTextInfo",
+                      children: [
+                        e("img", {
+                          className: "profile__info--picture",
+                          src: r[0].picture_Details,
+                          alt: r[0].title,
+                        }),
+                        t("div", {
+                          className: "profile__info--postText",
+                          children: [
+                            e("div", { children: r[0].content }),
+                            e("div", {
+                              className: "postType",
+                              children: r[0].type,
+                            }),
+                            e("div", {
+                              className: "postStatus",
+                              children: r[0].status,
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+                e(f, {
+                  className: "navLink morePost",
+                  to: `/users/posts/${a.id}`,
+                  children: e(_, {
+                    variant: "contained",
+                    children: "More posts",
                   }),
-                  t(f, {
-                    className: "navLink ",
-                    to: `/post/${r[0].post_id}`,
+                }),
+              ],
+            }),
+            i &&
+            e($, {
+              children:
+                a.age > 0
+                  ? e($, {})
+                  : t("div", {
                     children: [
-                      e("h2", { children: r[0].title }),
-                      t("div", {
-                        className: "profile__info--postTextInfo",
-                        children: [
-                          e("img", {
-                            className: "profile__info--picture",
-                            src: r[0].picture_Details,
-                            alt: r[0].title,
-                          }),
-                          t("div", {
-                            className: "profile__info--postText",
+                      e("div", { className: "register__background" }),
+                      e("div", {
+                        className: "register",
+                        children: d
+                          ? t($, {
                             children: [
-                              e("div", { children: r[0].content }),
-                              e("div", {
-                                className: "postType",
-                                children: r[0].type,
+                              e("h1", {
+                                className: "register__heading",
+                                children:
+                                  "Two more steps for your Journey...",
                               }),
+                              e(he, { userInfo: a }),
                               e("div", {
-                                className: "postStatus",
-                                children: r[0].status,
+                                className: "register__button",
+                                children: e(_, {
+                                  variant: "outlined",
+                                  onClick: y,
+                                  children: "Next",
+                                }),
+                              }),
+                            ],
+                          })
+                          : t("div", {
+                            className: "regform2",
+                            children: [
+                              e("h1", {
+                                className: "register__heading",
+                                children:
+                                  "One more step for your Journey...",
+                              }),
+                              t("form", {
+                                className: "regform2__form",
+                                onSubmit: m(R),
+                                children: [
+                                  t("div", {
+                                    className: "regform2__box",
+                                    children: [
+                                      t("div", {
+                                        className: "regform2__box--topic",
+                                        children: ["DisplayName:", " "],
+                                      }),
+                                      e(
+                                        "input",
+                                        v(
+                                          { className: "inputStyle" },
+                                          N("displayName", {
+                                            required: "This is required",
+                                          })
+                                        )
+                                      ),
+                                    ],
+                                  }),
+                                  e("p", {
+                                    children:
+                                      (g = u.age) == null
+                                        ? void 0
+                                        : g.message,
+                                  }),
+                                  t("div", {
+                                    className: "regform2__box",
+                                    children: [
+                                      e("div", {
+                                        className: "regform2__box--topic",
+                                        children: "Your Age: ",
+                                      }),
+                                      e(
+                                        "input",
+                                        v(
+                                          { className: "inputStyle" },
+                                          N("age", {
+                                            required: "This is required",
+                                          })
+                                        )
+                                      ),
+                                    ],
+                                  }),
+                                  e("p", {
+                                    children:
+                                      (b = u.age) == null
+                                        ? void 0
+                                        : b.message,
+                                  }),
+                                  t("div", {
+                                    className: "regform2__button",
+                                    children: [
+                                      e("div", {
+                                        onClick: C,
+                                        children: e(_, {
+                                          variant: "outlined",
+                                          children: "Back",
+                                        }),
+                                      }),
+                                      e("button", {
+                                        className: "noStyle",
+                                        type: "submit",
+                                        children: e(_, {
+                                          variant: "contained",
+                                          children:
+                                            "Starting Your Journey",
+                                        }),
+                                      }),
+                                    ],
+                                  }),
+                                ],
                               }),
                             ],
                           }),
-                        ],
                       }),
                     ],
                   }),
-                  e(f, {
-                    className: "navLink morePost",
-                    to: `/users/posts/${a.id}`,
-                    children: e(_, {
-                      variant: "contained",
-                      children: "More posts",
-                    }),
-                  }),
-                ],
-              }),
-            i &&
-              e($, {
-                children:
-                  a.age > 0
-                    ? e($, {})
-                    : t("div", {
-                        children: [
-                          e("div", { className: "register__background" }),
-                          e("div", {
-                            className: "register",
-                            children: d
-                              ? t($, {
-                                  children: [
-                                    e("h1", {
-                                      className: "register__heading",
-                                      children:
-                                        "Two more steps for your Journey...",
-                                    }),
-                                    e(he, { userInfo: a }),
-                                    e("div", {
-                                      className: "register__button",
-                                      children: e(_, {
-                                        variant: "outlined",
-                                        onClick: y,
-                                        children: "Next",
-                                      }),
-                                    }),
-                                  ],
-                                })
-                              : t("div", {
-                                  className: "regform2",
-                                  children: [
-                                    e("h1", {
-                                      className: "register__heading",
-                                      children:
-                                        "One more step for your Journey...",
-                                    }),
-                                    t("form", {
-                                      className: "regform2__form",
-                                      onSubmit: m(R),
-                                      children: [
-                                        t("div", {
-                                          className: "regform2__box",
-                                          children: [
-                                            t("div", {
-                                              className: "regform2__box--topic",
-                                              children: ["DisplayName:", " "],
-                                            }),
-                                            e(
-                                              "input",
-                                              v(
-                                                { className: "inputStyle" },
-                                                N("displayName", {
-                                                  required: "This is required",
-                                                })
-                                              )
-                                            ),
-                                          ],
-                                        }),
-                                        e("p", {
-                                          children:
-                                            (g = u.age) == null
-                                              ? void 0
-                                              : g.message,
-                                        }),
-                                        t("div", {
-                                          className: "regform2__box",
-                                          children: [
-                                            e("div", {
-                                              className: "regform2__box--topic",
-                                              children: "Your Age: ",
-                                            }),
-                                            e(
-                                              "input",
-                                              v(
-                                                { className: "inputStyle" },
-                                                N("age", {
-                                                  required: "This is required",
-                                                })
-                                              )
-                                            ),
-                                          ],
-                                        }),
-                                        e("p", {
-                                          children:
-                                            (b = u.age) == null
-                                              ? void 0
-                                              : b.message,
-                                        }),
-                                        t("div", {
-                                          className: "regform2__button",
-                                          children: [
-                                            e("div", {
-                                              onClick: C,
-                                              children: e(_, {
-                                                variant: "outlined",
-                                                children: "Back",
-                                              }),
-                                            }),
-                                            e("button", {
-                                              className: "noStyle",
-                                              type: "submit",
-                                              children: e(_, {
-                                                variant: "contained",
-                                                children:
-                                                  "Starting Your Journey",
-                                              }),
-                                            }),
-                                          ],
-                                        }),
-                                      ],
-                                    }),
-                                  ],
-                                }),
-                          }),
-                        ],
-                      }),
-              }),
+            }),
           ],
         }),
       ],
@@ -681,9 +681,9 @@ function ue(s) {
     s.input === ""
       ? a
       : a.title.toLowerCase().includes(s.input) ||
-        a.type.toLowerCase().includes(s.input) ||
-        a.status.toLowerCase().includes(s.input) ||
-        a.displayName.toLowerCase().includes(s.input)
+      a.type.toLowerCase().includes(s.input) ||
+      a.status.toLowerCase().includes(s.input) ||
+      a.displayName.toLowerCase().includes(s.input)
   );
   return e("section", {
     className: "postSection",
@@ -696,17 +696,17 @@ function ue(s) {
           children: [
             a.picture_Details
               ? e("div", {
-                  className: "postSection__replace",
-                  children: e("img", {
-                    className: "postSection__picture",
-                    src: a.picture_Details,
-                    alt: `${a.title} picture`,
-                  }),
-                })
-              : e("div", {
-                  className: "postSection__noPicture",
-                  children: e(ne, { sx: { width: 100, height: 100 } }),
+                className: "postSection__replace",
+                children: e("img", {
+                  className: "postSection__picture",
+                  src: a.picture_Details,
+                  alt: `${a.title} picture`,
                 }),
+              })
+              : e("div", {
+                className: "postSection__noPicture",
+                children: e(ne, { sx: { width: 100, height: 100 } }),
+              }),
             t("div", {
               className: "postSection__detailBox",
               children: [
@@ -747,7 +747,7 @@ function lt(s) {
     },
   };
 }
-const ct = "http://localhost:8080";
+const ct = "https://village-backend-finalproject.herokuapp.com/";
 function dt() {
   const [s, i] = n.exports.useState(""),
     [a, o] = n.exports.useState(""),
@@ -812,77 +812,77 @@ function dt() {
                 }),
                 r
                   ? t($, {
-                      children: [
-                        e("div", {
-                          className: "category__area--box cook",
-                          children: e("div", {
-                            className: "category__area--title",
-                            type: "text",
-                            onClick: h,
-                            children: "Cook",
-                          }),
+                    children: [
+                      e("div", {
+                        className: "category__area--box cook",
+                        children: e("div", {
+                          className: "category__area--title",
+                          type: "text",
+                          onClick: h,
+                          children: "Cook",
                         }),
-                        e("div", {
-                          className: "category__area--box housekeeping",
-                          children: e("div", {
-                            className: "category__area--title",
-                            type: "text",
-                            onClick: h,
-                            children: "Housekeeping",
-                          }),
+                      }),
+                      e("div", {
+                        className: "category__area--box housekeeping",
+                        children: e("div", {
+                          className: "category__area--title",
+                          type: "text",
+                          onClick: h,
+                          children: "Housekeeping",
                         }),
-                        e("div", {
-                          className: "category__area--box design",
-                          children: e("div", {
-                            className: "category__area--title",
-                            type: "text",
-                            onClick: h,
-                            children: "Design",
-                          }),
+                      }),
+                      e("div", {
+                        className: "category__area--box design",
+                        children: e("div", {
+                          className: "category__area--title",
+                          type: "text",
+                          onClick: h,
+                          children: "Design",
                         }),
-                        e("div", {
-                          className: "category__area--box gardening",
-                          children: e("div", {
-                            className: "category__area--title ",
-                            type: "text",
-                            onClick: h,
-                            children: "Gardening",
-                          }),
+                      }),
+                      e("div", {
+                        className: "category__area--box gardening",
+                        children: e("div", {
+                          className: "category__area--title ",
+                          type: "text",
+                          onClick: h,
+                          children: "Gardening",
                         }),
-                        e("div", {
-                          className: "category__area--box dog",
-                          children: e("div", {
-                            className: "category__area--title",
-                            type: "text",
-                            onClick: h,
-                            children: "dog walking",
-                          }),
+                      }),
+                      e("div", {
+                        className: "category__area--box dog",
+                        children: e("div", {
+                          className: "category__area--title",
+                          type: "text",
+                          onClick: h,
+                          children: "dog walking",
                         }),
-                        e("div", {
-                          className: "category__area--box technician",
-                          children: e("div", {
-                            className: "category__area--title",
-                            type: "text",
-                            onClick: h,
-                            children: "technician jobs",
-                          }),
+                      }),
+                      e("div", {
+                        className: "category__area--box technician",
+                        children: e("div", {
+                          className: "category__area--title",
+                          type: "text",
+                          onClick: h,
+                          children: "technician jobs",
                         }),
-                        e("div", {
-                          className: "category__area--box house",
-                          children: e("div", {
-                            className: "category__area--title",
-                            type: "text",
-                            onClick: h,
-                            children: "house moving",
-                          }),
+                      }),
+                      e("div", {
+                        className: "category__area--box house",
+                        children: e("div", {
+                          className: "category__area--title",
+                          type: "text",
+                          onClick: h,
+                          children: "house moving",
                         }),
-                      ],
-                    })
+                      }),
+                    ],
+                  })
                   : e("div", {
-                      className: "category__area--showMore",
-                      onClick: l,
-                      children: "MORE ...",
-                    }),
+                    className: "category__area--showMore",
+                    onClick: l,
+                    children: "MORE ...",
+                  }),
               ],
             }),
             s && e(ue, { posts: s, input: a }),
@@ -901,7 +901,7 @@ const ht = De.button`
 function z() {
   return e(ht, { children: " Log in / Create a new Account" });
 }
-const ut = "http://localhost:8080";
+const ut = "https://village-backend-finalproject.herokuapp.com/";
 function pt(s) {
   var N, m, h, u, y;
   const { userInfo: i, isLoggedIn: a } = q(),
@@ -942,114 +942,114 @@ function pt(s) {
         e("h1", { className: "pageHeader", children: "Update" }),
         a
           ? t("div", {
-              children: [
-                e(he, { userInfo: i }),
-                t("form", {
-                  className: "updatePage__form",
-                  onSubmit: r(p),
-                  children: [
-                    t("div", {
-                      className: "updatePage__box boxOne",
-                      children: [
-                        e("div", { children: "Display Name: " }),
-                        e(
-                          "input",
-                          v(
-                            { className: "inputStyle" },
-                            o("displayName", { required: "This is required" })
-                          )
-                        ),
-                        e("p", {
-                          children:
-                            (N = d.displayName) == null ? void 0 : N.message,
-                        }),
-                        e("div", { children: "First Name: " }),
-                        e(
-                          "input",
-                          v(
-                            { className: "inputStyle" },
-                            o("givenName", { required: "This is required" })
-                          )
-                        ),
-                        e("p", {
-                          children:
-                            (m = d.givenName) == null ? void 0 : m.message,
-                        }),
-                        e("div", { children: "Last Name: " }),
-                        e(
-                          "input",
-                          v(
-                            { className: "inputStyle" },
-                            o("familyName", { required: "This is required" })
-                          )
-                        ),
-                        e("p", {
-                          children:
-                            (h = d.familyName) == null ? void 0 : h.message,
-                        }),
-                        e("div", { children: "Age: " }),
-                        e(
-                          "input",
-                          v(
-                            { className: "inputStyle" },
-                            o("age", { required: "This is required" })
-                          )
-                        ),
-                        e("p", {
-                          children: (u = d.age) == null ? void 0 : u.message,
-                        }),
-                        e("div", { children: "Address: " }),
-                        e(
-                          "input",
-                          v(
-                            { className: "inputStyle" },
-                            o("address", { required: "This is required" })
-                          )
-                        ),
-                        e("p", {
-                          children:
-                            (y = d.address) == null ? void 0 : y.message,
-                        }),
-                        e("div", {
-                          className: "createPostButton",
-                          children: e("button", {
-                            className: "noStyle",
-                            type: "submit",
-                            children: e(_, {
-                              variant: "contained",
-                              children: "Submit",
-                            }),
+            children: [
+              e(he, { userInfo: i }),
+              t("form", {
+                className: "updatePage__form",
+                onSubmit: r(p),
+                children: [
+                  t("div", {
+                    className: "updatePage__box boxOne",
+                    children: [
+                      e("div", { children: "Display Name: " }),
+                      e(
+                        "input",
+                        v(
+                          { className: "inputStyle" },
+                          o("displayName", { required: "This is required" })
+                        )
+                      ),
+                      e("p", {
+                        children:
+                          (N = d.displayName) == null ? void 0 : N.message,
+                      }),
+                      e("div", { children: "First Name: " }),
+                      e(
+                        "input",
+                        v(
+                          { className: "inputStyle" },
+                          o("givenName", { required: "This is required" })
+                        )
+                      ),
+                      e("p", {
+                        children:
+                          (m = d.givenName) == null ? void 0 : m.message,
+                      }),
+                      e("div", { children: "Last Name: " }),
+                      e(
+                        "input",
+                        v(
+                          { className: "inputStyle" },
+                          o("familyName", { required: "This is required" })
+                        )
+                      ),
+                      e("p", {
+                        children:
+                          (h = d.familyName) == null ? void 0 : h.message,
+                      }),
+                      e("div", { children: "Age: " }),
+                      e(
+                        "input",
+                        v(
+                          { className: "inputStyle" },
+                          o("age", { required: "This is required" })
+                        )
+                      ),
+                      e("p", {
+                        children: (u = d.age) == null ? void 0 : u.message,
+                      }),
+                      e("div", { children: "Address: " }),
+                      e(
+                        "input",
+                        v(
+                          { className: "inputStyle" },
+                          o("address", { required: "This is required" })
+                        )
+                      ),
+                      e("p", {
+                        children:
+                          (y = d.address) == null ? void 0 : y.message,
+                      }),
+                      e("div", {
+                        className: "createPostButton",
+                        children: e("button", {
+                          className: "noStyle",
+                          type: "submit",
+                          children: e(_, {
+                            variant: "contained",
+                            children: "Submit",
                           }),
                         }),
-                      ],
-                    }),
-                    t("div", {
-                      className: "updatePage__box boxTwo",
-                      children: [
-                        e("h2", { children: "Info you cannot change" }),
-                        t("div", { children: ["Email: ", i.email] }),
-                        t("div", { children: ["Rating: ", i.rating] }),
-                        t("div", { children: ["Done Case: ", i.doneCase] }),
-                        t("div", {
-                          children: ["Account creates at ", i.updated_at],
-                        }),
-                      ],
-                    }),
-                  ],
-                }),
-              ],
-            })
+                      }),
+                    ],
+                  }),
+                  t("div", {
+                    className: "updatePage__box boxTwo",
+                    children: [
+                      e("h2", { children: "Info you cannot change" }),
+                      t("div", { children: ["Email: ", i.email] }),
+                      t("div", { children: ["Rating: ", i.rating] }),
+                      t("div", { children: ["Done Case: ", i.doneCase] }),
+                      t("div", {
+                        children: ["Account creates at ", i.updated_at],
+                      }),
+                    ],
+                  }),
+                ],
+              }),
+            ],
+          })
           : t($, {
-              children: [
-                e("p", { children: "Login to update your profile." }),
-                e(z, {}),
-              ],
-            }),
+            children: [
+              e("p", { children: "Login to update your profile." }),
+              e(z, {}),
+            ],
+          }),
       ],
     })
   );
 }
-const mt = "http://localhost:8080";
+const mt = "https://village-backend-finalproject.herokuapp.com/";
 function gt() {
   const [s, i] = n.exports.useState(""),
     [a, o] = n.exports.useState(""),
@@ -1092,85 +1092,85 @@ function gt() {
           ],
         }),
         s &&
-          t("div", {
-            className: "newPostSection",
-            children: [
-              e("h2", {
-                className: "newPostSection__topic",
-                children: "Lastest Posts",
-              }),
-              t(Te, {
-                effect: "flip",
-                grabCursor: !0,
-                pagination: !0,
-                navigation: !0,
-                modules: [Re, Ae, qe],
-                className: "mySwiper",
-                children: [
-                  e(A, {
-                    children: e(f, {
-                      to: `/post/${s[0].post_id}`,
-                      children: e("img", {
-                        className: "newPostSection__Picture",
-                        src: s[0].picture_Details,
-                        alt: "",
-                      }),
+        t("div", {
+          className: "newPostSection",
+          children: [
+            e("h2", {
+              className: "newPostSection__topic",
+              children: "Lastest Posts",
+            }),
+            t(Te, {
+              effect: "flip",
+              grabCursor: !0,
+              pagination: !0,
+              navigation: !0,
+              modules: [Re, Ae, qe],
+              className: "mySwiper",
+              children: [
+                e(A, {
+                  children: e(f, {
+                    to: `/post/${s[0].post_id}`,
+                    children: e("img", {
+                      className: "newPostSection__Picture",
+                      src: s[0].picture_Details,
+                      alt: "",
                     }),
                   }),
-                  e(A, {
-                    children: e(f, {
-                      to: `/post/${s[1].post_id}`,
-                      children: e("img", {
-                        className: "newPostSection__Picture",
-                        src: s[1].picture_Details,
-                        alt: "",
-                      }),
+                }),
+                e(A, {
+                  children: e(f, {
+                    to: `/post/${s[1].post_id}`,
+                    children: e("img", {
+                      className: "newPostSection__Picture",
+                      src: s[1].picture_Details,
+                      alt: "",
                     }),
                   }),
-                  e(A, {
-                    children: e(f, {
-                      to: `/post/${s[2].post_id}`,
-                      children: e("img", {
-                        className: "newPostSection__Picture",
-                        src: s[2].picture_Details,
-                        alt: "",
-                      }),
+                }),
+                e(A, {
+                  children: e(f, {
+                    to: `/post/${s[2].post_id}`,
+                    children: e("img", {
+                      className: "newPostSection__Picture",
+                      src: s[2].picture_Details,
+                      alt: "",
                     }),
                   }),
-                  e(A, {
-                    children: e(f, {
-                      to: `/post/${s[3].post_id}`,
-                      children: e("img", {
-                        className: "newPostSection__Picture",
-                        src: s[3].picture_Details,
-                        alt: "",
-                      }),
+                }),
+                e(A, {
+                  children: e(f, {
+                    to: `/post/${s[3].post_id}`,
+                    children: e("img", {
+                      className: "newPostSection__Picture",
+                      src: s[3].picture_Details,
+                      alt: "",
                     }),
                   }),
-                  e(A, {
-                    children: e(f, {
-                      to: `/post/${s[4].post_id}`,
-                      children: e("img", {
-                        className: "newPostSection__Picture",
-                        src: s[4].picture_Details,
-                        alt: "",
-                      }),
+                }),
+                e(A, {
+                  children: e(f, {
+                    to: `/post/${s[4].post_id}`,
+                    children: e("img", {
+                      className: "newPostSection__Picture",
+                      src: s[4].picture_Details,
+                      alt: "",
                     }),
                   }),
-                  e(A, {
-                    children: e(f, {
-                      to: `/post/${s[5].post_id}`,
-                      children: e("img", {
-                        className: "newPostSection__Picture",
-                        src: s[5].picture_Details,
-                        alt: "",
-                      }),
+                }),
+                e(A, {
+                  children: e(f, {
+                    to: `/post/${s[5].post_id}`,
+                    children: e("img", {
+                      className: "newPostSection__Picture",
+                      src: s[5].picture_Details,
+                      alt: "",
                     }),
                   }),
-                ],
-              }),
-            ],
-          }),
+                }),
+              ],
+            }),
+          ],
+        }),
         e("div", {
           className: "searchBar",
           children: e(le, {
@@ -1187,7 +1187,7 @@ function gt() {
     })
   );
 }
-const _t = "http://localhost:8080";
+const _t = "https://village-backend-finalproject.herokuapp.com/";
 function vt(s) {
   const [i, a] = n.exports.useState([]),
     o = () => {
@@ -1209,61 +1209,61 @@ function vt(s) {
       children: [
         e("h1", { className: "pageHeader", children: "Post List" }),
         i &&
-          i.map((r) =>
-            t(
-              f,
-              {
-                className: "postSection__post",
-                to: `/post/${r.post_id}`,
-                children: [
-                  r.picture_Details
-                    ? e("div", {
-                        className: "postSection__replace",
-                        children: e("img", {
-                          className: "postSection__picture",
-                          src: r.picture_Details,
-                          alt: `${r.title} picture`,
-                        }),
-                      })
-                    : e("div", {
-                        className: "postSection__noPicture",
-                        children: e(ne, { sx: { width: 100, height: 100 } }),
-                      }),
-                  t("div", {
-                    className: "postSection__detailBox",
-                    children: [
-                      t("div", {
-                        className: "postSection__details--user",
-                        children: ["By ", r.displayName],
-                      }),
-                      e("div", {
-                        className: "postSection__details--time",
-                        children: r.updated_at,
-                      }),
-                    ],
+        i.map((r) =>
+          t(
+            f,
+            {
+              className: "postSection__post",
+              to: `/post/${r.post_id}`,
+              children: [
+                r.picture_Details
+                  ? e("div", {
+                    className: "postSection__replace",
+                    children: e("img", {
+                      className: "postSection__picture",
+                      src: r.picture_Details,
+                      alt: `${r.title} picture`,
+                    }),
+                  })
+                  : e("div", {
+                    className: "postSection__noPicture",
+                    children: e(ne, { sx: { width: 100, height: 100 } }),
                   }),
-                  e("div", {
-                    className: "postSection__title",
-                    children: r.title,
-                  }),
-                  t("div", {
-                    className: "postSection__details",
-                    children: [
-                      t("div", {
-                        className: "postType",
-                        children: [" ", r.type],
-                      }),
-                      t("div", {
-                        className: "postStatus",
-                        children: [" ", r.status],
-                      }),
-                    ],
-                  }),
-                ],
-              },
-              r.post_id
-            )
-          ),
+                t("div", {
+                  className: "postSection__detailBox",
+                  children: [
+                    t("div", {
+                      className: "postSection__details--user",
+                      children: ["By ", r.displayName],
+                    }),
+                    e("div", {
+                      className: "postSection__details--time",
+                      children: r.updated_at,
+                    }),
+                  ],
+                }),
+                e("div", {
+                  className: "postSection__title",
+                  children: r.title,
+                }),
+                t("div", {
+                  className: "postSection__details",
+                  children: [
+                    t("div", {
+                      className: "postType",
+                      children: [" ", r.type],
+                    }),
+                    t("div", {
+                      className: "postStatus",
+                      children: [" ", r.status],
+                    }),
+                  ],
+                }),
+              ],
+            },
+            r.post_id
+          )
+        ),
       ],
     })
   );
@@ -1293,7 +1293,7 @@ function pe(s) {
     ],
   });
 }
-const ft = "http://localhost:8080";
+const ft = "https://village-backend-finalproject.herokuapp.com/";
 function Nt(s) {
   var x, T, U, M;
   const { userInfo: i, isLoggedIn: a } = q(),
@@ -1325,8 +1325,8 @@ function Nt(s) {
     k(), (document.title = "Upload Post");
   }, [o]);
   const R = (c) => {
-      r(c.target.value);
-    },
+    r(c.target.value);
+  },
     g = (c) => {
       P.post(
         `${ft}/posts`,
@@ -1375,305 +1375,305 @@ function Nt(s) {
     className: "createPage",
     children: a
       ? t($, {
-          children: [
-            e("h1", { className: "pageheader", children: "Create New Post" }),
-            t("div", {
-              className: "createPageForm",
-              children: [
-                t("form", {
-                  className: "createPageForm__Upload",
-                  onSubmit: b,
+        children: [
+          e("h1", { className: "pageheader", children: "Create New Post" }),
+          t("div", {
+            className: "createPageForm",
+            children: [
+              t("form", {
+                className: "createPageForm__Upload",
+                onSubmit: b,
+                children: [
+                  e("h3", { children: "Upload Photo First" }),
+                  e("input", {
+                    className: "noStyle createPageForm__Upload--button",
+                    type: "file",
+                  }),
+                  e("button", {
+                    type: "submit",
+                    className: "noStyle createPageForm__Upload--button",
+                    children: e(_, {
+                      variant: "contained",
+                      children: "Upload",
+                    }),
+                  }),
+                ],
+              }),
+              m
+                ? t("div", {
+                  className: "createPageForm__Upload--photo",
                   children: [
-                    e("h3", { children: "Upload Photo First" }),
-                    e("input", {
-                      className: "noStyle createPageForm__Upload--button",
-                      type: "file",
+                    e("img", {
+                      className: "profilePicture",
+                      src: p,
+                      alt: "icon",
                     }),
-                    e("button", {
-                      type: "submit",
-                      className: "noStyle createPageForm__Upload--button",
-                      children: e(_, {
-                        variant: "contained",
-                        children: "Upload",
-                      }),
-                    }),
+                    t("h3", { children: ["Uploaded ", m, " %"] }),
                   ],
-                }),
-                m
-                  ? t("div", {
-                      className: "createPageForm__Upload--photo",
-                      children: [
-                        e("img", {
-                          className: "profilePicture",
-                          src: p,
-                          alt: "icon",
-                        }),
-                        t("h3", { children: ["Uploaded ", m, " %"] }),
-                      ],
-                    })
-                  : e("div", { className: "picture-replace" }),
-              ],
-            }),
-            t("form", {
-              className: "createPostTwo",
-              onSubmit: C(g),
-              children: [
-                t("div", {
-                  className: "createPostTwo__textInfo",
-                  children: [
-                    e("div", { className: "subTitle", children: "TITLE: " }),
-                    e(
-                      "input",
-                      w(
-                        v(
-                          { className: "inputStyle" },
-                          u("title", { required: "This is required." })
-                        ),
-                        {
-                          placeholder:
-                            "something like: Looking for a dog walker",
-                        }
-                      )
-                    ),
-                    e("p", {
-                      className: "errorMessage",
-                      children: (x = I.title) == null ? void 0 : x.message,
-                    }),
-                    e("div", { className: "subTitle", children: "DETAIlS: " }),
-                    e(
-                      "input",
-                      w(
-                        v(
-                          { className: "inputStyleBig" },
-                          u("content", { required: "This is required." })
-                        ),
-                        { placeholder: "I need a dog walker" }
-                      )
-                    ),
-                    e("p", {
-                      className: "errorMessage",
-                      children: (T = I.content) == null ? void 0 : T.message,
-                    }),
-                    t("section", {
-                      className: "dropdown",
-                      children: [
-                        e("div", { className: "subTitle", children: "Type" }),
-                        e(B, {
-                          name: "type",
-                          control: y,
-                          render: ({ field: c }) =>
-                            e(
-                              O,
-                              w(v({ isClearable: !0 }, c), {
-                                options: [
-                                  { value: "Accounting", label: "Accounting" },
-                                  {
-                                    value: "Babysitting",
-                                    label: "Babysitting",
-                                  },
-                                  { value: "Cook", label: "Cook" },
-                                  {
-                                    value: "Housekeeping",
-                                    label: "Housekeeping",
-                                  },
-                                  {
-                                    value: "Design/ video editing",
-                                    label: "Design/ video editing",
-                                  },
-                                  { value: "Gardening", label: "Gardening" },
-                                  {
-                                    value: "dog walking",
-                                    label: "dog walking",
-                                  },
-                                  {
-                                    value: "technician jobs",
-                                    label: "technician jobs",
-                                  },
-                                  {
-                                    value: "house moving",
-                                    label: "house moving",
-                                  },
-                                ],
-                              })
-                            ),
-                        }),
-                      ],
-                    }),
-                  ],
-                }),
-                t("div", {
-                  className: "createPostTwo__otherInfo",
-                  children: [
-                    t("div", {
-                      className: "createPostTwo__otherInfo--payment",
-                      children: [
-                        e(pe, { handleChange: R, value: o, control: y }),
-                        l
-                          ? t("div", {
-                              children: [
-                                e("div", {
-                                  className: "subTitle",
-                                  children:
-                                    "What would you like to offer except money?",
-                                }),
-                                e(
-                                  "input",
-                                  w(
-                                    v(
-                                      { className: "inputStyle" },
-                                      u("salary_replacement", {
-                                        required: "This is required.",
-                                      })
-                                    ),
-                                    { placeholder: "a dozen of beer" }
-                                  )
-                                ),
-                                e("p", {
-                                  className: "errorMessage",
-                                  children:
-                                    (U = I.salary_replacement) == null
-                                      ? void 0
-                                      : U.message,
-                                }),
+                })
+                : e("div", { className: "picture-replace" }),
+            ],
+          }),
+          t("form", {
+            className: "createPostTwo",
+            onSubmit: C(g),
+            children: [
+              t("div", {
+                className: "createPostTwo__textInfo",
+                children: [
+                  e("div", { className: "subTitle", children: "TITLE: " }),
+                  e(
+                    "input",
+                    w(
+                      v(
+                        { className: "inputStyle" },
+                        u("title", { required: "This is required." })
+                      ),
+                      {
+                        placeholder:
+                          "something like: Looking for a dog walker",
+                      }
+                    )
+                  ),
+                  e("p", {
+                    className: "errorMessage",
+                    children: (x = I.title) == null ? void 0 : x.message,
+                  }),
+                  e("div", { className: "subTitle", children: "DETAIlS: " }),
+                  e(
+                    "input",
+                    w(
+                      v(
+                        { className: "inputStyleBig" },
+                        u("content", { required: "This is required." })
+                      ),
+                      { placeholder: "I need a dog walker" }
+                    )
+                  ),
+                  e("p", {
+                    className: "errorMessage",
+                    children: (T = I.content) == null ? void 0 : T.message,
+                  }),
+                  t("section", {
+                    className: "dropdown",
+                    children: [
+                      e("div", { className: "subTitle", children: "Type" }),
+                      e(B, {
+                        name: "type",
+                        control: y,
+                        render: ({ field: c }) =>
+                          e(
+                            O,
+                            w(v({ isClearable: !0 }, c), {
+                              options: [
+                                { value: "Accounting", label: "Accounting" },
+                                {
+                                  value: "Babysitting",
+                                  label: "Babysitting",
+                                },
+                                { value: "Cook", label: "Cook" },
+                                {
+                                  value: "Housekeeping",
+                                  label: "Housekeeping",
+                                },
+                                {
+                                  value: "Design/ video editing",
+                                  label: "Design/ video editing",
+                                },
+                                { value: "Gardening", label: "Gardening" },
+                                {
+                                  value: "dog walking",
+                                  label: "dog walking",
+                                },
+                                {
+                                  value: "technician jobs",
+                                  label: "technician jobs",
+                                },
+                                {
+                                  value: "house moving",
+                                  label: "house moving",
+                                },
                               ],
                             })
-                          : t("div", {
-                              children: [
-                                t("div", {
-                                  className: "subTitle",
-                                  children: [
-                                    "Show a range you would like to offer:",
-                                    " ",
-                                  ],
-                                }),
-                                e(
-                                  "input",
-                                  w(
-                                    v(
-                                      { className: "inputStyle" },
-                                      u("salary", {
-                                        required: "This is required.",
-                                      })
-                                    ),
-                                    { placeholder: "CA$20 - CA$25  per hour" }
-                                  )
-                                ),
-                                e("p", {
-                                  className: "errorMessage",
-                                  children:
-                                    (M = I.salary) == null ? void 0 : M.message,
-                                }),
-                              ],
-                            }),
-                      ],
-                    }),
-                    t("div", {
-                      className: "createPostTwo__otherInfo--other",
-                      children: [
-                        t("section", {
+                          ),
+                      }),
+                    ],
+                  }),
+                ],
+              }),
+              t("div", {
+                className: "createPostTwo__otherInfo",
+                children: [
+                  t("div", {
+                    className: "createPostTwo__otherInfo--payment",
+                    children: [
+                      e(pe, { handleChange: R, value: o, control: y }),
+                      l
+                        ? t("div", {
                           children: [
                             e("div", {
                               className: "subTitle",
-                              children: "Require Date",
+                              children:
+                                "What would you like to offer except money?",
                             }),
-                            e(B, {
-                              control: y,
-                              name: "requireDate",
-                              render: ({ field: c }) =>
-                                e(ce, {
-                                  className: "inputStyle",
-                                  placeholderText: "Select date",
-                                  onChange: (S) => c.onChange(S),
-                                  selected: c.value,
-                                }),
-                            }),
-                          ],
-                        }),
-                        t("section", {
-                          className: "dropdown",
-                          children: [
-                            e("div", {
-                              className: "subTitle",
-                              children: "Estimate Working Hour",
-                            }),
-                            e(B, {
-                              name: "estimate_time",
-                              className: "dropdowninside",
-                              control: y,
-                              render: ({ field: c }) =>
-                                e(
-                                  O,
-                                  w(v({ isClearable: !0 }, c), {
-                                    options: [
-                                      {
-                                        value: "less than 30mins",
-                                        label: "less than 5mins",
-                                      },
-                                      { value: "Hours", label: "Hours" },
-                                      {
-                                        value: "0.5 - 1 hour",
-                                        label: "0.5 - 1 hour",
-                                      },
-                                      { value: "2 hours", label: "2 hours" },
-                                      {
-                                        value: "3 - 5 hours",
-                                        label: "3 - 5 hours",
-                                      },
-                                      {
-                                        value: "5 - 10 hours",
-                                        label: "5 - 10 hours",
-                                      },
-                                      { value: "Days", label: "Days" },
-                                      {
-                                        value: "within 1 day",
-                                        label: "within 1 day",
-                                      },
-                                      {
-                                        value: "1 - 3 days",
-                                        label: "1 - 3 days",
-                                      },
-                                      { value: "Weeks", label: "Weeks" },
-                                      {
-                                        value: "within 1 week",
-                                        label: "within 1 week",
-                                      },
-                                      {
-                                        value: "1 - 2 weeks",
-                                        label: "1 - 2 weeks",
-                                      },
-                                      { value: "Months", label: "Months" },
-                                    ],
+                            e(
+                              "input",
+                              w(
+                                v(
+                                  { className: "inputStyle" },
+                                  u("salary_replacement", {
+                                    required: "This is required.",
                                   })
                                 ),
+                                { placeholder: "a dozen of beer" }
+                              )
+                            ),
+                            e("p", {
+                              className: "errorMessage",
+                              children:
+                                (U = I.salary_replacement) == null
+                                  ? void 0
+                                  : U.message,
+                            }),
+                          ],
+                        })
+                        : t("div", {
+                          children: [
+                            t("div", {
+                              className: "subTitle",
+                              children: [
+                                "Show a range you would like to offer:",
+                                " ",
+                              ],
+                            }),
+                            e(
+                              "input",
+                              w(
+                                v(
+                                  { className: "inputStyle" },
+                                  u("salary", {
+                                    required: "This is required.",
+                                  })
+                                ),
+                                { placeholder: "CA$20 - CA$25  per hour" }
+                              )
+                            ),
+                            e("p", {
+                              className: "errorMessage",
+                              children:
+                                (M = I.salary) == null ? void 0 : M.message,
                             }),
                           ],
                         }),
-                      ],
-                    }),
-                    e("div", {
-                      className: "createPostButton",
-                      children: e("button", {
-                        className: "noStyle",
-                        type: "submit",
-                        children: e(_, {
-                          variant: "contained",
-                          endIcon: e(Fe, {}),
-                          children: "Send",
-                        }),
+                    ],
+                  }),
+                  t("div", {
+                    className: "createPostTwo__otherInfo--other",
+                    children: [
+                      t("section", {
+                        children: [
+                          e("div", {
+                            className: "subTitle",
+                            children: "Require Date",
+                          }),
+                          e(B, {
+                            control: y,
+                            name: "requireDate",
+                            render: ({ field: c }) =>
+                              e(ce, {
+                                className: "inputStyle",
+                                placeholderText: "Select date",
+                                onChange: (S) => c.onChange(S),
+                                selected: c.value,
+                              }),
+                          }),
+                        ],
+                      }),
+                      t("section", {
+                        className: "dropdown",
+                        children: [
+                          e("div", {
+                            className: "subTitle",
+                            children: "Estimate Working Hour",
+                          }),
+                          e(B, {
+                            name: "estimate_time",
+                            className: "dropdowninside",
+                            control: y,
+                            render: ({ field: c }) =>
+                              e(
+                                O,
+                                w(v({ isClearable: !0 }, c), {
+                                  options: [
+                                    {
+                                      value: "less than 30mins",
+                                      label: "less than 5mins",
+                                    },
+                                    { value: "Hours", label: "Hours" },
+                                    {
+                                      value: "0.5 - 1 hour",
+                                      label: "0.5 - 1 hour",
+                                    },
+                                    { value: "2 hours", label: "2 hours" },
+                                    {
+                                      value: "3 - 5 hours",
+                                      label: "3 - 5 hours",
+                                    },
+                                    {
+                                      value: "5 - 10 hours",
+                                      label: "5 - 10 hours",
+                                    },
+                                    { value: "Days", label: "Days" },
+                                    {
+                                      value: "within 1 day",
+                                      label: "within 1 day",
+                                    },
+                                    {
+                                      value: "1 - 3 days",
+                                      label: "1 - 3 days",
+                                    },
+                                    { value: "Weeks", label: "Weeks" },
+                                    {
+                                      value: "within 1 week",
+                                      label: "within 1 week",
+                                    },
+                                    {
+                                      value: "1 - 2 weeks",
+                                      label: "1 - 2 weeks",
+                                    },
+                                    { value: "Months", label: "Months" },
+                                  ],
+                                })
+                              ),
+                          }),
+                        ],
+                      }),
+                    ],
+                  }),
+                  e("div", {
+                    className: "createPostButton",
+                    children: e("button", {
+                      className: "noStyle",
+                      type: "submit",
+                      children: e(_, {
+                        variant: "contained",
+                        endIcon: e(Fe, {}),
+                        children: "Send",
                       }),
                     }),
-                  ],
-                }),
-              ],
-            }),
-          ],
-        })
+                  }),
+                ],
+              }),
+            ],
+          }),
+        ],
+      })
       : t($, {
-          children: [
-            e("p", { children: "Login to create your own posts." }),
-            e(z, {}),
-          ],
-        }),
+        children: [
+          e("p", { children: "Login to create your own posts." }),
+          e(z, {}),
+        ],
+      }),
   });
 }
 function me(s) {
@@ -1686,87 +1686,87 @@ function me(s) {
   return e($, {
     children: s.isLoggedIn
       ? t("div", {
-          className: "applyList",
-          children: [
-            e("div", { className: "applyList__background" }),
-            t("form", {
-              className: "applyList__form",
-              onSubmit: a(s.handleApply),
-              children: [
-                t("h2", {
-                  className: "applyList__title",
-                  children: ["leave a message to ", s.postUserId, " "],
-                }),
-                e(
-                  "input",
-                  w(
-                    v(
-                      { className: "inputStyle" },
-                      i("content", { required: "This is required." })
-                    ),
-                    { placeholder: "Introduction and explain why" }
-                  )
-                ),
-                t("h2", {
-                  className: "applyList__title",
-                  children: ["What would you like to receive?", " "],
-                }),
-                e("p", {
-                  children: (r = o.content) == null ? void 0 : r.message,
-                }),
-                e(
-                  "input",
-                  w(
-                    v(
-                      { className: "inputStyle" },
-                      i("offer", { required: "This is required." })
-                    ),
-                    { placeholder: "something like: 10 bucks per hour" }
-                  )
-                ),
-                e("p", {
-                  children: (l = o.offer) == null ? void 0 : l.message,
-                }),
-                e(_, { onClick: s.hideApplyModal, children: "cancel" }),
-                e("button", {
-                  className: "noStyle",
-                  type: "submit",
-                  children: e(_, { variant: "contained", children: "Sumbit" }),
-                }),
-                e("div", {
-                  children:
-                    "Please apply carefully. Once you applied the job, you are not able the edit / detele it.",
-                }),
-              ],
-            }),
-          ],
-        })
+        className: "applyList",
+        children: [
+          e("div", { className: "applyList__background" }),
+          t("form", {
+            className: "applyList__form",
+            onSubmit: a(s.handleApply),
+            children: [
+              t("h2", {
+                className: "applyList__title",
+                children: ["leave a message to ", s.postUserId, " "],
+              }),
+              e(
+                "input",
+                w(
+                  v(
+                    { className: "inputStyle" },
+                    i("content", { required: "This is required." })
+                  ),
+                  { placeholder: "Introduction and explain why" }
+                )
+              ),
+              t("h2", {
+                className: "applyList__title",
+                children: ["What would you like to receive?", " "],
+              }),
+              e("p", {
+                children: (r = o.content) == null ? void 0 : r.message,
+              }),
+              e(
+                "input",
+                w(
+                  v(
+                    { className: "inputStyle" },
+                    i("offer", { required: "This is required." })
+                  ),
+                  { placeholder: "something like: 10 bucks per hour" }
+                )
+              ),
+              e("p", {
+                children: (l = o.offer) == null ? void 0 : l.message,
+              }),
+              e(_, { onClick: s.hideApplyModal, children: "cancel" }),
+              e("button", {
+                className: "noStyle",
+                type: "submit",
+                children: e(_, { variant: "contained", children: "Sumbit" }),
+              }),
+              e("div", {
+                children:
+                  "Please apply carefully. Once you applied the job, you are not able the edit / detele it.",
+              }),
+            ],
+          }),
+        ],
+      })
       : t("div", {
-          children: [
-            e("div", { className: "applyList__background" }),
-            t("div", {
-              className: "applyList__form",
-              children: [
-                e(_, { onClick: s.hideApplyModal, children: "cancel" }),
-                e("h2", {
-                  className: "",
-                  children: "OPPS! You haven't logged in yet...",
+        children: [
+          e("div", { className: "applyList__background" }),
+          t("div", {
+            className: "applyList__form",
+            children: [
+              e(_, { onClick: s.hideApplyModal, children: "cancel" }),
+              e("h2", {
+                className: "",
+                children: "OPPS! You haven't logged in yet...",
+              }),
+              e(f, {
+                className: "navLink LinkButton",
+                to: "/loginWithGoogle",
+                children: e(_, {
+                  variant: "contained",
+                  children: " Click here",
                 }),
-                e(f, {
-                  className: "navLink LinkButton",
-                  to: "/loginWithGoogle",
-                  children: e(_, {
-                    variant: "contained",
-                    children: " Click here",
-                  }),
-                }),
-              ],
-            }),
-          ],
-        }),
+              }),
+            ],
+          }),
+        ],
+      }),
   });
 }
-const V = "http://localhost:8080";
+const V = "https://village-backend-finalproject.herokuapp.com/";
 function yt(s) {
   const { userInfo: i, isLoggedIn: a } = q(),
     [o, r] = n.exports.useState({}),
@@ -1886,9 +1886,9 @@ function yt(s) {
                 }),
                 o.salary && t("div", { children: ["salary: ", o.salary] }),
                 o.salary_replacement &&
-                  t("div", {
-                    children: ["Non-Monetary Payment: ", o.salary_replacement],
-                  }),
+                t("div", {
+                  children: ["Non-Monetary Payment: ", o.salary_replacement],
+                }),
                 t("div", { children: ["Required Date: ", o.requireDate] }),
                 t("div", { children: ["Estimate Time: ", o.estimate_time] }),
                 t("div", { children: ["Detail: ", o.content] }),
@@ -1899,89 +1899,89 @@ function yt(s) {
         }),
         a && i.id === o.user_id
           ? t("div", {
-              children: [
-                t("div", {
-                  className: "post__button",
-                  children: [
-                    e(f, {
-                      className: "navLink",
-                      to: `/postEdit/${o.post_id}`,
-                      children: e(_, {
-                        variant: "contained",
-                        children: "Edit",
-                      }),
+            children: [
+              t("div", {
+                className: "post__button",
+                children: [
+                  e(f, {
+                    className: "navLink",
+                    to: `/postEdit/${o.post_id}`,
+                    children: e(_, {
+                      variant: "contained",
+                      children: "Edit",
                     }),
-                    e(_, {
-                      onClick: I,
-                      startIcon: e(We, {}),
-                      variant: "outlined",
-                      color: "error",
-                      children: "Delete",
+                  }),
+                  e(_, {
+                    onClick: I,
+                    startIcon: e(We, {}),
+                    variant: "outlined",
+                    color: "error",
+                    children: "Delete",
+                  }),
+                ],
+              }),
+              l.map((g) =>
+                t(
+                  f,
+                  {
+                    className: "post navLink applicantsList",
+                    to: `/profile/${g.user_id}`,
+                    children: [
+                      e(H, { src: g.avatar_url, alt: g.username }),
+                      t("div", { children: ["message: ", g.content] }),
+                      t("div", {
+                        className: "applicantsSpe",
+                        children: ["I Need ", g.offer],
+                      }),
+                      t("div", {
+                        className: "time",
+                        children: ["time: ", g.updated_at],
+                      }),
+                      t("div", { children: ["By ", g.username] }),
+                    ],
+                  },
+                  g.id
+                )
+              ),
+            ],
+          })
+          : e("div", {
+            className: "appliants",
+            children:
+              a && m.user_id === i.id
+                ? t("div", {
+                  className: "applicantsList",
+                  children: [
+                    t("h2", {
+                      children: ["Your application: ", m.content],
+                    }),
+                    t("div", { children: ["Requires: ", m.offer] }),
+                    e("div", { className: "time", children: m.updated_at }),
+                    e(_, { children: "Applied" }),
+                  ],
+                })
+                : t($, {
+                  children: [
+                    e("div", {
+                      onClick: k,
+                      className: "post__apply",
+                      children: "Apply Now",
+                    }),
+                    p &&
+                    e(me, {
+                      handleApply: y,
+                      hideApplyModal: R,
+                      postUserId: o.displayname,
+                      isLoggedIn: a,
                     }),
                   ],
                 }),
-                l.map((g) =>
-                  t(
-                    f,
-                    {
-                      className: "post navLink applicantsList",
-                      to: `/profile/${g.user_id}`,
-                      children: [
-                        e(H, { src: g.avatar_url, alt: g.username }),
-                        t("div", { children: ["message: ", g.content] }),
-                        t("div", {
-                          className: "applicantsSpe",
-                          children: ["I Need ", g.offer],
-                        }),
-                        t("div", {
-                          className: "time",
-                          children: ["time: ", g.updated_at],
-                        }),
-                        t("div", { children: ["By ", g.username] }),
-                      ],
-                    },
-                    g.id
-                  )
-                ),
-              ],
-            })
-          : e("div", {
-              className: "appliants",
-              children:
-                a && m.user_id === i.id
-                  ? t("div", {
-                      className: "applicantsList",
-                      children: [
-                        t("h2", {
-                          children: ["Your application: ", m.content],
-                        }),
-                        t("div", { children: ["Requires: ", m.offer] }),
-                        e("div", { className: "time", children: m.updated_at }),
-                        e(_, { children: "Applied" }),
-                      ],
-                    })
-                  : t($, {
-                      children: [
-                        e("div", {
-                          onClick: k,
-                          className: "post__apply",
-                          children: "Apply Now",
-                        }),
-                        p &&
-                          e(me, {
-                            handleApply: y,
-                            hideApplyModal: R,
-                            postUserId: o.displayname,
-                            isLoggedIn: a,
-                          }),
-                      ],
-                    }),
-            }),
+          }),
       ],
     })
   );
 }
-const te = "http://localhost:8080";
+const te = "https://village-backend-finalproject.herokuapp.com/";
 function bt(s) {
   var L, x, T, U, M;
   const { userInfo: i, isLoggedIn: a } = q(),
@@ -2019,21 +2019,21 @@ function bt(s) {
       R();
     }, []);
   const g = (c) => {
-      const S = s.match.params.postID,
-        W = {
-          title: c.title,
-          content: c.content,
-          status: c.status,
-          requireDate: c.requireDate,
-          salary: c.salary,
-          salary_replacement: c.salary_replacement,
-        };
-      P.put(`${te}/posts/${S}`, W, { withCredentials: !0 })
-        .then((D) => {
-          console.log(D), s.history.push(`/post/${S}`);
-        })
-        .catch((D) => console.log(D));
-    },
+    const S = s.match.params.postID,
+      W = {
+        title: c.title,
+        content: c.content,
+        status: c.status,
+        requireDate: c.requireDate,
+        salary: c.salary,
+        salary_replacement: c.salary_replacement,
+      };
+    P.put(`${te}/posts/${S}`, W, { withCredentials: !0 })
+      .then((D) => {
+        console.log(D), s.history.push(`/post/${S}`);
+      })
+      .catch((D) => console.log(D));
+  },
     b = (c) => {
       r(c.target.value);
     };
@@ -2043,225 +2043,225 @@ function bt(s) {
       e("h1", { className: "headline", children: "Edit Post" }),
       a && i.id === m.user_id
         ? t("form", {
-            className: "EditPost__box",
-            onSubmit: C(g),
-            children: [
-              t("div", {
-                className: "EditPost__box--one",
-                children: [
-                  e("div", { className: "subTitle", children: "TITLE: " }),
-                  e(
-                    "input",
-                    w(
-                      v(
-                        { className: "inputStyle" },
-                        u("title", { required: "This is required." })
-                      ),
-                      {
-                        placeholder: "something like: Looking for a dog walker",
-                      }
-                    )
-                  ),
-                  e("p", {
-                    children: (L = k.title) == null ? void 0 : L.message,
-                  }),
-                  e("div", { className: "subTitle", children: "DETAIlS: " }),
-                  e(
-                    "input",
-                    w(
-                      v(
-                        { className: "inputStyleBig " },
-                        u("content", { required: "This is required." })
-                      ),
-                      { placeholder: "I need a dog walker" }
-                    )
-                  ),
-                  e("p", {
-                    children: (x = k.content) == null ? void 0 : x.message,
-                  }),
-                ],
-              }),
-              t("div", {
-                className: "EditPost__box--two",
-                children: [
-                  e(pe, { handleChange: b, value: o, control: y }),
-                  l
-                    ? t("div", {
-                        children: [
-                          e("div", {
-                            className: "subTitle",
-                            children:
-                              "What would you like to offer except money?",
-                          }),
-                          e(
-                            "input",
-                            w(
-                              v(
-                                { className: "inputStyle" },
-                                u("salary_replacement", {
-                                  required: "This is required.",
-                                })
-                              ),
-                              { placeholder: "a dozen of beer" }
-                            )
+          className: "EditPost__box",
+          onSubmit: C(g),
+          children: [
+            t("div", {
+              className: "EditPost__box--one",
+              children: [
+                e("div", { className: "subTitle", children: "TITLE: " }),
+                e(
+                  "input",
+                  w(
+                    v(
+                      { className: "inputStyle" },
+                      u("title", { required: "This is required." })
+                    ),
+                    {
+                      placeholder: "something like: Looking for a dog walker",
+                    }
+                  )
+                ),
+                e("p", {
+                  children: (L = k.title) == null ? void 0 : L.message,
+                }),
+                e("div", { className: "subTitle", children: "DETAIlS: " }),
+                e(
+                  "input",
+                  w(
+                    v(
+                      { className: "inputStyleBig " },
+                      u("content", { required: "This is required." })
+                    ),
+                    { placeholder: "I need a dog walker" }
+                  )
+                ),
+                e("p", {
+                  children: (x = k.content) == null ? void 0 : x.message,
+                }),
+              ],
+            }),
+            t("div", {
+              className: "EditPost__box--two",
+              children: [
+                e(pe, { handleChange: b, value: o, control: y }),
+                l
+                  ? t("div", {
+                    children: [
+                      e("div", {
+                        className: "subTitle",
+                        children:
+                          "What would you like to offer except money?",
+                      }),
+                      e(
+                        "input",
+                        w(
+                          v(
+                            { className: "inputStyle" },
+                            u("salary_replacement", {
+                              required: "This is required.",
+                            })
                           ),
-                          e("p", {
-                            children:
-                              (T = k.salary_replacement) == null
-                                ? void 0
-                                : T.message,
+                          { placeholder: "a dozen of beer" }
+                        )
+                      ),
+                      e("p", {
+                        children:
+                          (T = k.salary_replacement) == null
+                            ? void 0
+                            : T.message,
+                      }),
+                    ],
+                  })
+                  : t("div", {
+                    children: [
+                      t("div", {
+                        className: "subTitle",
+                        children: [
+                          "Show a range you would like to offer:",
+                          " ",
+                        ],
+                      }),
+                      e(
+                        "input",
+                        w(
+                          v(
+                            { className: "inputStyle" },
+                            u("salary", { required: "This is required." })
+                          ),
+                          { placeholder: "CA$20 - CA$25  per hour" }
+                        )
+                      ),
+                      e("p", {
+                        children:
+                          (U = k.salary) == null ? void 0 : U.message,
+                      }),
+                    ],
+                  }),
+                t("section", {
+                  children: [
+                    e("div", {
+                      className: "subTitle",
+                      children: "Require Date",
+                    }),
+                    p
+                      ? t($, {
+                        children: [
+                          t("div", {
+                            onClick: (c) => N(!1),
+                            children: [m.requireDate, "."],
+                          }),
+                          t("div", {
+                            className: "changeDate",
+                            children: [
+                              e(Ve, {}),
+                              "Click me to edit the require date",
+                            ],
                           }),
                         ],
                       })
-                    : t("div", {
-                        children: [
-                          t("div", {
-                            className: "subTitle",
-                            children: [
-                              "Show a range you would like to offer:",
-                              " ",
-                            ],
-                          }),
-                          e(
-                            "input",
-                            w(
-                              v(
-                                { className: "inputStyle" },
-                                u("salary", { required: "This is required." })
-                              ),
-                              { placeholder: "CA$20 - CA$25  per hour" }
-                            )
-                          ),
-                          e("p", {
-                            children:
-                              (U = k.salary) == null ? void 0 : U.message,
-                          }),
-                        ],
+                      : e($, {
+                        children: e(
+                          B,
+                          w(
+                            v(
+                              { control: y },
+                              u("requireDate", {
+                                required: "This is required.",
+                              })
+                            ),
+                            {
+                              render: ({ field: c }) =>
+                                e(ce, {
+                                  className: "inputStyle",
+                                  placeholderText: "Select date",
+                                  onChange: (S) => c.onChange(S),
+                                  selected: c.value,
+                                }),
+                            }
+                          )
+                        ),
                       }),
-                  t("section", {
-                    children: [
-                      e("div", {
-                        className: "subTitle",
-                        children: "Require Date",
-                      }),
-                      p
-                        ? t($, {
-                            children: [
-                              t("div", {
-                                onClick: (c) => N(!1),
-                                children: [m.requireDate, "."],
-                              }),
-                              t("div", {
-                                className: "changeDate",
-                                children: [
-                                  e(Ve, {}),
-                                  "Click me to edit the require date",
-                                ],
-                              }),
+                    e("p", {
+                      children: (M = k.type) == null ? void 0 : M.message,
+                    }),
+                  ],
+                }),
+                t("section", {
+                  className: "dropdown",
+                  children: [
+                    e("div", {
+                      className: "subTitle",
+                      children: "Estimate Working Hour",
+                    }),
+                    e(B, {
+                      name: "estimate_time",
+                      className: "dropdowninside",
+                      control: y,
+                      render: ({ field: c }) =>
+                        e(
+                          O,
+                          w(v({ isClearable: !0 }, c), {
+                            options: [
+                              {
+                                value: "less than 30mins",
+                                label: "less than 5mins",
+                              },
+                              { value: "Hours", label: "Hours" },
+                              {
+                                value: "0.5 - 1 hour",
+                                label: "0.5 - 1 hour",
+                              },
+                              { value: "2 hours", label: "2 hours" },
+                              { value: "3 - 5 hours", label: "3 - 5 hours" },
+                              {
+                                value: "5 - 10 hours",
+                                label: "5 - 10 hours",
+                              },
+                              { value: "Days", label: "Days" },
+                              {
+                                value: "within 1 day",
+                                label: "within 1 day",
+                              },
+                              { value: "1 - 3 days", label: "1 - 3 days" },
+                              { value: "Weeks", label: "Weeks" },
+                              {
+                                value: "within 1 week",
+                                label: "within 1 week",
+                              },
+                              { value: "1 - 2 weeks", label: "1 - 2 weeks" },
+                              { value: "Months", label: "Months" },
                             ],
                           })
-                        : e($, {
-                            children: e(
-                              B,
-                              w(
-                                v(
-                                  { control: y },
-                                  u("requireDate", {
-                                    required: "This is required.",
-                                  })
-                                ),
-                                {
-                                  render: ({ field: c }) =>
-                                    e(ce, {
-                                      className: "inputStyle",
-                                      placeholderText: "Select date",
-                                      onChange: (S) => c.onChange(S),
-                                      selected: c.value,
-                                    }),
-                                }
-                              )
-                            ),
-                          }),
-                      e("p", {
-                        children: (M = k.type) == null ? void 0 : M.message,
-                      }),
-                    ],
-                  }),
-                  t("section", {
-                    className: "dropdown",
-                    children: [
-                      e("div", {
-                        className: "subTitle",
-                        children: "Estimate Working Hour",
-                      }),
-                      e(B, {
-                        name: "estimate_time",
-                        className: "dropdowninside",
-                        control: y,
-                        render: ({ field: c }) =>
-                          e(
-                            O,
-                            w(v({ isClearable: !0 }, c), {
-                              options: [
-                                {
-                                  value: "less than 30mins",
-                                  label: "less than 5mins",
-                                },
-                                { value: "Hours", label: "Hours" },
-                                {
-                                  value: "0.5 - 1 hour",
-                                  label: "0.5 - 1 hour",
-                                },
-                                { value: "2 hours", label: "2 hours" },
-                                { value: "3 - 5 hours", label: "3 - 5 hours" },
-                                {
-                                  value: "5 - 10 hours",
-                                  label: "5 - 10 hours",
-                                },
-                                { value: "Days", label: "Days" },
-                                {
-                                  value: "within 1 day",
-                                  label: "within 1 day",
-                                },
-                                { value: "1 - 3 days", label: "1 - 3 days" },
-                                { value: "Weeks", label: "Weeks" },
-                                {
-                                  value: "within 1 week",
-                                  label: "within 1 week",
-                                },
-                                { value: "1 - 2 weeks", label: "1 - 2 weeks" },
-                                { value: "Months", label: "Months" },
-                              ],
-                            })
-                          ),
-                      }),
-                    ],
-                  }),
-                  e("div", {
-                    className: "createPostButton",
-                    children: e("button", {
-                      className: "noStyle",
-                      type: "submit",
-                      children: e(_, {
-                        variant: "contained",
-                        children: "Submit",
-                      }),
+                        ),
+                    }),
+                  ],
+                }),
+                e("div", {
+                  className: "createPostButton",
+                  children: e("button", {
+                    className: "noStyle",
+                    type: "submit",
+                    children: e(_, {
+                      variant: "contained",
+                      children: "Submit",
                     }),
                   }),
-                ],
-              }),
-            ],
-          })
+                }),
+              ],
+            }),
+          ],
+        })
         : t($, {
-            children: [
-              e("p", { children: "Login to create your own posts." }),
-              e(z, {}),
-            ],
-          }),
+          children: [
+            e("p", { children: "Login to create your own posts." }),
+            e(z, {}),
+          ],
+        }),
     ],
   });
 }
-const ae = "http://localhost:8080";
+const ae = "https://village-backend-finalproject.herokuapp.com/";
 function St() {
   return (
     n.exports.useEffect(() => {
@@ -2303,7 +2303,7 @@ function St() {
     })
   );
 }
-const Pt = "http://localhost:8080";
+const Pt = "https://village-backend-finalproject.herokuapp.com/";
 function xt() {
   return (
     n.exports.useEffect(() => {

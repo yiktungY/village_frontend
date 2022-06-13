@@ -20,13 +20,16 @@ import Login from "./components/Users/Login/Login";
 import SignUp from "./components/Users/Signup/SignUp";
 import CreateAccount from "./components/Users/CreateAccount/CreateAccount";
 import Header from "./layout/Header/Header";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-const SERVER_URL = "http://localhost:8080";
+import ClipLoader from "react-spinners/ClipLoader";
+const SERVER_URL = "https://village-backend-finalproject.herokuapp.com/";
 
 function Routes() {
+  const [user, setUser] = useState({
+    isFetching: true,
+  });
   const history = useHistory();
-  const [user, setUser] = useState({});
   //   const [formErrorMessage, setFormErrorMessage] = useState(false);
   const signup = async (credentials) => {
     try {
@@ -62,6 +65,29 @@ function Routes() {
     }
   };
 
+  useEffect(() => {
+    const fetchUser = async () => {
+      setUser((prev) => ({ ...prev, isFetching: true }));
+      try {
+        const { data } = await axios.get(`${SERVER_URL}/user`);
+        setUser(data.user);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setUser((prev) => ({ ...prev, isFetching: false }));
+      }
+    };
+    fetchUser();
+  }, []);
+
+  if (user?.isFetching) {
+    return (
+      <div className="loading">
+        <ClipLoader />
+      </div>
+    );
+  }
+
   return (
     <>
       <Header user={user} logout={logout} />
@@ -92,7 +118,10 @@ function Routes() {
           path="/post/:postID"
           render={() => <PostDetails user={user} />}
         />
-        <Route path="/postEdit/:postID" component={EditPost} />
+        <Route
+          path="/postEdit/:postID"
+          render={() => <EditPost user={user} />}
+        />
         <Route path="/postApply/:postID" component={ApplyJob} />
       </Switch>
     </>

@@ -13,15 +13,15 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import ClipLoader from "react-spinners/ClipLoader";
 
-const SERVER_URL = "http://localhost:8080";
+const SERVER_URL = "https://village-backend-finalproject.herokuapp.com/";
 
 function PostsPage() {
-  const [posts, setPosts] = useState("");
+  const [posts, setPosts] = useState([]);
   const [inputText, setInputText] = useState("");
   const [loading, setLoading] = useState(true);
   const inputHandler = (e) => {
     //convert input text to lower case
-    var lowerCase = e.target.value.toLowerCase();
+    const lowerCase = e.target.value.toLowerCase();
     setInputText(lowerCase);
   };
 

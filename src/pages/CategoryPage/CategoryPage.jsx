@@ -2,7 +2,7 @@ import "./CategoryPage.scss";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-const SERVER_URL = "https://village-backend-finalproject.herokuapp.com/";
+const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
 import GetPostComponent from "../../components/Posts/GetPostComponent/GetPostComponent";
 import { TextField } from "@mui/material";
 import useToggle from "../../hooks/useToggle";

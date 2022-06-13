@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import { useEffect } from "react";
 import Login from "../Login/Login";
 import SignUp from "../Signup/SignUp";
-const SERVER_URL = "https://village-backend-finalproject.herokuapp.com/";
+const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
 
 function LoginWithGoolge(props) {
   useEffect(() => {

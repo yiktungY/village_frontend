@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Avatar } from "@mui/material";
 import ClipLoader from "react-spinners/ClipLoader";
-const SERVER_URL = "https://village-backend-finalproject.herokuapp.com/";
+const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
 
 function PostDetails({ user }) {
   const { postID } = useParams();

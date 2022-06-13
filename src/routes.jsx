@@ -23,7 +23,7 @@ import Header from "./layout/Header/Header";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ClipLoader from "react-spinners/ClipLoader";
-const SERVER_URL = "https://village-backend-finalproject.herokuapp.com/";
+const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
 
 function Routes() {
   const [user, setUser] = useState({

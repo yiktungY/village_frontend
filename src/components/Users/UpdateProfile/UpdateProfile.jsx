@@ -7,7 +7,7 @@ import LoginButton from "../../Button/LoginButton/LoginButton";
 import UploadPicture from "../../Users/UploadPicture/UploadPicture";
 import useLogin from "../../../hooks/useLogin";
 import { useHistory } from "react-router-dom";
-const SERVER_URL = "https://village-backend-finalproject.herokuapp.com/";
+const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
 
 function UpdateProfile({ user }) {
   const { userInfo, isLoggedIn } = useLogin();

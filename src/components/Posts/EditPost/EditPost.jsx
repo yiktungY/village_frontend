@@ -10,7 +10,7 @@ import ReactSelect from "react-select";
 import ReactDatePicker from "react-datepicker";
 import { Button } from "@mui/material";
 import { useHistory, useParams } from "react-router-dom";
-const SERVER_URL = "https://village-backend-finalproject.herokuapp.com/";
+const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
 
 function EditPost({ user }) {
   const { postID } = useParams();

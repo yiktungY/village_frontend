@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import { Avatar } from "@mui/material";
 // import UploadPicture from "../../components/Users/UploadPicture/UploadPicture";
 
-const SERVER_URL = "https://village-backend-finalproject.herokuapp.com/";
+const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
 
 function UserPage({ user }) {
   const { id } = useParams();

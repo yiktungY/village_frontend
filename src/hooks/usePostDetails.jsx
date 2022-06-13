@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-const SERVER_URL = "https://village-backend-finalproject.herokuapp.com/";
+const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
 
 export default function useLogin(props) {
   const [userPostList, setuserPostList] = useState(false);

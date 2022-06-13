@@ -97,11 +97,11 @@ const Ke = function () {
   }
 };
 Ke();
-const Ye = "https://village-backend-finalproject.herokuapp.com/";
+const Ye = "https://village-backend-finalproject.herokuapp.com";
 function ze() {
   return e(_, { href: `${Ye}/auth/logout`, children: "Log out" });
 }
-const Qe = "https://village-backend-finalproject.herokuapp.com/";
+const Qe = "https://village-backend-finalproject.herokuapp.com";
 function q(s) {
   const [i, a] = n.exports.useState(!1),
     [o, r] = n.exports.useState(""),
@@ -161,7 +161,7 @@ const Xe = {
       console.error(o), alert(o.message);
     }
   },
-  at = "https://village-backend-finalproject.herokuapp.com/";
+  at = "https://village-backend-finalproject.herokuapp.com";
 function st() {
   const [s, i] = n.exports.useState(""),
     [a, o] = n.exports.useState(""),
@@ -313,7 +313,7 @@ function it() {
 function rt() {
   return e("footer", { className: "footer" });
 }
-const ot = "https://village-backend-finalproject.herokuapp.com/";
+const ot = "https://village-backend-finalproject.herokuapp.com";
 function he(s) {
   const [i, a] = n.exports.useState(0),
     [o, r] = n.exports.useState(""),
@@ -382,7 +382,7 @@ function he(s) {
     ],
   });
 }
-const j = "https://village-backend-finalproject.herokuapp.com/";
+const j = "https://village-backend-finalproject.herokuapp.com";
 function nt(s) {
   var g, b;
   const { isLoggedIn: i } = q(),
@@ -747,7 +747,7 @@ function lt(s) {
     },
   };
 }
-const ct = "https://village-backend-finalproject.herokuapp.com/";
+const ct = "https://village-backend-finalproject.herokuapp.com";
 function dt() {
   const [s, i] = n.exports.useState(""),
     [a, o] = n.exports.useState(""),
@@ -901,7 +901,7 @@ const ht = De.button`
 function z() {
   return e(ht, { children: " Log in / Create a new Account" });
 }
-const ut = "https://village-backend-finalproject.herokuapp.com/";
+const ut = "https://village-backend-finalproject.herokuapp.com";
 function pt(s) {
   var N, m, h, u, y;
   const { userInfo: i, isLoggedIn: a } = q(),
@@ -1049,7 +1049,7 @@ function pt(s) {
     })
   );
 }
-const mt = "https://village-backend-finalproject.herokuapp.com/";
+const mt = "https://village-backend-finalproject.herokuapp.com";
 function gt() {
   const [s, i] = n.exports.useState(""),
     [a, o] = n.exports.useState(""),
@@ -1187,7 +1187,7 @@ function gt() {
     })
   );
 }
-const _t = "https://village-backend-finalproject.herokuapp.com/";
+const _t = "https://village-backend-finalproject.herokuapp.com";
 function vt(s) {
   const [i, a] = n.exports.useState([]),
     o = () => {
@@ -1293,7 +1293,7 @@ function pe(s) {
     ],
   });
 }
-const ft = "https://village-backend-finalproject.herokuapp.com/";
+const ft = "https://village-backend-finalproject.herokuapp.com";
 function Nt(s) {
   var x, T, U, M;
   const { userInfo: i, isLoggedIn: a } = q(),
@@ -1766,7 +1766,7 @@ function me(s) {
       }),
   });
 }
-const V = "https://village-backend-finalproject.herokuapp.com/";
+const V = "https://village-backend-finalproject.herokuapp.com";
 function yt(s) {
   const { userInfo: i, isLoggedIn: a } = q(),
     [o, r] = n.exports.useState({}),
@@ -1981,7 +1981,7 @@ function yt(s) {
     })
   );
 }
-const te = "https://village-backend-finalproject.herokuapp.com/";
+const te = "https://village-backend-finalproject.herokuapp.com";
 function bt(s) {
   var L, x, T, U, M;
   const { userInfo: i, isLoggedIn: a } = q(),
@@ -2261,7 +2261,7 @@ function bt(s) {
     ],
   });
 }
-const ae = "https://village-backend-finalproject.herokuapp.com/";
+const ae = "https://village-backend-finalproject.herokuapp.com";
 function St() {
   return (
     n.exports.useEffect(() => {
@@ -2303,7 +2303,7 @@ function St() {
     })
   );
 }
-const Pt = "https://village-backend-finalproject.herokuapp.com/";
+const Pt = "https://village-backend-finalproject.herokuapp.com";
 function xt() {
   return (
     n.exports.useEffect(() => {

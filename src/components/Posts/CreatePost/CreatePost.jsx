@@ -14,7 +14,7 @@ import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import { useHistory } from "react-router-dom";
 
-const SERVER_URL = "https://village-backend-finalproject.herokuapp.com/";
+const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
 
 function CreatePost({ user }) {
   const history = useHistory();

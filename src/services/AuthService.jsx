@@ -1,5 +1,5 @@
 import axios from "axios";
-const SERVER_URL = "https://village-backend-finalproject.herokuapp.com/";
+const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
 const register = (username, email, password) => {
   return axios.post(`${SERVER_URL}/signup`, {
     username,

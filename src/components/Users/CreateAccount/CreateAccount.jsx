@@ -1,5 +1,5 @@
 import "./CreateAccount.scss";
-const SERVER_URL = "https://village-backend-finalproject.herokuapp.com/";
+const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
 import "animate.css";
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";

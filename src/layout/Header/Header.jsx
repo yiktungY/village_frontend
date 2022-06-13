@@ -29,7 +29,7 @@ function Header({ user, logout }) {
         </div>
       </NavLink>
       {/* <Signup /> */}
-      {user.avatar_url ? (
+      {user?.avatar_url ? (
         <div>
           <Avatar
             onClick={handleIconInfo}

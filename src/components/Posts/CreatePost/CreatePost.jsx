@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
-import useLogin from "../../../hooks/useLogin";
 import axios from "axios";
-import "./CreatePost.scss";
+import Button from "@mui/material/Button";
+import SendIcon from "@mui/icons-material/Send";
+import { useHistory } from "react-router-dom";
+import { ref, getDownloadURL, uploadBytesResumable } from "@firebase/storage";
+
+import { storage } from "../../../firebase/firebase";
 import ReactDatePicker from "react-datepicker";
 import ReactSelect from "react-select";
 import "react-datepicker/dist/react-datepicker.css";
 import ControlledRadioButtonsGroup from "../../Mui/Mui";
 import LoginButton from "../../Button/LoginButton/LoginButton";
-import { ref, getDownloadURL, uploadBytesResumable } from "@firebase/storage";
-import { storage } from "../../../firebase/firebase";
-import Button from "@mui/material/Button";
-import SendIcon from "@mui/icons-material/Send";
-import { useHistory } from "react-router-dom";
-
-const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
+import "./CreatePost.scss";
 
 function CreatePost({ user }) {
   const history = useHistory();

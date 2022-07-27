@@ -5,6 +5,8 @@ import {
   Redirect,
   useHistory,
 } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 import UserPage from "./pages/UserPage/UserPage";
 import CategoryPage from "./pages/CategoryPage/CategoryPage";
@@ -20,10 +22,7 @@ import Login from "./components/Users/Login/Login";
 import SignUp from "./components/Users/Signup/SignUp";
 import CreateAccount from "./components/Users/CreateAccount/CreateAccount";
 import Header from "./layout/Header/Header";
-import { useState, useEffect } from "react";
-import axios from "axios";
 import ClipLoader from "react-spinners/ClipLoader";
-const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
 
 function Routes() {
   const [user, setUser] = useState({
@@ -33,7 +32,10 @@ function Routes() {
   //   const [formErrorMessage, setFormErrorMessage] = useState(false);
   const signup = async (credentials) => {
     try {
-      const data = await axios.post(`${SERVER_URL}/signup`, credentials);
+      const data = await axios.post(
+        `${import.meta.env.VITE_API_URL}/auth/signup`,
+        credentials
+      );
       //   await localStorage.setItem("village-token", data.token);
       setUser(data);
       if (data) {
@@ -46,7 +48,10 @@ function Routes() {
 
   const login = async (credentials) => {
     try {
-      const { data } = await axios.post(`${SERVER_URL}/login`, credentials);
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/auth/login`,
+        credentials
+      );
       await localStorage.setItem("village-token", data.token);
       setUser(data.user);
     } catch (error) {
@@ -56,7 +61,7 @@ function Routes() {
 
   const logout = async () => {
     try {
-      await axios.delete(`${SERVER_URL}/logout`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/auth/logout`);
       localStorage.removeItem("messenger-token");
       setUser({});
       window.location.href = "/";
@@ -69,7 +74,9 @@ function Routes() {
     const fetchUser = async () => {
       setUser((prev) => ({ ...prev, isFetching: true }));
       try {
-        const { data } = await axios.get(`${SERVER_URL}/user`);
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_API_URL}/auth/user`
+        );
         setUser(data.user);
       } catch (error) {
         console.error(error);

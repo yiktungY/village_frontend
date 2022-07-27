@@ -10,7 +10,6 @@ import ReactSelect from "react-select";
 import ReactDatePicker from "react-datepicker";
 import { Button } from "@mui/material";
 import { useHistory, useParams } from "react-router-dom";
-const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
 
 function EditPost({ user }) {
   const { postID } = useParams();
@@ -33,7 +32,7 @@ function EditPost({ user }) {
   //get post from API
   const fetchPostById = () => {
     axios
-      .get(`${SERVER_URL}/posts/${postID}`)
+      .get(`${import.meta.env.VITE_API_URL}/posts/${postID}`)
       .then((posts) => {
         setgetPost(posts.data);
       })
@@ -69,7 +68,7 @@ function EditPost({ user }) {
       // estimate_time: data.estimate_time,
     };
     axios
-      .put(`${SERVER_URL}/posts/${postID}`, newPostInfo)
+      .put(`${import.meta.env.VITE_API_URL}/posts/${postID}`, newPostInfo)
       .then((data) => {
         history.push(`/post/${postID}`);
       })

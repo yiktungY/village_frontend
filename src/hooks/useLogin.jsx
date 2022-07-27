@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
+
 
 export default function useLogin() {
   const [isLoggedIn, setisLoggedIn] = useState(false);
@@ -10,7 +10,7 @@ export default function useLogin() {
     if (sessionStorage.authToken) {
       setisLoggedIn(true);
       axios
-        .get(`${SERVER_URL}/users/${sessionStorage.userId}`)
+        .get(`${import.meta.env.VITE_API_URL}/users/${sessionStorage.userId}`)
         .then((res) => {
           if (res.data) {
             setUserInfo(res.data);

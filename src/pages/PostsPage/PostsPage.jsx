@@ -13,7 +13,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import ClipLoader from "react-spinners/ClipLoader";
 
-const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
+
 
 function PostsPage() {
   const [posts, setPosts] = useState([]);
@@ -27,7 +27,7 @@ function PostsPage() {
 
   const fetchPosts = () => {
     axios
-      .get(`${SERVER_URL}/posts`)
+      .get(`${import.meta.env.VITE_API_URL}/posts`)
       .then((posts) => {
         setPosts(posts.data);
         setLoading(false);

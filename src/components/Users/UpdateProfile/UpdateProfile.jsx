@@ -7,10 +7,9 @@ import LoginButton from "../../Button/LoginButton/LoginButton";
 import UploadPicture from "../../Users/UploadPicture/UploadPicture";
 import useLogin from "../../../hooks/useLogin";
 import { useHistory } from "react-router-dom";
-const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
 
 function UpdateProfile({ user }) {
-  const { userInfo, isLoggedIn } = useLogin();
+
   const history = useHistory();
   const {
     register,
@@ -29,7 +28,7 @@ function UpdateProfile({ user }) {
       address: data.address,
     };
     axios
-      .put(`${SERVER_URL}/users/${user.id}`, newUpdateInfo)
+      .put(`${import.meta.env.VITE_API_URL}/users/${user.id}`, newUpdateInfo)
       .then((data) => {
         history.push(`/profile/${user.id}`);
       })

@@ -7,7 +7,6 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Avatar } from "@mui/material";
 import ClipLoader from "react-spinners/ClipLoader";
-const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
 
 function PostDetails({ user }) {
   const { postID } = useParams();
@@ -19,7 +18,7 @@ function PostDetails({ user }) {
 
   const fetchPostById = () => {
     axios
-      .get(`${SERVER_URL}/posts/${postID}`)
+      .get(`${import.meta.env.VITE_API_URL}/posts/${postID}`)
       .then((post) => {
         setgetPost(post.data);
         setLoading(false);
@@ -31,7 +30,7 @@ function PostDetails({ user }) {
 
   const handleApply = (data) => {
     axios
-      .post(`${SERVER_URL}/apply/${getPost.post_id}`, {
+      .post(`${import.meta.env.VITE_API_URL}/apply/${getPost.post_id}`, {
         userId: user.id,
         username: user.displayName,
         post_id: getPost.post_id,
@@ -50,7 +49,7 @@ function PostDetails({ user }) {
 
   const getApplicantsByApi = () => {
     axios
-      .get(`${SERVER_URL}/apply/${postID}`)
+      .get(`${import.meta.env.VITE_API_URL}/apply/${postID}`)
       .then((applicants) => {
         setShowApplicantsList(applicants.data);
         const appliedID = applicants.data.find(
@@ -65,7 +64,7 @@ function PostDetails({ user }) {
 
   const handlePostDelete = () => {
     axios
-      .delete(`${SERVER_URL}/posts/${getPost.post_id}`)
+      .delete(`${import.meta.env.VITE_API_URL}/posts/${getPost.post_id}`)
       .then((data) => {
         history.push(`/`);
       })

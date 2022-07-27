@@ -5,9 +5,6 @@ import axios from "axios";
 import { NavLink, useParams } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { Avatar } from "@mui/material";
-// import UploadPicture from "../../components/Users/UploadPicture/UploadPicture";
-
-const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
 
 function UserPage({ user }) {
   const { id } = useParams();
@@ -34,13 +31,13 @@ function UserPage({ user }) {
   // };
 
   const getUserInfobyId = () => {
-    axios.get(`${SERVER_URL}/users/${id}`).then((res) => {
+    axios.get(`${import.meta.env.VITE_API_URL}/users/${id}`).then((res) => {
       setUserInfo(res.data);
     });
   };
   const fetchPostsbyUserId = () => {
     axios
-      .get(`${SERVER_URL}/users/posts/${id}`)
+      .get(`${import.meta.env.VITE_API_URL}/users/posts/${id}`)
       .then((posts) => {
         setuserPostList(posts.data);
       })

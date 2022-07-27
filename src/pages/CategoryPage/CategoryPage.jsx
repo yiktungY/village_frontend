@@ -1,8 +1,8 @@
 import "./CategoryPage.scss";
 import axios from "axios";
-import { NavLink } from "react-router-dom";
+
 import React, { useState, useEffect } from "react";
-const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
+
 import GetPostComponent from "../../components/Posts/GetPostComponent/GetPostComponent";
 import { TextField } from "@mui/material";
 import useToggle from "../../hooks/useToggle";
@@ -23,7 +23,7 @@ function CategoryPage() {
 
   const fetchPostsbyCategory = () => {
     axios
-      .get(`${SERVER_URL}/posts/category/${getCategoryName}`)
+      .get(`${import.meta.env.VITE_API_URL}/posts/category/${getCategoryName}`)
       .then((posts) => {
         setPosts(posts.data);
         setLoading(false);

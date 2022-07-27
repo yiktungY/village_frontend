@@ -1,5 +1,5 @@
 import axios from "axios";
-const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
+
 const register = (username, email, password) => {
   return axios.post(`${SERVER_URL}/signup`, {
     username,
@@ -9,7 +9,7 @@ const register = (username, email, password) => {
 };
 const login = (username, password) => {
   return axios
-    .post(`${SERVER_URL}/signin`, {
+    .post(`${import.meta.env.VITE_API_URL}/signin`, {
       username,
       password,
     })

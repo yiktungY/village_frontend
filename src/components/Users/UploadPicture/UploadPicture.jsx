@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import "./UploadPicture.scss";
 
 import Button from "@mui/material/Button";
-const SERVER_URL = "https://village-backend-finalproject.herokuapp.com";
+
 import axios from "axios";
 
 function UploadPicture(props) {
@@ -33,7 +33,7 @@ function UploadPicture(props) {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((url) =>
           axios
-            .put(`${SERVER_URL}/users/${props.userInfo.id}`, {
+            .put(`${import.meta.env.VITE_API_URL}/users/${props.userInfo.id}`, {
               avatar_url: url,
             })
             .then((data) => {

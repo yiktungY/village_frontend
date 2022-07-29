@@ -5,6 +5,17 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import "../Posts/CreatePost/CreatePost.scss";
 
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
+
+export const Loading = () => {
+  return (
+    <Box sx={{ display: "flex" }}>
+      <CircularProgress />
+    </Box>
+  );
+};
+
 export default function ControlledRadioButtonsGroup(props) {
   return (
     <FormControl>

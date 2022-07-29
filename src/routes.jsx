@@ -22,7 +22,8 @@ import Login from "./components/Users/Login/Login";
 import SignUp from "./components/Users/Signup/SignUp";
 import CreateAccount from "./components/Users/CreateAccount/CreateAccount";
 import Header from "./layout/Header/Header";
-import ClipLoader from "react-spinners/ClipLoader";
+
+import { Loading } from "./components/Mui/Mui";
 
 function Routes() {
   const [user, setUser] = useState({
@@ -88,11 +89,7 @@ function Routes() {
   }, []);
 
   if (user?.isFetching) {
-    return (
-      <div className="loading">
-        <ClipLoader />
-      </div>
-    );
+    return <Loading />;
   }
 
   return (

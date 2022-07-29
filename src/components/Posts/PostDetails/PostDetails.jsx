@@ -1,12 +1,13 @@
 import "./PostDetails.scss";
 import { useState, useEffect } from "react";
-import ApplyJob from "../../ApplyJob/ApplyJob";
 import axios from "axios";
 import { NavLink, useParams } from "react-router-dom";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Avatar } from "@mui/material";
-import ClipLoader from "react-spinners/ClipLoader";
+
+import { Loading } from "../../Mui/Mui";
+import ApplyJob from "../../ApplyJob/ApplyJob";
 
 function PostDetails({ user }) {
   const { postID } = useParams();
@@ -95,9 +96,7 @@ function PostDetails({ user }) {
   return (
     <section className="postDetails">
       {loading ? (
-        <div className="loading">
-          <ClipLoader />
-        </div>
+        <Loading />
       ) : (
         <>
           <div className="postDetails__box">

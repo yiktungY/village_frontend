@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
+
 export default function SignUp({ user, signup }) {
   const [formErrorMessage, setFormErrorMessage] = useState("");
   const {

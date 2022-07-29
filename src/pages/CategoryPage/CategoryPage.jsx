@@ -6,7 +6,6 @@ import React, { useState, useEffect } from "react";
 import GetPostComponent from "../../components/Posts/GetPostComponent/GetPostComponent";
 import { TextField } from "@mui/material";
 import useToggle from "../../hooks/useToggle";
-import ClipLoader from "react-spinners/ClipLoader";
 
 function CategoryPage() {
   const [posts, setPosts] = useState("");
@@ -143,7 +142,7 @@ function CategoryPage() {
 
         {loading ? (
           <div className="loading">
-            <ClipLoader />
+            {/* <ClipLoader /> */}
           </div>
         ) : (
           <GetPostComponent posts={posts} input={inputText} />

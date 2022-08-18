@@ -22,19 +22,6 @@ function GetPostComponent(props) {
           key={post.post_id}
           to={`/post/${post.post_id}`}
         >
-          {post.picture_Details ? (
-            <div className="postSection__replace">
-              <img
-                className="postSection__picture"
-                src={post.picture_Details}
-                alt={`${post.title} picture`}
-              />
-            </div>
-          ) : (
-            <div className="postSection__noPicture">
-              <HighlightOffTwoToneIcon sx={{ width: 100, height: 100 }} />
-            </div>
-          )}
           <div className="postSection__detailBox">
             <div className="postSection__details--user">
               By {post.displayName}

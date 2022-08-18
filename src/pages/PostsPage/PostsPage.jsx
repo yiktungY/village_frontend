@@ -5,6 +5,9 @@ import "animate.css";
 import { TextField } from "@mui/material";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 
 import { Loading } from "../../components/Mui/Mui";
 import GetPostComponent from "../../components/Posts/GetPostComponent/GetPostComponent";
@@ -39,14 +42,30 @@ function PostsPage() {
 
   return (
     <Box>
+      <Box
+        sx={{
+          width: "100%",
+          maxWidth: 600,
+          height: 400,
+          backgroundColor: "primary.main",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Typography variant="h5" gutterBottom component="div">
+          h3. Heading
+        </Typography>
+      </Box>
       <Grid
         container
         sx={{
-          backgroundColor: "primary.dark",
+          marginTop: "2rem",
+          marginBottom: "2rem",
         }}
-        spacing={4}
+        spacing={2}
       >
-        <Grid item sx={12} md={6}>
+        <Grid item xs={12} md={6}>
           <TextField
             onChange={inputHandler}
             variant="outlined"
@@ -54,7 +73,7 @@ function PostsPage() {
             label="Search Topic, Category, User... "
           />
         </Grid>
-        <Grid item sx={12} md={6}>
+        <Grid item xs={12} md={6}>
           <TextField
             onChange={inputHandler}
             variant="outlined"
@@ -68,7 +87,12 @@ function PostsPage() {
       {loading ? (
         <Loading />
       ) : (
-        <GetPostComponent posts={posts} input={inputText} />
+        <>
+          <GetPostComponent posts={posts} input={inputText} />
+          <Stack spacing={2}>
+            <Pagination count={10} shape="rounded" />
+          </Stack>
+        </>
       )}
     </Box>
   );

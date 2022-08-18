@@ -18,7 +18,6 @@ function PostsPage() {
   const [inputText, setInputText] = useState("");
   const [loading, setLoading] = useState(true);
   const inputHandler = (e) => {
-    //convert input text to lower case
     const lowerCase = e.target.value.toLowerCase();
     setInputText(lowerCase);
   };

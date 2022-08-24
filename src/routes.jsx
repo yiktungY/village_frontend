@@ -8,10 +8,10 @@ import {
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+import Home from "./pages/Home";
 import UserPage from "./pages/UserPage/UserPage";
 import CategoryPage from "./pages/CategoryPage/CategoryPage";
 import UpdateProfile from "./components/Users/UpdateProfile/UpdateProfile";
-import "./App.scss";
 import PostsPage from "./pages/PostsPage/PostsPage";
 import UserPostList from "./components/Users/UserPostList/UserPostList";
 import CreatePost from "./components/Posts/CreatePost/CreatePost";
@@ -94,10 +94,10 @@ function Routes() {
 
   return (
     <>
-      <Header user={user} logout={logout} />
+      {/* <Header user={user} logout={logout} /> */}
       <Switch>
         <Redirect exact from="/" to="/home" />
-        <Route path="/home" exact component={PostsPage} />
+        <Route path="/home" exact component={Home} />
         <Route
           path="/login"
           render={() => <Login user={user} login={login} />}

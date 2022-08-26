@@ -21,7 +21,7 @@ import ApplyJob from "./components/ApplyJob/ApplyJob";
 import Login from "./components/Users/Login/Login";
 import SignUp from "./components/Users/Signup/SignUp";
 import CreateAccount from "./components/Users/CreateAccount/CreateAccount";
-import Header from "./layout/Header/Header";
+import Header from "./layout/Header";
 
 import { Loading } from "./components/Mui/Mui";
 
@@ -94,11 +94,11 @@ function Routes() {
 
   return (
     <>
-      {/* <Header user={user} logout={logout} /> */}
+      <Header user={user} logout={logout} />
       <Switch>
         <Redirect exact from="/" to="/home" />
         <Route path="/home" exact component={Home} />
-        <Route
+        {/* <Route
           path="/login"
           render={() => <Login user={user} login={login} />}
         />
@@ -126,7 +126,7 @@ function Routes() {
           path="/postEdit/:postID"
           render={() => <EditPost user={user} />}
         />
-        <Route path="/postApply/:postID" component={ApplyJob} />
+        <Route path="/postApply/:postID" component={ApplyJob} /> */}
       </Switch>
     </>
   );

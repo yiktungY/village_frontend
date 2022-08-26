@@ -10,7 +10,7 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 
 import { Loading } from "../../components/Mui/Mui";
-import GetPostComponent from "../../components/Posts/GetPostComponent/GetPostComponent";
+// import GetPostComponent from "../../components/Posts/GetPostComponent/GetPostComponent";
 import "./PostsPage.scss";
 
 function PostsPage() {
@@ -87,7 +87,7 @@ function PostsPage() {
         <Loading />
       ) : (
         <>
-          <GetPostComponent posts={posts} input={inputText} />
+          {/* <GetPostComponent posts={posts} input={inputText} /> */}
           <Stack spacing={2}>
             <Pagination count={10} shape="rounded" />
           </Stack>

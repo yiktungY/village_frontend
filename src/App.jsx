@@ -23,7 +23,7 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <ToggleTheme handleTheme={handleTheme} setTheme={setTheme} />
+        {/* <ToggleTheme handleTheme={handleTheme} setTheme={setTheme} /> */}
         <Routes />
         <Footer />
       </BrowserRouter>

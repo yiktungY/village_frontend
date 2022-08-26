@@ -3,7 +3,7 @@ import axios from "axios";
 
 import React, { useState, useEffect } from "react";
 
-import GetPostComponent from "../../components/Posts/GetPostComponent/GetPostComponent";
+// import GetPostComponent from "../../components/Posts/GetPostComponent/GetPostComponent";
 import { TextField } from "@mui/material";
 import useToggle from "../../hooks/useToggle";
 
@@ -141,11 +141,10 @@ function CategoryPage() {
         </div>
 
         {loading ? (
-          <div className="loading">
-            {/* <ClipLoader /> */}
-          </div>
+          <div className="loading">{/* <ClipLoader /> */}</div>
         ) : (
-          <GetPostComponent posts={posts} input={inputText} />
+          <div>1</div>
+          // <GetPostComponent posts={posts} input={inputText} />
         )}
       </div>
     </div>

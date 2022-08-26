@@ -10,7 +10,7 @@ const RouteList = () => {
   const [user, setUser] = useState({
     isFetching: true,
   });
-  const history = useHistory();
+
   //   const [formErrorMessage, setFormErrorMessage] = useState(false);
   const signup = async (credentials) => {
     try {
@@ -21,7 +21,7 @@ const RouteList = () => {
       //   await localStorage.setItem("village-token", data.token);
       setUser(data);
       if (data) {
-        history.push("/registerSuccee");
+        // .push("/registerSuccee");
       }
     } catch (error) {
       console.log(error);

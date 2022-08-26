@@ -1,36 +1,18 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 
+
+import { BiArrowToRight } from "react-icons/bi";
+
+import useFetchPostList from "../hooks/useFetchPostList";
 import Post from "../components/Post";
 import HeroSection from "../components/HeroSection";
 import Loading from "../components/Loading";
 
 const Home = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  const fetchPosts = async () => {
-    const data = await axios.get(`${import.meta.env.VITE_API_URL}/posts`);
-    return data.data;
-  };
-
-  const handlePostsFromAPI = async () => {
-    try {
-      const posts = await fetchPosts();
-      if (posts.length) {
-        const checkPost = posts.slice(1, 4);
-        setData(checkPost);
-        setLoading(false);
-      }
-    } catch (error) {
-      setError(error);
-    }
-  };
+  const { data, loading, error } = useFetchPostList(4);
 
   useEffect(() => {
-    document.title = "VILLIAGE | HOME";
-    handlePostsFromAPI();
+    document.title = "Village | Home";
   }, []);
 
   return (
@@ -48,9 +30,11 @@ const Home = () => {
           <Loading />
         </>
       ) : (
-        data.map((post) => <Post {...post} />)
+        data.map((post) => <Post key={post.post_id} {...post} />)
       )}
-      <div>See all Jobs</div>
+      <div className="w-full text-sky-500 text-l font-bold flex flex-row justify-center items-center my-4">
+        See all Jobs <BiArrowToRight />
+      </div>
       <div>People You Follow</div>
       <div>People Recommended for You</div>
       {error !== null && <div>null</div>}

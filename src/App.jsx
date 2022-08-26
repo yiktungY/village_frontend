@@ -1,9 +1,8 @@
-import Routes from "./routes";
 import { useState } from "react";
-import Footer from "./layout/Footer/Footer";
-import { ToggleTheme } from "./components/Icon/icon";
-import { BrowserRouter } from "react-router-dom";
+
 import axios from "axios";
+import Footer from "./layout/Footer/Footer";
+import RouteList from "./RouteList";
 
 axios.interceptors.request.use(async function (config) {
   const token = await localStorage.getItem("village-token");
@@ -22,11 +21,9 @@ function App() {
   };
   return (
     <div>
-      <BrowserRouter>
-        {/* <ToggleTheme handleTheme={handleTheme} setTheme={setTheme} /> */}
-        <Routes />
-        <Footer />
-      </BrowserRouter>
+      {/* <ToggleTheme handleTheme={handleTheme} setTheme={setTheme} /> */}
+      <RouteList />
+      <Footer />
     </div>
   );
 }

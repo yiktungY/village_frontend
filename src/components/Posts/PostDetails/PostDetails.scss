@@ -50,12 +50,11 @@
       align-items: center;
 
       @include tablet {
-        justify-content: start;
       }
     }
     &--headline {
       padding: 1rem 0;
-      justify-content: start;
+
       @include shadowBox;
     }
 

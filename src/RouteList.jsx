@@ -1,31 +1,12 @@
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-  useHistory,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import Home from "./pages/Home";
-import UserPage from "./pages/UserPage/UserPage";
-import CategoryPage from "./pages/CategoryPage/CategoryPage";
-import UpdateProfile from "./components/Users/UpdateProfile/UpdateProfile";
-import PostsPage from "./pages/PostsPage/PostsPage";
-import UserPostList from "./components/Users/UserPostList/UserPostList";
-import CreatePost from "./components/Posts/CreatePost/CreatePost";
-import PostDetails from "./components/Posts/PostDetails/PostDetails";
-import EditPost from "./components/Posts/EditPost/EditPost";
-import ApplyJob from "./components/ApplyJob/ApplyJob";
-import Login from "./components/Users/Login/Login";
-import SignUp from "./components/Users/Signup/SignUp";
-import CreateAccount from "./components/Users/CreateAccount/CreateAccount";
 import Header from "./layout/Header";
+import Home from "./pages/Home";
+import PostListPage from "./pages/PostListPage";
 
-import { Loading } from "./components/Mui/Mui";
-
-function Routes() {
+const RouteList = () => {
   const [user, setUser] = useState({
     isFetching: true,
   });
@@ -88,17 +69,16 @@ function Routes() {
     fetchUser();
   }, []);
 
-  if (user?.isFetching) {
-    return <Loading />;
-  }
-
   return (
-    <>
+    <BrowserRouter>
       <Header user={user} logout={logout} />
-      <Switch>
-        <Redirect exact from="/" to="/home" />
-        <Route path="/home" exact component={Home} />
-        {/* <Route
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/jobs" element={<PostListPage />} />
+        {/* <Route path="*" element={<PageNotFound />} /> */}
+      </Routes>
+
+      {/* <Route
           path="/login"
           render={() => <Login user={user} login={login} />}
         />
@@ -127,9 +107,8 @@ function Routes() {
           render={() => <EditPost user={user} />}
         />
         <Route path="/postApply/:postID" component={ApplyJob} /> */}
-      </Switch>
-    </>
+    </BrowserRouter>
   );
-}
+};
 
-export default Routes;
+export default RouteList;

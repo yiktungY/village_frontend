@@ -11,4 +11,5 @@
 body {
   font-family: "Familjen Grotesk", sans-serif;
   transition: all 0.5s linear;
+  font-weight: 300;
 }

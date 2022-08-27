@@ -14,8 +14,7 @@ const PostListPage = () => {
   const { data, loading, error, total } = useFetchPostList();
 
   const updateRowsPerPage = (currentPageSize) => {
-    const currentNumber = parseInt(currentPageSize);
-    setCurrentPageSize(currentNumber);
+    setCurrentPageSize(currentPageSize);
     useCurrentPage(1);
   };
 
@@ -33,15 +32,10 @@ const PostListPage = () => {
 
   return (
     <div>
-      <div>{total} jobs</div>
-      <Pagination
-        currentPage={currentPage}
-        totalCount={total}
-        pageSize={currentPageSize}
-        pageSizeOptions={PAGE_SIZES}
-        onPageChange={updatePage}
-        onPageSizeOptionChange={updateRowsPerPage}
-      />
+      <input className="bg-stone-200" placeholder="Search by Name" />
+      <div>Filters</div>
+
+      <div className="flex justify-end px-2">{total} jobs</div>
       {loading ? (
         <>
           <Loading />
@@ -54,6 +48,14 @@ const PostListPage = () => {
         selectedJobList.map((post) => <Post key={post.post_id} {...post} />)
       )}
       {error !== null && <div>null</div>}
+      <Pagination
+        currentPage={currentPage}
+        totalCount={total}
+        pageSize={currentPageSize}
+        pageSizeOptions={PAGE_SIZES}
+        onPageChange={updatePage}
+        onPageSizeOptionChange={updateRowsPerPage}
+      />
     </div>
   );
 };

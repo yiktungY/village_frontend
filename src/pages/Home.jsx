@@ -36,10 +36,11 @@ const Home = () => {
         featureJobs.map((post) => <Post key={post.post_id} {...post} />)
       )}
       <Link to="/jobs">
-        <div className="w-full text-sky-500 text-l font-bold flex flex-row justify-center items-center my-4">
-          See all Jobs <BiArrowToRight />
+        <div className="w-full text-sky-500 text-l font-bold flex flex-row justify-center items-center my-4 hover:text-sky-800">
+          See all Jobs <BiArrowToRight className="ml-2 text-2xl" />
         </div>
       </Link>
+
       <div>People You Follow</div>
       <div>People Recommended for You</div>
       {error !== null && <div>null</div>}

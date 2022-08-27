@@ -39,7 +39,7 @@ const usePagination = (currentPage, totalCount, pageSize) => {
   useEffect(() => {
     const pageArray = handlePageArray()
     setPage(pageArray)
-  }, [currentPage, pageSize])
+  }, [currentPage, pageSize, totalCount])
 
   return { page, MaxPage };
 

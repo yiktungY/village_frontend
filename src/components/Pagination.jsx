@@ -1,5 +1,9 @@
 import usePagination, { DOTS } from "../hooks/usePagination";
-import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
+import {
+  BiChevronLeft,
+  BiChevronRight,
+  BiDotsHorizontalRounded,
+} from "react-icons/bi";
 
 const Pagination = ({
   onPageChange,
@@ -22,42 +26,56 @@ const Pagination = ({
   };
 
   return (
-    <div className="flex flex-row w-full h-10 justify-center items-center">
-      {currentPage === 1 ? (
-        <BiChevronLeft className="text-lg" />
-      ) : (
-        <BiChevronLeft onClick={onPrevious} className="" />
-      )}
+    <div className="flex flex-col w-full justify-center items-center">
+      <div className="flex flex-row w-full justify-center items-center">
+        {currentPage === 1 ? (
+          <BiChevronLeft className="w-8 h-8 flex justify-center items-center text-xl rounded-full m-2 text-stone-300" />
+        ) : (
+          <BiChevronLeft
+            onClick={onPrevious}
+            className="w-8 h-8 flex justify-center items-center text-xl rounded-full m-2 hover:bg-stone-100"
+          />
+        )}
 
-      {paginationRange.page.map((pageNumber, index) => {
-        if (pageNumber === DOTS) {
+        {paginationRange.page.map((pageNumber, index) => {
+          if (pageNumber === DOTS) {
+            return <BiDotsHorizontalRounded key={index} className="text-xl" />;
+          } else if (pageNumber === currentPage) {
+            return (
+              <div
+                key={index}
+                onClick={() => onPageChange(pageNumber)}
+                className="w-8 h-8 flex justify-center items-center text-xl bg-sky-500 rounded-full text-white m-2"
+              >
+                {pageNumber}
+              </div>
+            );
+          }
           return (
-            <div key={index} className="">
-              &#8230;
+            <div
+              key={index}
+              onClick={() => onPageChange(pageNumber)}
+              className="w-8 h-8 flex justify-center items-center text-xl rounded-full m-2 hover:bg-stone-100"
+            >
+              {pageNumber}
             </div>
           );
-        }
-        return (
-          <div
-            key={index}
-            onClick={() => onPageChange(pageNumber)}
-            className=""
-          >
-            {pageNumber}
-          </div>
-        );
-      })}
+        })}
 
-      {currentPage === paginationRange.MaxPage ? (
-        <BiChevronRight className="text-lg" />
-      ) : (
-        <BiChevronRight onClick={onNext} className="" />
-      )}
+        {currentPage === paginationRange.MaxPage ? (
+          <BiChevronRight className="w-8 h-8 flex justify-center items-center text-xl rounded-full m-2 text-stone-300" />
+        ) : (
+          <BiChevronRight
+            onClick={onNext}
+            className="w-8 h-8 flex justify-center items-center text-xl rounded-full m-2 hover:bg-stone-100"
+          />
+        )}
+      </div>
       <select
-        className=""
+        className="m-2 px-4 py-2 w-2/4 bg-stone-200 rounded-lg"
         defaultValue={pageSize}
         onChange={(e) => {
-          onPageSizeOptionChange(e.target.value);
+          onPageSizeOptionChange(+e.target.value);
         }}
       >
         {pageSizeOptions.map((size) => (
@@ -66,6 +84,9 @@ const Pagination = ({
           </option>
         ))}
       </select>
+      <div className="text-stone-400 tracking-wider">
+        Page {currentPage} of {paginationRange.MaxPage}
+      </div>
     </div>
   );
 };

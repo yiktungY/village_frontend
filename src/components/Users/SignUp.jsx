@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 
 import { NavLink } from "react-router-dom";
-import { BiMailSend, BiLock, BiUser, BiGlasses } from "react-icons/bi";
+import {
+  BiMailSend,
+  BiLock,
+  BiUser,
+  BiGlasses,
+  BiErrorCircle,
+} from "react-icons/bi";
 
 import { Button, Input } from "../Elements";
 
@@ -78,8 +84,8 @@ export default function SignUp({ user, signup }) {
   // }, [user, history]);
 
   return (
-    <div className="px-20 py-10">
-      <form className="flex flex-col justify-center">
+    <div className="px-20 py-10 h-62">
+      <form className="flex flex-col justify-center space-y-10">
         <div className="">Create Account </div>
         <div>
           Already have an account?
@@ -89,7 +95,7 @@ export default function SignUp({ user, signup }) {
           type="email"
           id="email"
           label="Create account with Email"
-          icon={<BiMailSend />}
+          icon={!controllForm.email.error ? <BiMailSend /> : <BiErrorCircle />}
           value={value.email}
           error={controllForm.email}
           handleOnChange={(e) =>
@@ -104,7 +110,7 @@ export default function SignUp({ user, signup }) {
           type="text"
           id="username"
           label="UserName"
-          icon={<BiUser />}
+          icon={!controllForm.username.error ? <BiUser /> : <BiErrorCircle />}
           value={value.username}
           error={controllForm.username}
           handleOnChange={(e) =>
@@ -118,7 +124,7 @@ export default function SignUp({ user, signup }) {
           type="password"
           id="newPassword"
           label="Password"
-          icon={<BiLock />}
+          icon={!controllForm.password.error ? <BiLock /> : <BiErrorCircle />}
           value={value.password}
           error={controllForm.password}
           handleOnChange={(e) =>
@@ -130,9 +136,15 @@ export default function SignUp({ user, signup }) {
         />
         <Input
           type="password"
-          id="ComfiredPassword"
+          id="confirmPassword"
           label="Comfired Password"
-          icon={<BiGlasses />}
+          icon={
+            !controllForm.confirmPassword.error ? (
+              <BiGlasses />
+            ) : (
+              <BiErrorCircle />
+            )
+          }
           value={value.confirmPassword}
           error={controllForm.confirmPassword}
           handleOnChange={(e) =>

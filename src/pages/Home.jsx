@@ -59,6 +59,12 @@ const Home = () => {
             Continuity. Connection. Community.
           </div>
           <SignUp />
+          <div> Explore Village</div>
+          <Link to="/jobs">
+            <div className="w-full text-sky-500 text-l font-bold flex flex-row justify-center items-center my-4 hover:text-sky-800">
+              See all Jobs <BiArrowToRight className="ml-2 text-2xl" />
+            </div>
+          </Link>
         </>
       )}
     </div>

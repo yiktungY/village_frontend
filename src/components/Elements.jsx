@@ -9,8 +9,8 @@ export const Input = ({
   handleOnBlur,
 }) => {
   return (
-    <>
-      <div className="relative my-4">
+    <div className="h-20">
+      <div className="relative my-2">
         <div
           className={`flex absolute inset-y-0 right-4 text-2xl items-center pl-3 pointer-events-auto ${
             error.error ? "text-red-500" : "text-gray-500"
@@ -43,16 +43,22 @@ export const Input = ({
           {label}
         </label>
       </div>
-      {error.error && <div className="text-red-500">{error.errorMessage}</div>}
-    </>
+      {error.error && (
+        <div className="text-red-500 text-xs">{error.errorMessage}</div>
+      )}
+    </div>
   );
 };
 
-export const Button = ({ action }) => {
+export const Button = ({ action, handleSignUp, disable }) => {
   return (
     <button
-      type="button"
-      className="text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-sky-600 dark:hover:bg-sky-700 focus:outline-none dark:focus:ring-sky-800"
+      type="submit"
+      onClick={handleSignUp}
+      disabled={!disable}
+      className={`text-white focus:ring-4 focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 my-4  focus:outline-none  ${
+        !disable ? "bg-neutral-300" : " bg-sky-700 hover:bg-sky-800 "
+      }`}
     >
       {action}
     </button>

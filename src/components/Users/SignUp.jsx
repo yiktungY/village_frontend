@@ -25,29 +25,31 @@ export default function SignUp({ user, signup }) {
     confirmPassword: { error: false, touched: false, errorMessage: "" },
   });
 
+  const [readyToSubmit, setReadyToSubmit] = useState(false);
+
   const isValidEmail = (email) => {
-    const message = "Email is invalid";
+    const message = "Please enter a valid email address";
     const value = /\S+@\S+\.\S+/.test(email);
     return [value, message];
   };
 
   const isValidUserName = (username) => {
-    const message = "Username is invalid";
+    const message = "Please enter a valid username";
     if (username.length > 3) {
       return [true, message];
     }
     return [false, message];
   };
   const isValidPassword = (password) => {
-    const message = "Password is invalid";
-    if (password.length > 3) {
+    const message = "Password should longer than 4 digits";
+    if (password.length > 4) {
       return [true, message];
     }
     return [false, message];
   };
 
   const isSamePassword = (password) => {
-    const message = "The password is not the same";
+    const message = "Please enter the same password";
     if (password !== value.password) {
       return [false, message];
     }
@@ -57,7 +59,6 @@ export default function SignUp({ user, signup }) {
   const handleChange = (e, key, func) => {
     const [value] = func;
     if (value) {
-      console.log(controllForm.email);
       setControllForm((prev) => ({
         ...prev,
         [`${key}`]: { error: false, touched: false, errorMessage: "" },
@@ -79,18 +80,47 @@ export default function SignUp({ user, signup }) {
     }
   };
 
+  const handleSignUp = (e) => {
+    e.preventDefault();
+  };
+
+  useEffect(() => {
+    if (
+      value.email.length > 1 &&
+      value.username.length > 1 &&
+      value.password.length > 1 &&
+      value.confirmPassword.length > 1
+    ) {
+      if (
+        !controllForm.email.error &&
+        !controllForm.username.error &&
+        !controllForm.password.error &&
+        !controllForm.confirmPassword.error
+      ) {
+        setReadyToSubmit(true);
+      }
+    } else {
+      setReadyToSubmit(false);
+    }
+  }, [value]);
   // useEffect(() => {
   //   if (user && user.id) history.push("/home");
   // }, [user, history]);
 
   return (
-    <div className="px-20 py-10 h-62">
-      <form className="flex flex-col justify-center space-y-10">
-        <div className="">Create Account </div>
-        <div>
-          Already have an account?
-          <NavLink to="/login">Sign in</NavLink>
-        </div>
+    <div className="px-4 py-10 flex flex-col items-center">
+      <div className="text-lg font-medium">Create an Account</div>
+      <div className="">
+        Already have an account?{" "}
+        <NavLink
+          to="/login"
+          className="text-sky-500 font-bold mx-1 hover:text-sky-600 hover:underline"
+        >
+          Sign in
+        </NavLink>
+      </div>
+
+      <form className="flex flex-col w-full py-4">
         <Input
           type="email"
           id="email"
@@ -154,8 +184,11 @@ export default function SignUp({ user, signup }) {
             handleError("confirmPassword", isSamePassword(e.target.value))
           }
         />
-
-        <Button action="Sign Up" />
+        <Button
+          action="Sign Up"
+          handleSignUp={handleSignUp}
+          disable={readyToSubmit}
+        />
       </form>
     </div>
   );

@@ -5,7 +5,11 @@ module.exports = {
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'hero-banner': "url('src/assets/images/banner2.jpg')"
+      },
+    },
   },
   plugins: [],
 }

@@ -5,6 +5,7 @@ import axios from "axios";
 import Header from "./layout/Header";
 import Home from "./pages/Home";
 import PostListPage from "./pages/PostListPage";
+import SaveJobsPage from "./pages/SaveJobsPage";
 
 const RouteList = () => {
   const [user, setUser] = useState({
@@ -75,6 +76,7 @@ const RouteList = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/jobs" element={<PostListPage />} />
+        <Route path="/saveJobs" element={<SaveJobsPage />} />
         {/* <Route path="*" element={<PageNotFound />} /> */}
       </Routes>
 

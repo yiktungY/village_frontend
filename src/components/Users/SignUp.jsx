@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import {
   BiMailSend,
   BiLock,
@@ -9,9 +10,11 @@ import {
   BiErrorCircle,
 } from "react-icons/bi";
 
+import { authActions } from "../../store/auth-slice";
 import { Button, Input } from "../Elements";
 
 export default function SignUp({ user, signup }) {
+  const dispatch = useDispatch();
   const [value, setValue] = useState({
     email: "",
     username: "",
@@ -82,6 +85,8 @@ export default function SignUp({ user, signup }) {
 
   const handleSignUp = (e) => {
     e.preventDefault();
+    console.log(e.timeStamp);
+    dispatch(authActions.login());
   };
 
   useEffect(() => {
@@ -126,7 +131,6 @@ export default function SignUp({ user, signup }) {
           id="email"
           label="Create account with Email"
           icon={!controllForm.email.error ? <BiMailSend /> : <BiErrorCircle />}
-          value={value.email}
           error={controllForm.email}
           handleOnChange={(e) =>
             handleChange(e, "email", isValidEmail(e.target.value))
@@ -141,7 +145,6 @@ export default function SignUp({ user, signup }) {
           id="username"
           label="UserName"
           icon={!controllForm.username.error ? <BiUser /> : <BiErrorCircle />}
-          value={value.username}
           error={controllForm.username}
           handleOnChange={(e) =>
             handleChange(e, "username", isValidUserName(e.target.value))
@@ -155,7 +158,6 @@ export default function SignUp({ user, signup }) {
           id="newPassword"
           label="Password"
           icon={!controllForm.password.error ? <BiLock /> : <BiErrorCircle />}
-          value={value.password}
           error={controllForm.password}
           handleOnChange={(e) =>
             handleChange(e, "password", isValidPassword(e.target.value))
@@ -175,7 +177,6 @@ export default function SignUp({ user, signup }) {
               <BiErrorCircle />
             )
           }
-          value={value.confirmPassword}
           error={controllForm.confirmPassword}
           handleOnChange={(e) =>
             handleChange(e, "confirmPassword", isSamePassword(e.target.value))

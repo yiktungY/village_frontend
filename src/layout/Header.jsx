@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { BiSearch, BiAlignRight } from "react-icons/bi";
+import { BiSearch, BiAlignRight, BiStore } from "react-icons/bi";
 
 function Header({ user, logout }) {
   return (
@@ -13,7 +13,9 @@ function Header({ user, logout }) {
         </div>
       </Link>
       <div className="flex flex-row basis-1/6 justify-between">
-        <BiSearch className="text-2xl" />
+        <Link to="/saveJobs">
+          <BiStore className="text-2xl" />
+        </Link>
         <BiAlignRight className="text-2xl" />
       </div>
     </div>

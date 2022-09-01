@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
-import { BiArchiveIn } from "react-icons/bi";
+import { BiHeart } from "react-icons/bi";
+import { useDispatch } from "react-redux";
 
+import { saveJobActions } from "../store/saveJob-slice";
 import { timeDifferenceForDate } from "../utils/timeDifference";
 const Post = ({
   post_id,
@@ -11,6 +13,22 @@ const Post = ({
   status,
   avatar_url,
 }) => {
+  const dispatch = useDispatch();
+
+  const handleAddToList = () => {
+    dispatch(
+      saveJobActions.addToList({
+        post_id,
+        displayName,
+        updated_at,
+        title,
+        type,
+        status,
+        avatar_url,
+      })
+    );
+  };
+  //get job strucutre 
   return (
     <li className="border-b-2 p-2 my-4 list-none">
       <div className="flex flex-row justify-between">
@@ -30,7 +48,10 @@ const Post = ({
               <div className=""> {type}</div>
             </div>
           </NavLink>
-          <BiArchiveIn className="text-3xl text-slate-400" />
+          <BiHeart
+            className="text-3xl text-slate-400"
+            onClick={handleAddToList}
+          />
         </div>
       </div>
       <div className="flex justify-end">

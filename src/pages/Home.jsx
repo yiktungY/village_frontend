@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 import { BiArrowToRight } from "react-icons/bi";
 
 import useFetchPostList from "../hooks/useFetchPostList";
@@ -12,6 +12,7 @@ import SignUp from "../components/Users/SignUp";
 const Home = () => {
   const { data, loading, error } = useFetchPostList();
   const [featureJobs, setFeatureJobs] = useState([]);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   useEffect(() => {
     document.title = "Village | Home";
@@ -21,7 +22,7 @@ const Home = () => {
 
   return (
     <div className="container">
-      {false ? (
+      {isLoggedIn ? (
         <>
           <HeroSection />
           <div className="m-4 border-2 border-sky-500"></div>

@@ -39,7 +39,7 @@ const Post = ({
   //get job strucutre
   return (
     <li className="border-b-2 p-2 my-4 list-none">
-      <div className="flex flex-row justify-between">
+      <div className="flex flex-row justify-between ">
         <div className="flex flex-col w-20 items-center mr-2">
           <img
             src={avatar_url}

@@ -18,7 +18,6 @@ const PostListPage = () => {
     tag: "",
     location: "",
   });
-  console.log(searchValue);
 
   const updateRowsPerPage = (currentPageSize) => {
     setCurrentPageSize(currentPageSize);

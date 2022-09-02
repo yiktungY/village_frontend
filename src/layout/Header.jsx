@@ -15,10 +15,10 @@ function Header({ user, logout }) {
         </div>
       </Link>
       <div className="flex flex-row basis-1/6 justify-between ">
-        <Link to="/saveJobs" className="flex justify-center">
+        <Link to="/saveJobs" className="flex justify-start w-10">
           <BiStore className="text-2xl hover:text-sky-600 hover:drop-shadow-lg" />
-          {savedNumber > 1 && (
-            <div className="w-5 h-5 flex justify-center items-center relative bottom-2 right-3 bg-sky-500 rounded-full text-white text-xs drop-shadow-lg">
+          {savedNumber > 0 && (
+            <div className="w-5 h-5 flex justify-center items-center relative bottom-2 right-3 bg-sky-500 rounded-full text-white text-xs drop-shadow-lg hover:animate-none animate-bounce ease-in-out duration-300">
               {savedNumber}
             </div>
           )}

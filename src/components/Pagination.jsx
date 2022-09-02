@@ -29,23 +29,21 @@ const Pagination = ({
     <div className="flex flex-col w-full justify-center items-center">
       <div className="flex flex-row w-full justify-center items-center">
         {currentPage === 1 ? (
-          <BiChevronLeft className="w-8 h-8 flex justify-center items-center text-xl rounded-full m-2 text-stone-300" />
+          <BiChevronLeft className="w-8 h-8 flex justify-center items-center text-xl rounded-full m-2 text-stone-300 ease-in-out duration-700" />
         ) : (
           <BiChevronLeft
             onClick={onPrevious}
-            className="w-8 h-8 flex justify-center items-center text-xl rounded-full m-2 hover:bg-stone-100"
+            className="w-8 h-8 flex justify-center items-center text-xl rounded-full m-2 hover:bg-stone-100 ease-in-out duration-700"
           />
         )}
 
         {paginationRange.page.map((pageNumber, index) => {
-          if (pageNumber === DOTS) {
-            return <BiDotsHorizontalRounded key={index} className="text-xl" />;
-          } else if (pageNumber === currentPage) {
+          if (pageNumber === currentPage) {
             return (
               <div
                 key={index}
                 onClick={() => onPageChange(pageNumber)}
-                className="w-8 h-8 flex justify-center items-center text-xl bg-sky-500 rounded-full text-white m-2"
+                className="w-8 h-8 flex justify-center items-center text-xl bg-sky-500 rounded-full text-white m-2 ease-in-out duration-300"
               >
                 {pageNumber}
               </div>
@@ -55,7 +53,7 @@ const Pagination = ({
             <div
               key={index}
               onClick={() => onPageChange(pageNumber)}
-              className="w-8 h-8 flex justify-center items-center text-xl rounded-full m-2 hover:bg-stone-100"
+              className="w-8 h-8 flex justify-center items-center text-xl rounded-full m-2 hover:bg-stone-100 ease-in-out duration-300 "
             >
               {pageNumber}
             </div>
@@ -63,11 +61,11 @@ const Pagination = ({
         })}
 
         {currentPage === paginationRange.MaxPage ? (
-          <BiChevronRight className="w-8 h-8 flex justify-center items-center text-xl rounded-full m-2 text-stone-300" />
+          <BiChevronRight className="w-8 h-8 flex justify-center items-center text-xl rounded-full m-2 text-stone-300 ease-in-out duration-700" />
         ) : (
           <BiChevronRight
             onClick={onNext}
-            className="w-8 h-8 flex justify-center items-center text-xl rounded-full m-2 hover:bg-stone-100"
+            className="w-8 h-8 flex justify-center items-center text-xl rounded-full m-2 hover:bg-stone-100  ease-in-out duration-700"
           />
         )}
       </div>

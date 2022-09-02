@@ -12,28 +12,16 @@ const usePagination = (currentPage, totalCount, pageSize) => {
   const handlePageArray = () => {
     const array = Array.from({ length: MaxPage }, (x, i) => i + 1)
 
-    if (array.length < 5) {
-      return array
+    let selectedArray = array.slice(0, 5)
+
+    if (currentPage > 3) {
+      selectedArray = array.slice(currentPage - 3, currentPage + 2)
     }
-    else if (array.length - currentPage < 2 || currentPage < 3) {
-      const newArray = []
-      for (let i = 0; i < array.length; i++) {
-        if (array[i] === 1 || array[i] === array.length) {
-          newArray.push(array[i])
-        }
-        else if (array[i] - currentPage > 2 || currentPage - array[i] > 2) {
-          const dots = newArray.find(dots => dots === DOTS)
-          !dots && newArray.push(DOTS)
-        }
-        else {
-          newArray.push(array[i])
-        }
-      }
-      return newArray
+    if (MaxPage - currentPage < 3) {
+      selectedArray = array.slice(MaxPage - 5, MaxPage)
     }
-    else {
-      return [1, DOTS, currentPage - 1, currentPage, currentPage + 1, DOTS, array.length]
-    }
+    return selectedArray
+
   }
 
   useEffect(() => {

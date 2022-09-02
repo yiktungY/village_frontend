@@ -11,7 +11,10 @@ const saveJobSlice = createSlice({
     addToList(state, action) {
       const newJob = action.payload;
       const existingJob = state.jobsList.find((job) => job.post_id === newJob.post_id)
-      if (!existingJob) {
+      if (existingJob) {
+        state.jobsList.splice(existingJob, 1)
+        state.totalQuantity--
+      } else {
         state.jobsList.push({
           post_id: newJob.post_id,
           displayName: newJob.displayName,
@@ -22,8 +25,8 @@ const saveJobSlice = createSlice({
           avatar_url: newJob.avatar_url,
           saved: true
         })
+        state.totalQuantity++
       }
-
     }
   }
 })

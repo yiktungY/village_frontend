@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
-import { BiHeart } from "react-icons/bi";
-import { useDispatch } from "react-redux";
+import { HiHeart } from "react-icons/hi";
+import { useDispatch, useSelector } from "react-redux";
 
 import { saveJobActions } from "../store/saveJob-slice";
 import { timeDifferenceForDate } from "../utils/timeDifference";
@@ -14,6 +14,7 @@ const Post = ({
   avatar_url,
 }) => {
   const dispatch = useDispatch();
+  const saveState = useSelector((state) => state.saveJob.jobsList);
 
   const handleAddToList = () => {
     dispatch(
@@ -28,7 +29,14 @@ const Post = ({
       })
     );
   };
-  //get job strucutre 
+
+  const handleSaveState = (jobId) => {
+    const matchJob = saveState.find((job) => job.post_id === jobId);
+    if (matchJob) {
+      return matchJob.saved;
+    }
+  };
+  //get job strucutre
   return (
     <li className="border-b-2 p-2 my-4 list-none">
       <div className="flex flex-row justify-between">
@@ -48,8 +56,11 @@ const Post = ({
               <div className=""> {type}</div>
             </div>
           </NavLink>
-          <BiHeart
-            className="text-3xl text-slate-400"
+
+          <HiHeart
+            className={`cursor-pointer text-3xl hover:drop-shadow-lg text-slate-400 ${
+              handleSaveState(post_id) && "fill-red-400"
+            }`}
             onClick={handleAddToList}
           />
         </div>

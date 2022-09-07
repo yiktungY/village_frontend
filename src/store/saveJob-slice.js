@@ -1,12 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const savedJSON = localStorage.getItem('savedJobList');
+const savedJobList = JSON.parse(savedJSON)
+const initialState = {
+  jobsList: savedJobList === null ? [] : savedJobList.jobsList,
+  totalQuantity: savedJobList === null ? [] : savedJobList.totalQuantity,
+  totalApplied: 0,
+}
 const saveJobSlice = createSlice({
   name: "saveJob",
-  initialState: {
-    jobsList: [],
-    totalQuantity: 0,
-    totalApplied: 0,
-  },
+  initialState,
   reducers: {
     addToList(state, action) {
       const newJob = action.payload;
@@ -27,6 +30,8 @@ const saveJobSlice = createSlice({
         })
         state.totalQuantity++
       }
+      const storeObject = JSON.stringify(state)
+      window.localStorage.setItem("savedJobList", storeObject)
     }
   }
 })

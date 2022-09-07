@@ -5,7 +5,7 @@ import Loading from "../components/Loading";
 import Pagination from "../components/Pagination";
 import PostList from "../components/PostList";
 
-const PAGE_SIZES = [1, 15, 25, 50, 100];
+const PAGE_SIZES = [2, 15, 25, 50, 100];
 
 const PostListPage = () => {
   const [currentPage, useCurrentPage] = useState(1);

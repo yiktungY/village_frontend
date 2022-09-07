@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { BiArrowToRight } from "react-icons/bi";
@@ -6,7 +7,6 @@ import Post from "../components/Post";
 
 const SaveJobsList = () => {
   const items = useSelector((state) => state.saveJob);
-
   return (
     <div className="p-4">
       {items.jobsList.length ? (

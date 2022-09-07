@@ -12,17 +12,22 @@ import SignUp from "../components/Users/SignUp";
 const Home = () => {
   const { data, loading, error } = useFetchPostList();
   const [featureJobs, setFeatureJobs] = useState([]);
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const { signUpLoading, sigUpError, userInfo, sigUpSuccess } = useSelector(
+    (state) => state.auth
+  );
 
   useEffect(() => {
     document.title = "Village | Home";
     const selectData = data.slice(0, 4);
     setFeatureJobs(selectData);
   }, [data]);
+  console.log(userInfo);
+  useEffect(() => {}, [userInfo, sigUpSuccess]);
+  if (signUpLoading) return <div>Helping you</div>;
 
   return (
     <div className="container">
-      {isLoggedIn ? (
+      {sigUpSuccess ? (
         <>
           <HeroSection />
           <div className="m-4 border-2 border-sky-500"></div>

@@ -28,7 +28,7 @@ function timeDifference(current, previous) {
     );
   } else if (elapsed < milliSecondsPerYear) {
     return (
-      Math.round(elapsed / milliSecondsPerMonth) + ' mo ago'
+      Math.round(elapsed / milliSecondsPerMonth) + ' mon ago'
     );
   } else {
     return (
@@ -38,8 +38,10 @@ function timeDifference(current, previous) {
   }
 }
 
+
+
 export function timeDifferenceForDate(date) {
-  const now = new Date().getTime();
-  const updated = new Date(date).getTime();
-  return timeDifference(now, updated)
+  const current = new Date().getTime();
+  const previous = new Date(date).getTime();
+  return timeDifference(current, previous)
 }

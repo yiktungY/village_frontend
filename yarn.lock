@@ -2099,6 +2099,11 @@ readable-stream@~2.3.6:
     string_decoder "~1.1.1"
     util-deprecate "~1.0.1"
 
+readable-timestamp-js@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/readable-timestamp-js/-/readable-timestamp-js-1.0.0.tgz#c212a8e7c389e3275a2f11913d507ed6ec38663c"
+  integrity sha512-p0cS/iqIHIxw0Dq8wKHtlfi7Y6xSSPcqGA9a2qDW4LpEfWRvvP1nLWwVgWDwYdUMcq7xuHVWj9kEeWDZw6aeTg==
+
 readdirp@~3.6.0:
   version "3.6.0"
   resolved "https://registry.npmjs.org/readdirp/-/readdirp-3.6.0.tgz"

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   BiMailSend,
   BiLock,
@@ -10,11 +10,12 @@ import {
   BiErrorCircle,
 } from "react-icons/bi";
 
-import { authActions } from "../../store/auth-slice";
+import { signUp } from "../../store/userAction";
 import { Button, Input } from "../Elements";
 
-export default function SignUp({ user, signup }) {
+export default function SignUp() {
   const dispatch = useDispatch();
+
   const [value, setValue] = useState({
     email: "",
     username: "",
@@ -82,11 +83,14 @@ export default function SignUp({ user, signup }) {
       }));
     }
   };
-
   const handleSignUp = (e) => {
     e.preventDefault();
-    console.log(e.timeStamp);
-    dispatch(authActions.login());
+    const signUpInfo = {
+      email: value.email,
+      username: value.username,
+      password: value.password,
+    };
+    dispatch(signUp(signUpInfo));
   };
 
   useEffect(() => {
@@ -108,9 +112,6 @@ export default function SignUp({ user, signup }) {
       setReadyToSubmit(false);
     }
   }, [value]);
-  // useEffect(() => {
-  //   if (user && user.id) history.push("/home");
-  // }, [user, history]);
 
   return (
     <div className="px-4 py-10 flex flex-col items-center">

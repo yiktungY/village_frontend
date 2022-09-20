@@ -6,6 +6,7 @@ import {
 } from "react-icons/bi";
 
 const HeroSection = () => {
+ 
   return (
     <div className="h-48 container border-b-2 border-stone-100 px-2 py-4">
       <div className="text-l font-normal tracking-wide py-2 ">

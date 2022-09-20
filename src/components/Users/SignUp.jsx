@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   BiMailSend,
   BiLock,
@@ -10,12 +9,15 @@ import {
   BiErrorCircle,
 } from "react-icons/bi";
 
+import { loginActions } from "../../store/login-slice";
 import { signUp } from "../../store/userAction";
 import { Button, Input } from "../Elements";
 
 export default function SignUp() {
   const dispatch = useDispatch();
-
+  const handleLogin = () => {
+    dispatch(loginActions.openForm());
+  };
   const [value, setValue] = useState({
     email: "",
     username: "",
@@ -44,6 +46,7 @@ export default function SignUp() {
     }
     return [false, message];
   };
+
   const isValidPassword = (password) => {
     const message = "Password should longer than 4 digits";
     if (password.length > 4) {
@@ -98,7 +101,7 @@ export default function SignUp() {
       value.email.length > 1 &&
       value.username.length > 1 &&
       value.password.length > 1 &&
-      value.confirmPassword.length > 1
+      value.confirmPassword.length === value.password.length
     ) {
       if (
         !controllForm.email.error &&
@@ -116,14 +119,14 @@ export default function SignUp() {
   return (
     <div className="px-4 py-10 flex flex-col items-center">
       <div className="text-lg font-medium">Create an Account</div>
-      <div className="">
-        Already have an account?{" "}
-        <NavLink
-          to="/login"
-          className="text-sky-500 font-bold mx-1 hover:text-sky-600 hover:underline"
+      <div className="flex flex-row">
+        Already have an account?
+        <div
+          onClick={handleLogin}
+          className="text-sky-500 font-bold mx-1 hover:text-sky-600 hover:underline cursor-pointer"
         >
-          Sign in
-        </NavLink>
+          Login
+        </div>
       </div>
 
       <form className="flex flex-col w-full py-4">

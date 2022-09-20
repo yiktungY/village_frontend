@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { BiArrowToRight } from "react-icons/bi";
 
 import useFetchPostList from "../hooks/useFetchPostList";
@@ -8,25 +8,41 @@ import Post from "../components/Post";
 import HeroSection from "../components/HeroSection";
 import Loading from "../components/Loading";
 import SignUp from "../components/Users/SignUp";
+import PopUp from "../layout/PopUp";
+import { loginActions } from "../store/login-slice";
 
 const Home = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { signUpLoading, sigUpError, userInfo, sigUpSuccess } = useSelector(
+    (state) => state.signUp
+  );
+  const openLogin = useSelector((state) => state.login.loginOpen);
   const { data, loading, error } = useFetchPostList();
   const [featureJobs, setFeatureJobs] = useState([]);
-  const { signUpLoading, sigUpError, userInfo, sigUpSuccess } = useSelector(
-    (state) => state.auth
-  );
+
+  const handleLogin = () => {
+    dispatch(loginActions.openForm());
+  };
 
   useEffect(() => {
     document.title = "Village | Home";
     const selectData = data.slice(0, 4);
     setFeatureJobs(selectData);
   }, [data]);
-  console.log(userInfo);
-  useEffect(() => {}, [userInfo, sigUpSuccess]);
-  if (signUpLoading) return <div>Helping you</div>;
 
+  useEffect(() => {
+    const key = localStorage.getItem("villageToken");
+    if (key) {
+      navigate("dashboard");
+    }
+  }, [userInfo, sigUpSuccess]);
+
+  if (signUpLoading) return <div>Helping you</div>;
+  if (sigUpError) return <div>something is wrong, please try again</div>;
   return (
     <div className="container">
+      {openLogin && <PopUp action={handleLogin} />}
       {sigUpSuccess ? (
         <>
           <HeroSection />

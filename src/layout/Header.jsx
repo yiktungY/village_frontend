@@ -1,14 +1,31 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
+import { loginActions } from "../store/login-slice";
 import { BiAlignRight, BiStore } from "react-icons/bi";
-import { useSelector } from "react-redux";
 
-function Header({ user, logout }) {
+function Header() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const savedNumber = useSelector((state) => state.saveJob.totalQuantity);
+  const onLogOut = () => {
+    localStorage.removeItem("villageToken");
+    navigate("");
+  };
+  const handleLogin = () => {
+    dispatch(loginActions.openForm());
+  };
+
   return (
     <div className="flex flex-row border-b-2 border-stone-100 px-2 py-4 justify-between items-center">
-      <div className="flex flex-row basis-1/6">icon</div>
+      <div className="flex flex-row basis-1/6 ">icon</div>
+      <div
+        className="flex flex-row basis-1/6 text-sky-500 font-bold mx-1 hover:text-sky-600 hover:underline cursor-pointer"
+        onClick={handleLogin}
+      >
+        login
+      </div>
+      <button onClick={onLogOut}>logout</button>
       <Link to="/">
         <div className="text-3xl font-bold tracking-wide text-sky-500 hover:text-sky-600">
           Village

@@ -6,28 +6,12 @@ import Header from "./layout/Header";
 import Home from "./pages/Home";
 import PostListPage from "./pages/PostListPage";
 import SaveJobsPage from "./pages/SaveJobsPage";
+import DashboradPage from "./pages/DashboardPage";
 
 const RouteList = () => {
   const [user, setUser] = useState({
     isFetching: true,
   });
-
-  //   const [formErrorMessage, setFormErrorMessage] = useState(false);
-  const signup = async (credentials) => {
-    try {
-      const data = await axios.post(
-        `${import.meta.env.VITE_API_URL}/auth/signup`,
-        credentials
-      );
-      //   await localStorage.setItem("village-token", data.token);
-      setUser(data);
-      if (data) {
-        // .push("/registerSuccee");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const login = async (credentials) => {
     try {
@@ -77,6 +61,7 @@ const RouteList = () => {
         <Route path="/" element={<Home />} />
         <Route path="/jobs" element={<PostListPage />} />
         <Route path="/saveJobs" element={<SaveJobsPage />} />
+        <Route path="/dashboard" element={<DashboradPage />} />
         {/* <Route path="*" element={<PageNotFound />} /> */}
       </Routes>
 

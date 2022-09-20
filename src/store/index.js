@@ -1,12 +1,16 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit"
-import authSlice from "./auth-slice";
+import signUpSlice from "./signUp-slice";
+import loginSlice from "./login-slice";
 import saveJobSlice from "./saveJob-slice";
+
 
 
 const store = configureStore({
     reducer: {
-        auth: authSlice.reducer,
-        saveJob: saveJobSlice.reducer
+        signUp: signUpSlice.reducer,
+        login: loginSlice.reducer,
+        saveJob: saveJobSlice.reducer,
+
     }
 })
 

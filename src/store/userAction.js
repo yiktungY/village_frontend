@@ -1,21 +1,24 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+
 export const signUp = createAsyncThunk(
   "user/signUp",
-  async ({ username, email, password }, { rejectWithValue }) => {
+  async ({ username, email, password }, thunkAPI) => {
     try {
-      await axios.post(
+      const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/auth/signup`,
         { username, email, password },
       )
-    } catch (error) {
-      if (error.response && error.response.data.message) {
-        return rejectWithValue(error.response.data.message)
+      if (response.status === 200) {
+        localStorage.setItem("villageToken", response.data.token)
+        return response.data.user
       } else {
-        return rejectWithValue(error.message)
+        return thunkAPI.rejectWithValue(response.data)
       }
+    } catch (error) {
+      console.log("Error", error)
+      return thunkAPI.rejectWithValue(error.response.data)
     }
-
-  },
+  }
 )

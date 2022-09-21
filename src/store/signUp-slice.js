@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { signUp } from "./userAction"
+import { signUpAction } from "./userAction"
 
 const initialState = {
-  signUpLoading: false,
+  loading: false,
   userInfo: {},
   userToken: null,
-  signUpError: null,
-  signUpSuccess: false,
+  error: null,
+  success: false,
   isLoggedIn: false
 }
 const signUpSlice = createSlice({
@@ -16,19 +16,19 @@ const signUpSlice = createSlice({
   },
   extraReducers: {
     // register user
-    [signUp.pending]: (state) => {
-      state.signUpLoading = true
-      state.signUpError = null
+    [signUpAction.pending]: (state) => {
+      state.loading = true
+      state.error = null
     },
-    [signUp.fulfilled]: (state, payload) => {
-      state.signUpLoading = false
-      state.signUpSuccess = true // registration successful
-      state.userInfo = payload
+    [signUpAction.fulfilled]: (state, payload) => {
+      state.loading = false
+      state.success = true // registration successful
+      state.userInfo = payload.payload
       state.isLoggedIn = true
     },
-    [signUp.rejected]: (state, payload) => {
-      state.signUpLoading = false
-      state.signUpError = payload
+    [signUpAction.rejected]: (state, payload) => {
+      state.loading = false
+      state.error = payload.payload.error
     },
   },
 })

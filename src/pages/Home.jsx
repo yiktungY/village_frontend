@@ -9,20 +9,21 @@ import HeroSection from "../components/HeroSection";
 import Loading from "../components/Loading";
 import SignUp from "../components/Users/SignUp";
 import PopUp from "../layout/PopUp";
-import { loginActions } from "../store/login-slice";
+import { authAction } from "../store/login-slice";
+import Login from "../components/Users/Login";
 
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { signUpLoading, sigUpError, userInfo, sigUpSuccess } = useSelector(
-    (state) => state.signUp
+  const { userInfo, loginOpen, isLoggedIn } = useSelector(
+    (state) => state.login
   );
-  const openLogin = useSelector((state) => state.login.loginOpen);
+  const signUp = useSelector((state) => state.signUp);
   const { data, loading, error } = useFetchPostList();
   const [featureJobs, setFeatureJobs] = useState([]);
 
   const handleLogin = () => {
-    dispatch(loginActions.openForm());
+    dispatch(authAction.openForm());
   };
 
   useEffect(() => {
@@ -34,16 +35,14 @@ const Home = () => {
   useEffect(() => {
     const key = localStorage.getItem("villageToken");
     if (key) {
-      navigate("dashboard");
+      navigate("");
     }
-  }, [userInfo, sigUpSuccess]);
+  }, [userInfo, signUp.userInfo]);
 
-  if (signUpLoading) return <div>Helping you</div>;
-  if (sigUpError) return <div>something is wrong, please try again</div>;
   return (
     <div className="container">
-      {openLogin && <PopUp action={handleLogin} />}
-      {sigUpSuccess ? (
+      {loginOpen && <PopUp action={handleLogin} children={<Login />} />}
+      {isLoggedIn ? (
         <>
           <HeroSection />
           <div className="m-4 border-2 border-sky-500"></div>

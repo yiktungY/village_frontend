@@ -1,43 +1,28 @@
 import { useEffect, useState } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
-import {
-  BiMailSend,
-  BiLock,
-  BiUser,
-  BiGlasses,
-  BiErrorCircle,
-} from "react-icons/bi";
+import { BiMailSend, BiLock, BiErrorCircle } from "react-icons/bi";
 
+import { loginAction } from "../../store/userAction";
 import { authAction } from "../../store/login-slice";
-import { signUpAction } from "../../store/userAction";
 import { Button, Input, Loader, Notification } from "../Elements";
-import {
-  isValidEmail,
-  isValidUserName,
-  isValidPassword,
-  isSamePassword,
-} from "./Auth";
+import { isValidEmail, isValidPassword } from "./Auth";
 
-export default function SignUp() {
+const Login = () => {
   const dispatch = useDispatch();
+  const { loading, userInfo, error, success, isLoggedIn } = useSelector(
+    (state) => state.login
+  );
   const [value, setValue] = useState({
     email: "",
-    username: "",
     password: "",
-    confirmPassword: "",
   });
   const [controllForm, setControllForm] = useState({
     email: { error: false, touched: false, errorMessage: "" },
-    username: { error: false, touched: false, errorMessage: "" },
     password: { error: false, touched: false, errorMessage: "" },
-    confirmPassword: { error: false, touched: false, errorMessage: "" },
   });
 
-  const { loading, error, userInfo, success } = useSelector(
-    (state) => state.signUp
-  );
   const [readyToSubmit, setReadyToSubmit] = useState(false);
+
   const handleLogin = () => {
     dispatch(authAction.openForm());
   };
@@ -65,29 +50,19 @@ export default function SignUp() {
       }));
     }
   };
-  const handleSignUp = (e) => {
+
+  const handleSubmitLogin = (e) => {
     e.preventDefault();
-    const signUpInfo = {
+    const loginInfo = {
       email: value.email,
-      username: value.username,
       password: value.password,
     };
-    dispatch(signUpAction(signUpInfo));
+    dispatch(loginAction(loginInfo));
   };
 
   useEffect(() => {
-    if (
-      value.email.length > 1 &&
-      value.username.length > 1 &&
-      value.password.length > 1 &&
-      value.confirmPassword.length === value.password.length
-    ) {
-      if (
-        !controllForm.email.error &&
-        !controllForm.username.error &&
-        !controllForm.password.error &&
-        !controllForm.confirmPassword.error
-      ) {
+    if (value.email.length > 5 && value.password.length > 4) {
+      if (!controllForm.email.error && !controllForm.password.error) {
         setReadyToSubmit(true);
       }
     } else {
@@ -97,14 +72,14 @@ export default function SignUp() {
 
   return (
     <div className="px-4 py-10 flex flex-col items-center">
-      <div className="text-lg font-medium">Create an Account</div>
+      <div className="text-lg font-medium">Login Your Account</div>
       <div className="flex flex-row">
-        Already have an account?
+        No account yet?
         <div
           onClick={handleLogin}
           className="text-sky-500 font-bold mx-1 hover:text-sky-600 hover:underline cursor-pointer"
         >
-          Login
+          Sign Up Now
         </div>
       </div>
 
@@ -112,7 +87,7 @@ export default function SignUp() {
         <Input
           type="email"
           id="email"
-          label="Create account with Email"
+          label="Enter Email"
           icon={!controllForm.email.error ? <BiMailSend /> : <BiErrorCircle />}
           error={controllForm.email}
           handleOnChange={(e) =>
@@ -124,22 +99,9 @@ export default function SignUp() {
         />
 
         <Input
-          type="text"
-          id="username"
-          label="UserName"
-          icon={!controllForm.username.error ? <BiUser /> : <BiErrorCircle />}
-          error={controllForm.username}
-          handleOnChange={(e) =>
-            handleChange(e, "username", isValidUserName(e.target.value))
-          }
-          handleOnBlur={(e) =>
-            handleError("username", isValidUserName(e.target.value))
-          }
-        />
-        <Input
           type="password"
-          id="newPassword"
-          label="Password"
+          id="EnterPassword"
+          label="Enter Password"
           icon={!controllForm.password.error ? <BiLock /> : <BiErrorCircle />}
           error={controllForm.password}
           handleOnChange={(e) =>
@@ -149,43 +111,19 @@ export default function SignUp() {
             handleError("password", isValidPassword(e.target.value))
           }
         />
-        <Input
-          type="password"
-          id="confirmPassword"
-          label="Comfired Password"
-          icon={
-            !controllForm.confirmPassword.error ? (
-              <BiGlasses />
-            ) : (
-              <BiErrorCircle />
-            )
-          }
-          error={controllForm.confirmPassword}
-          handleOnChange={(e) =>
-            handleChange(
-              e,
-              "confirmPassword",
-              isSamePassword(e.target.value, value.password)
-            )
-          }
-          handleOnBlur={(e) =>
-            handleError(
-              "confirmPassword",
-              isSamePassword(e.target.value, value.password)
-            )
-          }
-        />
         {loading ? (
           <Loader />
         ) : (
           <Button
-            action="Sign Up"
-            handleAction={handleSignUp}
+            action="Login"
+            handleAction={handleSubmitLogin}
             disable={readyToSubmit}
           />
         )}
       </form>
-      {error && <Notification title="Sign Up Error" message={error} />}
+      {error && <Notification title="Login Error" message={error} />}
     </div>
   );
-}
+};
+
+export default Login;

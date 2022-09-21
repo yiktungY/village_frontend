@@ -10,7 +10,6 @@ const store = configureStore({
         signUp: signUpSlice.reducer,
         login: loginSlice.reducer,
         saveJob: saveJobSlice.reducer,
-
     }
 })
 

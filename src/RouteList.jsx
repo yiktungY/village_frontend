@@ -69,11 +69,7 @@ const RouteList = () => {
           path="/login"
           render={() => <Login user={user} login={login} />}
         />
-        <Route
-          path="/signUp"
-          render={() => <SignUp user={user} signup={signup} />}
-        />
-        <Route path="/registerSuccee" component={CreateAccount} />
+       
         <Route path="/profile/:id" render={() => <UserPage user={user} />} />
         <Route
           path="/users/posts/:id"

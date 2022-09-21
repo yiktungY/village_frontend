@@ -1,27 +1,51 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import { loginAction } from "./userAction"
 
 const initialState = {
   loginOpen: false,
+  loading: false,
   userInfo: {},
   userToken: null,
-  signUpError: null,
-  signUpSuccess: false,
+  error: null,
+  success: false,
   isLoggedIn: false
 }
 const loginSlice = createSlice({
   name: "login",
   initialState,
   reducers: {
-    openForm(state) {
+    openForm: (state) => {
       state.loginOpen = !state.loginOpen
-    }
+      state.error = null
+    },
+    logout: (state) => {
+      localStorage.removeItem('villageToken')
+      state.loading = false
+      state.userInfo = null
+      state.userToken = null
+      state.error = null
+      state.isLoggedIn = false
+    },
   },
   extraReducers: {
-
+    [loginAction.pending]: (state) => {
+      state.loading = true
+      state.error = null
+    },
+    [loginAction.fulfilled]: (state, payload) => {
+      state.loading = false
+      state.success = true // registration successful
+      state.userInfo = payload.payload
+      state.isLoggedIn = true
+      state.loginOpen = false
+    },
+    [loginAction.rejected]: (state, payload) => {
+      state.loading = false
+      state.error = payload.payload.error
+    },
   },
 })
 
-export const loginActions = loginSlice.actions
+export const authAction = loginSlice.actions
 
 export default loginSlice;

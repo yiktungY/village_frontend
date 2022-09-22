@@ -13,18 +13,7 @@ const RouteList = () => {
     isFetching: true,
   });
 
-  const login = async (credentials) => {
-    try {
-      const { data } = await axios.post(
-        `${import.meta.env.VITE_API_URL}/auth/login`,
-        credentials
-      );
-      await localStorage.setItem("village-token", data.token);
-      setUser(data.user);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
 
   const logout = async () => {
     try {

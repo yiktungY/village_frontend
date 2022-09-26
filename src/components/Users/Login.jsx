@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BiMailSend, BiLock, BiErrorCircle } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 
 import { loginAction } from "../../store/userAction";
 import { authAction } from "../../store/login-slice";
-import { Button, Input, Loader, Notification } from "../Elements";
+import { Button, Input, Loader, Alert, Notification } from "../Elements";
 import { isValidEmail, isValidPassword } from "./Auth";
 
 const Login = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loading, userInfo, error, success, isLoggedIn } = useSelector(
     (state) => state.login
@@ -69,7 +71,7 @@ const Login = () => {
       setReadyToSubmit(false);
     }
   }, [value]);
-
+  
   return (
     <div className="px-4 py-10 flex flex-col items-center">
       <div className="text-lg font-medium">Login Your Account</div>
@@ -121,7 +123,7 @@ const Login = () => {
           />
         )}
       </form>
-      {error && <Notification title="Login Error" message={error} />}
+      {error && <Alert id="login" title="Login Error" message={error} />}
     </div>
   );
 };

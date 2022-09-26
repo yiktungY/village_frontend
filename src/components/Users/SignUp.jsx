@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   BiMailSend,
@@ -11,7 +11,7 @@ import {
 
 import { authAction } from "../../store/login-slice";
 import { signUpAction } from "../../store/userAction";
-import { Button, Input, Loader, Notification } from "../Elements";
+import { Button, Input, Loader, Alert } from "../Elements";
 import {
   isValidEmail,
   isValidUserName,
@@ -20,6 +20,7 @@ import {
 } from "./Auth";
 
 export default function SignUp() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [value, setValue] = useState({
     email: "",
@@ -73,6 +74,10 @@ export default function SignUp() {
       password: value.password,
     };
     dispatch(signUpAction(signUpInfo));
+    if (success) {
+      console.log("test");
+      navigate("/dashboard");
+    }
   };
 
   useEffect(() => {
@@ -97,6 +102,7 @@ export default function SignUp() {
 
   return (
     <div className="px-4 py-10 flex flex-col items-center">
+      {error && <Alert id="signUp" title="Sign Up Error" message={error} />}
       <div className="text-lg font-medium">Create an Account</div>
       <div className="flex flex-row">
         Already have an account?
@@ -185,7 +191,6 @@ export default function SignUp() {
           />
         )}
       </form>
-      {error && <Notification title="Sign Up Error" message={error} />}
     </div>
   );
 }

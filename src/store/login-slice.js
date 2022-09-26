@@ -25,6 +25,7 @@ const loginSlice = createSlice({
       state.userToken = null
       state.error = null
       state.isLoggedIn = false
+      state.success = false
     },
   },
   extraReducers: {

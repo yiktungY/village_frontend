@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authAction } from "../store/login-slice";
 import { BiAlignRight, BiStore } from "react-icons/bi";
 
-function Header() {
+const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const savedNumber = useSelector((state) => state.saveJob.totalQuantity);
@@ -55,6 +55,6 @@ function Header() {
       </div>
     </div>
   );
-}
+};
 
 export default Header;

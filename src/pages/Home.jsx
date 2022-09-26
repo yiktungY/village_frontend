@@ -32,12 +32,12 @@ const Home = () => {
     setFeatureJobs(selectData);
   }, [data]);
 
-  useEffect(() => {
-    const key = localStorage.getItem("villageToken");
-    if (key) {
-      navigate("");
-    }
-  }, [userInfo, signUp.userInfo]);
+  // useEffect(() => {
+  //   const key = localStorage.getItem("villageToken");
+  //   if (key) {
+  //     navigate("");
+  //   }
+  // }, [userInfo, signUp.userInfo]);
 
   return (
     <div className="container">

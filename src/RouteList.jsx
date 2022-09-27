@@ -8,10 +8,9 @@ import Home from "./pages/Home";
 import PostListPage from "./pages/PostListPage";
 import SaveJobsPage from "./pages/SaveJobsPage";
 import DashboradPage from "./pages/DashboardPage";
-import { Notification } from "./components/Elements";
 
 const RouteList = () => {
-  const selector = useSelector((state) => state);
+
   // const logout = async () => {
   //   try {
   //     await axios.delete(`${import.meta.env.VITE_API_URL}/auth/logout`);
@@ -22,7 +21,7 @@ const RouteList = () => {
   //     console.error(error);
   //   }
   // };
-  console.log(selector.login.userInfo);
+
   // useEffect(() => {
   //   const fetchUser = async () => {
   //     setUser((prev) => ({ ...prev, isFetching: true }));
@@ -43,13 +42,6 @@ const RouteList = () => {
   return (
     <BrowserRouter>
       <Header />
-      {selector.login.success && (
-        <Notification
-          success={selector.login.success}
-          action="Login"
-          message={`Welcome ${selector.login.userInfo?.displayName}`}
-        />
-      )}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/jobs" element={<PostListPage />} />

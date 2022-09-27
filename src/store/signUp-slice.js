@@ -12,8 +12,7 @@ const initialState = {
 const signUpSlice = createSlice({
   name: "signUp",
   initialState,
-  reducers: {
-  },
+  reducers: {},
   extraReducers: {
     // register user
     [signUpAction.pending]: (state) => {
@@ -30,7 +29,8 @@ const signUpSlice = createSlice({
       state.loading = false
       state.error = payload.payload.error
     },
-  },
+  }
 })
 
 export default signUpSlice;
+

@@ -4,8 +4,9 @@ const savedJSON = localStorage.getItem('savedJobList');
 const savedJobList = JSON.parse(savedJSON)
 const initialState = {
   jobsList: savedJobList === null ? [] : savedJobList.jobsList,
-  totalQuantity: savedJobList === null ? [] : savedJobList.totalQuantity,
+  totalQuantity: savedJobList === null ? 0 : savedJobList.totalQuantity,
   totalApplied: 0,
+  action: ""
 }
 const saveJobSlice = createSlice({
   name: "saveJob",
@@ -13,8 +14,8 @@ const saveJobSlice = createSlice({
   reducers: {
     addToList(state, action) {
       const newJob = action.payload;
-      const existingJob = state.jobsList.find((job) => job.post_id === newJob.post_id)
-      if (existingJob) {
+      const existingJob = state.jobsList.findIndex((job) => job.post_id === newJob.post_id)
+      if (existingJob >= 0) {
         state.jobsList.splice(existingJob, 1)
         state.totalQuantity--
       } else {
@@ -27,6 +28,7 @@ const saveJobSlice = createSlice({
           status: newJob.status,
           avatar_url: newJob.avatar_url,
           saved: true
+
         })
         state.totalQuantity++
       }

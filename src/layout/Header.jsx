@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
+import { Notification } from "../components/Elements";
 import { authAction } from "../store/login-slice";
 import { BiAlignRight, BiStore } from "react-icons/bi";
 
@@ -8,6 +9,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const savedNumber = useSelector((state) => state.saveJob.totalQuantity);
+  const notification = useSelector((state) => state.noticiation.context);
   const { userInfo, isLoggedIn } = useSelector((state) => state.login);
   const onLogOut = () => {
     dispatch(authAction.logout());
@@ -16,8 +18,10 @@ const Header = () => {
   const handleLogin = () => {
     dispatch(authAction.openForm());
   };
+
   return (
     <div className="flex flex-row border-b-2 border-stone-100 px-2 py-4 justify-between items-center">
+      {notification.length > 0 && <Notification message={notification} />}
       {isLoggedIn ? (
         <>
           <img

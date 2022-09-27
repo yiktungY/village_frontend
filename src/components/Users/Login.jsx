@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 import { loginAction } from "../../store/userAction";
 import { authAction } from "../../store/login-slice";
-import { Button, Input, Loader, Alert, Notification } from "../Elements";
+import { noticiationActions } from "../../store/noticiation-slice";
+import { Button, Input, Loader, Alert } from "../Elements";
 import { isValidEmail, isValidPassword } from "./Auth";
 
 const Login = () => {
@@ -14,6 +15,7 @@ const Login = () => {
   const { loading, userInfo, error, success, isLoggedIn } = useSelector(
     (state) => state.login
   );
+
   const [value, setValue] = useState({
     email: "",
     password: "",
@@ -71,7 +73,7 @@ const Login = () => {
       setReadyToSubmit(false);
     }
   }, [value]);
-  
+
   return (
     <div className="px-4 py-10 flex flex-col items-center">
       <div className="text-lg font-medium">Login Your Account</div>

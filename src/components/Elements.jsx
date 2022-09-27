@@ -152,20 +152,12 @@ export const Alert = ({ title, message }) => {
   );
 };
 
-export const Notification = ({ success, action, message }) => {
-  const [show, setShow] = useState(success);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setShow(false);
-    }, 2000);
-  }, [success]);
-
+export const Notification = ({ message }) => {
   return (
     <>
-      {show && (
+      {message.length > 0 && (
         <div
-          className="absolute top-4 right-6 flex p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800 animate-fade duration-100 ease-out"
+          className="absolute top-4 right-2 flex p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800 animate-fade duration-100 ease-out"
           role="alert"
         >
           <svg
@@ -183,8 +175,7 @@ export const Notification = ({ success, action, message }) => {
           </svg>
           <span className="sr-only">Info</span>
           <div>
-            <span className="font-medium">{action} Success!</span>
-            {message}
+            <span className="font-medium">{message}</span>
           </div>
         </div>
       )}

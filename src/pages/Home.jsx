@@ -10,6 +10,7 @@ import Loading from "../components/Loading";
 import SignUp from "../components/Users/SignUp";
 import PopUp from "../layout/PopUp";
 import { authAction } from "../store/login-slice";
+import { noticiationActions } from "../store/noticiation-slice";
 import Login from "../components/Users/Login";
 
 const Home = () => {
@@ -18,6 +19,7 @@ const Home = () => {
   const { userInfo, loginOpen, isLoggedIn } = useSelector(
     (state) => state.login
   );
+
   const signUp = useSelector((state) => state.signUp);
   const { data, loading, error } = useFetchPostList();
   const [featureJobs, setFeatureJobs] = useState([]);
@@ -31,6 +33,25 @@ const Home = () => {
     const selectData = data.slice(0, 4);
     setFeatureJobs(selectData);
   }, [data]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(noticiationActions.showMessage("Login Successfully"));
+      setTimeout(() => {
+        dispatch(noticiationActions.hideMessage());
+      }, 3000);
+    }
+  }, [isLoggedIn]);
+
+  useEffect(() => {
+    if (signUp.success) {
+      navigate("/dashboard");
+      dispatch(noticiationActions.showMessage("Sign Up Successfully"));
+      setTimeout(() => {
+        dispatch(noticiationActions.hideMessage());
+      }, 3000);
+    }
+  }, [signUp.success]);
 
   // useEffect(() => {
   //   const key = localStorage.getItem("villageToken");

@@ -7,7 +7,6 @@ const initialState = {
   userInfo: {},
   userToken: null,
   error: null,
-  success: false,
   isLoggedIn: false
 }
 const loginSlice = createSlice({
@@ -35,7 +34,6 @@ const loginSlice = createSlice({
     },
     [loginAction.fulfilled]: (state, payload) => {
       state.loading = false
-      state.success = true // registration successful
       state.userInfo = payload.payload
       state.isLoggedIn = true
       state.loginOpen = false

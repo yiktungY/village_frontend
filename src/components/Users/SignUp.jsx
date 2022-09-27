@@ -74,10 +74,6 @@ export default function SignUp() {
       password: value.password,
     };
     dispatch(signUpAction(signUpInfo));
-    if (success) {
-      console.log("test");
-      navigate("/dashboard");
-    }
   };
 
   useEffect(() => {

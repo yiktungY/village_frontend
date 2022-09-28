@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import CountrySelect from "../components/CountrySelect";
+import CountrySelect from "../components/Users/CountrySelect";
+import IconUpdate from "../components/Users/IconUpdate";
 import { Button, Input } from "../components/Elements";
+import UploadPicture from "../components/Users/UploadPicture";
 
 const DashboradPage = () => {
   const userInfo = useSelector((state) => state.signUp.userInfo);
@@ -23,12 +25,21 @@ const DashboradPage = () => {
   const handleSubmit = () => {
     console.log(selectedOption);
   };
-
+  console.log(userInfo);
   return (
     <div className="m-2 h-96 flex flex-col justify-between">
       <div>Welcome! {userInfo.displayName}</div>
       <div>Let us start the journey now! </div>
-      {progess === 25 && <div>icon</div>}
+      {progess === 25 && (
+        <>
+          <IconUpdate
+            icon={userInfo.avatar_url}
+            username={userInfo.displayName}
+            action={handleSubmit}
+          />
+          <UploadPicture  icon={userInfo.avatar_url} />
+        </>
+      )}
       {progess === 50 && (
         <>
           <CountrySelect

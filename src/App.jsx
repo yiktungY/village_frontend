@@ -23,7 +23,6 @@ function App() {
     <div>
       {/* <ToggleTheme handleTheme={handleTheme} setTheme={setTheme} /> */}
       <RouteList />
-      <Footer />
     </div>
   );
 }

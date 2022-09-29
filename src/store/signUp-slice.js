@@ -7,12 +7,18 @@ const initialState = {
   userToken: null,
   error: null,
   success: false,
-  isLoggedIn: false
+  isLoggedIn: false,
+  finishBorading: false
 }
 const signUpSlice = createSlice({
   name: "signUp",
   initialState,
-  reducers: {},
+  reducers: {
+    finishedBoarding(state) {
+      state.success = false
+      state.finishBorading = true
+    }
+  },
   extraReducers: {
     // register user
     [signUpAction.pending]: (state) => {
@@ -31,6 +37,8 @@ const signUpSlice = createSlice({
     },
   }
 })
+
+export const signUpActions = signUpSlice.actions
 
 export default signUpSlice;
 

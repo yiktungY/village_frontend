@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
+import { signUpActions } from "../store/signUp-slice";
+import { noticiationActions } from "../store/noticiation-slice";
 import CountrySelect from "../components/Users/CountrySelect";
 import IconUpdate from "../components/Users/IconUpdate";
 import { Button, Input } from "../components/Elements";
 import UploadPicture from "../components/Users/UploadPicture";
 
 const DashboradPage = () => {
-  const userInfo = useSelector((state) => state.signUp.userInfo);
+  const signUp = useSelector((state) => state.signUp);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [progess, setProgess] = useState(0);
   const [selectedOption, setSelectedOption] = useState({
     country: null,
@@ -23,21 +28,31 @@ const DashboradPage = () => {
   };
 
   const handleSubmit = () => {
-    console.log(selectedOption);
+    dispatch(signUpActions.finishedBoarding());
   };
-  console.log(userInfo);
+
+  useEffect(() => {
+    if (signUp.finishBorading) {
+      navigate("/");
+      dispatch(noticiationActions.showMessage("Finished boarding!"));
+      setTimeout(() => {
+        dispatch(noticiationActions.hideMessage());
+      }, 3000);
+    }
+  }, [signUp.finishBorading]);
+
   return (
     <div className="m-2 h-96 flex flex-col justify-between">
-      <div>Welcome! {userInfo.displayName}</div>
+      <div>Welcome! {signUp.userInfo.displayName}</div>
       <div>Let us start the journey now! </div>
       {progess === 25 && (
         <>
           <IconUpdate
-            icon={userInfo.avatar_url}
-            username={userInfo.displayName}
+            icon={signUp.userInfo.avatar_url}
+            username={signUp.userInfo.displayName}
             action={handleSubmit}
           />
-          <UploadPicture  icon={userInfo.avatar_url} />
+          <UploadPicture icon={signUp.userInfo.avatar_url} />
         </>
       )}
       {progess === 50 && (

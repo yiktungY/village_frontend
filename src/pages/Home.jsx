@@ -51,6 +51,13 @@ const Home = () => {
         dispatch(noticiationActions.hideMessage());
       }, 3000);
     }
+    // if (signUp.finishBorading) {
+    //   navigate("");
+    //   dispatch(noticiationActions.showMessage("Finished boarding!"));
+    //   setTimeout(() => {
+    //     dispatch(noticiationActions.hideMessage());
+    //   }, 3000);
+    // }
   }, [signUp.success]);
 
   // useEffect(() => {

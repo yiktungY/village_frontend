@@ -37,9 +37,6 @@ const Home = () => {
   useEffect(() => {
     if (isLoggedIn) {
       dispatch(noticiationActions.showMessage("Login Successfully"));
-      setTimeout(() => {
-        dispatch(noticiationActions.hideMessage());
-      }, 3000);
     }
   }, [isLoggedIn]);
 

@@ -36,9 +36,6 @@ const DashboradPage = () => {
     if (signUp.finishBorading) {
       navigate("/");
       dispatch(noticiationActions.showMessage("Finished boarding!"));
-      setTimeout(() => {
-        dispatch(noticiationActions.hideMessage());
-      }, 3000);
     }
   }, [signUp.finishBorading]);
 

@@ -1,18 +1,20 @@
 import { useState } from "react";
+import axios from "axios";
+import { useDispatch } from "react-redux";
 
 import { ref, getDownloadURL, uploadBytesResumable } from "@firebase/storage";
 import { storage } from "../../firebase/firebase";
+import { authAction } from "../../store/login-slice";
+import { noticiationActions } from "../../store/noticiation-slice";
+import { Loader } from "../Elements";
 
-import axios from "axios";
-
-const UploadPicture = ({ icon }) => {
+const UploadPicture = ({ icon, username, id }) => {
   //setting image upload
-  const [progress, setProgress] = useState(0);
-  const [url, setUrl] = useState("");
+  const dispatch = useDispatch();
+  const [progress, setProgress] = useState(100);
 
   const formHandler = (e) => {
-    e.preventDefault();
-    const file = e.target[0].files[0];
+    const file = e.target.files[0];
     uploadFiles(file);
   };
 
@@ -35,26 +37,41 @@ const UploadPicture = ({ icon }) => {
               avatar_url: url,
             })
             .then((data) => {
-              setUrl(url);
-              console.log(data);
+              dispatch(authAction.updateInfo({ icon: url }));
+              dispatch(
+                noticiationActions.showMessage("Your new icon looks great!")
+              );
             })
             .catch((err) => console.log(err))
         );
       }
     );
   };
+
   return (
-    <div className="regform">
-      {progress > 0 && (
-        <div className="regform__photo">
-          <img className="profilePicture" src={url} alt="icon" />
-          <h3>Uploaded {progress} %</h3>
-        </div>
-      )}
-      <form className="regform__upload" onSubmit={formHandler}>
-        <input className="navLink" type="file" />
-        <button>click</button>
-      </form>
+    <div className="w-full flex flex-col items-center">
+      <div className="w-40 relative">
+        <label htmlFor="dropzone-file" className="">
+          <div className="absolute bg-gray-200 p-1 w-40 h-40 rounded-full ring-2 opacity-0 hover:opacity-50 z-20 flex justify-center items-center">
+            <div>upload Icon</div>
+          </div>
+          {progress === 100 ? (
+            <img
+              className="p-1 w-40 h-40 rounded-full ring-2 ring-gray-300 animate-pulse"
+              src={icon}
+              alt={`${username} icon`}
+            />
+          ) : (
+            <Loader />
+          )}
+          <input
+            id="dropzone-file"
+            type="file"
+            className="hidden"
+            onChange={(e) => formHandler(e)}
+          />
+        </label>
+      </div>
     </div>
   );
 };

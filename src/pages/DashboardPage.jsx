@@ -11,20 +11,21 @@ import UploadPicture from "../components/Users/UploadPicture";
 
 const DashboradPage = () => {
   const signUp = useSelector((state) => state.signUp);
+  const user = useSelector((state) => state.login);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [progess, setProgess] = useState(0);
+  const [progress, setProgress] = useState(0);
   const [selectedOption, setSelectedOption] = useState({
     country: null,
     state: null,
     city: null,
   });
 
-  const handleProgessBack = () => {
-    setProgess((prev) => (prev -= 25));
+  const handleProgressBack = () => {
+    setProgress((prev) => (prev -= 25));
   };
-  const handleProgessNext = () => {
-    setProgess((prev) => (prev += 25));
+  const handleProgressNext = () => {
+    setProgress((prev) => (prev += 25));
   };
 
   const handleSubmit = () => {
@@ -43,19 +44,22 @@ const DashboradPage = () => {
 
   return (
     <div className="m-2 h-96 flex flex-col justify-between">
-      <div>Welcome! {signUp.userInfo.displayName}</div>
+      <div>Welcome! {user.userInfo.displayName}</div>
       <div>Let us start the journey now! </div>
-      {progess === 25 && (
+      {progress === 25 && (
         <>
-          <IconUpdate
+          {/* <IconUpdate
             icon={signUp.userInfo.avatar_url}
             username={signUp.userInfo.displayName}
-            action={handleSubmit}
+            action={handleIconUpdate}
+          /> */}
+          <UploadPicture
+            icon={user.userInfo.avatar_url}
+            id={user.userInfo.id}
           />
-          <UploadPicture icon={signUp.userInfo.avatar_url} />
         </>
       )}
-      {progess === 50 && (
+      {progress === 50 && (
         <>
           <CountrySelect
             setSelectedOption={setSelectedOption}
@@ -103,23 +107,23 @@ const DashboradPage = () => {
           />
         </>
       )}
-      {progess === 75 && <div>choosing your interested</div>}
-      {progess === 100 && <div>show the progess</div>}
+      {progress === 75 && <div>choosing your interested</div>}
+      {progress === 100 && <div>show the progress</div>}
 
       <div className="w-full flex justify-between">
-        {progess !== 0 && (
+        {progress !== 0 && (
           <Button
             action="Go Back"
-            handleAction={handleProgessBack}
+            handleAction={handleProgressBack}
             disable={true}
           />
         )}
-        {progess === 100 ? (
+        {progress === 100 ? (
           <Button action="Finish" handleAction={handleSubmit} disable={true} />
         ) : (
           <Button
-            action={progess === 0 ? "Start" : "Next"}
-            handleAction={handleProgessNext}
+            action={progress === 0 ? "Start" : "Next"}
+            handleAction={handleProgressNext}
             disable={true}
           />
         )}
@@ -127,9 +131,9 @@ const DashboradPage = () => {
       <div className="w-full bg-gray-200">
         <div
           className="bg-green-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none "
-          style={{ width: `${progess}%` }}
+          style={{ width: `${progress}%` }}
         >
-          {progess}%
+          {progress}%
         </div>
       </div>
     </div>

@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 
+import { noticiationActions } from "../store/noticiation-slice";
 export const Input = ({
   type,
   id,
@@ -153,6 +155,12 @@ export const Alert = ({ title, message }) => {
 };
 
 export const Notification = ({ message }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(noticiationActions.hideMessage());
+    }, 4000);
+  }, [message]);
   return (
     <>
       {message.length > 0 && (

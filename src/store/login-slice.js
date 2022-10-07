@@ -17,6 +17,10 @@ const loginSlice = createSlice({
       state.loginOpen = !state.loginOpen
       state.error = null
     },
+    updateInfo(state, action) {
+      const info = action.payload;
+      state.userInfo.avatar_url = info.icon;
+    },
     logout: (state) => {
       localStorage.removeItem('villageToken')
       state.loading = false

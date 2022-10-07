@@ -43,9 +43,7 @@ const Post = ({
       dispatch(noticiationActions.showMessage("Removed the item!"));
     }
     setTotalCount(saveState?.totalQuantity);
-    setTimeout(() => {
-      dispatch(noticiationActions.hideMessage());
-    }, 4000);
+   
   }, [saveState?.totalQuantity]);
 
   const handleSaveState = (jobId) => {

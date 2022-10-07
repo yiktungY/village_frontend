@@ -32,6 +32,7 @@ const CountrySelect = ({ selectedOption, setSelectedOption }) => {
   return (
     <div className="flex flex-col justify-between h-40">
       <Select
+        className="m-2"
         defaultValue={selectedOption.country}
         onChange={(value) => {
           setSelectedOption((prev) => ({
@@ -43,6 +44,7 @@ const CountrySelect = ({ selectedOption, setSelectedOption }) => {
         placeholder="Country"
       />
       <Select
+        className="m-2"
         defaultValue={selectedOption.state}
         onChange={(value) => {
           setSelectedOption((prev) => ({
@@ -54,6 +56,7 @@ const CountrySelect = ({ selectedOption, setSelectedOption }) => {
         placeholder="State"
       />
       <Select
+        className="m-2"
         defaultValue={selectedOption.city}
         onChange={(value) => {
           setSelectedOption((prev) => ({

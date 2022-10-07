@@ -11,6 +11,7 @@ import {
 
 import { authAction } from "../../store/login-slice";
 import { signUpAction } from "../../store/userAction";
+import { noticiationActions } from "../../store/noticiation-slice";
 import { Button, Input, Loader, Alert } from "../Elements";
 import {
   isValidEmail,

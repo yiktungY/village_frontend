@@ -34,28 +34,22 @@ const Home = () => {
     setFeatureJobs(selectData);
   }, [data]);
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      dispatch(noticiationActions.showMessage("Login Successfully"));
-    }
-  }, [isLoggedIn]);
+  // useEffect(() => {
+  //   // if (isLoggedIn) {
+  //   //   dispatch(noticiationActions.showMessage("Login Successfully"));
+  //   // }
+  // }, [isLoggedIn]);
 
   useEffect(() => {
     if (signUp.success) {
       navigate("/dashboard");
       dispatch(noticiationActions.showMessage("Sign Up Successfully"));
-      setTimeout(() => {
-        dispatch(noticiationActions.hideMessage());
-      }, 3000);
     }
-    // if (signUp.finishBorading) {
-    //   navigate("");
-    //   dispatch(noticiationActions.showMessage("Finished boarding!"));
-    //   setTimeout(() => {
-    //     dispatch(noticiationActions.hideMessage());
-    //   }, 3000);
-    // }
-  }, [signUp.success]);
+    if (signUp.finishBorading) {
+      navigate("");
+      dispatch(noticiationActions.showMessage("Finished boarding!"));
+    }
+  }, [signUp]);
 
   // useEffect(() => {
   //   const key = localStorage.getItem("villageToken");

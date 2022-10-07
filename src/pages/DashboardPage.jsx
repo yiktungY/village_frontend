@@ -8,6 +8,7 @@ import CountrySelect from "../components/Users/CountrySelect";
 import IconUpdate from "../components/Users/IconUpdate";
 import { Button, Input } from "../components/Elements";
 import UploadPicture from "../components/Users/UploadPicture";
+import axios from "axios";
 
 const DashboradPage = () => {
   const signUp = useSelector((state) => state.signUp);
@@ -20,7 +21,6 @@ const DashboradPage = () => {
     state: null,
     city: null,
   });
-
   const handleProgressBack = () => {
     setProgress((prev) => (prev -= 25));
   };
@@ -28,8 +28,31 @@ const DashboradPage = () => {
     setProgress((prev) => (prev += 25));
   };
 
-  const handleSubmit = () => {
-    dispatch(signUpActions.finishedBoarding());
+  const handleSubmit = async () => {
+    try {
+      const address = [
+        selectedOption.country?.name,
+        selectedOption.state?.name,
+        selectedOption.city?.name,
+      ].join(",");
+
+      const data = await handleUpdateInfoToApi({
+        address: address,
+      });
+      if (data?.status === 200) {
+        dispatch(signUpActions.finishedBoarding());
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleUpdateInfoToApi = async (newUpdateInfo) => {
+    const data = await axios.put(
+      `${import.meta.env.VITE_API_URL}/users/${user.userInfo.id}`,
+      newUpdateInfo
+    );
+    return data;
   };
 
   useEffect(() => {
@@ -57,52 +80,10 @@ const DashboradPage = () => {
         </>
       )}
       {progress === 50 && (
-        <>
-          <CountrySelect
-            setSelectedOption={setSelectedOption}
-            selectedOption={selectedOption}
-          />
-          <div>Optional</div>
-          <Input
-            type="age"
-            id="age"
-            label="Your age"
-            // icon={!controllForm.password.error ? <BiLock /> : <BiErrorCircle />}
-            error="error"
-            // handleOnChange={(e) =>
-            //   handleChange(e, "password", isValidPassword(e.target.value))
-            // }
-            // handleOnBlur={(e) =>
-            //   handleError("password", isValidPassword(e.target.value))
-            // }
-          />
-          <Input
-            type="age"
-            id="age"
-            label="Your age"
-            // icon={!controllForm.password.error ? <BiLock /> : <BiErrorCircle />}
-            error="error"
-            // handleOnChange={(e) =>
-            //   handleChange(e, "password", isValidPassword(e.target.value))
-            // }
-            // handleOnBlur={(e) =>
-            //   handleError("password", isValidPassword(e.target.value))
-            // }
-          />
-          <Input
-            type="age"
-            id="age"
-            label="Your age"
-            // icon={!controllForm.password.error ? <BiLock /> : <BiErrorCircle />}
-            error="error"
-            // handleOnChange={(e) =>
-            //   handleChange(e, "password", isValidPassword(e.target.value))
-            // }
-            // handleOnBlur={(e) =>
-            //   handleError("password", isValidPassword(e.target.value))
-            // }
-          />
-        </>
+        <CountrySelect
+          setSelectedOption={setSelectedOption}
+          selectedOption={selectedOption}
+        />
       )}
       {progress === 75 && <div>choosing your interested</div>}
       {progress === 100 && <div>show the progress</div>}
@@ -121,7 +102,7 @@ const DashboradPage = () => {
           <Button
             action={progress === 0 ? "Start" : "Next"}
             handleAction={handleProgressNext}
-            disable={true}
+            disable={selectedOption.country !== null}
           />
         )}
       </div>

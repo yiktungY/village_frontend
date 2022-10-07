@@ -62,6 +62,7 @@ const Login = () => {
       password: value.password,
     };
     dispatch(loginAction(loginInfo));
+    dispatch(noticiationActions.showMessage("Login Successfully"));
   };
 
   useEffect(() => {

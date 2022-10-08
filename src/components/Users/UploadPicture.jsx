@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import { BiPlusCircle } from "react-icons/bi";
 
 import { ref, getDownloadURL, uploadBytesResumable } from "@firebase/storage";
 import { storage } from "../../firebase/firebase";
@@ -8,11 +9,11 @@ import { authAction } from "../../store/login-slice";
 import { noticiationActions } from "../../store/noticiation-slice";
 import { Loader } from "../Elements";
 
-const UploadPicture = ({ icon, username, id }) => {
+const UploadPicture = ({ icon, username, image, action }) => {
   //setting image upload
-  const dispatch = useDispatch();
-  const [progress, setProgress] = useState(100);
 
+  const [progress, setProgress] = useState(100);
+  const [url, setUrl] = useState(icon);
   const formHandler = (e) => {
     const file = e.target.files[0];
     uploadFiles(file);
@@ -31,47 +32,42 @@ const UploadPicture = ({ icon, username, id }) => {
       },
       (err) => console.log(err),
       () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((url) =>
-          axios
-            .put(`${import.meta.env.VITE_API_URL}/users/${id}`, {
-              avatar_url: url,
-            })
-            .then((data) => {
-              dispatch(authAction.updateInfo({ icon: url }));
-              dispatch(
-                noticiationActions.showMessage("Your new icon looks great!")
-              );
-            })
-            .catch((err) => console.log(err))
-        );
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+          setUrl(url);
+          action(url);
+        });
       }
     );
   };
 
   return (
-    <div className="w-full flex flex-col items-center">
-      <div className="w-40 relative">
-        <label htmlFor="dropzone-file" className="">
-          <div className="absolute bg-gray-200 p-1 w-40 h-40 rounded-full ring-2 opacity-0 hover:opacity-50 z-20 flex justify-center items-center">
-            <div>upload Icon</div>
-          </div>
-          {progress === 100 ? (
+    <div className="w-40 relative">
+      <label htmlFor="dropzone-file">
+        <div className="absolute bg-gray-200 p-1 w-40 h-40 rounded-full ring-2 opacity-0 hover:opacity-50 z-20 flex justify-center items-center">
+          <div>Upload {image}</div>
+        </div>
+        {progress === 100 ? (
+          url ? (
             <img
               className="p-1 w-40 h-40 rounded-full ring-2 ring-gray-300 animate-pulse"
-              src={icon}
-              alt={`${username} icon`}
+              src={url}
+              alt={`${username}`}
             />
           ) : (
-            <Loader />
-          )}
-          <input
-            id="dropzone-file"
-            type="file"
-            className="hidden"
-            onChange={(e) => formHandler(e)}
-          />
-        </label>
-      </div>
+            <div className="w-40 h-40 bg-gray-600 rounded-full flex justify-center items-center">
+              <BiPlusCircle className="text-4xl text-green-600" />
+            </div>
+          )
+        ) : (
+          <Loader />
+        )}
+        <input
+          id="dropzone-file"
+          type="file"
+          className="hidden"
+          onChange={(e) => formHandler(e)}
+        />
+      </label>
     </div>
   );
 };

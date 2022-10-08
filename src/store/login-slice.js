@@ -21,6 +21,11 @@ const loginSlice = createSlice({
       const info = action.payload;
       state.userInfo.avatar_url = info.icon;
     },
+    autoLogin(state, action) {
+      const info = action.payload;
+      state.isLoggedIn = true
+      state.userInfo = info
+    },
     logout: (state) => {
       localStorage.removeItem('villageToken')
       state.loading = false

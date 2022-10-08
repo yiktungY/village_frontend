@@ -1,43 +1,44 @@
 import React, { useState, useEffect } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import Button from "@mui/material/Button";
-import SendIcon from "@mui/icons-material/Send";
-import { useHistory } from "react-router-dom";
-import { ref, getDownloadURL, uploadBytesResumable } from "@firebase/storage";
 
-import { storage } from "../../../firebase/firebase";
-import ReactDatePicker from "react-datepicker";
-import ReactSelect from "react-select";
-import "react-datepicker/dist/react-datepicker.css";
-import ControlledRadioButtonsGroup from "../../Mui/Mui";
-import LoginButton from "../../Button/LoginButton/LoginButton";
-import "./CreatePost.scss";
+import { LoginButton, RegImage } from "../components/Elements";
+import UploadPicture from "../components/Users/UploadPicture";
 
-function CreatePost({ user }) {
-  const history = useHistory();
+const CreatePostPage = () => {
   const [payMethodvalue, setpayMethodValue] = useState("Non-Monetary Payment");
   const [monPayMethod, setMonPayMethod] = useState(true);
   const [pictureUrl, setpictureUrl] = useState("");
-  const [progress, setProgress] = useState(0);
-
-  const {
-    register,
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    defaultValues: {
-      title: "",
-      content: "",
-      status: "open to apply",
-      type: "",
-      salary: "",
-      requireDate: "",
-      estimate_time: "",
-      salary_replacement: "",
-    },
+  const [jobInfo, setJobInfo] = useState({
+    title: "",
+    content: "",
+    status: "open to apply",
+    type: "",
+    salary: "",
+    requireDate: "",
+    estimate_time: "",
+    salary_replacement: "",
+    picture_Details: "",
   });
+
+  const { userInfo, isLoggedIn } = useSelector((state) => state.login);
+  // const {
+  //   register,
+  //   control,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm({
+  //   defaultValues: {
+  //     title: "",
+  //     content: "",
+  //     status: "open to apply",
+  //     type: "",
+  //     salary: "",
+  //     requireDate: "",
+  //     estimate_time: "",
+  //     salary_replacement: "",
+  //   },
+  // });
 
   const MonPayMethodFunction = () => {
     if (payMethodvalue === "Money") {
@@ -52,6 +53,10 @@ function CreatePost({ user }) {
 
   const handleChange = (event) => {
     setpayMethodValue(event.target.value);
+  };
+
+  const handlePictureUrl = (url) => {
+    setpictureUrl((jobInfo.url = url));
   };
 
   const handleFormSubmit = (data) => {
@@ -77,36 +82,25 @@ function CreatePost({ user }) {
       });
   };
 
-  //upload picture
-  const formHandler = (e) => {
-    e.preventDefault();
-    const file = e.target[0].files[0];
-    uploadFiles(file);
-  };
-
-  const uploadFiles = (file) => {
-    if (!file) return;
-    const storageRef = ref(storage, `/files/${file.name}`);
-    const uploadTask = uploadBytesResumable(storageRef, file);
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const prog =
-          Math.round(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        setProgress(prog);
-      },
-      (err) => console.log(err),
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((url) =>
-          setpictureUrl(url)
-        );
-      }
-    );
-  };
-
   return (
-    <section className="createPage">
-      {user ? (
+    <section className="m-4">
+      {isLoggedIn ? (
+        <>
+          <div>Create New Post</div>
+          <UploadPicture
+            icon={null}
+            action={handlePictureUrl}
+            image="Picture"
+            username="Dummy Picture"
+          />
+        </>
+      ) : (
+        <>
+          <p>Pleas login to create your own posts.</p>
+          <LoginButton />
+        </>
+      )}
+      {/* {user ? (
         <>
           <h1 className="pageheader">Create New Post</h1>
           <div className="createPageForm">
@@ -277,13 +271,10 @@ function CreatePost({ user }) {
         </>
       ) : (
         // If user is not logged in, render login button
-        <>
-          <p>Login to create your own posts.</p>
-          <LoginButton />
-        </>
-      )}
+     
+      )} */}
     </section>
   );
-}
+};
 
-export default CreatePost;
+export default CreatePostPage;

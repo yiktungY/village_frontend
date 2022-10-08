@@ -1,16 +1,24 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import Header from "./layout/Header";
 import Home from "./pages/Home";
 import PostListPage from "./pages/PostListPage";
 import SaveJobsPage from "./pages/SaveJobsPage";
 import DashboradPage from "./pages/DashboardPage";
+import CreatePostPage from "./pages/CreatePostPage";
+import { authAction } from "./store/login-slice";
+import Login from "./components/Users/Login";
+import PopUp from "./layout/PopUp";
 
 const RouteList = () => {
-
+  const dispatch = useDispatch();
+  const { loginOpen } = useSelector((state) => state.login);
+  const handleLogin = () => {
+    dispatch(authAction.openForm());
+  };
   // const logout = async () => {
   //   try {
   //     await axios.delete(`${import.meta.env.VITE_API_URL}/auth/logout`);
@@ -42,11 +50,13 @@ const RouteList = () => {
   return (
     <BrowserRouter>
       <Header />
+      {loginOpen && <PopUp action={handleLogin} children={<Login />} />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/jobs" element={<PostListPage />} />
         <Route path="/saveJobs" element={<SaveJobsPage />} />
         <Route path="/dashboard" element={<DashboradPage />} />
+        <Route path="/createPost" element={<CreatePostPage />} />
         {/* <Route path="*" element={<PageNotFound />} /> */}
       </Routes>
 
@@ -65,7 +75,7 @@ const RouteList = () => {
           path="/updateProfile/:id"
           render={() => <UpdateProfile user={user} />}
         />
-        <Route path="/createpost" render={() => <CreatePost user={user} />} />
+       
         <Route
           path="/post/:postID"
           render={() => <PostDetails user={user} />}

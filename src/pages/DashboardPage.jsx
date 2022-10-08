@@ -6,7 +6,7 @@ import { signUpActions } from "../store/signUp-slice";
 import { noticiationActions } from "../store/noticiation-slice";
 import CountrySelect from "../components/Users/CountrySelect";
 import IconUpdate from "../components/Users/IconUpdate";
-import { Button, Input } from "../components/Elements";
+import { Button, Input, CirImage } from "../components/Elements";
 import UploadPicture from "../components/Users/UploadPicture";
 import axios from "axios";
 
@@ -47,6 +47,23 @@ const DashboradPage = () => {
     }
   };
 
+  const handleUpdateIconToApi = async (url) => {
+    try {
+      const link = axios.put(
+        `${import.meta.env.VITE_API_URL}/users/${user.userInfo.id}`,
+        {
+          avatar_url: url,
+        }
+      );
+      if (link) {
+        dispatch(authAction.updateInfo({ icon: url }));
+        dispatch(noticiationActions.showMessage("Your new icon looks great!"));
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const handleUpdateInfoToApi = async (newUpdateInfo) => {
     const data = await axios.put(
       `${import.meta.env.VITE_API_URL}/users/${user.userInfo.id}`,
@@ -67,17 +84,14 @@ const DashboradPage = () => {
       <div>Welcome! {user.userInfo.displayName}</div>
       <div>Let us start the journey now! </div>
       {progress === 25 && (
-        <>
-          {/* <IconUpdate
-            icon={signUp.userInfo.avatar_url}
-            username={signUp.userInfo.displayName}
-            action={handleIconUpdate}
-          /> */}
+        <div className="w-full flex flex-col items-center">
           <UploadPicture
             icon={user.userInfo.avatar_url}
-            id={user.userInfo.id}
+            action={handleUpdateIconToApi}
+            image="Icon"
+            username={user.userInfo.displayName}
           />
-        </>
+        </div>
       )}
       {progress === 50 && (
         <CountrySelect

@@ -98,12 +98,10 @@ export default function SignUp() {
   }, [value]);
 
   return (
-    <div className="px-4 py-10 flex flex-col items-center">
+    <div className="px-4 py-10 w-full flex flex-col items-center justify-center md:bg-white z-20 md:w-6/12 ">
       {error && <Alert id="signUp" title="Sign Up Error" message={error} />}
-      <div className="text-lg font-medium text-white z-20">
-        Create an Account
-      </div>
-      <div className="flex flex-row  text-white z-20">
+      <div className="text-lg font-medium z-20">Create an Account</div>
+      <div className="flex flex-row z-20">
         Already have an account?
         <div
           onClick={handleLogin}
@@ -113,7 +111,7 @@ export default function SignUp() {
         </div>
       </div>
 
-      <form className="flex flex-col items-center w-full py-4">
+      <form className="flex flex-col items-center w-full py-4 ">
         <Input
           type="email"
           id="email"

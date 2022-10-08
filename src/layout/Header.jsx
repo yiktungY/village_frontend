@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Notification } from "../components/Elements";
+import { Notification, LoginButton } from "../components/Elements";
 import { authAction } from "../store/login-slice";
 import { BiAlignRight, BiStore } from "react-icons/bi";
 
@@ -15,29 +15,23 @@ const Header = () => {
     dispatch(authAction.logout());
     navigate("");
   };
-  const handleLogin = () => {
-    dispatch(authAction.openForm());
-  };
-
   return (
-    <div className="flex flex-row border-b-2 border-stone-100 px-2 py-4 justify-between items-center">
+    <div
+      className="flex flex-row border-b-2 border-stone-100 px-2 py-4 justify-between items-center
+      "
+    >
       {notification.length > 0 && <Notification message={notification} />}
       {isLoggedIn ? (
-        <>
+        <div className="flex flex-row">
           <img
             src={userInfo.avatar_url}
             alt={`icon of ${userInfo.displayName}`}
             className="h-8 w-8 object-cover rounded-full "
           />
           <button onClick={onLogOut}>logout</button>
-        </>
-      ) : (
-        <div
-          className="flex flex-row basis-1/6 text-sky-500 font-bold mx-1 hover:text-sky-600 hover:underline cursor-pointer"
-          onClick={handleLogin}
-        >
-          Login
         </div>
+      ) : (
+        <LoginButton />
       )}
 
       <Link to="/">
@@ -45,7 +39,7 @@ const Header = () => {
           Village
         </div>
       </Link>
-      <div className="flex flex-row basis-1/6 justify-between ">
+      <div className="flex flex-row basis-1/6 justify-between md:justify-end">
         <Link to="/saveJobs" className="flex justify-start w-10">
           <BiStore className="text-2xl hover:text-sky-600 hover:drop-shadow-lg" />
           {savedNumber > 0 && (

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import { noticiationActions } from "../store/noticiation-slice";
+import { authAction } from "../store/login-slice";
 export const Input = ({
   type,
   id,
@@ -13,7 +14,7 @@ export const Input = ({
   handleOnBlur,
 }) => {
   return (
-    <div className="h-20 flex justify-center">
+    <div className="h-20 flex flex-col justify-center items-center w-full">
       <div className="relative my-2 w-full md:w-80">
         <div
           className={`flex absolute inset-y-0 right-4 text-2xl items-center pl-3 pointer-events-auto ${
@@ -48,8 +49,18 @@ export const Input = ({
         </label>
       </div>
       {error.error && (
-        <div className="text-red-500 text-xs">{error.errorMessage}</div>
+        <div className="text-red-500 text-xs z-20 md:font-bold">
+          {error.errorMessage}
+        </div>
       )}
+    </div>
+  );
+};
+export const IconAndTitle = ({ icon, title }) => {
+  return (
+    <div className="flex flex-row items-center">
+      <div className="text-xl mr-4">{icon}</div>
+      <div>{title}</div>
     </div>
   );
 };
@@ -150,6 +161,39 @@ export const Alert = ({ title, message }) => {
       <div>
         <span className="font-medium">Danger alert!</span> {message}
       </div>
+    </div>
+  );
+};
+export const RegImage = ({ url, username }) => {
+  return (
+    <img
+      className="p-1 w-40 h-40 ring-gray-300"
+      src={url}
+      alt={`${username}`}
+    />
+  );
+};
+export const CirImage = ({ url, username }) => {
+  return (
+    <img
+      className="p-1 w-40 h-40 rounded-full ring-2 ring-gray-300 animate-pulse"
+      src={url}
+      alt={`${username}`}
+    />
+  );
+};
+
+export const LoginButton = () => {
+  const dispatch = useDispatch();
+  const handleLogin = () => {
+    dispatch(authAction.openForm());
+  };
+  return (
+    <div
+      className="flex flex-row basis-1/6 text-sky-500 font-bold mx-1 hover:text-sky-600 hover:underline cursor-pointer"
+      onClick={handleLogin}
+    >
+      Login
     </div>
   );
 };

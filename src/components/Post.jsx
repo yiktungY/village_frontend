@@ -43,7 +43,6 @@ const Post = ({
       dispatch(noticiationActions.showMessage("Removed the item!"));
     }
     setTotalCount(saveState?.totalQuantity);
-   
   }, [saveState?.totalQuantity]);
 
   const handleSaveState = (jobId) => {
@@ -56,7 +55,7 @@ const Post = ({
   //get job strucutre
   return (
     <>
-      <li className="border-b-2 p-2 my-4 list-none">
+      <li className="border-b-2 p-2 my-4 w-full list-none md:border md:w-80 ">
         <div className="flex flex-row justify-between ">
           <div className="flex flex-col w-20 items-center mr-2">
             <img

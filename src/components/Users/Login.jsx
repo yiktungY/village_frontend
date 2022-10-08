@@ -62,8 +62,12 @@ const Login = () => {
       password: value.password,
     };
     dispatch(loginAction(loginInfo));
-    dispatch(noticiationActions.showMessage("Login Successfully"));
   };
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(noticiationActions.showMessage("Login Successfully"));
+    }
+  }, [isLoggedIn]);
 
   useEffect(() => {
     if (value.email.length > 5 && value.password.length > 4) {
@@ -88,7 +92,7 @@ const Login = () => {
         </div>
       </div>
 
-      <form className="flex flex-col w-full py-4">
+      <form className="flex flex-col items-center w-full py-4">
         <Input
           type="email"
           id="email"

@@ -59,7 +59,7 @@ const Home = () => {
   // }, [userInfo, signUp.userInfo]);
 
   return (
-    <div className="container">
+    <div className="container flex flex-col justify-center">
       {loginOpen && <PopUp action={handleLogin} children={<Login />} />}
       {isLoggedIn ? (
         <>
@@ -93,9 +93,9 @@ const Home = () => {
           <img
             src="src/assets/images/banner2.jpg"
             alt="banner"
-            className="w-full h-40 object-cover "
+            className="w-full h-40 object-cover md:absolute md:h-5/6  md:top-20 "
           />
-          <div className="absolute top-28 right-6 text-white font-bold text-lg">
+          <div className="absolute top-28 right-6 text-white font-bold text-lg md:relative md:top-0 md:right-0">
             Continuity. Connection. Community.
           </div>
           <SignUp />

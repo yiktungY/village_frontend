@@ -102,7 +102,7 @@ const DashboradPage = () => {
           <Button
             action={progress === 0 ? "Start" : "Next"}
             handleAction={handleProgressNext}
-            disable={selectedOption.country !== null}
+            disable={true}
           />
         )}
       </div>

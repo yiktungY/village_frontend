@@ -13,8 +13,8 @@ export const Input = ({
   handleOnBlur,
 }) => {
   return (
-    <div className="h-20">
-      <div className="relative my-2">
+    <div className="h-20 flex justify-center">
+      <div className="relative my-2 w-full md:w-80">
         <div
           className={`flex absolute inset-y-0 right-4 text-2xl items-center pl-3 pointer-events-auto ${
             error.error ? "text-red-500" : "text-gray-500"
@@ -25,7 +25,7 @@ export const Input = ({
         <input
           type={type}
           id={id}
-          className={`block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border appearance-none  focus:outline-none focus:ring-0  peer ${
+          className={`block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border appearance-none  focus:outline-none focus:ring-0 peer md:bg-white  ${
             error.error
               ? "border-red-600"
               : "border-gray-300 focus:border-sky-600"
@@ -94,7 +94,7 @@ export const Button = ({ action, handleAction, disable }) => {
       type="submit"
       onClick={handleAction}
       disabled={!disable}
-      className={`text-white focus:ring-4 focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 my-4  focus:outline-none  ${
+      className={`text-white focus:ring-4 focus:ring-sky-300 font-medium rounded-lg z-40 text-sm px-5 py-2.5 mr-2 mb-2 my-4 focus:outline-none md:w-48 ${
         !disable ? "bg-neutral-300" : " bg-sky-700 hover:bg-sky-800 "
       }`}
     >

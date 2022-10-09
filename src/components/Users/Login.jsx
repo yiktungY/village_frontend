@@ -63,6 +63,7 @@ const Login = () => {
     };
     dispatch(loginAction(loginInfo));
   };
+
   useEffect(() => {
     if (isLoggedIn) {
       dispatch(noticiationActions.showMessage("Login Successfully"));
@@ -112,7 +113,7 @@ const Login = () => {
           id="EnterPassword"
           label="Enter Password"
           icon={!controllForm.password.error ? <BiLock /> : <BiErrorCircle />}
-          error={controllForm.password}
+          error={controllForm.password.error}
           handleOnChange={(e) =>
             handleChange(e, "password", isValidPassword(e.target.value))
           }

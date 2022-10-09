@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
-import { LoginButton, RegImage } from "../components/Elements";
+import { LoginButton, BasicInput, Button } from "../components/Elements";
 import UploadPicture from "../components/Users/UploadPicture";
 
 const CreatePostPage = () => {
@@ -20,25 +20,12 @@ const CreatePostPage = () => {
     salary_replacement: "",
     picture_Details: "",
   });
-
+  const [controllForm, setControllForm] = useState({
+    title: { error: false, touched: false, errorMessage: "" },
+    type: { error: false, touched: false, errorMessage: "" },
+    requireDate: { error: false, touched: false, errorMessage: "" },
+  });
   const { userInfo, isLoggedIn } = useSelector((state) => state.login);
-  // const {
-  //   register,
-  //   control,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm({
-  //   defaultValues: {
-  //     title: "",
-  //     content: "",
-  //     status: "open to apply",
-  //     type: "",
-  //     salary: "",
-  //     requireDate: "",
-  //     estimate_time: "",
-  //     salary_replacement: "",
-  //   },
-  // });
 
   const MonPayMethodFunction = () => {
     if (payMethodvalue === "Money") {
@@ -51,8 +38,22 @@ const CreatePostPage = () => {
     document.title = "Upload Post";
   }, [payMethodvalue]);
 
-  const handleChange = (event) => {
-    setpayMethodValue(event.target.value);
+  // const handleChange = (event) => {
+  //   setpayMethodValue(event.target.value);
+  // };
+
+  const handleChange = (e, key, func) => {
+    const [value] = func;
+    if (value) {
+      setControllForm((prev) => ({
+        ...prev,
+        [`${key}`]: { error: false, touched: false, errorMessage: "" },
+      }));
+    }
+    setValue((prev) => ({
+      ...prev,
+      [`${key}`]: e.target.value,
+    }));
   };
 
   const handlePictureUrl = (url) => {
@@ -86,12 +87,83 @@ const CreatePostPage = () => {
     <section className="m-4">
       {isLoggedIn ? (
         <>
-          <div>Create New Post</div>
+          <div className="text-2xl">Create a New Post</div>
           <UploadPicture
             icon={null}
             action={handlePictureUrl}
             image="Picture"
             username="Dummy Picture"
+          />
+          <BasicInput
+            type="text"
+            id="title"
+            label="*Title"
+            // icon={!controllForm.password.error ? <BiLock /> : <BiErrorCircle />}
+            error={controllForm.title}
+            handleOnChange={(e) =>
+              handleChange(e, "title", isValidPassword(e.target.value))
+            }
+            handleOnBlur={(e) =>
+              handleError("title", isValidPassword(e.target.value))
+            }
+          />
+          <BasicInput
+            type="text"
+            id="content"
+            label="Content"
+            // icon={!controllForm.password.error ? <BiLock /> : <BiErrorCircle />}
+            error={controllForm.content}
+            handleOnChange={(e) =>
+              handleChange(e, "title", isValidPassword(e.target.value))
+            }
+            handleOnBlur={(e) =>
+              handleError("title", isValidPassword(e.target.value))
+            }
+          />
+
+          <BasicInput
+            type="text"
+            id="title"
+            label="*Title"
+            // icon={!controllForm.password.error ? <BiLock /> : <BiErrorCircle />}
+            error={controllForm.title}
+            handleOnChange={(e) =>
+              handleChange(e, "title", isValidPassword(e.target.value))
+            }
+            handleOnBlur={(e) =>
+              handleError("title", isValidPassword(e.target.value))
+            }
+          />
+          <BasicInput
+            type="text"
+            id="title"
+            label="*Title"
+            // icon={!controllForm.password.error ? <BiLock /> : <BiErrorCircle />}
+            error={controllForm.title}
+            handleOnChange={(e) =>
+              handleChange(e, "title", isValidPassword(e.target.value))
+            }
+            handleOnBlur={(e) =>
+              handleError("title", isValidPassword(e.target.value))
+            }
+          />
+          <BasicInput
+            type="text"
+            id="title"
+            label="*Title"
+            // icon={!controllForm.password.error ? <BiLock /> : <BiErrorCircle />}
+            error={controllForm.title}
+            handleOnChange={(e) =>
+              handleChange(e, "title", isValidPassword(e.target.value))
+            }
+            handleOnBlur={(e) =>
+              handleError("title", isValidPassword(e.target.value))
+            }
+          />
+          <Button
+            action="Submit"
+            handleAction={handleFormSubmit}
+            disable="false"
           />
         </>
       ) : (

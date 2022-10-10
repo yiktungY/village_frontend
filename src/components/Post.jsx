@@ -66,7 +66,7 @@ const Post = ({
             <div>rank</div>
           </div>
           <div className="flex flex-row justify-between w-full">
-            <NavLink className="w-full" key={post_id} to={`/post/${post_id}`}>
+            <NavLink className="w-full" key={post_id} to={`/job/${post_id}`}>
               <div className="flex flex-col w-full">
                 <div className="">{displayName}</div>
                 <div className="">{title}</div>

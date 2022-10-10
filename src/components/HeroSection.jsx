@@ -20,10 +20,13 @@ const HeroSection = () => {
           <BiPaperPlane className="text-4xl text-sky-500" />
           Post
         </Link>
-        <div className="py-2 flex flex-col items-center shadow-lg hover:border-2 border-stone-100 hover:shadow-none">
-          <BiBriefcase className="text-4xl text-sky-500" />
+        <Link
+          to="/jobs"
+          className="py-2 flex flex-col items-center shadow-lg hover:border-2 border-stone-100 hover:shadow-none"
+        >
+          <BiPaperPlane className="text-4xl text-sky-500" />
           Jobs
-        </div>
+        </Link>
         <div className="py-2 flex flex-col items-center shadow-lg hover:border-2 border-stone-100 hover:shadow-none">
           <BiUserPlus className="text-4xl text-sky-500" />
           Networks

@@ -4,7 +4,7 @@ import useFetchPostList from "../hooks/useFetchPostList";
 import Loading from "../components/Loading";
 import Pagination from "../components/Pagination";
 import PostList from "../components/PostList";
-
+import PostDetailsPage from "../pages/PostDetailsPage";
 const PAGE_SIZES = [2, 15, 25, 50, 100];
 
 const PostListPage = () => {
@@ -78,17 +78,29 @@ const PostListPage = () => {
           <Loading />
         </>
       ) : (
-        <PostList selectedJobList={selectedJobList} searchValue={searchValue} />
+        <div className="flex flex-row justify-between w-full m-4">
+          <div className="md:w-1/3">
+            <div className="h-full border overflow-auto flex flex-col items-center">
+              <PostList
+                selectedJobList={selectedJobList}
+                searchValue={searchValue}
+              />
+            </div>
+            {error !== null && <div>null</div>}
+            <Pagination
+              currentPage={currentPage}
+              totalCount={total}
+              pageSize={currentPageSize}
+              pageSizeOptions={PAGE_SIZES}
+              onPageChange={updatePage}
+              onPageSizeOptionChange={updateRowsPerPage}
+            />
+          </div>
+          <div className="hidden md:block md:h-80 md:w-2/3 md:border md:ml-2">
+            <PostDetailsPage />
+          </div>
+        </div>
       )}
-      {error !== null && <div>null</div>}
-      <Pagination
-        currentPage={currentPage}
-        totalCount={total}
-        pageSize={currentPageSize}
-        pageSizeOptions={PAGE_SIZES}
-        onPageChange={updatePage}
-        onPageSizeOptionChange={updateRowsPerPage}
-      />
     </div>
   );
 };

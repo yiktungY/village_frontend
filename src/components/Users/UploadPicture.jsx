@@ -41,34 +41,32 @@ const UploadPicture = ({ icon, username, image, action }) => {
   };
 
   return (
-    <div className="w-40 relative">
-      <label htmlFor="dropzone-file">
-        <div className="absolute bg-gray-200 p-1 w-40 h-40 rounded-full ring-2 opacity-0 hover:opacity-50 z-20 flex justify-center items-center">
-          <div>Upload {image}</div>
-        </div>
-        {progress === 100 ? (
-          url ? (
-            <img
-              className="p-1 w-40 h-40 rounded-full ring-2 ring-gray-300 animate-pulse"
-              src={url}
-              alt={`${username}`}
-            />
-          ) : (
-            <div className="w-40 h-40 bg-gray-600 rounded-full flex justify-center items-center">
-              <BiPlusCircle className="text-4xl text-green-600" />
-            </div>
-          )
+    <label htmlFor="dropzone-file">
+      <div className="absolute bg-gray-200 p-1 w-40 h-40 rounded-full ring-2 opacity-0 hover:opacity-50 z-20 flex justify-center items-center">
+        <div>Upload {image}</div>
+      </div>
+      {progress === 100 ? (
+        url ? (
+          <img
+            className="p-1 w-40 h-40 rounded-full ring-2 ring-gray-300 animate-pulse"
+            src={url}
+            alt={`${username}`}
+          />
         ) : (
-          <Loader />
-        )}
-        <input
-          id="dropzone-file"
-          type="file"
-          className="hidden"
-          onChange={(e) => formHandler(e)}
-        />
-      </label>
-    </div>
+          <div className="w-full h-40 bg-gray-600 flex justify-center items-center ">
+            <BiPlusCircle className="text-4xl text-green-600" />
+          </div>
+        )
+      ) : (
+        <Loader />
+      )}
+      <input
+        id="dropzone-file"
+        type="file"
+        className="hidden"
+        onChange={(e) => formHandler(e)}
+      />
+    </label>
   );
 };
 

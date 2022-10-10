@@ -1,6 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
-import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 
 import Header from "./layout/Header";
@@ -9,6 +7,7 @@ import PostListPage from "./pages/PostListPage";
 import SaveJobsPage from "./pages/SaveJobsPage";
 import DashboradPage from "./pages/DashboardPage";
 import CreatePostPage from "./pages/CreatePostPage";
+import PostDetailsPage from "./pages/PostDetailsPage";
 import { authAction } from "./store/login-slice";
 import Login from "./components/Users/Login";
 import PopUp from "./layout/PopUp";
@@ -19,33 +18,6 @@ const RouteList = () => {
   const handleLogin = () => {
     dispatch(authAction.openForm());
   };
-  // const logout = async () => {
-  //   try {
-  //     await axios.delete(`${import.meta.env.VITE_API_URL}/auth/logout`);
-  //     localStorage.removeItem("messenger-token");
-  //     setUser({});
-  //     window.location.href = "/";
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   const fetchUser = async () => {
-  //     setUser((prev) => ({ ...prev, isFetching: true }));
-  //     try {
-  //       const { data } = await axios.get(
-  //         `${import.meta.env.VITE_API_URL}/auth/user`
-  //       );
-  //       setUser(data.user);
-  //     } catch (error) {
-  //       console.error(error);
-  //     } finally {
-  //       setUser((prev) => ({ ...prev, isFetching: false }));
-  //     }
-  //   };
-  //   fetchUser();
-  // }, []);
 
   return (
     <BrowserRouter>
@@ -57,6 +29,7 @@ const RouteList = () => {
         <Route path="/saveJobs" element={<SaveJobsPage />} />
         <Route path="/dashboard" element={<DashboradPage />} />
         <Route path="/createPost" element={<CreatePostPage />} />
+        <Route path="/job/:jobID" element={<PostDetailsPage />} />
         {/* <Route path="*" element={<PageNotFound />} /> */}
       </Routes>
 
@@ -76,10 +49,7 @@ const RouteList = () => {
           render={() => <UpdateProfile user={user} />}
         />
        
-        <Route
-          path="/post/:postID"
-          render={() => <PostDetails user={user} />}
-        />
+       
         <Route
           path="/postEdit/:postID"
           render={() => <EditPost user={user} />}

@@ -8,7 +8,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { LoginButton, BasicInput, Button } from "../components/Elements";
 import UploadPicture from "../components/Users/UploadPicture";
-
+import CountrySelect from "../components/Users/CountrySelect";
 const options = [
   { value: "Accounting", label: "Accounting" },
   { value: "Babysitting", label: "Babysitting" },
@@ -58,6 +58,13 @@ const CreatePostPage = () => {
     estimate_time: "",
     salary_replacement: "",
     picture_Details: "",
+    location: "",
+  });
+  const [deliverWay, setDeliverWay] = useState("");
+  const [selectedOption, setSelectedOption] = useState({
+    country: null,
+    state: null,
+    city: null,
   });
   const [controllForm, setControllForm] = useState({
     title: { error: false, touched: false, errorMessage: "" },
@@ -127,52 +134,101 @@ const CreatePostPage = () => {
       {isLoggedIn ? (
         <>
           <div className="text-2xl">Create a New Post</div>
-          <UploadPicture
-            icon={null}
-            action={handlePictureUrl}
-            image="Picture"
-            username="Dummy Picture"
-          />
-          <BasicInput
-            type="text"
-            label="*Title"
-            // icon={!controllForm.password.error ? <BiLock /> : <BiErrorCircle />}
-            error={controllForm.title}
-            handleOnChange={(e) =>
-              handleChange(e, "title", isValidPassword(e.target.value))
-            }
-            handleOnBlur={(e) =>
-              handleError("title", isValidPassword(e.target.value))
-            }
-          />
-          <BasicInput
-            type="text"
-            label="Details"
-            // icon={!controllForm.password.error ? <BiLock /> : <BiErrorCircle />}
-            error={controllForm.title}
-            handleOnChange={(e) =>
-              handleChange(e, "title", isValidPassword(e.target.value))
-            }
-            handleOnBlur={(e) =>
-              handleError("title", isValidPassword(e.target.value))
-            }
-          />
-
-          <Select
-            closeMenuOnSelect={false}
-            components={animatedComponents}
-            defaultValue={options[4].value}
-            isMulti
-            options={options}
-          />
-          <DatePicker selected={new Date()} />
-          <Select
-            closeMenuOnSelect={false}
-            components={animatedComponents}
-            defaultValue={hourOptions[0].value}
-            isMulti
-            options={hourOptions}
-          />
+          <div className="flex flex-col md:flex-row w-full">
+            <div className="flex flex-col w-full md:w-1/2 m-4">
+              <input
+                type="text"
+                className=" px-2.5 pb-2.5 mb-4 pt-4 w-full text-black text-xl bg-gray-600 rounded-lg border appearance-none  focus:outline-none focus:ring-0 peer "
+                placeholder="Title"
+                // value={value}
+                // onChange={handleOnChange}
+              />
+              <textarea
+                id="message"
+                rows="10"
+                class="block p-2.5 w-full mb-4 text-sm text-gray-900 bg-gray-50 rounded-lg border  "
+                placeholder="Your message..."
+              ></textarea>
+              <UploadPicture
+                icon={null}
+                action={handlePictureUrl}
+                image="Picture"
+                username="Dummy Picture"
+              />
+            </div>
+            <div className="flex flex-col justify-between w-full md:w-1/2 m-4 h-90 ">
+              <div>
+                <div className=" text-gray-600 font-bold">Payment</div>
+                <input
+                  type="text"
+                  className="px-2.5 pb-2.5 mb-4 pt-4 w-full text-black text-sm rounded-lg border appearance-none  "
+                  placeholder="10 cad - 20 cad"
+                  // value={value}
+                  // onChange={handleOnChange}
+                />
+              </div>
+              <div>
+                <div className="text-gray-600 font-bold">Choose a TAG</div>
+                <Select
+                  closeMenuOnSelect={false}
+                  components={animatedComponents}
+                  defaultValue={options[4].value}
+                  isMulti
+                  options={options}
+                />
+              </div>
+              <div>
+                <div className="text-gray-600 font-bold">Date</div>
+                <DatePicker selected={new Date()} />
+              </div>
+              <div>
+                <div className=" text-gray-600 font-bold">Estimate Hour</div>
+                <Select
+                  closeMenuOnSelect={false}
+                  components={animatedComponents}
+                  defaultValue={hourOptions[0].value}
+                  isMulti
+                  options={hourOptions}
+                />
+              </div>
+              <div class="flex flex-row items-center m-4">
+                <input
+                  id="inPerson"
+                  type="radio"
+                  value="inPerson"
+                  name="deliverMethod"
+                  onClick={(e) => setDeliverWay(e.target.value)}
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 "
+                />
+                <label
+                  for="inPerson"
+                  className="ml-2 text-sm mr-4 font-medium text-gray-900 "
+                >
+                  In Person
+                </label>
+                <input
+                  id="online"
+                  type="radio"
+                  value="online"
+                  name="deliverMethod"
+                  onClick={(e) => setDeliverWay(e.target.value)}
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  "
+                />
+                <label
+                  for="online"
+                  class="ml-2 text-sm font-medium text-gray-900 "
+                >
+                  Online
+                </label>
+              </div>
+              {deliverWay === "inPerson" && (
+                <CountrySelect
+                  setSelectedOption={setSelectedOption}
+                  selectedOption={selectedOption}
+                />
+              )}
+            </div>
+          </div>
           <Button
             action="Submit"
             handleAction={handleFormSubmit}

@@ -5,7 +5,7 @@ import Header from "./layout/Header";
 import Home from "./pages/Home";
 import PostListPage from "./pages/PostListPage";
 import SaveJobsPage from "./pages/SaveJobsPage";
-import DashboradPage from "./pages/DashboardPage";
+import WelcomeBoardPage from "./pages/WelcomeBoardPage";
 import CreatePostPage from "./pages/CreatePostPage";
 import PostDetailsPage from "./pages/PostDetailsPage";
 import { authAction } from "./store/login-slice";
@@ -23,7 +23,7 @@ const RouteList = () => {
         <Route path="/" element={<Home />} />
         <Route path="/jobs/:jobID" element={<PostListPage />} />
         <Route path="/saveJobs" element={<SaveJobsPage />} />
-        <Route path="/dashboard" element={<DashboradPage />} />
+        <Route path="/welcomeBoard" element={<WelcomeBoardPage />} />
         <Route path="/createPost" element={<CreatePostPage />} />
         <Route path="/job/:jobID" element={<PostDetailsPage />} />
         {/* <Route path="*" element={<PageNotFound />} /> */}

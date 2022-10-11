@@ -27,7 +27,7 @@ const Home = () => {
     const selectData = data.slice(0, 4);
     setFeatureJobs(selectData);
   }, [data]);
-
+  console.log(userInfo);
   // useEffect(() => {
   //   // if (isLoggedIn) {
   //   //   dispatch(noticiationActions.showMessage("Login Successfully"));
@@ -36,7 +36,7 @@ const Home = () => {
 
   useEffect(() => {
     if (signUp.success) {
-      navigate("/dashboard");
+      navigate("/welcomeBoard");
       dispatch(noticiationActions.showMessage("Sign Up Successfully"));
     }
     if (signUp.finishBorading) {

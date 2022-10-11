@@ -10,9 +10,10 @@ import { Button, Input, CirImage } from "../components/Elements";
 import UploadPicture from "../components/Users/UploadPicture";
 import axios from "axios";
 
-const DashboradPage = () => {
+const WelcomeBoardPage = () => {
   const signUp = useSelector((state) => state.signUp);
   const user = useSelector((state) => state.login);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [progress, setProgress] = useState(0);
@@ -27,7 +28,6 @@ const DashboradPage = () => {
   const handleProgressNext = () => {
     setProgress((prev) => (prev += 25));
   };
-
   const handleSubmit = async () => {
     try {
       const address = [
@@ -38,8 +38,10 @@ const DashboradPage = () => {
 
       const data = await AuthService.editUserInfo(user.userInfo.id, {
         address: address,
+        finishedBoarding: true,
       });
       if (data?.status === 200) {
+        console.log(data);
         dispatch(signUpActions.finishedBoarding());
       }
     } catch (error) {
@@ -122,4 +124,4 @@ const DashboradPage = () => {
   );
 };
 
-export default DashboradPage;
+export default WelcomeBoardPage;

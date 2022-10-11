@@ -45,3 +45,65 @@ export function timeDifferenceForDate(date) {
   const previous = new Date(date).getTime();
   return timeDifference(current, previous)
 }
+
+export const readableTimestamp = (date, format, month) => {
+  const currentTime = new Date(date)
+  if (currentTime == "Invalid Date") return "Invalid Date"
+  let newDate = ""
+  let monthsList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Aug', 'Oct', 'Nov', 'Dec'];
+  if (format === undefined || format === null) {
+    format = "D-M-Y at h:m"
+  }
+  for (let i = 0; i < format.length; i++) {
+    switch (format[i]) {
+      case "Y":
+        newDate += currentTime.getFullYear()
+        break
+      case "M":
+        let months = currentTime.getMonth() + 1
+        if (month === "month") {
+          newDate += monthsList[months - 1];
+          break
+        } else {
+          if (months < 10) {
+            months = "0" + months
+          }
+          newDate += months
+        }
+        break
+      case "D":
+        let days = currentTime.getDate()
+
+        if (days < 10) {
+          days = "0" + days
+        }
+        newDate += days
+        break
+      case "h":
+        let hour = currentTime.getHours()
+        if (hour < 10) {
+          hour = "0" + hour
+        }
+        newDate += hour
+        break
+      case "m":
+        let minute = currentTime.getMinutes()
+        if (minute < 10) {
+          minute = "0" + minute
+        }
+        newDate += minute
+        break
+      case "s":
+        let second = currentTime.getSeconds()
+        if (second < 10) {
+          second = "0" + second
+        }
+        newDate += second
+        break
+      default:
+        newDate += format[i]
+        break
+    }
+  }
+  return newDate
+}

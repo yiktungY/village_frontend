@@ -1,18 +1,28 @@
 import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
 
+import { SearchInput } from "../components/Elements";
 import useFetchPostList from "../hooks/useFetchPostList";
 import Loading from "../components/Loading";
 import Pagination from "../components/Pagination";
 import PostList from "../components/PostList";
 import PostDetailsPage from "../pages/PostDetailsPage";
+import JobService from "../services/JobService";
+import { jobDetailsActions } from "../store/jobDetails-slice";
+import { tagOptions } from "../utils/data";
+
 const PAGE_SIZES = [2, 15, 25, 50, 100];
 
 const PostListPage = () => {
+  const animatedComponents = makeAnimated();
+  const dispatch = useDispatch();
+  const { jobInfo, jobID, suceess } = useSelector((state) => state.jobDetails);
   const [currentPage, useCurrentPage] = useState(1);
   const [currentPageSize, setCurrentPageSize] = useState(PAGE_SIZES[0]);
   const [selectedJobList, setSelectedJobList] = useState([]);
   const { data, loading, error, total } = useFetchPostList();
-
   const [searchValue, setSearchValue] = useState({
     title: "",
     tag: "",
@@ -28,6 +38,17 @@ const PostListPage = () => {
     useCurrentPage(currentpage);
   };
 
+  const updateJobDetails = async (jobID) => {
+    try {
+      const data = await JobService.getJobDetails(jobID);
+      if (data) {
+        dispatch(jobDetailsActions.getJobDetails(data));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     document.title = "Village | Jobs";
     const indexOfLastJob = currentPage * currentPageSize;
@@ -36,39 +57,41 @@ const PostListPage = () => {
     setSelectedJobList(selectData);
   }, [currentPage, currentPageSize, data]);
 
+  useEffect(() => {
+    updateJobDetails(jobID);
+  }, [jobID]);
+
   return (
     <div>
-      <div className="flex flex-row">
-        <div className="flex flex-col">
-          <input
-            className="bg-stone-200 m-2 p-2"
-            type="text"
-            placeholder="Search by Title"
-            onChange={(e) =>
-              setSearchValue((prev) => ({ ...prev, title: e.target.value }))
-            }
-          />
-          <input
-            className="bg-stone-200 m-2 p-2"
-            type="text"
-            placeholder="Search by Location"
-            onChange={(e) =>
-              setSearchValue((prev) => ({ ...prev, location: e.target.value }))
-            }
-          />
-        </div>
-        <input
-          className="bg-stone-200 m-2 pb-10 pl-4"
+      <div className="flex flex-row w-full items-center">
+        <SearchInput
+          label="Search by Title"
+          //  icon,
           type="text"
-          placeholder="Search by Tag"
-          onChange={(e) =>
-            setSearchValue((prev) => ({ ...prev, tag: e.target.value }))
+          id="searchByTitle"
+          handleOnChange={(e) =>
+            setSearchValue((prev) => ({ ...prev, title: e.target.value }))
           }
         />
+        <SearchInput
+          label="Search by Location"
+          //  icon,
+          type="text"
+          id="searchByLocation"
+          handleOnChange={(e) =>
+            setSearchValue((prev) => ({ ...prev, location: e.target.value }))
+          }
+        />
+        <Select
+          closeMenuOnSelect={false}
+          components={animatedComponents}
+          defaultValue={tagOptions[4].value}
+          isMulti
+          options={tagOptions}
+        />
       </div>
-      <div>Filters</div>
 
-      <div className="flex justify-end px-2">{total} jobs</div>
+      <div className="flex justify-start px-2">{total} jobs</div>
       {loading ? (
         <>
           <Loading />
@@ -78,14 +101,12 @@ const PostListPage = () => {
           <Loading />
         </>
       ) : (
-        <div className="flex flex-row justify-between w-full m-4">
-          <div className="md:w-1/3">
-            <div className="h-full border overflow-auto flex flex-col items-center">
-              <PostList
-                selectedJobList={selectedJobList}
-                searchValue={searchValue}
-              />
-            </div>
+        <div className="flex flex-row justify-between m-2 ">
+          <div className="h-screen border overflow-auto flex flex-col items-center w-1/3">
+            <PostList
+              selectedJobList={selectedJobList}
+              searchValue={searchValue}
+            />
             {error !== null && <div>null</div>}
             <Pagination
               currentPage={currentPage}
@@ -96,7 +117,8 @@ const PostListPage = () => {
               onPageSizeOptionChange={updateRowsPerPage}
             />
           </div>
-          <div className="hidden md:block md:h-80 md:w-2/3 md:border md:ml-2">
+
+          <div className="hidden md:block md:w-2/3 md:border md:ml-2 md:h-screen overflow-auto">
             <PostDetailsPage />
           </div>
         </div>

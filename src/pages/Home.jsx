@@ -81,7 +81,7 @@ const Home = () => {
                   ))
                 )}
               </div>
-              <Link to="/jobs">
+              <Link to="/jobs/new">
                 <div className="w-full text-sky-500 text-l font-bold flex flex-row justify-center items-center my-4 hover:text-sky-800">
                   See all Jobs <BiArrowToRight className="ml-2 text-2xl" />
                 </div>
@@ -105,7 +105,7 @@ const Home = () => {
           </div>
           <SignUp />
           <div> Explore Village</div>
-          <Link to="/jobs">
+          <Link to="/jobs/new">
             <div className="w-full text-sky-500 text-l font-bold flex flex-row justify-center items-center my-4 hover:text-sky-800">
               See all Jobs <BiArrowToRight className="ml-2 text-2xl" />
             </div>

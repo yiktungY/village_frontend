@@ -3,7 +3,7 @@ import signUpSlice from "./signUp-slice";
 import loginSlice from "./login-slice";
 import saveJobSlice from "./saveJob-slice";
 import noticiationSlice from "./noticiation-slice"
-
+import jobDetailsSlice from "./jobDetails-slice"
 
 
 const store = configureStore({
@@ -11,7 +11,8 @@ const store = configureStore({
         signUp: signUpSlice.reducer,
         login: loginSlice.reducer,
         saveJob: saveJobSlice.reducer,
-        noticiation: noticiationSlice.reducer
+        noticiation: noticiationSlice.reducer,
+        jobDetails: jobDetailsSlice.reducer
     }
 })
 

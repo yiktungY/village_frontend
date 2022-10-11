@@ -1,5 +1,5 @@
 import {
-  BiBriefcase,
+  BiSearchAlt,
   BiPaperPlane,
   BiUserPlus,
   BiNetworkChart,
@@ -15,23 +15,23 @@ const HeroSection = () => {
       <div className="h-30 grid grid-cols-4 gap-4 py-4 px-4 md:w-3/4">
         <Link
           to="/createPost"
-          className="py-2 flex flex-col items-center shadow-lg hover:border-2 border-stone-100 hover:shadow-none"
+          className="border-2 py-2 flex flex-col items-center shadow-lg  border-stone-100 hover:shadow-none"
         >
           <BiPaperPlane className="text-4xl text-sky-500" />
           Post
         </Link>
         <Link
-          to="/jobs"
-          className="py-2 flex flex-col items-center shadow-lg hover:border-2 border-stone-100 hover:shadow-none"
+          to="/jobs/new"
+          className="border-2 py-2 flex flex-col items-center shadow-lg  border-stone-100 hover:shadow-none"
         >
-          <BiPaperPlane className="text-4xl text-sky-500" />
+          <BiSearchAlt className="text-4xl text-sky-500" />
           Jobs
         </Link>
-        <div className="py-2 flex flex-col items-center shadow-lg hover:border-2 border-stone-100 hover:shadow-none">
+        <div className="border-2 py-2 flex flex-col items-center shadow-lg  border-stone-100 hover:shadow-none">
           <BiUserPlus className="text-4xl text-sky-500" />
           Networks
         </div>
-        <div className="py-2 flex flex-col items-center shadow-lg hover:border-2 border-stone-100 hover:shadow-none">
+        <div className="border-2 py-2 flex flex-col items-center shadow-lg  border-stone-100 hover:shadow-none">
           <BiNetworkChart className="text-4xl text-sky-500" />
           Party
         </div>

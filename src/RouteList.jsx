@@ -25,7 +25,7 @@ const RouteList = () => {
       {loginOpen && <PopUp action={handleLogin} children={<Login />} />}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/jobs" element={<PostListPage />} />
+        <Route path="/jobs/:jobID" element={<PostListPage />} />
         <Route path="/saveJobs" element={<SaveJobsPage />} />
         <Route path="/dashboard" element={<DashboradPage />} />
         <Route path="/createPost" element={<CreatePostPage />} />

@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import "./UserPostList.scss";
 import HighlightOffTwoToneIcon from "@mui/icons-material/HighlightOffTwoTone";
 
-
 function UserPostList(props) {
   const [userPostList, setuserPostList] = useState([]);
   const fetchPostsbyUserId = () => {
@@ -32,11 +31,11 @@ function UserPostList(props) {
             key={post.post_id}
             to={`/post/${post.post_id}`}
           >
-            {post.picture_Details ? (
+            {post.jobImageUrl ? (
               <div className="postSection__replace">
                 <img
                   className="postSection__picture"
-                  src={post.picture_Details}
+                  src={post.jobImageUrl}
                   alt={`${post.title} picture`}
                 />
               </div>
@@ -49,9 +48,7 @@ function UserPostList(props) {
               <div className="postSection__details--user">
                 By {post.displayName}
               </div>
-              <div className="postSection__details--time">
-                {post.updated_at}
-              </div>
+              <div className="postSection__details--time">{post.updatedAt}</div>
             </div>
             <div className="postSection__title">{post.title}</div>
             <div className="postSection__details">

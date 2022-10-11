@@ -11,11 +11,11 @@ import { jobDetailsActions } from "../store/jobDetails-slice";
 const Post = ({
   post_id,
   displayName,
-  updated_at,
+  updatedAt,
   title,
   type,
   status,
-  avatar_url,
+  avatarUrl,
 }) => {
   const dispatch = useDispatch();
   const saveState = useSelector((state) => state.saveJob);
@@ -27,11 +27,11 @@ const Post = ({
       saveJobActions.addToList({
         post_id,
         displayName,
-        updated_at,
+        updatedAt,
         title,
         type,
         status,
-        avatar_url,
+        avatarUrl,
       })
     );
   };
@@ -56,7 +56,6 @@ const Post = ({
       return matchJob.saved;
     }
   };
-  console.log(type);
 
   return (
     <li
@@ -67,7 +66,7 @@ const Post = ({
       <div className="flex flex-row justify-between">
         <div className="flex flex-col w-20 items-center mr-2">
           <img
-            src={avatar_url}
+            src={avatarUrl}
             alt={`icon of ${displayName}`}
             className="h-14 w-14 object-cover rounded-full "
           />
@@ -87,7 +86,7 @@ const Post = ({
                 {type.split(",").map((tag, index) => (
                   <div
                     key={index}
-                    className="border bg-sky-200 mx-1 p-1 h-fit text-xs"
+                    className="border bg-sky-200 mr-2 p-1 h-fit text-xs"
                   >
                     {tag}
                   </div>
@@ -104,9 +103,7 @@ const Post = ({
           />
         </div>
       </div>
-      <div className="flex justify-end">
-        {timeDifferenceForDate(updated_at)}
-      </div>
+      <div className="flex justify-end">{timeDifferenceForDate(updatedAt)}</div>
     </li>
   );
 };

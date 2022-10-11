@@ -19,7 +19,7 @@ const loginSlice = createSlice({
     },
     updateInfo(state, action) {
       const info = action.payload;
-      state.userInfo.avatar_url = info.icon;
+      state.userInfo.avatarUrl = info.icon;
     },
     autoLogin(state, action) {
       const info = action.payload;

@@ -89,7 +89,6 @@ const Home = () => {
 
               <div>People You Follow</div>
               <div>People Recommended for You</div>
-              {error !== null && <div>null</div>}
             </div>
           </div>
         </>

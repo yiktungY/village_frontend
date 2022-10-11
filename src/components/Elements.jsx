@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import { noticiationActions } from "../store/noticiation-slice";
-import { authAction } from "../store/login-slice";
+
 export const Input = ({
   type,
   id,
@@ -65,35 +65,34 @@ export const BasicInput = ({
   value,
   handleOnChange,
   handleOnBlur,
+  placeholder,
 }) => {
   return (
-    <div className="h-20 flex flex-col justify-center items-center w-full">
-      <div className="relative my-2 w-full md:w-80">
-        <div
-          className={`flex absolute inset-y-0 right-4 text-2xl items-center pl-3 pointer-events-auto text-gray-500"
+    <div className="relative my-2 w-full md:w-80">
+      <div
+        className={`flex absolute inset-y-0 right-4 text-2xl items-center pl-3 pointer-events-auto text-gray-500"
           }`}
-        >
-          {icon}
-        </div>
-        <input
-          type={type}
-          id={id}
-          className={`block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border appearance-none  focus:outline-none focus:ring-0 peer md:bg-white border-gray-300 focus:border-sky-600"
-          }`}
-          placeholder=" "
-          value={value}
-          onChange={handleOnChange}
-          onBlur={handleOnBlur}
-        />
-
-        <label
-          htmlFor={id}
-          className={`absolute text-sm duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1 text-gray-500 peer-focus:text-sky-600 "
-          }`}
-        >
-          {label}
-        </label>
+      >
+        {icon}
       </div>
+      <input
+        type={type}
+        id={id}
+        className={`block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border appearance-none  focus:outline-none focus:ring-0 peer md:bg-white border-gray-300 focus:border-sky-600"
+          }`}
+        placeholder={placeholder}
+        value={value}
+        onChange={handleOnChange}
+        onBlur={handleOnBlur}
+      />
+
+      <label
+        htmlFor={id}
+        className={`absolute text-sm duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1 text-gray-500 peer-focus:text-sky-600 "
+          }`}
+      >
+        {label}
+      </label>
     </div>
   );
 };
@@ -223,21 +222,6 @@ export const CirImage = ({ url, username }) => {
       src={url}
       alt={`${username}`}
     />
-  );
-};
-
-export const LoginButton = () => {
-  const dispatch = useDispatch();
-  const handleLogin = () => {
-    dispatch(authAction.openForm());
-  };
-  return (
-    <div
-      className="flex flex-row basis-1/6 text-sky-500 font-bold mx-1 hover:text-sky-600 hover:underline cursor-pointer"
-      onClick={handleLogin}
-    >
-      Login
-    </div>
   );
 };
 

@@ -1,8 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Notification, LoginButton } from "../components/Elements";
+import { Notification } from "../components/Elements";
 import { authAction } from "../store/login-slice";
+import { popUpActions } from "../store/popUp-slice";
 import { BiAlignRight, BiStore } from "react-icons/bi";
 
 const Header = () => {
@@ -24,14 +25,19 @@ const Header = () => {
       {isLoggedIn ? (
         <div className="flex flex-row">
           <img
-            src={userInfo.avatar_url}
+            src={userInfo.avatarUrl}
             alt={`icon of ${userInfo.displayName}`}
             className="h-8 w-8 object-cover rounded-full "
           />
           <button onClick={onLogOut}>logout</button>
         </div>
       ) : (
-        <LoginButton />
+        <div
+          className="flex flex-row basis-1/6 text-sky-500 font-bold mx-1 hover:text-sky-600 hover:underline cursor-pointer"
+          onClick={() => dispatch(popUpActions.showPopUp("showLogin"))}
+        >
+          Login
+        </div>
       )}
 
       <Link to="/">

@@ -47,8 +47,8 @@ function EditPost({ user }) {
         title: getPost.title,
         content: getPost.content,
         salary: getPost.salary,
-        salary_replacement: getPost.salary_replacement,
-        // estimate_time: getPost.estimate_time,
+        salaryReplacement: getPost.salaryReplacement,
+        // estimateHour: getPost.estimateHour,
       });
     }
   }, [getPost]);
@@ -64,8 +64,8 @@ function EditPost({ user }) {
       status: data.status,
       requireDate: data.requireDate,
       salary: data.salary,
-      salary_replacement: data.salary_replacement,
-      // estimate_time: data.estimate_time,
+      salaryReplacement: data.salaryReplacement,
+      // estimateHour: data.estimateHour,
     };
     axios
       .put(`${import.meta.env.VITE_API_URL}/posts/${postID}`, newPostInfo)
@@ -76,7 +76,7 @@ function EditPost({ user }) {
   };
 
   // const handlePostlTypeUpdate = (data) => {
-  //   // estimate_time: data.estimate_time,
+  //   // estimateHour: data.estimateHour,
   //   axios
   //     .put(`${SERVER_URL}/posts/${postID}`, { type: data.type.value })
   //     .then((data) => {
@@ -125,12 +125,12 @@ function EditPost({ user }) {
                 </div>
                 <input
                   className="inputStyle"
-                  {...register("salary_replacement", {
+                  {...register("salaryReplacement", {
                     required: "This is required.",
                   })}
                   placeholder="a dozen of beer"
                 />
-                <p>{errors.salary_replacement?.message}</p>
+                <p>{errors.salaryReplacement?.message}</p>
               </div>
             ) : (
               <div>
@@ -180,7 +180,7 @@ function EditPost({ user }) {
             <section className="dropdown">
               <div className="subTitle">Estimate Working Hour</div>
               <Controller
-                name="estimate_time"
+                name="estimateHour"
                 className="dropdowninside"
                 control={control}
                 render={({ field }) => (

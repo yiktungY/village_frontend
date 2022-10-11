@@ -4,7 +4,7 @@ import loginSlice from "./login-slice";
 import saveJobSlice from "./saveJob-slice";
 import noticiationSlice from "./noticiation-slice"
 import jobDetailsSlice from "./jobDetails-slice"
-
+import popUpSlice from "./popUp-slice"
 
 const store = configureStore({
     reducer: {
@@ -12,7 +12,8 @@ const store = configureStore({
         login: loginSlice.reducer,
         saveJob: saveJobSlice.reducer,
         noticiation: noticiationSlice.reducer,
-        jobDetails: jobDetailsSlice.reducer
+        jobDetails: jobDetailsSlice.reducer,
+        popUp: popUpSlice.reducer,
     }
 })
 

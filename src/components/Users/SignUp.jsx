@@ -9,7 +9,7 @@ import {
   BiErrorCircle,
 } from "react-icons/bi";
 
-import { authAction } from "../../store/login-slice";
+import { popUpActions } from "../../store/popUp-slice";
 import { signUpAction } from "../../store/userAction";
 import { noticiationActions } from "../../store/noticiation-slice";
 import { Button, Input, Loader, Alert } from "../Elements";
@@ -40,9 +40,6 @@ export default function SignUp() {
     (state) => state.signUp
   );
   const [readyToSubmit, setReadyToSubmit] = useState(false);
-  const handleLogin = () => {
-    dispatch(authAction.openForm());
-  };
 
   const handleChange = (e, key, func) => {
     const [value] = func;
@@ -104,7 +101,7 @@ export default function SignUp() {
       <div className="flex flex-row z-20">
         Already have an account?
         <div
-          onClick={handleLogin}
+          onClick={() => dispatch(popUpActions.showPopUp("showLogin"))}
           className="text-sky-500 font-bold mx-1 hover:text-sky-600 hover:underline cursor-pointer"
         >
           Login

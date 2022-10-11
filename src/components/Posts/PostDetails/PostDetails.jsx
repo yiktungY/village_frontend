@@ -35,7 +35,7 @@ function PostDetails({ user }) {
         userId: user.id,
         username: user.displayName,
         post_id: getPost.post_id,
-        post_title: getPost.title,
+        postTilte: getPost.title,
         content: data.content,
         offer: data.offer,
       })
@@ -106,7 +106,7 @@ function PostDetails({ user }) {
                   className="navLink postDetails__box1--name"
                   to={`/profile/${getPost.user_id}`}
                 >
-                  <Avatar alt={getPost.displayname} src={getPost.avatar_url} />
+                  <Avatar alt={getPost.displayname} src={getPost.avatarUrl} />
                 </NavLink>
                 <h2> {getPost.title}</h2>
               </div>
@@ -119,7 +119,7 @@ function PostDetails({ user }) {
           <div className="postSection__postWrapper">
             <img
               className="postSection__postPicture"
-              src={getPost.picture_Details}
+              src={getPost.jobImageUrl}
               alt={`${getPost.title} picture`}
             />
             <div className="postDetails__box2">
@@ -130,14 +130,14 @@ function PostDetails({ user }) {
               >
                 By {getPost.displayname}
               </NavLink>
-              <div className="time">Post at {getPost.updated_at}</div>
+              <div className="time">Post at {getPost.updatedAt}</div>
 
               {getPost.salary && <div>salary: {getPost.salary}</div>}
-              {getPost.salary_replacement && (
-                <div>Non-Monetary Payment: {getPost.salary_replacement}</div>
+              {getPost.salaryReplacement && (
+                <div>Non-Monetary Payment: {getPost.salaryReplacement}</div>
               )}
               <div>Required Date: {getPost.requireDate}</div>
-              <div>Estimate Time: {getPost.estimate_time}</div>
+              <div>Estimate Time: {getPost.estimateHour}</div>
               <div>Detail: {getPost.content}</div>
               <div>{showApplicantsList.length} People applied</div>
             </div>
@@ -167,10 +167,10 @@ function PostDetails({ user }) {
                   key={info.id}
                   to={`/profile/${info.user_id}`}
                 >
-                  <Avatar src={info.avatar_url} alt={info.username} />
+                  <Avatar src={info.avatarUrl} alt={info.username} />
                   <div>message: {info.content}</div>
                   <div className="applicantsSpe">I Need {info.offer}</div>
-                  <div className="time">time: {info.updated_at}</div>
+                  <div className="time">time: {info.updatedAt}</div>
                   <div>By {info.username}</div>
                 </NavLink>
               ))}
@@ -181,7 +181,7 @@ function PostDetails({ user }) {
                 <div className="applicantsList">
                   <h2>Your application: {applyState.content}</h2>
                   <div>Requires: {applyState.offer}</div>
-                  <div className="time">{applyState.updated_at}</div>
+                  <div className="time">{applyState.updatedAt}</div>
 
                   <Button>Applied</Button>
                 </div>

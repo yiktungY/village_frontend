@@ -4,7 +4,7 @@ import { BiMailSend, BiLock, BiErrorCircle } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 
 import { loginAction } from "../../store/userAction";
-import { authAction } from "../../store/login-slice";
+import { popUpActions } from "../../store/popUp-slice";
 import { noticiationActions } from "../../store/noticiation-slice";
 import { Button, Input, Loader, Alert } from "../Elements";
 import { isValidEmail, isValidPassword } from "./Auth";
@@ -26,10 +26,6 @@ const Login = () => {
   });
 
   const [readyToSubmit, setReadyToSubmit] = useState(false);
-
-  const handleLogin = () => {
-    dispatch(authAction.openForm());
-  };
 
   const handleChange = (e, key, func) => {
     const [value] = func;
@@ -67,6 +63,7 @@ const Login = () => {
   useEffect(() => {
     if (isLoggedIn) {
       dispatch(noticiationActions.showMessage("Login Successfully"));
+      dispatch(popUpActions.showPopUp("showLogin"));
     }
   }, [isLoggedIn]);
 
@@ -86,7 +83,7 @@ const Login = () => {
       <div className="flex flex-row">
         No account yet?
         <div
-          onClick={handleLogin}
+          onClick={() => dispatch(popUpActions.showPopUp("showLogin"))}
           className="text-sky-500 font-bold mx-1 hover:text-sky-600 hover:underline cursor-pointer"
         >
           Sign Up Now

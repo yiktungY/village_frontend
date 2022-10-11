@@ -22,11 +22,11 @@ const saveJobSlice = createSlice({
         state.jobsList.push({
           post_id: newJob.post_id,
           displayName: newJob.displayName,
-          updated_at: newJob.updated_at,
+          updatedAt: newJob.updatedAt,
           title: newJob.title,
           type: newJob.type,
           status: newJob.status,
-          avatar_url: newJob.avatar_url,
+          avatarUrl: newJob.avatarUrl,
           saved: true
 
         })

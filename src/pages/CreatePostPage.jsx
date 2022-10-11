@@ -1,18 +1,21 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
-import { LoginButton, Button, SubTitle } from "../components/Elements";
+import { Button, SubTitle } from "../components/Elements";
 import UploadPicture from "../components/Users/UploadPicture";
 import CountrySelect from "../components/Users/CountrySelect";
 import { tagOptions, hourOptions } from "../utils/data";
 import JobService from "../services/JobService";
 import { noticiationActions } from "../store/noticiation-slice";
+import { popUpActions } from "../store/popUp-slice";
 
 const CreatePostPage = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const animatedComponents = makeAnimated();
   const [jobInfo, setJobInfo] = useState({
@@ -22,9 +25,9 @@ const CreatePostPage = () => {
     type: "",
     salary: "",
     requireDate: "",
-    estimate_time: "",
-    salary_replacement: "",
-    picture_Details: "",
+    estimateHour: "",
+    salaryReplacement: "",
+    jobImageUrl: "",
     location: "",
   });
   const [deliverWay, setDeliverWay] = useState("");
@@ -36,7 +39,7 @@ const CreatePostPage = () => {
   const { userInfo, isLoggedIn } = useSelector((state) => state.login);
 
   const handlePictureUrl = (url) => {
-    setJobInfo((prev) => ({ ...prev, picture_Details: url }));
+    setJobInfo((prev) => ({ ...prev, jobImageUrl: url }));
   };
   const handleTag = (e) => {
     const tags = e.map((tag) => tag.value).join(",");
@@ -47,14 +50,13 @@ const CreatePostPage = () => {
     try {
       const submitInfo = { ...jobInfo, userId: userInfo.id };
       const data = await JobService.creatJob(submitInfo);
-      console.log("====database=====");
-      console.log(data);
       if (data.status === 201) {
         dispatch(
           noticiationActions.showMessage(
             `${jobInfo.title} Updated successfully!`
           )
         );
+        navigate("/");
       }
     } catch (error) {
       dispatch(noticiationActions.showMessage({ error }));
@@ -66,7 +68,6 @@ const CreatePostPage = () => {
       location.state?.name,
       location.city?.name,
     ].join(",");
-
     setJobInfo((prev) => ({ ...prev, location: address }));
   }, [location]);
 
@@ -153,7 +154,7 @@ const CreatePostPage = () => {
                   onChange={(time) =>
                     setJobInfo((prev) => ({
                       ...prev,
-                      estimate_time: time.value,
+                      estimateHour: time.value,
                     }))
                   }
                 />
@@ -207,7 +208,12 @@ const CreatePostPage = () => {
       ) : (
         <>
           <p>Pleas login to create your own posts.</p>
-          <LoginButton />
+          <div
+            className="flex flex-row basis-1/6 text-sky-500 font-bold mx-1 hover:text-sky-600 hover:underline cursor-pointer"
+            onClick={() => dispatch(popUpActions.showPopUp("showLogin"))}
+          >
+            Login
+          </div>
         </>
       )}
       {/* {user ? (
@@ -297,13 +303,13 @@ const CreatePostPage = () => {
                     </div>
                     <input
                       className="inputStyle"
-                      {...register("salary_replacement", {
+                      {...register("salaryReplacement", {
                         required: "This is required.",
                       })}
                       placeholder="a dozen of beer"
                     />
                     <p className="errorMessage">
-                      {errors.salary_replacement?.message}
+                      {errors.salaryReplacement?.message}
                     </p>
                   </div>
                 ) : (
@@ -339,7 +345,7 @@ const CreatePostPage = () => {
                 <section className="dropdown">
                   <div className="subTitle">Estimate Working Hour</div>
                   <Controller
-                    name="estimate_time"
+                    name="estimateHour"
                     className="dropdowninside"
                     control={control}
                     render={({ field }) => (

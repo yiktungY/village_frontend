@@ -22,9 +22,9 @@ const UserInfoBox = () => {
       <div className="fixed left-4 border w-72 p-4 flex flex-col space-y-4 tracking-wider">
         <BiBuildingHouse className="absolute right-2 text-4xl text-yellow-500 " />
         <img
-          src={userInfo.avatar_url}
+          src={userInfo.avatarUrl}
           alt={`icon of ${userInfo.displayName}`}
-          className="p-1 w-12 h-12 rounded-full ring-2 ring-gray-300"
+          className="p-1 w-12 h-12 object-cover rounded-full ring-2 ring-gray-300"
         />
         <div className="font-bold">{userInfo.displayName}</div>
         <IconAndTitle title={handleLocation()} icon={<BiLocationPlus />} />

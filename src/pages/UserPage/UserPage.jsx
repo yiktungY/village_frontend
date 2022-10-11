@@ -65,7 +65,7 @@ function UserPage({ user }) {
   useEffect(() => {
     if (userInfo) {
       reset({
-        avatar_url: userInfo.avatar_url,
+        avatarUrl: userInfo.avatarUrl,
         displayName: userInfo.displayName,
       });
     }
@@ -86,7 +86,7 @@ function UserPage({ user }) {
         <div className="profile__info--areaone">
           <Avatar
             sx={{ width: 250, height: 250 }}
-            src={userInfo.avatar_url}
+            src={userInfo.avatarUrl}
             alt="UserIcon"
           />
         </div>
@@ -108,7 +108,7 @@ function UserPage({ user }) {
             <h3>Contact Me</h3>
             <div className="profile__info--email">{userInfo.email}</div>
             <div>Address: {userInfo.address}</div>
-            <div>Accounts create at {userInfo.updated_at}</div>
+            <div>Accounts create at {userInfo.updatedAt}</div>
           </section>
         </div>
       </div>
@@ -124,7 +124,7 @@ function UserPage({ user }) {
               <div className="profile__info--postTextInfo">
                 <img
                   className="profile__info--picture"
-                  src={userPostList[0].picture_Details}
+                  src={userPostList[0].jobImageUrl}
                   alt={userPostList[0].title}
                 />
                 <div className="profile__info--postText">

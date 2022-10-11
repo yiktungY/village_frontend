@@ -19,7 +19,16 @@ const creatJob = async (jobInfo) => {
   }
 };
 
+const applyJob = async (applyInfo, postID) => {
+  const response = await axios.post(
+    `${import.meta.env.VITE_API_URL}/apply/${postID}`,
+    applyInfo
+  );
+  return response;
+};
+
 export default {
   getJobDetails,
   creatJob,
+  applyJob,
 };

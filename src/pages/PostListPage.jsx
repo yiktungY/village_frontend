@@ -12,6 +12,8 @@ import PostDetailsPage from "../pages/PostDetailsPage";
 import JobService from "../services/JobService";
 import { jobDetailsActions } from "../store/jobDetails-slice";
 import { tagOptions } from "../utils/data";
+import ApplyJobForm from "../components/ApplyJobForm";
+import PopUp from "../layout/PopUp";
 
 const PAGE_SIZES = [2, 15, 25, 50, 100];
 
@@ -19,6 +21,7 @@ const PostListPage = () => {
   const animatedComponents = makeAnimated();
   const dispatch = useDispatch();
   const { jobInfo, jobID, suceess } = useSelector((state) => state.jobDetails);
+  const { showJobPicture, showJobApply } = useSelector((state) => state.popUp);
   const [currentPage, useCurrentPage] = useState(1);
   const [currentPageSize, setCurrentPageSize] = useState(PAGE_SIZES[0]);
   const [selectedJobList, setSelectedJobList] = useState([]);
@@ -28,7 +31,6 @@ const PostListPage = () => {
     tag: "",
     location: "",
   });
-
   const updateRowsPerPage = (currentPageSize) => {
     setCurrentPageSize(currentPageSize);
     useCurrentPage(1);
@@ -121,6 +123,21 @@ const PostListPage = () => {
           <div className="hidden md:block md:w-2/3 md:border md:ml-2 md:h-screen overflow-auto">
             <PostDetailsPage />
           </div>
+          {showJobPicture && (
+            <PopUp
+              target="showJobPicture"
+              children={
+                <img
+                  className="w-80"
+                  src={jobInfo.jobImageUrl}
+                  alt={jobInfo.title}
+                />
+              }
+            />
+          )}
+          {showJobApply && (
+            <PopUp target="showJobApply" children={<ApplyJobForm />} />
+          )}
         </div>
       )}
     </div>

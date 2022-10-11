@@ -48,7 +48,7 @@ const UploadPicture = ({ icon, username, image, action }) => {
       {progress === 100 ? (
         url ? (
           <img
-            className="p-1 w-40 h-40 rounded-full ring-2 ring-gray-300 animate-pulse"
+            className="p-1 w-40 h-40 object-cover rounded-full ring-2 ring-gray-300 animate-pulse"
             src={url}
             alt={`${username}`}
           />

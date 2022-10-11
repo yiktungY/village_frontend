@@ -13,16 +13,12 @@ import Login from "./components/Users/Login";
 import PopUp from "./layout/PopUp";
 
 const RouteList = () => {
-  const dispatch = useDispatch();
-  const { loginOpen } = useSelector((state) => state.login);
-  const handleLogin = () => {
-    dispatch(authAction.openForm());
-  };
+  const { showLogin } = useSelector((state) => state.popUp);
 
   return (
     <BrowserRouter>
       <Header />
-      {loginOpen && <PopUp action={handleLogin} children={<Login />} />}
+      {showLogin && <PopUp target="showLogin" children={<Login />} />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/jobs/:jobID" element={<PostListPage />} />

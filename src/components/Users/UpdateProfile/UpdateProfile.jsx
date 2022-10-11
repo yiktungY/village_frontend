@@ -9,7 +9,6 @@ import useLogin from "../../../hooks/useLogin";
 import { useHistory } from "react-router-dom";
 
 function UpdateProfile({ user }) {
-
   const history = useHistory();
   const {
     register,
@@ -20,7 +19,7 @@ function UpdateProfile({ user }) {
 
   const handelUpdate = (data) => {
     const newUpdateInfo = {
-      avatar_url: data.avatar_url,
+      avatarUrl: data.avatarUrl,
       givenName: data.givenName,
       familyName: data.familyName,
       displayName: data.displayName,
@@ -102,7 +101,7 @@ function UpdateProfile({ user }) {
               <div>Rating: {user.rating}</div>
               <div>Done Case: {user.doneCase}</div>
 
-              <div>Account creates at {user.updated_at}</div>
+              <div>Account creates at {user.updatedAt}</div>
             </div>
           </form>
         </div>

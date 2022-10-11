@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { signUpActions } from "../store/signUp-slice";
 import { noticiationActions } from "../store/noticiation-slice";
 import CountrySelect from "../components/Users/CountrySelect";
-import IconUpdate from "../components/Users/IconUpdate";
+import AuthService from "../services/AuthService";
 import { Button, Input, CirImage } from "../components/Elements";
 import UploadPicture from "../components/Users/UploadPicture";
 import axios from "axios";
@@ -36,7 +36,7 @@ const DashboradPage = () => {
         selectedOption.city?.name,
       ].join(",");
 
-      const data = await handleUpdateInfoToApi({
+      const data = await AuthService.editUserInfo(user.userInfo.id, {
         address: address,
       });
       if (data?.status === 200) {
@@ -49,12 +49,10 @@ const DashboradPage = () => {
 
   const handleUpdateIconToApi = async (url) => {
     try {
-      const link = axios.put(
-        `${import.meta.env.VITE_API_URL}/users/${user.userInfo.id}`,
-        {
-          avatar_url: url,
-        }
-      );
+      const link = await AuthService.editUserInfo(user.userInfo.id, {
+        avatarUrl: url,
+      });
+
       if (link) {
         dispatch(authAction.updateInfo({ icon: url }));
         dispatch(noticiationActions.showMessage("Your new icon looks great!"));
@@ -62,14 +60,6 @@ const DashboradPage = () => {
     } catch (err) {
       console.log(err);
     }
-  };
-
-  const handleUpdateInfoToApi = async (newUpdateInfo) => {
-    const data = await axios.put(
-      `${import.meta.env.VITE_API_URL}/users/${user.userInfo.id}`,
-      newUpdateInfo
-    );
-    return data;
   };
 
   useEffect(() => {
@@ -86,7 +76,7 @@ const DashboradPage = () => {
       {progress === 25 && (
         <div className="w-full flex flex-col items-center">
           <UploadPicture
-            icon={user.userInfo.avatar_url}
+            icon={user.userInfo.avatarUrl}
             action={handleUpdateIconToApi}
             image="Icon"
             username={user.userInfo.displayName}
